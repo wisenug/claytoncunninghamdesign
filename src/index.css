@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
@@ -176,7 +175,7 @@
 }
 
 .nav-link-active {
-  @apply font-bold text-[#a1c565] after:absolute after:bottom-0 after:left-0 after:h-1 after:w-full after:bg-[#a1c565] after:h-[3px];
+  @apply font-bold text-[#a1c565] after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-full after:bg-[#a1c565];
 }
 
 /* Add padding to main content to account for fixed navbar */
