@@ -45,8 +45,16 @@ const Navbar = () => {
             <span className="font-medium text-xl tracking-tight">Clayton Cunningham Design</span>
           </Link>
           <nav className="hidden md:flex items-center space-x-6">
-            <Link to="/" className={`nav-link ${isActiveRoute("/")}`}>Work</Link>
-            <Link to="/about" className={`nav-link ${isActiveRoute("/about")}`}>About</Link>
+            <Link to="/" className={`nav-link group relative ${isActiveRoute("/")}`}>
+              <span className="relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bg-black after:bottom-0 after:left-0 after:origin-left after:transition-transform after:duration-300 after:ease-out group-hover:after:scale-x-100">
+                Work
+              </span>
+            </Link>
+            <Link to="/about" className={`nav-link group relative ${isActiveRoute("/about")}`}>
+              <span className="relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bg-black after:bottom-0 after:left-0 after:origin-left after:transition-transform after:duration-300 after:ease-out group-hover:after:scale-x-100">
+                About
+              </span>
+            </Link>
           </nav>
           <div className="md:hidden flex items-center">
             <button 
@@ -86,7 +94,7 @@ const Navbar = () => {
           >
             CLOSE
           </button>
-          <nav className="flex flex-col items-start space-y-8 w-full">
+          <nav className="flex flex-col items-start space-y-8 w-full mt-[-100px]"> {/* Moved higher by adjusting margin-top */}
             <Link 
               to="/" 
               onClick={toggleMobileMenu} 
