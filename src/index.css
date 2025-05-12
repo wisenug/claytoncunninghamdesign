@@ -46,9 +46,9 @@
     --sidebar-border: 0 0% 90%;
     --sidebar-ring: 0 0% 20%;
 
-    /* Add custom color variables */
-    --active-link: 161 197 101;
-    --hover-link: 118 140 76;
+    /* Custom color variables */
+    --active-link: 161 197 101;  /* #a1c565 */
+    --hover-link: 118 140 76;    /* #768c4c */
   }
 
   .dark {
@@ -89,9 +89,9 @@
     --sidebar-border: 0 0% 26%;
     --sidebar-ring: 0 0% 80%;
 
-    /* Add custom color variables */
-    --active-link: 161 197 101;
-    --hover-link: 118 140 76;
+    /* Custom color variables */
+    --active-link: 161 197 101;  /* #a1c565 */
+    --hover-link: 118 140 76;    /* #768c4c */
   }
 }
 
@@ -129,7 +129,7 @@
   }
 
   p {
-    @apply mb-4;
+    @apply mb-4 text-base sm:text-lg;
   }
 
   /* Accessibility improvements */
@@ -176,10 +176,67 @@
 }
 
 .nav-link-active {
-  @apply font-bold text-[#a1c565] after:absolute after:bottom-0 after:left-0 after:h-1 after:w-full after:bg-[#a1c565];
+  @apply font-bold text-[#a1c565] after:absolute after:bottom-0 after:left-0 after:h-1 after:w-full after:bg-[#a1c565] after:h-[3px];
 }
 
 /* Add padding to main content to account for fixed navbar */
 main {
   @apply pt-16;
+}
+
+/* Animation support */
+.lottie-container, .rive-container {
+  @apply w-full h-auto flex items-center justify-center;
+}
+
+/* Utilities for grid layouts like the reference images */
+.grid-wide {
+  @apply col-span-full md:col-span-2;
+}
+
+.project-grid-modern {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8;
+}
+
+/* Black section for project details */
+.project-highlight-section {
+  @apply bg-black text-white py-20 my-12;
+}
+
+/* Scale utility for logo */
+.scale-250 {
+  transform: scale(2.5);
+}
+
+/* Implement responsive base type size and scale */
+@media (max-width: 640px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 1025px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/* Implement enhanced accessibility features */
+.sr-only {
+  @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
+}
+
+[aria-hidden="true"] {
+  @apply pointer-events-none select-none;
+}
+
+/* High contrast focus states for keyboard navigation */
+:focus-visible {
+  @apply outline-2 outline-offset-2 outline-[#a1c565];
 }

@@ -8,7 +8,6 @@ const Navbar = () => {
   
   useEffect(() => {
     const handleScroll = () => {
-      // Check if user has scrolled down and then back up
       if (window.scrollY > 100) {
         setScrolled(true);
       } else {
@@ -26,19 +25,19 @@ const Navbar = () => {
 
   return (
     <header className={`w-full fixed top-0 z-50 transition-all duration-300 ${
-      scrolled ? "bg-background/70 backdrop-blur-sm shadow-sm" : "bg-transparent"
+      scrolled ? "bg-background/60 backdrop-blur-sm" : "bg-transparent"
     }`}>
       <div className="portfolio-container flex items-center justify-between h-16">
         <Link to="/" className="flex items-center space-x-3">
           <img 
             src="/lovable-uploads/5bb31fdc-7d95-4c14-9a6d-987bb14016f6.png" 
             alt="Clayton Cunningham Design Logo" 
-            className="h-8 w-auto"
+            className="h-20 w-auto transform scale-250" // Increased size by 250%
           />
           <span className="font-medium text-xl tracking-tight">Clayton Cunningham Design</span>
         </Link>
         <nav className="hidden md:flex items-center space-x-6">
-          <Link to="/" className={`nav-link ${isActiveRoute("/")}`}>Projects</Link>
+          <Link to="/" className={`nav-link ${isActiveRoute("/")}`}>Work</Link>
           <Link to="/about" className={`nav-link ${isActiveRoute("/about")}`}>About</Link>
         </nav>
         <div className="md:hidden flex items-center">

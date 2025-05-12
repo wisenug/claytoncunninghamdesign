@@ -173,7 +173,7 @@ const ProjectDetail = () => {
               <path d="m12 19-7-7 7-7"/>
               <path d="M19 12H5"/>
             </svg>
-            Back to projects
+            Back to work
           </Link>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -210,23 +210,70 @@ const ProjectDetail = () => {
       
       <section className="pb-10">
         <div className="portfolio-container">
-          {project.images.map((image, index) => (
-            <div key={index} className="mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
+            {/* First image - full width */}
+            <div className="md:col-span-12 mb-6">
               <img 
-                src={image.url} 
-                alt={`${project.title} - Image ${index + 1}`} 
+                src={project.image} 
+                alt={`${project.title} - Main Image`}
                 className="w-full rounded-lg"
               />
-              <div className="mt-4 max-w-3xl">
-                <h4 className="text-lg font-medium mb-2">{image.caption}</h4>
-                <p className="text-muted-foreground">{image.description}</p>
-              </div>
             </div>
-          ))}
+            
+            {/* Grid layout for additional images */}
+            {project.images.map((image, index) => {
+              // Determine if this image should be wide (every 3rd image)
+              const isWide = index % 3 === 0;
+              return (
+                <div key={index} className={`${isWide ? 'md:col-span-12' : 'md:col-span-6'} mb-6`}>
+                  <img 
+                    src={image.url} 
+                    alt={`${project.title} - Image ${index + 1}`} 
+                    className="w-full rounded-lg"
+                  />
+                  <div className="mt-4">
+                    <h4 className="text-lg font-medium mb-2">{image.caption}</h4>
+                    <p className="text-muted-foreground">{image.description}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </section>
 
-      <section className="pb-20">
+      {/* Black background section for highlighting project aspects */}
+      <section className="bg-black text-white py-20">
+        <div className="portfolio-container">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-medium mb-8">Project Illustrations</h2>
+            <p className="text-lg mb-8 text-gray-300">
+              For this project, we created a series of custom illustrations to bring the brand to life.
+              The illustrations were designed to be bold, playful, and memorable, reflecting the brand's personality.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div>
+                <img 
+                  src={project.image} 
+                  alt="Project illustration" 
+                  className="w-full rounded-lg mb-4"
+                />
+                <p className="text-gray-300">Custom illustrations showcase the product's unique features</p>
+              </div>
+              <div>
+                <img 
+                  src={project.image} 
+                  alt="Project illustration" 
+                  className="w-full rounded-lg mb-4"
+                />
+                <p className="text-gray-300">Brand patterns developed for marketing materials</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20">
         <div className="portfolio-container">
           <h2 className="text-2xl font-medium mb-10">Design Process</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">

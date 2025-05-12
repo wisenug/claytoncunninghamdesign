@@ -13,10 +13,8 @@ const About = () => {
               />
             </div>
             <div>
-              <h1 className="mb-6">About</h1>
               <p className="text-xl text-muted-foreground mb-8">
-                We're a design studio specializing in branding, UI/UX, and digital product design. 
-                Founded in 2011, we work with forward-thinking companies to create memorable brand experiences.
+                I'm Clayton Cunningham — Designer and Illustrator in Atlanta, GA 🍑. Currently working as a UX Designer for Autotrader/KBB.
               </p>
             </div>
           </div>
@@ -71,7 +69,7 @@ const About = () => {
       
       <section className="py-10">
         <div className="portfolio-container">
-          <div className="bg-[#a1c565] rounded-2xl p-10 md:p-16">
+          <div className="bg-[#a1c565] rounded-[16px] p-10 md:p-16">
             <div className="max-w-2xl mx-auto text-center">
               <h2 className="text-2xl md:text-3xl mb-6">Ready to start your project?</h2>
               <p className="text-lg mb-8 text-muted-foreground">
