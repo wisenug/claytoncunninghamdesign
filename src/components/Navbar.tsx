@@ -5,20 +5,35 @@ import { useEffect, useState } from "react";
 const Navbar = () => {
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   
   useEffect(() => {
     const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Check if user has scrolled down or up
+      if (currentScrollY > lastScrollY) {
+        // Scrolling down
+        setIsVisible(false);
+      } else {
+        // Scrolling up
+        setIsVisible(true);
+      }
+      
       // Check if user has scrolled down and then back up
-      if (window.scrollY > 100) {
+      if (currentScrollY > 100) {
         setScrolled(true);
       } else {
         setScrolled(false);
       }
+      
+      setLastScrollY(currentScrollY);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [lastScrollY]);
   
   const isActiveRoute = (path: string) => {
     return location.pathname === path ? "nav-link-active" : "";
@@ -26,7 +41,9 @@ const Navbar = () => {
 
   return (
     <header className={`w-full fixed top-0 z-50 transition-all duration-300 ${
-      scrolled ? "bg-background shadow-md" : "bg-transparent"
+      scrolled ? "bg-background/90 backdrop-blur-sm shadow-sm" : "bg-transparent"
+    } ${
+      isVisible ? "translate-y-0" : "-translate-y-full"
     }`}>
       <div className="portfolio-container flex items-center justify-between h-16">
         <Link to="/" className="flex items-center space-x-3">

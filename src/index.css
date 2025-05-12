@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
@@ -44,6 +45,10 @@
     --sidebar-accent-foreground: 0 0% 20%;
     --sidebar-border: 0 0% 90%;
     --sidebar-ring: 0 0% 20%;
+
+    /* Add custom color variables */
+    --active-link: 161 197 101;
+    --hover-link: 118 140 76;
   }
 
   .dark {
@@ -83,6 +88,10 @@
     --sidebar-accent-foreground: 0 0% 98%;
     --sidebar-border: 0 0% 26%;
     --sidebar-ring: 0 0% 80%;
+
+    /* Add custom color variables */
+    --active-link: 161 197 101;
+    --hover-link: 118 140 76;
   }
 }
 
@@ -91,35 +100,65 @@
     @apply border-border;
   }
 
+  html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-foreground font-sans;
+    font-size: 1rem;
+    line-height: 1.5;
   }
   
   h1, h2, h3, h4, h5, h6 {
     @apply font-medium tracking-tight;
+    line-height: 1.2;
   }
   
   h1 {
-    @apply text-4xl md:text-5xl lg:text-6xl;
+    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl;
   }
   
   h2 {
-    @apply text-3xl md:text-4xl;
+    @apply text-2xl sm:text-3xl md:text-4xl;
   }
   
   h3 {
-    @apply text-2xl md:text-3xl;
+    @apply text-xl sm:text-2xl md:text-3xl;
+  }
+
+  p {
+    @apply mb-4;
+  }
+
+  /* Accessibility improvements */
+  :focus {
+    @apply outline-2 outline-offset-2 outline-primary/50;
   }
   
   img {
     @apply object-cover;
   }
+
+  /* Improve contrast for better readability */
+  .text-muted-foreground {
+    @apply text-opacity-75;
+  }
 }
 
+/* Responsive project grid */
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .project-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+  }
 }
 
 @media (min-width: 768px) {
@@ -129,15 +168,15 @@
 }
 
 .portfolio-container {
-  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
 }
 
 .nav-link {
-  @apply relative px-3 py-2 text-sm font-medium transition-colors hover:text-black/70;
+  @apply relative px-3 py-2 text-sm font-medium transition-colors hover:text-[#768c4c];
 }
 
 .nav-link-active {
-  @apply text-black after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:bg-black;
+  @apply font-bold text-[#a1c565] after:absolute after:bottom-0 after:left-0 after:h-1 after:w-full after:bg-[#a1c565];
 }
 
 /* Add padding to main content to account for fixed navbar */
