@@ -1,39 +1,24 @@
 
 import { Link, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
 const Navbar = () => {
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
   
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      
-      // Check if user has scrolled down or up
-      if (currentScrollY > lastScrollY) {
-        // Scrolling down
-        setIsVisible(false);
-      } else {
-        // Scrolling up
-        setIsVisible(true);
-      }
-      
       // Check if user has scrolled down and then back up
-      if (currentScrollY > 100) {
+      if (window.scrollY > 100) {
         setScrolled(true);
       } else {
         setScrolled(false);
       }
-      
-      setLastScrollY(currentScrollY);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, []);
   
   const isActiveRoute = (path: string) => {
     return location.pathname === path ? "nav-link-active" : "";
@@ -41,9 +26,7 @@ const Navbar = () => {
 
   return (
     <header className={`w-full fixed top-0 z-50 transition-all duration-300 ${
-      scrolled ? "bg-background/90 backdrop-blur-sm shadow-sm" : "bg-transparent"
-    } ${
-      isVisible ? "translate-y-0" : "-translate-y-full"
+      scrolled ? "bg-background/70 backdrop-blur-sm shadow-sm" : "bg-transparent"
     }`}>
       <div className="portfolio-container flex items-center justify-between h-16">
         <Link to="/" className="flex items-center space-x-3">
@@ -57,7 +40,6 @@ const Navbar = () => {
         <nav className="hidden md:flex items-center space-x-6">
           <Link to="/" className={`nav-link ${isActiveRoute("/")}`}>Projects</Link>
           <Link to="/about" className={`nav-link ${isActiveRoute("/about")}`}>About</Link>
-          <Link to="/contact" className={`nav-link ${isActiveRoute("/contact")}`}>Contact</Link>
         </nav>
         <div className="md:hidden flex items-center">
           {/* Mobile menu button */}
