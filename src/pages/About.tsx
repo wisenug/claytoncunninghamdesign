@@ -13,8 +13,8 @@ const About = () => {
               />
             </div>
             <div>
-              <p className="text-2xl text-muted-foreground mb-8" style={{fontSize: '2.25rem'}}>
-                I'm Clayton Cunningham — Designer and Illustrator in Atlanta, GA 🍑. Currently working as a Senior UX Designer for Cox Automotive - Autotrader and Kelley Blue Book.
+              <p className="text-2xl text-black mb-8" style={{fontSize: '2.25rem', lineHeight: '120%'}}>
+                <strong>I'm Clayton Cunningham — Designer and Illustrator in Atlanta, GA 🍑. Currently working as a Senior UX Designer for Cox Automotive - Autotrader and Kelley Blue Book.</strong>
               </p>
             </div>
           </div>
@@ -25,21 +25,18 @@ const About = () => {
         <div className="portfolio-container">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
             <div>
-              <h2 className="text-2xl mb-6">Our Approach</h2>
+              <h2 className="text-2xl mb-6">Approach</h2>
               <p className="text-muted-foreground mb-4">
-                We believe in thoughtful, user-centered design that solves real problems. Our process begins with deep research and understanding of your business, audience, and objectives.
-              </p>
-              <p className="text-muted-foreground mb-4">
-                From there, we collaborate closely with you to develop design solutions that are not only beautiful, but strategic and effective. Our goal is to create work that resonates with your audience and helps your business grow.
+                I believe in thoughtful, user-centered design that solves real problems. My process begins with deep research and understanding of your business, audience, and objectives.
               </p>
               <p className="text-muted-foreground">
-                Whether you're launching a new brand, redesigning a website, or developing a digital product, we bring the same level of care and attention to every project.
+                Whether you have a great new idea for a company and need a logo, or your current brand needs an entire visual refresh, let's work together to bring your ideas to life.
               </p>
             </div>
             
             <div>
               <h2 className="text-2xl mb-6">Services & Skills</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
                 <div>
                   <h3 className="text-lg font-medium mb-3">Brand Design</h3>
                   <ul className="space-y-2 text-muted-foreground">
@@ -52,13 +49,34 @@ const About = () => {
                 </div>
                 
                 <div>
+                  <h3 className="text-lg font-medium mb-3">Content Design</h3>
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li>Art Direction</li>
+                    <li>Product Illustrations</li>
+                    <li>Editorial Illustrations</li>
+                    <li>Custom Icon Sets</li>
+                    <li>Animations & Microinteractions</li>
+                  </ul>
+                </div>
+                
+                <div>
                   <h3 className="text-lg font-medium mb-3">Digital Design</h3>
                   <ul className="space-y-2 text-muted-foreground">
                     <li>Website Design</li>
                     <li>UI/UX Design</li>
                     <li>Mobile App Design</li>
                     <li>Prototyping</li>
-                    <li>User Research</li>
+                  </ul>
+                </div>
+                
+                <div>
+                  <h3 className="text-lg font-medium mb-3">Print & Merchandise</h3>
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li>Apparel</li>
+                    <li>Posters</li>
+                    <li>Prints</li>
+                    <li>Stickers</li>
+                    <li>Greeting or Business Cards</li>
                   </ul>
                 </div>
               </div>
@@ -77,10 +95,18 @@ const About = () => {
               </p>
               <a 
                 href="mailto:info@claytoncunninghamdesign.com" 
-                className="inline-block bg-black text-white px-6 py-0 rounded-[4px] hover:bg-black/90 transition-colors h-[48px] flex items-center"
-                style={{ paddingLeft: '24px', paddingRight: '24px', height: '48px', borderRadius: '4px', backgroundColor: '#000' }}
+                className="inline-block bg-black text-white px-6 py-0 rounded-[4px] hover:bg-black/90 transition-colors h-[48px] flex items-center justify-center"
+                style={{ 
+                  paddingLeft: '24px', 
+                  paddingRight: '24px', 
+                  height: '48px', 
+                  borderRadius: '4px', 
+                  backgroundColor: '#000', 
+                  width: 'fit-content',
+                  margin: '0 auto'
+                }}
               >
-                <strong>Get in touch</strong>
+                <strong>Let's Make Some Cool Stuff</strong>
               </a>
             </div>
           </div>
