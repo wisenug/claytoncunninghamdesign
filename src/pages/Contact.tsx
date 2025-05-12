@@ -42,7 +42,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="animate-fade-in">
+    <div className="animate-fade-in bg-[#a1c565] min-h-screen pt-20">
       <section className="py-20">
         <div className="portfolio-container">
           <div className="max-w-2xl mb-16">
@@ -139,7 +139,7 @@ const Contact = () => {
             </div>
             
             <div>
-              <div className="bg-portfolio-accent p-8 rounded-2xl">
+              <div className="bg-white bg-opacity-90 p-8 rounded-2xl">
                 <h3 className="text-xl font-medium mb-6">Contact Information</h3>
                 
                 <div className="space-y-6">
@@ -164,21 +164,6 @@ const Contact = () => {
                       New York, NY 10001<br />
                       United States
                     </address>
-                  </div>
-                  
-                  <div>
-                    <p className="text-sm font-medium mb-3">Follow Us</p>
-                    <div className="flex space-x-4">
-                      <a href="#" className="text-muted-foreground hover:text-foreground">
-                        Instagram
-                      </a>
-                      <a href="#" className="text-muted-foreground hover:text-foreground">
-                        Dribbble
-                      </a>
-                      <a href="#" className="text-muted-foreground hover:text-foreground">
-                        LinkedIn
-                      </a>
-                    </div>
                   </div>
                 </div>
               </div>

@@ -1,15 +1,33 @@
 
 import { Link, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
   const location = useLocation();
+  const [scrolled, setScrolled] = useState(false);
+  
+  useEffect(() => {
+    const handleScroll = () => {
+      // Check if user has scrolled down and then back up
+      if (window.scrollY > 100) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   
   const isActiveRoute = (path: string) => {
     return location.pathname === path ? "nav-link-active" : "";
   };
 
   return (
-    <header className="w-full border-b border-gray-100">
+    <header className={`w-full fixed top-0 z-50 transition-all duration-300 ${
+      scrolled ? "bg-background shadow-md" : "bg-transparent"
+    }`}>
       <div className="portfolio-container flex items-center justify-between h-16">
         <Link to="/" className="flex items-center space-x-3">
           <img 

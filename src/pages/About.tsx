@@ -4,12 +4,21 @@ const About = () => {
     <div className="animate-fade-in">
       <section className="py-20">
         <div className="portfolio-container">
-          <div className="max-w-3xl">
-            <h1 className="mb-6">About Studio</h1>
-            <p className="text-xl text-muted-foreground mb-8">
-              We're a design studio specializing in branding, UI/UX, and digital product design. 
-              Founded in 2018, we work with forward-thinking companies to create memorable brand experiences.
-            </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
+            <div className="mb-8 md:mb-0">
+              <img 
+                src="/lovable-uploads/82db9077-ea87-46ab-88f4-13c363b213ca.png" 
+                alt="Clayton Cunningham" 
+                className="w-full h-auto rounded-full aspect-square"
+              />
+            </div>
+            <div>
+              <h1 className="mb-6">About Studio</h1>
+              <p className="text-xl text-muted-foreground mb-8">
+                We're a design studio specializing in branding, UI/UX, and digital product design. 
+                Founded in 2018, we work with forward-thinking companies to create memorable brand experiences.
+              </p>
+            </div>
           </div>
         </div>
       </section>
