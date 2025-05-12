@@ -1,6 +1,6 @@
 
 .nav-link {
-  @apply relative px-3 py-2 text-sm font-medium transition-colors hover:text-[#768c4c];
+  @apply relative px-3 py-2 text-base font-medium transition-colors hover:text-[#768c4c];
 }
 
 .nav-link-active {

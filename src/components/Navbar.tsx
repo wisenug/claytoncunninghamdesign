@@ -35,7 +35,7 @@ const Navbar = () => {
       <header className={`w-full fixed top-0 z-50 transition-all duration-300 pt-[50px] ${
         scrolled ? "bg-background/45 backdrop-blur-sm" : "bg-transparent"
       }`}>
-        <div className="portfolio-container flex items-center justify-between h-16 pb-4"> {/* Added pb-4 (16px padding) */}
+        <div className="portfolio-container flex items-center justify-between h-16 pb-4">
           <Link to="/" className="flex items-center space-x-3">
             <img 
               src="/lovable-uploads/5bb31fdc-7d95-4c14-9a6d-987bb14016f6.png" 
@@ -44,14 +44,14 @@ const Navbar = () => {
             />
             <span className="font-medium text-xl tracking-tight">Clayton Cunningham Design</span>
           </Link>
-          <nav className="hidden md:flex items-center space-x-6">
+          <nav className="hidden md:flex items-center space-x-8">
             <Link to="/" className={`nav-link ${isActiveRoute("/")}`}>
-              <span className="font-medium">
+              <span className="font-medium text-lg">
                 Work
               </span>
             </Link>
             <Link to="/about" className={`nav-link ${isActiveRoute("/about")}`}>
-              <span className="font-medium">
+              <span className="font-medium text-lg">
                 About
               </span>
             </Link>
@@ -98,14 +98,14 @@ const Navbar = () => {
             <Link 
               to="/" 
               onClick={toggleMobileMenu} 
-              className={`text-5xl font-bold text-white hover:text-[#a1c565]`}
+              className={`text-6xl font-bold text-white hover:text-[#a1c565]`}
             >
               WORK
             </Link>
             <Link 
               to="/about" 
               onClick={toggleMobileMenu} 
-              className={`text-5xl font-bold text-white hover:text-[#a1c565]`}
+              className={`text-6xl font-bold text-white hover:text-[#a1c565]`}
             >
               ABOUT
             </Link>
