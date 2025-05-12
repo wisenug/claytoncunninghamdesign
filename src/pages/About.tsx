@@ -9,7 +9,7 @@ const About = () => {
               <img 
                 src="/lovable-uploads/82db9077-ea87-46ab-88f4-13c363b213ca.png" 
                 alt="Clayton Cunningham" 
-                className="w-full h-auto rounded-full aspect-square"
+                className="w-full h-auto aspect-square"
               />
             </div>
             <div>

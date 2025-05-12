@@ -1,9 +1,8 @@
-
 /* Global styles */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --background: #fafafa;
+  --background: #fff; /* Updated to white */
   --foreground: #333;
   --muted-foreground: #666;
   --primary: #333;
@@ -44,7 +43,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: 3rem; /* Updated to 3rem */
 }
 
 h2 {
@@ -143,6 +142,7 @@ header {
   align-items: center;
   justify-content: space-between;
   height: 4rem;
+  padding-bottom: 1rem; /* Added 16px padding to bottom of nav */
 }
 
 .logo {
@@ -341,11 +341,13 @@ nav {
 }
 
 .project-title {
+  font-size: 3rem; /* Updated to 3rem */
   margin-bottom: 1rem;
 }
 
 .project-description {
-  color: var(--muted-foreground);
+  color: #333; /* Match title color */
+  font-size: 1.5rem; /* Larger font size */
   margin-bottom: 2rem;
 }
 
@@ -494,6 +496,34 @@ nav {
 .project-category {
   font-size: 0.75rem;
   color: var(--muted-foreground);
+}
+
+/* Text callout for project pages */
+.project-title {
+  font-size: 3rem; /* Updated to 3rem */
+  margin-bottom: 1rem;
+}
+
+.project-description {
+  color: #333; /* Match title color */
+  font-size: 1.5rem; /* Larger font size */
+  margin-bottom: 2rem;
+}
+
+/* Special content section with different background */
+.alternate-background {
+  background-color: #F8F8F8;
+  padding: 4rem 0;
+  margin: 4rem 0;
+}
+
+/* Reduce margin between image and caption on mobile only */
+@media (max-width: 767px) {
+  .image-caption,
+  .dark-image-caption,
+  .text-sm.text-muted-foreground.mt-2 {
+    margin-top: 0.5rem;
+  }
 }
 
 /* Footer */

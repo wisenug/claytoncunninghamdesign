@@ -35,7 +35,7 @@ const Navbar = () => {
       <header className={`w-full fixed top-0 z-50 transition-all duration-300 pt-[50px] ${
         scrolled ? "bg-background/45 backdrop-blur-sm" : "bg-transparent"
       }`}>
-        <div className="portfolio-container flex items-center justify-between h-16">
+        <div className="portfolio-container flex items-center justify-between h-16 pb-4"> {/* Added pb-4 (16px padding) */}
           <Link to="/" className="flex items-center space-x-3">
             <img 
               src="/lovable-uploads/5bb31fdc-7d95-4c14-9a6d-987bb14016f6.png" 
@@ -94,7 +94,7 @@ const Navbar = () => {
           >
             CLOSE
           </button>
-          <nav className="flex flex-col items-start space-y-8 w-full mt-[200px]"> {/* Changed from -100px to 200px to position lower */}
+          <nav className="flex flex-col items-start space-y-8 w-full mt-[200px]">
             <Link 
               to="/" 
               onClick={toggleMobileMenu} 

@@ -46,3 +46,30 @@ main {
 .scale-250 {
   transform: scale(2.5);
 }
+
+/* Project page title */
+.project-title {
+  @apply text-[3rem] font-medium leading-tight;
+}
+
+/* Project page subtitle/description */
+.project-description {
+  @apply text-xl md:text-2xl text-black mb-8;
+}
+
+/* Text callout for project pages */
+.text-callout {
+  @apply max-w-lg text-xl md:text-2xl font-bold text-black mb-8;
+}
+
+/* Section with different background */
+.alternate-section {
+  @apply bg-[#F8F8F8] py-16 my-16;
+}
+
+/* Fix for image caption spacing on mobile */
+@media (max-width: 767px) {
+  .image-caption {
+    margin-top: 0.5rem;
+  }
+}

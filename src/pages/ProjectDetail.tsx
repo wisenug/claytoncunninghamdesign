@@ -1,5 +1,5 @@
 
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 
 // Mock data for project details
@@ -84,9 +84,6 @@ const ProjectDetail = () => {
     return (
       <div className="portfolio-container py-20">
         <h1>Project not found</h1>
-        <Link to="/" className="mt-6 inline-block border-b border-black">
-          Back to projects
-        </Link>
       </div>
     );
   }
@@ -97,10 +94,13 @@ const ProjectDetail = () => {
         <div className="portfolio-container">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             <div className="md:col-span-2">
-              <h1 className="text-3xl md:text-4xl mb-4">{project.title}</h1>
-              <p className="text-lg md:text-xl mb-8" style={{ color: "#333" }}>
+              <h1 className="project-title mb-4">{project.title}</h1>
+              <p className="project-description">
                 {project.description}
               </p>
+              <div className="text-callout">
+                <strong>Created illustration style guide and vehicle & customer spot illustrations for all marketing and UI needs.</strong>
+              </div>
             </div>
             
             <div className="space-y-6">
@@ -160,7 +160,7 @@ const ProjectDetail = () => {
             </div>
           </section>
 
-          {/* Spot Illustrations Section with custom background */}
+          {/* Alternate background section - Spot Illustrations Section */}
           <section className="py-16 bg-[#FAFBFB]">
             <div className="portfolio-container">
               <h2 className="text-2xl font-medium mb-8">Spot Illustrations</h2>
@@ -190,6 +190,30 @@ const ProjectDetail = () => {
                   <img 
                     src="/lovable-uploads/e4edf515-a63e-463d-ab12-3b3c169c141f.png"
                     alt="SUV with house illustration" 
+                    className="w-full"
+                  />
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Special background section */}
+          <section className="alternate-section">
+            <div className="portfolio-container">
+              <h2 className="text-2xl font-medium mb-8">Featured Work</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                  <p className="text-muted-foreground mb-6">
+                    This section highlights some of the most impactful work created for Autotrader's illustration style. These pieces were featured prominently in marketing campaigns and have become synonymous with the brand's visual identity.
+                  </p>
+                  <p className="text-muted-foreground">
+                    The illustration system has provided Autotrader with a distinctive and recognizable visual language that stands out in a competitive marketplace.
+                  </p>
+                </div>
+                <div>
+                  <img 
+                    src="/lovable-uploads/cd7cf32d-cb54-45cc-b92c-3212681de721.png"
+                    alt="Featured illustration work" 
                     className="w-full"
                   />
                 </div>
