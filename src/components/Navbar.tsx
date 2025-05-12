@@ -1,4 +1,3 @@
-
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
@@ -94,7 +93,7 @@ const Navbar = () => {
           >
             CLOSE
           </button>
-          <nav className="flex flex-col items-start space-y-8 w-full mt-[-100px]"> {/* Moved higher by adjusting margin-top */}
+          <nav className="flex flex-col items-start space-y-8 w-full mt-[200px]"> {/* Changed from -100px to 200px to position lower */}
             <Link 
               to="/" 
               onClick={toggleMobileMenu} 
