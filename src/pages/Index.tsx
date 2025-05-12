@@ -37,9 +37,7 @@ const Index = () => {
         <div className="portfolio-container">
           <div className="max-w-2xl">
             <h1 className="mb-6">Design studio crafting digital experiences</h1>
-            <p className="text-xl text-muted-foreground">
-              Creating thoughtful design solutions
-            </p>
+            {/* Subheading removed */}
           </div>
         </div>
       </section>
@@ -58,6 +56,9 @@ const Index = () => {
                     src={project.image} 
                     alt={`Project ${project.id}`}
                     className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy" // Add lazy loading for images
+                    width="600" // Add explicit dimensions for better CLS
+                    height="480"
                   />
                 </div>
               </Link>
