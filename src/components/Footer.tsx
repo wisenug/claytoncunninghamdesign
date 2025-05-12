@@ -5,14 +5,14 @@ const Footer = () => {
       <div className="portfolio-container">
         <div className="flex flex-col md:flex-row justify-between">
           <div className="mb-6 md:mb-0">
-            <h3 className="font-medium text-lg">Studio Name</h3>
+            <h3 className="font-medium text-lg">Clayton Cunningham Design</h3>
             <p className="text-sm mt-1 text-muted-foreground">Design & Development</p>
           </div>
           <div className="space-y-4 md:space-y-0 md:space-x-6 flex flex-col md:flex-row">
             <div>
               <h4 className="font-medium text-sm mb-2">Contact</h4>
-              <a href="mailto:hello@studioname.com" className="text-sm text-muted-foreground hover:text-foreground">
-                hello@studioname.com
+              <a href="mailto:hello@claytoncunningham.com" className="text-sm text-muted-foreground hover:text-foreground">
+                hello@claytoncunningham.com
               </a>
             </div>
             <div>
@@ -24,8 +24,8 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="mt-8 pt-8 border-t border-gray-100">
-          <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} Studio Name. All rights reserved.</p>
+        <div className="mt-8 text-center">
+          <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} Clayton Cunningham Design. All rights reserved.</p>
         </div>
       </div>
     </footer>

@@ -11,7 +11,14 @@ const Navbar = () => {
   return (
     <header className="w-full border-b border-gray-100">
       <div className="portfolio-container flex items-center justify-between h-16">
-        <Link to="/" className="font-medium text-xl tracking-tight">Studio Name</Link>
+        <Link to="/" className="flex items-center space-x-3">
+          <img 
+            src="/lovable-uploads/5bb31fdc-7d95-4c14-9a6d-987bb14016f6.png" 
+            alt="Clayton Cunningham Design Logo" 
+            className="h-8 w-auto"
+          />
+          <span className="font-medium text-xl tracking-tight">Clayton Cunningham Design</span>
+        </Link>
         <nav className="hidden md:flex items-center space-x-6">
           <Link to="/" className={`nav-link ${isActiveRoute("/")}`}>Projects</Link>
           <Link to="/about" className={`nav-link ${isActiveRoute("/about")}`}>About</Link>
