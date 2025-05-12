@@ -89,9 +89,9 @@ const About = () => {
         <div className="portfolio-container">
           <div className="bg-[#a1c565] rounded-[16px] p-10 md:p-16">
             <div className="max-w-2xl mx-auto text-center">
-              <h2 className="text-2xl md:text-3xl mb-6 text-foreground">Ready to start your project?</h2>
+              <h2 className="text-2xl md:text-3xl mb-6 text-foreground">Ready to Get Started?</h2>
               <p className="text-lg mb-8 text-foreground">
-                We'd love to hear about your project. Contact us to schedule a consultation.
+                I'd love to hear about your project. Contact me to schedule a consultation.
               </p>
               <a 
                 href="mailto:info@claytoncunninghamdesign.com" 

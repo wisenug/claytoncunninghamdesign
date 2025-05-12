@@ -1,3 +1,4 @@
+
 import { useParams, Link } from "react-router-dom";
 import { useEffect } from "react";
 
@@ -92,21 +93,17 @@ const ProjectDetail = () => {
 
   return (
     <div className="animate-fade-in">
-      <section className="py-12">
+      <section className="py-24">
         <div className="portfolio-container">
-          {/* Removed "Back to work" link */}
-          
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             <div className="md:col-span-2">
               <h1 className="text-3xl md:text-4xl mb-4">{project.title}</h1>
-              <p className="text-lg mb-8 text-muted-foreground">
+              <p className="text-lg md:text-xl mb-8" style={{ color: "#333" }}>
                 {project.description}
               </p>
             </div>
             
             <div className="space-y-6">
-              {/* Removed client, category, and year sections */}
-              
               <div>
                 <h3 className="text-sm font-medium mb-2">Services</h3>
                 <ul className="text-muted-foreground">
@@ -128,7 +125,7 @@ const ProjectDetail = () => {
               <img 
                 src={project.image} 
                 alt={`${project.title} - Main Image`}
-                className="w-full rounded-lg"
+                className="w-full"
               />
             </div>
           </div>
@@ -155,8 +152,9 @@ const ProjectDetail = () => {
                   <img 
                     src="/lovable-uploads/5ce83873-8a81-43aa-8274-0513fd6a2701.png"
                     alt="Vehicle illustration grid" 
-                    className="w-full rounded-lg"
+                    className="w-full"
                   />
+                  <p className="text-sm text-muted-foreground mt-2">Sample caption</p>
                 </div>
               </div>
             </div>
@@ -171,12 +169,13 @@ const ProjectDetail = () => {
                   <img 
                     src="/lovable-uploads/b2b315b8-2e13-41f9-bb6a-265cfe53cea1.png"
                     alt="Beach scene with orange vehicle" 
-                    className="w-full rounded-lg mb-8"
+                    className="w-full mb-8"
                   />
+                  <p className="text-sm text-muted-foreground mt-2 mb-8">Sample caption</p>
                   <img 
                     src="/lovable-uploads/9cb7594a-feb9-4e65-a5f5-a811316dab85.png"
                     alt="Road with orange convertible" 
-                    className="w-full rounded-lg"
+                    className="w-full"
                   />
                 </div>
                 <div>
@@ -186,12 +185,35 @@ const ProjectDetail = () => {
                   <img 
                     src="/lovable-uploads/cd9a376e-71b3-40a6-a49b-268f2942d778.png"
                     alt="White minivan with building illustrations" 
-                    className="w-full rounded-lg mb-8"
+                    className="w-full mb-8"
                   />
                   <img 
                     src="/lovable-uploads/e4edf515-a63e-463d-ab12-3b3c169c141f.png"
                     alt="SUV with house illustration" 
-                    className="w-full rounded-lg"
+                    className="w-full"
+                  />
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Two Column Image Layout Example */}
+          <section className="py-16">
+            <div className="portfolio-container">
+              <h2 className="text-2xl font-medium mb-8">Two Column Images</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                  <img 
+                    src="/lovable-uploads/cd7cf32d-cb54-45cc-b92c-3212681de721.png"
+                    alt="White SUV with illustrated city skyline" 
+                    className="w-full"
+                  />
+                </div>
+                <div>
+                  <img 
+                    src="/lovable-uploads/f36cd8f2-2a65-4eff-b8d6-425de6926b07.png"
+                    alt="Orange truck with computer cursor icon overlay" 
+                    className="w-full"
                   />
                 </div>
               </div>
@@ -215,7 +237,7 @@ const ProjectDetail = () => {
                   <img 
                     src="/lovable-uploads/5723dee0-18dc-4233-93a6-afd7dae487b4.png"
                     alt="Grid of illustrated people and vehicles" 
-                    className="w-full rounded-lg"
+                    className="w-full"
                   />
                 </div>
               </div>
@@ -231,12 +253,12 @@ const ProjectDetail = () => {
                   <img 
                     src="/lovable-uploads/c26d138e-b5b5-449e-bf07-5f176f194352.png"
                     alt="Sketches of people" 
-                    className="w-full rounded-lg mb-8"
+                    className="w-full mb-8"
                   />
                   <img 
                     src="/lovable-uploads/c9484f65-073e-46c2-9f64-abbf50e0a83b.png"
                     alt="More sketches of people" 
-                    className="w-full rounded-lg"
+                    className="w-full"
                   />
                 </div>
                 <div>
@@ -268,12 +290,12 @@ const ProjectDetail = () => {
                   <img 
                     src="/lovable-uploads/ebf1758e-ca6f-4ede-8a49-f67623a94307.png"
                     alt="Mobile app onboarding screens" 
-                    className="w-full rounded-lg"
+                    className="w-full"
                   />
                   <img 
                     src="/lovable-uploads/0ee51e23-ffd1-40fa-bb53-3395629a167e.png"
                     alt="Mobile app screens" 
-                    className="w-full rounded-lg"
+                    className="w-full"
                   />
                 </div>
               </div>
@@ -289,12 +311,12 @@ const ProjectDetail = () => {
                   <img 
                     src="/lovable-uploads/79880fd4-bbe5-4e17-b409-d3360fc19d06.png"
                     alt="Photo UI interface" 
-                    className="w-full rounded-lg"
+                    className="w-full"
                   />
                   <img 
                     src="/lovable-uploads/9689d2ef-e183-46f4-9f4e-f8c1b8f6b3b5.png"
                     alt="Mobile alerts and notifications" 
-                    className="w-full rounded-lg"
+                    className="w-full"
                   />
                 </div>
                 <div>
@@ -326,12 +348,12 @@ const ProjectDetail = () => {
                   <img 
                     src="/lovable-uploads/6d525b6c-48c6-4ff7-b6b6-4d64cb90a48f.png"
                     alt="Desktop web UI" 
-                    className="w-full rounded-lg"
+                    className="w-full"
                   />
                   <img 
                     src="/lovable-uploads/9e8f3a38-ef96-4a57-8f79-e9ffead73c7c.png"
                     alt="Website interface" 
-                    className="w-full rounded-lg"
+                    className="w-full"
                   />
                 </div>
               </div>
@@ -365,7 +387,7 @@ const ProjectDetail = () => {
                 to={`/projects/${relatedProject.slug}`}
                 className="group"
               >
-                <div className="overflow-hidden bg-portfolio-light rounded-lg">
+                <div className="overflow-hidden bg-portfolio-light">
                   <img 
                     src={relatedProject.image} 
                     alt={relatedProject.title} 

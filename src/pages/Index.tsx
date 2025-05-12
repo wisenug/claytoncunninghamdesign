@@ -36,9 +36,9 @@ const Index = () => {
       <section className="py-20">
         <div className="portfolio-container">
           <div className="max-w-2xl">
-            <h1 className="mb-6">Design studio crafting digital experiences & brand identities</h1>
+            <h1 className="mb-6">Design studio crafting digital experiences</h1>
             <p className="text-xl text-muted-foreground">
-              We create thoughtful design solutions for forward-thinking brands and businesses.
+              Creating thoughtful design solutions
             </p>
           </div>
         </div>
@@ -53,7 +53,7 @@ const Index = () => {
                 to={`/projects/${project.slug}`}
                 className="group"
               >
-                <div className="overflow-hidden bg-portfolio-light rounded-lg">
+                <div className="overflow-hidden bg-portfolio-light">
                   <img 
                     src={project.image} 
                     alt={`Project ${project.id}`}
