@@ -1,4 +1,3 @@
-
 import { useParams, Link } from "react-router-dom";
 import { useEffect } from "react";
 
@@ -7,13 +6,10 @@ const projectsData = [
   {
     id: 1,
     title: "Illustration Style",
-    client: "Autotrader",
-    category: "Illustration",
     image: "/lovable-uploads/66eb31cd-f714-4138-a7aa-ce71d8c09815.png",
     slug: "autotrader-illustration-style",
     description: "Created illustration style guide and vehicle & customer spot illustrations for all marketing and UI needs.",
     services: ["Illustration", "Art Direction", "Animation", "Style Guide"],
-    year: "2023",
     images: [
       {
         url: "/lovable-uploads/cd7cf32d-cb54-45cc-b92c-3212681de721.png",
@@ -44,39 +40,30 @@ const projectsData = [
   {
     id: 2,
     title: "Mobile App Design",
-    client: "Coffee Shop",
-    category: "UI/UX Design",
     image: "/lovable-uploads/6888cf15-ca19-4db7-8112-982404ab95d5.png",
     slug: "coffee-shop-mobile-app",
     description: "A user-centered mobile app design for a specialty coffee chain. We created an intuitive interface that enhances the customer experience with easy ordering and a loyalty program.",
     services: ["UX Research", "UI Design", "Prototyping", "User Testing"],
-    year: "2023",
     images: [],
     designProcess: []
   },
   {
     id: 3,
     title: "Store Design",
-    client: "Joe & The Juice",
-    category: "Interior Design",
     image: "/lovable-uploads/a851a2a0-bb99-454a-8933-dd8e6aab0a60.png",
     slug: "joe-juice-store-design",
     description: "A modern interior design concept for Joe & The Juice's flagship store. We created a warm, inviting space that reflects the brand's commitment to quality and sustainability.",
     services: ["Interior Architecture", "Furniture Selection", "Lighting Design", "Environmental Branding"],
-    year: "2023",
     images: [],
     designProcess: []
   },
   {
     id: 4,
     title: "Website Redesign",
-    client: "Joe & The Sandwich",
-    category: "Web Design",
     image: "/lovable-uploads/a814f0d8-6014-46c4-8b4e-f1809f52166d.png",
     slug: "sandwich-website-redesign",
     description: "A complete website redesign for Joe & The Sandwich. We developed a modern, responsive website that showcases their products and allows for easy online ordering.",
     services: ["Web Design", "Development", "Content Strategy", "SEO Optimization"],
-    year: "2022",
     images: [],
     designProcess: []
   }
@@ -107,7 +94,7 @@ const ProjectDetail = () => {
     <div className="animate-fade-in">
       <section className="py-12">
         <div className="portfolio-container">
-          {/* Removed "Back to work" link as requested */}
+          {/* Removed "Back to work" link */}
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             <div className="md:col-span-2">
@@ -118,10 +105,7 @@ const ProjectDetail = () => {
             </div>
             
             <div className="space-y-6">
-              <div>
-                <h3 className="text-sm font-medium mb-2">Client</h3>
-                <p className="text-muted-foreground">{project.client}</p>
-              </div>
+              {/* Removed client, category, and year sections */}
               
               <div>
                 <h3 className="text-sm font-medium mb-2">Services</h3>
@@ -130,11 +114,6 @@ const ProjectDetail = () => {
                     <li key={index}>{service}</li>
                   ))}
                 </ul>
-              </div>
-              
-              <div>
-                <h3 className="text-sm font-medium mb-2">Year</h3>
-                <p className="text-muted-foreground">{project.year}</p>
               </div>
             </div>
           </div>
@@ -395,7 +374,6 @@ const ProjectDetail = () => {
                 </div>
                 <div className="mt-2">
                   <h4 className="text-sm font-medium">{relatedProject.title}</h4>
-                  <p className="text-xs text-muted-foreground">{relatedProject.category}</p>
                 </div>
               </Link>
             ))}
