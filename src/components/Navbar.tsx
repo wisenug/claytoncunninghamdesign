@@ -32,7 +32,7 @@ const Navbar = () => {
           <img 
             src="/lovable-uploads/5bb31fdc-7d95-4c14-9a6d-987bb14016f6.png" 
             alt="Clayton Cunningham Design Logo" 
-            className="h-20 w-auto transform scale-250" // Increased size by 250%
+            className="h-20 w-auto" // Reverted to original size (removed transform scale-250)
           />
           <span className="font-medium text-xl tracking-tight">Clayton Cunningham Design</span>
         </Link>
