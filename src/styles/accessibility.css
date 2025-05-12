@@ -1,0 +1,14 @@
+
+/* Implement enhanced accessibility features */
+.sr-only {
+  @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
+}
+
+[aria-hidden="true"] {
+  @apply pointer-events-none select-none;
+}
+
+/* High contrast focus states for keyboard navigation */
+:focus-visible {
+  @apply outline-2 outline-offset-2 outline-[#a1c565];
+}

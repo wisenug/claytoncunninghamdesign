@@ -1,0 +1,5 @@
+
+/* Animation support */
+.lottie-container, .rive-container {
+  @apply w-full h-auto flex items-center justify-center;
+}

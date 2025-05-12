@@ -1,0 +1,71 @@
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-medium tracking-tight;
+    line-height: 1.2;
+  }
+  
+  h1 {
+    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl;
+  }
+  
+  h2 {
+    @apply text-2xl sm:text-3xl md:text-4xl;
+  }
+  
+  h3 {
+    @apply text-xl sm:text-2xl md:text-3xl;
+  }
+
+  p {
+    @apply mb-4 text-base sm:text-lg;
+  }
+
+  /* Accessibility improvements */
+  :focus {
+    @apply outline-2 outline-offset-2 outline-primary/50;
+  }
+  
+  img {
+    @apply object-cover;
+  }
+
+  /* Improve contrast for better readability */
+  .text-muted-foreground {
+    @apply text-opacity-75;
+  }
+}
+
+/* Implement responsive base type size and scale */
+@media (max-width: 640px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 1025px) {
+  html {
+    font-size: 16px;
+  }
+}

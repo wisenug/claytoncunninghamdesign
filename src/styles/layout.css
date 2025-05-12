@@ -1,0 +1,48 @@
+
+/* Responsive project grid */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .project-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .project-grid {
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  }
+}
+
+.portfolio-container {
+  @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Add padding to main content to account for fixed navbar */
+main {
+  @apply pt-16;
+}
+
+/* Utilities for grid layouts like the reference images */
+.grid-wide {
+  @apply col-span-full md:col-span-2;
+}
+
+.project-grid-modern {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8;
+}
+
+/* Black section for project details */
+.project-highlight-section {
+  @apply bg-black text-white py-20 my-12;
+}
+
+/* Scale utility for logo */
+.scale-250 {
+  transform: scale(2.5);
+}
