@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - Clayton Cunningham Design</title>
+  <meta name="description" content="About Clayton Cunningham Design - Specializing in branding, UI/UX, and digital product design.">
+  <meta name="author" content="Clayton Cunningham Design">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="portfolio-container">
+      <div class="navbar">
+        <a href="index.html" class="logo">
+          <img src="../public/lovable-uploads/5bb31fdc-7d95-4c14-9a6d-987bb14016f6.png" alt="Clayton Cunningham Design Logo">
+          <span>Clayton Cunningham Design</span>
+        </a>
+        <nav>
+          <a href="index.html" class="nav-link">Work</a>
+          <a href="about.html" class="nav-link-active">About</a>
+        </nav>
+        <div class="mobile-menu-button">
+          <button onclick="toggleMobileMenu()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="4" x2="20" y1="12" y2="12"/>
+              <line x1="4" x2="20" y1="6" y2="6"/>
+              <line x1="4" x2="20" y1="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div id="mobile-menu" class="mobile-menu">
+      <button onclick="toggleMobileMenu()" class="close-button">CLOSE</button>
+      <nav>
+        <a href="index.html" onclick="toggleMobileMenu()">WORK</a>
+        <a href="about.html" onclick="toggleMobileMenu()">ABOUT</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="animate-fade-in">
+      <section class="py-20">
+        <div class="portfolio-container">
+          <div class="about-grid">
+            <div class="about-image">
+              <img src="../public/lovable-uploads/82db9077-ea87-46ab-88f4-13c363b213ca.png" alt="Clayton Cunningham">
+            </div>
+            <div class="about-text">
+              <p class="text-xl text-muted-foreground">
+                I'm Clayton Cunningham — Designer and Illustrator in Atlanta, GA 🍑. Currently working as a UX Designer for Autotrader/KBB.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section class="pb-10">
+        <div class="portfolio-container">
+          <div class="services-grid">
+            <div>
+              <h2 class="text-2xl mb-6">Our Approach</h2>
+              <p class="text-muted-foreground mb-4">
+                We believe in thoughtful, user-centered design that solves real problems. Our process begins with deep research and understanding of your business, audience, and objectives.
+              </p>
+              <p class="text-muted-foreground mb-4">
+                From there, we collaborate closely with you to develop design solutions that are not only beautiful, but strategic and effective. Our goal is to create work that resonates with your audience and helps your business grow.
+              </p>
+              <p class="text-muted-foreground">
+                Whether you're launching a new brand, redesigning a website, or developing a digital product, we bring the same level of care and attention to every project.
+              </p>
+            </div>
+            
+            <div>
+              <h2 class="text-2xl mb-6">Services</h2>
+              <div class="services-columns">
+                <div>
+                  <h3 class="text-lg font-medium mb-3">Brand Design</h3>
+                  <ul class="services-list">
+                    <li>Brand Strategy</li>
+                    <li>Visual Identity</li>
+                    <li>Logo Design</li>
+                    <li>Brand Guidelines</li>
+                    <li>Packaging Design</li>
+                  </ul>
+                </div>
+                
+                <div>
+                  <h3 class="text-lg font-medium mb-3">Digital Design</h3>
+                  <ul class="services-list">
+                    <li>Website Design</li>
+                    <li>UI/UX Design</li>
+                    <li>Mobile App Design</li>
+                    <li>Prototyping</li>
+                    <li>User Research</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section class="py-10">
+        <div class="portfolio-container">
+          <div class="cta-section">
+            <div class="cta-content">
+              <h2 class="text-2xl md:text-3xl mb-6">Ready to start your project?</h2>
+              <p class="text-lg mb-8">
+                We'd love to hear about your project. Contact us to schedule a consultation.
+              </p>
+              <a href="mailto:info@claytoncunninghamdesign.com" class="cta-button">
+                Get in touch
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="portfolio-container">
+      <div class="footer-content">
+        <p>© <span id="current-year"></span> Clayton Cunningham Design. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="scripts.js"></script>
+</body>
+</html>

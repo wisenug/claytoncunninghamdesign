@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clayton Cunningham Design</title>
+  <meta name="description" content="Portfolio website for Clayton Cunningham Design, specializing in branding, UI/UX, and digital product design.">
+  <meta name="author" content="Clayton Cunningham Design">
+
+  <meta property="og:title" content="Clayton Cunningham Design">
+  <meta property="og:description" content="Portfolio website for Clayton Cunningham Design, specializing in illustration, branding, UI/UX, and digital product design.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@claytondesign">
+  <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="portfolio-container">
+      <div class="navbar">
+        <a href="index.html" class="logo">
+          <img src="../public/lovable-uploads/5bb31fdc-7d95-4c14-9a6d-987bb14016f6.png" alt="Clayton Cunningham Design Logo">
+          <span>Clayton Cunningham Design</span>
+        </a>
+        <nav>
+          <a href="index.html" class="nav-link-active">Work</a>
+          <a href="about.html" class="nav-link">About</a>
+        </nav>
+        <div class="mobile-menu-button">
+          <button onclick="toggleMobileMenu()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="4" x2="20" y1="12" y2="12"/>
+              <line x1="4" x2="20" y1="6" y2="6"/>
+              <line x1="4" x2="20" y1="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div id="mobile-menu" class="mobile-menu">
+      <button onclick="toggleMobileMenu()" class="close-button">CLOSE</button>
+      <nav>
+        <a href="index.html" onclick="toggleMobileMenu()">WORK</a>
+        <a href="about.html" onclick="toggleMobileMenu()">ABOUT</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="animate-fade-in">
+      <section class="py-20">
+        <div class="portfolio-container">
+          <div class="max-w-2xl">
+            <h1 class="mb-6">Design studio crafting digital experiences & brand identities</h1>
+            <p class="text-xl text-muted-foreground">
+              We create thoughtful design solutions for forward-thinking brands and businesses.
+            </p>
+          </div>
+        </div>
+      </section>
+      
+      <section class="pb-20">
+        <div class="portfolio-container">
+          <div class="project-grid">
+            <a href="project-juice-and-co-brand-refresh.html" class="group">
+              <div class="project-card">
+                <img src="../public/lovable-uploads/8af2a9c3-36c0-4dc6-afa2-095c6980ff1c.png" alt="Juice & Co Brand Refresh">
+              </div>
+            </a>
+            <a href="project-coffee-shop-mobile-app.html" class="group">
+              <div class="project-card">
+                <img src="../public/lovable-uploads/6888cf15-ca19-4db7-8112-982404ab95d5.png" alt="Coffee Shop Mobile App">
+              </div>
+            </a>
+            <a href="project-joe-juice-store-design.html" class="group">
+              <div class="project-card">
+                <img src="../public/lovable-uploads/a851a2a0-bb99-454a-8933-dd8e6aab0a60.png" alt="Joe & The Juice Store Design">
+              </div>
+            </a>
+            <a href="project-sandwich-website-redesign.html" class="group">
+              <div class="project-card">
+                <img src="../public/lovable-uploads/a814f0d8-6014-46c4-8b4e-f1809f52166d.png" alt="Sandwich Website Redesign">
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="portfolio-container">
+      <div class="footer-content">
+        <p>© <span id="current-year"></span> Clayton Cunningham Design. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
