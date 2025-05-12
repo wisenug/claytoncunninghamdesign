@@ -13,8 +13,8 @@ const About = () => {
               />
             </div>
             <div>
-              <p className="text-xl text-muted-foreground mb-8">
-                I'm Clayton Cunningham — Designer and Illustrator in Atlanta, GA 🍑. Currently working as a UX Designer for Autotrader/KBB.
+              <p className="text-2xl text-muted-foreground mb-8" style={{fontSize: '2.25rem'}}>
+                I'm Clayton Cunningham — Designer and Illustrator in Atlanta, GA 🍑. Currently working as a Senior UX Designer for Cox Automotive - Autotrader and Kelley Blue Book.
               </p>
             </div>
           </div>
@@ -38,7 +38,7 @@ const About = () => {
             </div>
             
             <div>
-              <h2 className="text-2xl mb-6">Services</h2>
+              <h2 className="text-2xl mb-6">Services & Skills</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                 <div>
                   <h3 className="text-lg font-medium mb-3">Brand Design</h3>
@@ -71,15 +71,16 @@ const About = () => {
         <div className="portfolio-container">
           <div className="bg-[#a1c565] rounded-[16px] p-10 md:p-16">
             <div className="max-w-2xl mx-auto text-center">
-              <h2 className="text-2xl md:text-3xl mb-6">Ready to start your project?</h2>
-              <p className="text-lg mb-8 text-muted-foreground">
+              <h2 className="text-2xl md:text-3xl mb-6 text-foreground">Ready to start your project?</h2>
+              <p className="text-lg mb-8 text-foreground">
                 We'd love to hear about your project. Contact us to schedule a consultation.
               </p>
               <a 
                 href="mailto:info@claytoncunninghamdesign.com" 
-                className="inline-block bg-portfolio-dark text-white px-6 py-3 rounded-[16px] hover:bg-black transition-colors"
+                className="inline-block bg-black text-white px-6 py-0 rounded-[4px] hover:bg-black/90 transition-colors h-[48px] flex items-center"
+                style={{ paddingLeft: '24px', paddingRight: '24px', height: '48px', borderRadius: '4px', backgroundColor: '#000' }}
               >
-                Get in touch
+                <strong>Get in touch</strong>
               </a>
             </div>
           </div>

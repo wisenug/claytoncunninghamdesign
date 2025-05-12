@@ -1,3 +1,4 @@
+
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
@@ -44,13 +45,13 @@ const Navbar = () => {
             <span className="font-medium text-xl tracking-tight">Clayton Cunningham Design</span>
           </Link>
           <nav className="hidden md:flex items-center space-x-6">
-            <Link to="/" className={`nav-link group relative ${isActiveRoute("/")}`}>
-              <span className={`relative inline-block ${location.pathname === "/" ? "" : "after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-[3px] after:bg-black after:bottom-0 after:left-0 after:origin-left after:transition-transform after:duration-300 after:ease-out group-hover:after:scale-x-100"}`}>
+            <Link to="/" className={`nav-link ${isActiveRoute("/")}`}>
+              <span className="font-medium">
                 Work
               </span>
             </Link>
-            <Link to="/about" className={`nav-link group relative ${isActiveRoute("/about")}`}>
-              <span className={`relative inline-block ${location.pathname === "/about" ? "" : "after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-[3px] after:bg-black after:bottom-0 after:left-0 after:origin-left after:transition-transform after:duration-300 after:ease-out group-hover:after:scale-x-100"}`}>
+            <Link to="/about" className={`nav-link ${isActiveRoute("/about")}`}>
+              <span className="font-medium">
                 About
               </span>
             </Link>
