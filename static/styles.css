@@ -34,6 +34,7 @@ body {
 img {
   max-width: 100%;
   height: auto;
+  border-radius: 0; /* Remove border radius from all images */
 }
 
 /* Typography */
@@ -447,14 +448,16 @@ nav {
 }
 
 .more-projects-section {
-  padding-bottom: 5rem;
-  border-top: 1px solid var(--border);
+  background-color: black;
+  color: white;
+  padding: 4rem 0;
 }
 
 .more-projects-title {
   font-size: 1.25rem;
-  margin-top: 4rem;
+  margin-top: 0;
   margin-bottom: 2rem;
+  color: white;
 }
 
 .related-projects-grid {
@@ -465,7 +468,7 @@ nav {
 
 .related-project {
   text-decoration: none;
-  color: var(--foreground);
+  color: white;
 }
 
 .project-thumbnail {
@@ -478,6 +481,7 @@ nav {
   height: 10rem;
   object-fit: cover;
   transition: transform 0.5s;
+  border-radius: 0;
 }
 
 .related-project:hover .project-thumbnail img {
@@ -491,11 +495,12 @@ nav {
 .project-name {
   font-size: 0.875rem;
   font-weight: 500;
+  color: white;
 }
 
 .project-category {
   font-size: 0.75rem;
-  color: var(--muted-foreground);
+  color: #999;
 }
 
 /* Text callout for project pages */

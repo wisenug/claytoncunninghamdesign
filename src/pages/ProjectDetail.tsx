@@ -1,5 +1,4 @@
-
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useEffect } from "react";
 
 // Mock data for project details
@@ -400,9 +399,10 @@ const ProjectDetail = () => {
         </div>
       </section>
       
-      <section className="pb-20 border-t border-gray-200">
+      {/* Updated More Projects section with black background */}
+      <section className="more-projects-section">
         <div className="portfolio-container pt-16">
-          <h3 className="text-xl mb-8">More Projects</h3>
+          <h3 className="more-projects-title">More Projects</h3>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {projectsData.filter(p => p.id !== project.id).slice(0, 3).map((relatedProject) => (
@@ -419,7 +419,7 @@ const ProjectDetail = () => {
                   />
                 </div>
                 <div className="mt-2">
-                  <h4 className="text-sm font-medium">{relatedProject.title}</h4>
+                  <h4 className="text-sm font-medium text-white">{relatedProject.title}</h4>
                 </div>
               </Link>
             ))}

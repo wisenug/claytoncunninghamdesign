@@ -73,3 +73,13 @@ main {
     margin-top: 0.5rem;
   }
 }
+
+/* More Projects section with black background */
+.more-projects-section {
+  @apply bg-black text-white py-16;
+}
+
+.more-projects-title {
+  @apply text-xl mb-8 text-white;
+}
+

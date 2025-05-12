@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
@@ -7,7 +6,7 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%; /* Updated to #FFF */
+    --background: 0 0% 100%; /* #FFF white */
     --foreground: 0 0% 20%;
 
     --card: 0 0% 100%;
@@ -93,4 +92,9 @@
     --active-link: 161 197 101;  /* #a1c565 */
     --hover-link: 118 140 76;    /* #768c4c */
   }
+}
+
+/* Make sure all images don't have border radius */
+img {
+  @apply rounded-none;
 }
