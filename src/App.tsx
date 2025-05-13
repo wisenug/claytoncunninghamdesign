@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Index from "./pages/Index";
 import ProjectDetail from "./pages/ProjectDetail";
+import AutotraderIcons from "./pages/AutotraderIcons";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 
@@ -24,6 +25,7 @@ const App = () => (
           <Route element={<Layout />}>
             <Route path="/" element={<Index />} />
             <Route path="/projects/:slug" element={<ProjectDetail />} />
+            <Route path="/projects/autotrader-icons" element={<AutotraderIcons />} />
             <Route path="/about" element={<About />} />
             <Route path="*" element={<NotFound />} />
           </Route>
