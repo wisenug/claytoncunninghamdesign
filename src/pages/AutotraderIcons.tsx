@@ -17,9 +17,6 @@ const AutotraderIcons = () => {
               <p className="project-description">
                 Creating a cohesive icon system for the Autotrader ecosystem
               </p>
-              <div className="text-callout">
-                <strong>Designed an extensive icon library that unified Autotrader's visual language across all digital platforms.</strong>
-              </div>
             </div>
             
             <div className="space-y-6">
@@ -75,6 +72,15 @@ const AutotraderIcons = () => {
               />
               <p className="text-sm text-muted-foreground mt-4">Vehicle history status icons improve the browsing experience</p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Text Callout Section - Moved to middle of page and enlarged */}
+      <section className="py-16 bg-[#FAFBFB]">
+        <div className="portfolio-container">
+          <div className="text-callout mx-auto text-center max-w-3xl">
+            <strong className="text-2xl md:text-3xl">Designed an extensive icon library that unified Autotrader's visual language across all digital platforms.</strong>
           </div>
         </div>
       </section>
