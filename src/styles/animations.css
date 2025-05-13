@@ -3,3 +3,31 @@
 .lottie-container, .rive-container {
   @apply w-full h-auto flex items-center justify-center;
 }
+
+/* Profile image hover effect */
+.profile-image-container {
+  @apply relative inline-block w-full rounded-full overflow-hidden;
+  position: relative;
+}
+
+.profile-image-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 0px solid #97c655;
+  border-radius: 50%;
+  transition: border-width 0.3s ease-out;
+}
+
+.profile-image-container:hover::after {
+  border-width: 20px;
+  transition: border-width 0.3s ease-in;
+}
+
+.profile-image-container img {
+  @apply rounded-full;
+  display: block;
+}

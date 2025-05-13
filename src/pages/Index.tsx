@@ -22,21 +22,6 @@ const projects = [
     id: 3,
     slug: "juice-and-co-brand-refresh",
     image: "/lovable-uploads/8af2a9c3-36c0-4dc6-afa2-095c6980ff1c.png" 
-  },
-  {
-    id: 4,
-    slug: "coffee-shop-mobile-app",
-    image: "/lovable-uploads/6888cf15-ca19-4db7-8112-982404ab95d5.png"
-  },
-  {
-    id: 5,
-    slug: "joe-juice-store-design",
-    image: "/lovable-uploads/a851a2a0-bb99-454a-8933-dd8e6aab0a60.png"
-  },
-  {
-    id: 6,
-    slug: "sandwich-website-redesign",
-    image: "/lovable-uploads/a814f0d8-6014-46c4-8b4e-f1809f52166d.png"
   }
 ];
 

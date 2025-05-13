@@ -8,11 +8,13 @@ const About = () => {
         <div className="portfolio-container">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
             <div className="mb-8 md:mb-0">
-              <img 
-                src="/lovable-uploads/82db9077-ea87-46ab-88f4-13c363b213ca.png" 
-                alt="Clayton Cunningham" 
-                className="w-full h-auto aspect-square"
-              />
+              <div className="profile-image-container">
+                <img 
+                  src="/lovable-uploads/82db9077-ea87-46ab-88f4-13c363b213ca.png" 
+                  alt="Clayton Cunningham" 
+                  className="w-full h-auto aspect-square"
+                />
+              </div>
             </div>
             <div>
               <p className="text-2xl text-black mb-8" style={{fontSize: '2.25rem', lineHeight: '120%'}}>
