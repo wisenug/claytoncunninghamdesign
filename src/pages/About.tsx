@@ -1,4 +1,6 @@
 
+import { Button } from "@/components/ui/button";
+
 const About = () => {
   return (
     <div className="animate-fade-in">
@@ -93,21 +95,15 @@ const About = () => {
               <p className="text-lg mb-8 text-foreground">
                 I'd love to hear about your project. Contact me to schedule a consultation.
               </p>
-              <a 
-                href="mailto:info@claytoncunninghamdesign.com" 
-                className="inline-block bg-black text-white px-6 py-0 rounded-[4px] hover:bg-black/90 transition-colors h-[48px] flex items-center justify-center"
-                style={{ 
-                  paddingLeft: '24px', 
-                  paddingRight: '24px', 
-                  height: '48px', 
-                  borderRadius: '4px', 
-                  backgroundColor: '#000', 
-                  width: 'fit-content',
-                  margin: '0 auto'
-                }}
+              <Button 
+                variant="custom" 
+                asChild
+                className="font-bold"
               >
-                <strong>Let's Make Some Cool Stuff</strong>
-              </a>
+                <a href="mailto:info@claytoncunninghamdesign.com">
+                  Let's Make Some Cool Stuff
+                </a>
+              </Button>
             </div>
           </div>
         </div>
