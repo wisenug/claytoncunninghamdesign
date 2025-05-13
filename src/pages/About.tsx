@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 
 const About = () => {
@@ -15,9 +14,9 @@ const About = () => {
               />
             </div>
             <div>
-              <p className="text-2xl text-black mb-8" style={{fontSize: '2.25rem', lineHeight: '120%'}}>
-                <strong>I'm Clayton Cunningham — Designer and illustrator in Atlanta, GA 🍑. Currently working as a Senior UX Designer for Cox Automotive - Autotrader and Kelley Blue Book.</strong>
-              </p>
+              <h1 className="mb-6">
+                I'm Clayton Cunningham — Designer and illustrator in Atlanta, GA 🍑. Currently working as a Senior UX Designer for Cox Automotive - Autotrader and Kelley Blue Book.
+              </h1>
             </div>
           </div>
         </div>
