@@ -217,16 +217,16 @@ const Grayscale = () => {
         <div className="portfolio-container">
           <h2 className="text-3xl font-medium mb-12 text-center">Project Results</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-[#f5f5f5] p-8 rounded-lg">
-              <h3 className="text-4xl font-semibold mb-4">42%</h3>
+            <div className="bg-[#f5f5f5] p-8 rounded-lg text-center">
+              <h3 className="text-8xl font-bold mb-4">42%</h3>
               <p>Increase in user engagement after launch</p>
             </div>
-            <div className="bg-[#f5f5f5] p-8 rounded-lg">
-              <h3 className="text-4xl font-semibold mb-4">63%</h3>
+            <div className="bg-[#f5f5f5] p-8 rounded-lg text-center">
+              <h3 className="text-8xl font-bold mb-4">63%</h3>
               <p>Improvement in average session duration</p>
             </div>
-            <div className="bg-[#f5f5f5] p-8 rounded-lg">
-              <h3 className="text-4xl font-semibold mb-4">28%</h3>
+            <div className="bg-[#f5f5f5] p-8 rounded-lg text-center">
+              <h3 className="text-8xl font-bold mb-4">28%</h3>
               <p>Growth in new account registrations</p>
             </div>
           </div>
