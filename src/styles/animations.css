@@ -16,7 +16,7 @@
 }
 
 .flip > div > div {
-  padding: 4px 12px;
+  padding: 8px 12px; /* Increased top/bottom padding from 4px to 8px */
   height: 45px;
   margin-bottom: 45px;
   display: inline-block;
@@ -28,17 +28,17 @@
 
 .flip div div {
   background: #a1c565; /* Using the site's green color */
-  color: #fff;
+  color: #000; /* Changed text color to black */
 }
 
 .flip div:first-child div {
   background: #a1c565; /* Using the site's green color */
-  color: #fff;
+  color: #000; /* Changed text color to black */
 }
 
 .flip div:last-child div {
   background: #a1c565; /* Using the site's green color */
-  color: #fff;
+  color: #000; /* Changed text color to black */
 }
 
 @keyframes show {
