@@ -9,6 +9,7 @@ import Layout from "./components/Layout";
 import Index from "./pages/Index";
 import ProjectDetail from "./pages/ProjectDetail";
 import AutotraderIcons from "./pages/AutotraderIcons";
+import AutotraderIllustrationSimplified from "./pages/AutotraderIllustrationSimplified";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 import Grayscale from "./pages/Grayscale";
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/projects/:slug" element={<ProjectDetail />} />
           <Route path="/projects/autotrader-icons" element={<AutotraderIcons />} />
+          <Route path="/projects/autotrader-illustration-simplified" element={<AutotraderIllustrationSimplified />} />
           <Route path="/projects/grayscale" element={<Grayscale />} />
           <Route path="/about" element={<About />} />
           <Route path="*" element={<NotFound />} />

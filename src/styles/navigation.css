@@ -6,3 +6,13 @@
 .nav-link-active {
   @apply font-bold text-[#a1c565] after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-full after:bg-[#a1c565];
 }
+
+/* Keyboard navigation enhancements */
+.nav-link:focus-visible {
+  @apply outline-2 outline-offset-2 outline-[#a1c565] rounded;
+}
+
+/* Skip navigation link */
+.skip-to-content {
+  @apply absolute left-0 top-0 p-2 -translate-y-full focus:translate-y-0 bg-white text-black z-50 transition-transform;
+}
