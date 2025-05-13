@@ -12,17 +12,6 @@
   --hover-link: #768c4c;
 }
 
-.dark {
-  --background: #222;
-  --foreground: #fff;
-  --muted-foreground: #ccc;
-  --primary: #fff;
-  --accent: #333;
-  --border: #444;
-  --active-link: #a1c565;
-  --hover-link: #768c4c;
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -253,19 +242,6 @@ nav {
 
 .mobile-menu nav a:hover {
   color: var(--active-link);
-}
-
-/* Dark mode toggle */
-.dark-mode-toggle {
-  display: flex;
-  align-items: center;
-  margin-top: 2rem;
-  color: white;
-}
-
-.dark-mode-toggle span {
-  margin-left: 0.75rem;
-  font-size: 1.25rem;
 }
 
 /* Project Grid */
