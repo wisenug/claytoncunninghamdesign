@@ -12,6 +12,7 @@ import ProjectDetail from "./pages/ProjectDetail";
 import AutotraderIcons from "./pages/AutotraderIcons";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
+import Grayscale from "./pages/Grayscale";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/projects/:slug" element={<ProjectDetail />} />
             <Route path="/projects/autotrader-icons" element={<AutotraderIcons />} />
+            <Route path="/projects/grayscale" element={<Grayscale />} />
             <Route path="/about" element={<About />} />
             <Route path="*" element={<NotFound />} />
           </Route>
