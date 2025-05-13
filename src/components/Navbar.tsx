@@ -1,12 +1,30 @@
 
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { X } from "lucide-react";
+import { X, Sun, Moon } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
 
 const Navbar = () => {
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(() => {
+    // Check for saved preference or system preference
+    const savedMode = localStorage.getItem("darkMode");
+    return savedMode === "true" || 
+      (!savedMode && window.matchMedia("(prefers-color-scheme: dark)").matches);
+  });
+  
+  useEffect(() => {
+    // Apply dark mode class to document
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("darkMode", "true");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("darkMode", "false");
+    }
+  }, [darkMode]);
   
   useEffect(() => {
     const handleScroll = () => {
@@ -28,6 +46,10 @@ const Navbar = () => {
     setMobileMenuOpen(!mobileMenuOpen);
     // Prevent scrolling when mobile menu is open
     document.body.style.overflow = !mobileMenuOpen ? 'hidden' : 'auto';
+  };
+  
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
   };
   
   return <>
@@ -73,6 +95,20 @@ const Navbar = () => {
             <Link to="/about" onClick={toggleMobileMenu} className={`text-6xl font-bold text-white hover:text-[#a1c565]`}>
               ABOUT
             </Link>
+            
+            {/* Dark mode toggle */}
+            <div className="dark-mode-toggle">
+              <div className="flex items-center gap-2">
+                <Sun className="h-5 w-5" />
+                <Switch 
+                  checked={darkMode}
+                  onCheckedChange={toggleDarkMode}
+                  aria-label="Toggle dark mode"
+                />
+                <Moon className="h-5 w-5" />
+              </div>
+              <span>Dark Mode</span>
+            </div>
           </nav>
         </div>}
     </>;

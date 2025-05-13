@@ -12,6 +12,17 @@
   --hover-link: #768c4c;
 }
 
+.dark {
+  --background: #222;
+  --foreground: #fff;
+  --muted-foreground: #ccc;
+  --primary: #fff;
+  --accent: #333;
+  --border: #444;
+  --active-link: #a1c565;
+  --hover-link: #768c4c;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -29,6 +40,7 @@ body {
   color: var(--foreground);
   line-height: 1.5;
   padding-top: 120px; /* Account for fixed header */
+  transition: background-color 0.3s, color 0.3s;
 }
 
 img {
@@ -243,6 +255,19 @@ nav {
   color: var(--active-link);
 }
 
+/* Dark mode toggle */
+.dark-mode-toggle {
+  display: flex;
+  align-items: center;
+  margin-top: 2rem;
+  color: white;
+}
+
+.dark-mode-toggle span {
+  margin-left: 0.75rem;
+  font-size: 1.25rem;
+}
+
 /* Project Grid */
 .project-grid {
   display: grid;
@@ -252,7 +277,7 @@ nav {
 
 .project-card {
   overflow: hidden;
-  background-color: #f5f5f5;
+  background-color: var(--accent);
 }
 
 .project-card img {
@@ -310,11 +335,17 @@ nav {
   color: white;
   padding: 0.75rem 1.5rem;
   text-decoration: none;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .cta-button:hover {
-  background-color: black;
+  background-color: white;
+  color: black;
+}
+
+.cta-button:active {
+  background-color: #333;
+  color: white;
 }
 
 /* Project Detail Page */

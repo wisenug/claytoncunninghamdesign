@@ -5,6 +5,16 @@ document.addEventListener('DOMContentLoaded', function() {
   if (yearSpan) {
     yearSpan.textContent = new Date().getFullYear();
   }
+  
+  // Initialize dark mode from localStorage or system preference
+  const savedMode = localStorage.getItem("darkMode");
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  
+  if (savedMode === "true" || (!savedMode && prefersDark)) {
+    document.documentElement.classList.add("dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+  }
 });
 
 // Mobile menu toggle
@@ -28,7 +38,10 @@ window.addEventListener('scroll', function() {
       if (header) {
         if (window.scrollY > 100) {
           header.classList.add('scrolled');
-          header.style.backgroundColor = 'rgba(250, 250, 250, 0.8)';
+          
+          // Change header background based on dark mode
+          const isDark = document.documentElement.classList.contains('dark');
+          header.style.backgroundColor = isDark ? 'rgba(34, 34, 34, 0.8)' : 'rgba(250, 250, 250, 0.8)';
           header.style.backdropFilter = 'blur(8px)';
         } else {
           header.classList.remove('scrolled');
@@ -43,3 +56,15 @@ window.addEventListener('scroll', function() {
     ticking = true;
   }
 });
+
+// Toggle dark mode function (for use outside React)
+function toggleDarkMode() {
+  const isDark = document.documentElement.classList.contains('dark');
+  if (isDark) {
+    document.documentElement.classList.remove('dark');
+    localStorage.setItem('darkMode', 'false');
+  } else {
+    document.documentElement.classList.add('dark');
+    localStorage.setItem('darkMode', 'true');
+  }
+}
