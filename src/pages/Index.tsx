@@ -31,7 +31,7 @@ const Index = () => {
       <section className="py-20">
         <div className="portfolio-container">
           <div className="max-w-2xl">
-            <h1 className="mb-6">Design studio crafting digital experiences, logos & illustrations</h1>
+            <h1 className="mb-6">Design studio specializing in digital experiences, logos & illustrations</h1>
           </div>
         </div>
       </section>
