@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 
 const About = () => {
@@ -14,7 +15,7 @@ const About = () => {
               />
             </div>
             <div>
-              <h1 className="mb-6">
+              <h1 className="mb-5">
                 I'm Clayton Cunningham — Designer and illustrator in Atlanta, GA 🍑. Currently working as a Senior UX Designer for Cox Automotive - Autotrader and Kelley Blue Book.
               </h1>
             </div>
