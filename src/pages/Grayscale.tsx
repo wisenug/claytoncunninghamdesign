@@ -1,8 +1,77 @@
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { extractDominantColor, getLightenedColor } from "../utils/colorExtraction";
 
 const Grayscale = () => {
+  const [heroImageColor, setHeroImageColor] = useState("#f5f5f5");
+  const [secondSectionColor, setSecondSectionColor] = useState("#FAFBFB");
+  const [resultsSectionColor, setResultsSectionColor] = useState("#f5f5f5");
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    
+    // Extract colors from images when they load
+    const heroImage = document.getElementById("hero-image") as HTMLImageElement;
+    const secondImage = document.getElementById("second-image") as HTMLImageElement;
+    const resultsImage = document.getElementById("results-image") as HTMLImageElement;
+    
+    if (heroImage && heroImage.complete) {
+      extractDominantColor(heroImage)
+        .then(color => {
+          const lightColor = getLightenedColor(color, 0.8);
+          setHeroImageColor(lightColor);
+        })
+        .catch(() => {});
+    }
+    
+    if (secondImage && secondImage.complete) {
+      extractDominantColor(secondImage)
+        .then(color => {
+          const lightColor = getLightenedColor(color, 0.85);
+          setSecondSectionColor(lightColor);
+        })
+        .catch(() => {});
+    }
+    
+    if (resultsImage && resultsImage.complete) {
+      extractDominantColor(resultsImage)
+        .then(color => {
+          const lightColor = getLightenedColor(color, 0.7);
+          setResultsSectionColor(lightColor);
+        })
+        .catch(() => {});
+    }
+    
+    // For images that haven't loaded yet
+    heroImage?.addEventListener("load", () => {
+      extractDominantColor(heroImage)
+        .then(color => {
+          const lightColor = getLightenedColor(color, 0.8);
+          setHeroImageColor(lightColor);
+        })
+        .catch(() => {});
+    });
+    
+    secondImage?.addEventListener("load", () => {
+      extractDominantColor(secondImage)
+        .then(color => {
+          const lightColor = getLightenedColor(color, 0.85);
+          setSecondSectionColor(lightColor);
+        })
+        .catch(() => {});
+    });
+    
+    resultsImage?.addEventListener("load", () => {
+      extractDominantColor(resultsImage)
+        .then(color => {
+          const lightColor = getLightenedColor(color, 0.7);
+          setResultsSectionColor(lightColor);
+        })
+        .catch(() => {});
+    });
+  }, []);
+
   return (
     <div className="animate-fade-in">
       <section className="py-12">
@@ -63,6 +132,7 @@ const Grayscale = () => {
         <div className="portfolio-container">
           <div className="space-y-12">
             <img
+              id="hero-image"
               src="/lovable-uploads/33e76d34-6424-4972-843a-38e12a1a3fc4.png"
               alt="Grayscale hero image"
               className="w-full h-auto object-cover rounded-lg"
@@ -71,6 +141,7 @@ const Grayscale = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>
                 <img
+                  id="second-image"
                   src="/lovable-uploads/33e76d34-6424-4972-843a-38e12a1a3fc4.png"
                   alt="Grayscale mobile interface"
                   className="w-full h-auto object-cover rounded-lg"
@@ -91,7 +162,7 @@ const Grayscale = () => {
       </section>
 
       {/* Text Callout Section - In the middle of page */}
-      <section className="py-16 bg-[#FAFBFB]">
+      <section className="py-16" style={{ backgroundColor: heroImageColor }}>
         <div className="portfolio-container">
           <div className="text-callout mx-auto text-center max-w-3xl">
             <strong className="text-2xl md:text-3xl">Creating a premium digital trading platform that delivers institutional-grade quality with consumer-level simplicity.</strong>
@@ -142,20 +213,20 @@ const Grayscale = () => {
         </div>
       </section>
 
-      <section className="py-16">
+      <section className="py-16" style={{ backgroundColor: secondSectionColor }}>
         <div className="portfolio-container">
           <h2 className="text-3xl font-medium mb-12 text-center">Project Results</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-[#f5f5f5] p-8 rounded-lg">
-              <h3 className="text-2xl font-medium mb-4">42%</h3>
+              <h3 className="text-4xl font-semibold mb-4">42%</h3>
               <p>Increase in user engagement after launch</p>
             </div>
             <div className="bg-[#f5f5f5] p-8 rounded-lg">
-              <h3 className="text-2xl font-medium mb-4">63%</h3>
+              <h3 className="text-4xl font-semibold mb-4">63%</h3>
               <p>Improvement in average session duration</p>
             </div>
             <div className="bg-[#f5f5f5] p-8 rounded-lg">
-              <h3 className="text-2xl font-medium mb-4">28%</h3>
+              <h3 className="text-4xl font-semibold mb-4">28%</h3>
               <p>Growth in new account registrations</p>
             </div>
           </div>
@@ -165,6 +236,7 @@ const Grayscale = () => {
       <section className="py-16">
         <div className="portfolio-container">
           <img
+            id="results-image"
             src="/lovable-uploads/33e76d34-6424-4972-843a-38e12a1a3fc4.png"
             alt="Grayscale platform overview"
             className="w-full h-auto object-cover rounded-lg"
@@ -176,7 +248,7 @@ const Grayscale = () => {
       </section>
 
       {/* More Projects Section */}
-      <section className="more-projects-section">
+      <section className="more-projects-section" style={{ backgroundColor: resultsSectionColor, color: "#fff" }}>
         <div className="portfolio-container">
           <h3 className="more-projects-title">More Projects</h3>
           

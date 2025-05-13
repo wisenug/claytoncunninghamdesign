@@ -1,10 +1,54 @@
-
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { extractDominantColor, getLightenedColor } from "../utils/colorExtraction";
 
 const AutotraderIcons = () => {
+  const [calloutBgColor, setCalloutBgColor] = useState("#FAFBFB");
+  const [iconDesignBgColor, setIconDesignBgColor] = useState("#FAFBFB");
+
   useEffect(() => {
     window.scrollTo(0, 0);
+    
+    // Extract colors from key images when they load
+    const primaryImage = document.getElementById("primary-image") as HTMLImageElement;
+    const designSystemImage = document.getElementById("design-system-image") as HTMLImageElement;
+    
+    if (primaryImage && primaryImage.complete) {
+      extractDominantColor(primaryImage)
+        .then(color => {
+          const lightColor = getLightenedColor(color, 0.8);
+          setCalloutBgColor(lightColor);
+        })
+        .catch(() => {});
+    }
+    
+    if (designSystemImage && designSystemImage.complete) {
+      extractDominantColor(designSystemImage)
+        .then(color => {
+          const lightColor = getLightenedColor(color, 0.85);
+          setIconDesignBgColor(lightColor);
+        })
+        .catch(() => {});
+    }
+    
+    // For images that haven't loaded yet
+    primaryImage?.addEventListener("load", () => {
+      extractDominantColor(primaryImage)
+        .then(color => {
+          const lightColor = getLightenedColor(color, 0.8);
+          setCalloutBgColor(lightColor);
+        })
+        .catch(() => {});
+    });
+    
+    designSystemImage?.addEventListener("load", () => {
+      extractDominantColor(designSystemImage)
+        .then(color => {
+          const lightColor = getLightenedColor(color, 0.85);
+          setIconDesignBgColor(lightColor);
+        })
+        .catch(() => {});
+    });
   }, []);
 
   return (
@@ -40,6 +84,7 @@ const AutotraderIcons = () => {
           <div className="grid grid-cols-1 gap-4 md:gap-6">
             <div className="mb-6">
               <img 
+                id="primary-image"
                 src="/lovable-uploads/33e76d34-6424-4972-843a-38e12a1a3fc4.png" 
                 alt="Autotrader Icons grid showing various automotive and feature icons"
                 className="w-full"
@@ -77,7 +122,7 @@ const AutotraderIcons = () => {
       </section>
 
       {/* Text Callout Section - Moved to middle of page and enlarged */}
-      <section className="py-16 bg-[#FAFBFB]">
+      <section className="py-16" style={{ backgroundColor: calloutBgColor }}>
         <div className="portfolio-container">
           <div className="text-callout mx-auto text-center max-w-3xl">
             <strong className="text-2xl md:text-3xl">Designed an extensive icon library that unified Autotrader's visual language across all digital platforms.</strong>
@@ -86,12 +131,13 @@ const AutotraderIcons = () => {
       </section>
 
       {/* Design System Section */}
-      <section className="py-16 bg-[#FAFBFB]">
+      <section className="py-16" style={{ backgroundColor: iconDesignBgColor }}>
         <div className="portfolio-container">
           <h2 className="text-2xl font-medium mb-8">Icon Design System</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
             <div>
               <img 
+                id="design-system-image"
                 src="/lovable-uploads/abdd53ed-6974-4b16-8654-d7a69f737e97.png"
                 alt="Icon design system documentation showing style guidelines" 
                 className="w-full mb-8"
