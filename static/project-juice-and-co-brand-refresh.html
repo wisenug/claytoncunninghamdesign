@@ -16,42 +16,18 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+  <script src="components.js" defer></script>
+  <script src="scripts.js" defer></script>
+  <script src="accessibility.js" defer></script>
 </head>
 <body>
-  <header>
-    <div class="portfolio-container">
-      <div class="navbar">
-        <a href="index.html" class="logo">
-          <img src="img/logo.png" alt="Clayton Cunningham Design Logo">
-          <span>Clayton Cunningham Design</span>
-        </a>
-        <nav>
-          <a href="index.html" class="nav-link" tabindex="0">Work</a>
-          <a href="about.html" class="nav-link" tabindex="0">About</a>
-        </nav>
-        <div class="mobile-menu-button">
-          <button onclick="toggleMobileMenu()">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="4" x2="20" y1="12" y2="12"/>
-              <line x1="4" x2="20" y1="6" y2="6"/>
-              <line x1="4" x2="20" y1="18" y2="18"/>
-            </svg>
-          </button>
-        </div>
-      </div>
-    </div>
-    
-    <div id="mobile-menu" class="mobile-menu">
-      <button onclick="toggleMobileMenu()" class="close-button">CLOSE</button>
-      <nav>
-        <a href="index.html" onclick="toggleMobileMenu()">WORK</a>
-        <a href="about.html" onclick="toggleMobileMenu()">ABOUT</a>
-      </nav>
-    </div>
-  </header>
-
-  <main>
+  <!-- Skip link for keyboard users -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  
+  <!-- Header will be inserted by JavaScript -->
+  <div id="header-container"></div>
+  
+  <main id="main-content" tabindex="-1">
     <div class="animate-fade-in">
       <section class="py-24">
         <div class="portfolio-container">
@@ -120,6 +96,7 @@
         </div>
       </section>
       
+      <!-- More Projects section with black background -->
       <section class="more-projects-section">
         <div class="portfolio-container pt-16">
           <h3 class="more-projects-title">More Projects</h3>
@@ -167,14 +144,15 @@
     </div>
   </main>
 
-  <footer>
-    <div class="portfolio-container">
-      <div class="footer-content">
-        <p>© <span id="current-year"></span> Clayton Cunningham Design. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
+  <!-- Footer will be inserted by JavaScript -->
+  <div id="footer-container"></div>
 
-  <script src="scripts.js"></script>
+  <script>
+    // Insert header and footer
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('header-container').innerHTML = generateHeader('work');
+      document.getElementById('footer-container').innerHTML = generateFooter();
+    });
+  </script>
 </body>
 </html>
