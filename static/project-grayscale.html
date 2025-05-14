@@ -5,148 +5,109 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Grayscale - Clayton Cunningham Design</title>
-  <meta name="description" content="A premium digital trading platform by Clayton Cunningham Design.">
+  <meta name="description" content="Grayscale project by Clayton Cunningham Design - Monochromatic design system.">
   <meta name="author" content="Clayton Cunningham Design">
   
   <!-- Favicon -->
   <link rel="icon" href="img/logo.png" type="image/png">
   <link rel="apple-touch-icon" href="img/logo.png">
   
+  <!-- Custom Styles -->
   <link rel="stylesheet" href="styles.css">
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'active-link': '#a1c565',
+            'hover-link': '#768c4c'
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Scripts -->
+  <script src="components.js" defer></script>
+  <script src="scripts.js" defer></script>
+  <script src="accessibility.js" defer></script>
   <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
 </head>
 <body>
-  <header>
-    <div class="portfolio-container">
-      <div class="navbar">
-        <a href="index.html" class="logo">
-          <img src="img/logo.png" alt="Clayton Cunningham Design Logo">
-          <span>Clayton Cunningham Design</span>
-        </a>
-        <nav>
-          <a href="index.html" class="nav-link" tabindex="0">Work</a>
-          <a href="about.html" class="nav-link" tabindex="0">About</a>
-        </nav>
-        <div class="mobile-menu-button">
-          <button onclick="toggleMobileMenu()">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="4" x2="20" y1="12" y2="12"/>
-              <line x1="4" x2="20" y1="6" y2="6"/>
-              <line x1="4" x2="20" y1="18" y2="18"/>
-            </svg>
-          </button>
-        </div>
-      </div>
-    </div>
-    
-    <div id="mobile-menu" class="mobile-menu">
-      <button onclick="toggleMobileMenu()" class="close-button">CLOSE</button>
-      <nav>
-        <a href="index.html" onclick="toggleMobileMenu()">WORK</a>
-        <a href="about.html" onclick="toggleMobileMenu()">ABOUT</a>
-      </nav>
-    </div>
-  </header>
+  <!-- Skip link for keyboard users -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  
+  <!-- Header will be inserted by JavaScript -->
+  <div id="header-container"></div>
 
-  <main>
+  <main id="main-content" tabindex="-1">
     <div class="animate-fade-in">
-      <section class="py-12">
+      <section class="py-24">
         <div class="portfolio-container">
-          <a href="index.html" class="inline-flex items-center text-sm font-medium mb-8 hover:underline">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              class="mr-2"
-            >
-              <path d="m12 19-7-7 7-7" />
-              <path d="M19 12H5" />
-            </svg>
-            Back to work
-          </a>
-
-          <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
-            <div class="lg:col-span-2">
-              <h1 class="project-title">Grayscale</h1>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div class="md:col-span-2">
+              <h1 class="project-title mb-4">Grayscale</h1>
               <p class="project-description">
-                Grayscale needed a partner to design and build a premium platform worthy of their forward-thinking industry leadership in cryptocurrency trading.
+                Monochromatic design system for minimalist brand expression
               </p>
             </div>
-
+            
             <div class="space-y-6">
               <div>
-                <h3 class="font-medium text-lg">Client</h3>
-                <p>Grayscale</p>
-              </div>
-
-              <div>
-                <h3 class="font-medium text-lg">Services</h3>
-                <ul class="list-disc pl-5 space-y-1">
-                  <li>Digital Design</li>
-                  <li>Web Development</li>
-                  <li>Brand Strategy</li>
-                  <li>User Experience</li>
+                <h3 class="text-sm font-medium mb-2">Services</h3>
+                <ul class="text-muted-foreground">
+                  <li>Brand Design</li>
+                  <li>Design System</li>
+                  <li>Logo Design</li>
+                  <li>Brand Guidelines</li>
                 </ul>
               </div>
-
-              <div>
-                <h3 class="font-medium text-lg">Year</h3>
-                <p>2022</p>
-              </div>
             </div>
           </div>
         </div>
       </section>
-
-      <section class="pb-16">
+      
+      <section class="pb-10">
         <div class="portfolio-container">
-          <div class="space-y-12">
-            <img
-              id="hero-image"
-              src="img/grayscale.png"
-              alt="Grayscale hero image"
-              class="w-full h-auto object-cover rounded-lg"
-            />
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div>
-                <img
-                  id="second-image"
-                  src="img/grayscale-mobile.png"
-                  alt="Grayscale mobile interface"
-                  class="w-full h-auto object-cover rounded-lg"
-                />
-                <p class="text-sm text-muted-foreground mt-4">The Grayscale mobile experience delivers a streamlined trading interface</p>
-              </div>
-              <div>
-                <img
-                  src="img/grayscale-dashboard.png"
-                  alt="Grayscale desktop dashboard"
-                  class="w-full h-auto object-cover rounded-lg"
-                />
-                <p class="text-sm text-muted-foreground mt-4">Desktop dashboard provides comprehensive market data</p>
-              </div>
+          <div class="grid grid-cols-1 gap-4 md:gap-6">
+            <div class="mb-6">
+              <img 
+                src="img/grayscale.png" 
+                alt="Grayscale monochromatic design system showcase"
+                class="w-full"
+              />
             </div>
           </div>
         </div>
       </section>
 
-      <!-- More sections here... -->
+      <!-- More project content would be here -->
       
       <section class="more-projects-section">
         <div class="portfolio-container pt-16">
           <h3 class="more-projects-title">More Projects</h3>
           
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <a href="project-autotrader-illustration-simplified.html" class="group">
+              <div class="overflow-hidden bg-portfolio-light">
+                <img 
+                  src="img/autotrader-illustration.png" 
+                  alt="Autotrader Illustration Style" 
+                  class="w-full h-40 object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div class="mt-2">
+                <h4 class="text-sm font-medium text-white">Autotrader Illustration Style</h4>
+              </div>
+            </a>
             <a href="project-autotrader-icons.html" class="group">
               <div class="overflow-hidden bg-portfolio-light">
                 <img 
@@ -171,32 +132,21 @@
                 <h4 class="text-sm font-medium text-white">Juice & Co Brand Refresh</h4>
               </div>
             </a>
-            <a href="project-autotrader-illustration-simplified.html" class="group">
-              <div class="overflow-hidden bg-portfolio-light">
-                <img 
-                  src="img/autotrader-illustration.png" 
-                  alt="Autotrader Illustration Style" 
-                  class="w-full h-40 object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-              <div class="mt-2">
-                <h4 class="text-sm font-medium text-white">Autotrader Illustration Style</h4>
-              </div>
-            </a>
           </div>
         </div>
       </section>
     </div>
   </main>
 
-  <footer>
-    <div class="portfolio-container">
-      <div class="footer-content">
-        <p>© <span id="current-year"></span> Clayton Cunningham Design. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
+  <!-- Footer will be inserted by JavaScript -->
+  <div id="footer-container"></div>
 
-  <script src="scripts.js"></script>
+  <script>
+    // Initialize components on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      // Load header and footer
+      loadComponents();
+    });
+  </script>
 </body>
 </html>

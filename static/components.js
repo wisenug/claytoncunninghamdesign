@@ -4,10 +4,11 @@
  * This helps maintain consistency across pages and reduces duplication
  */
 
-// Generate header HTML with current page highlighted
+// Generate header HTML with current page highlighted and accessibility features
 function generateHeader(currentPage) {
   return `
   <header>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <div class="portfolio-container">
       <div class="navbar">
         <a href="index.html" class="logo" aria-label="Clayton Cunningham Design - Home">
@@ -39,8 +40,8 @@ function generateHeader(currentPage) {
         <span aria-hidden="true">CLOSE</span>
       </button>
       <nav id="mobile-navigation" aria-label="Mobile Navigation">
-        <a href="index.html" onclick="toggleMobileMenu()" class="${currentPage === 'work' ? 'active' : ''}" tabindex="${mobileMenuVisible ? '0' : '-1'}" ${currentPage === 'work' ? 'aria-current="page"' : ''}>WORK</a>
-        <a href="about.html" onclick="toggleMobileMenu()" class="${currentPage === 'about' ? 'active' : ''}" tabindex="${mobileMenuVisible ? '0' : '-1'}" ${currentPage === 'about' ? 'aria-current="page"' : ''}>ABOUT</a>
+        <a href="index.html" onclick="toggleMobileMenu()" class="${currentPage === 'work' ? 'active' : ''}" tabindex="-1" ${currentPage === 'work' ? 'aria-current="page"' : ''}>WORK</a>
+        <a href="about.html" onclick="toggleMobileMenu()" class="${currentPage === 'about' ? 'active' : ''}" tabindex="-1" ${currentPage === 'about' ? 'aria-current="page"' : ''}>ABOUT</a>
       </nav>
     </div>
   </header>

@@ -21,12 +21,34 @@
   <link rel="icon" href="img/logo.png" type="image/png">
   <link rel="apple-touch-icon" href="img/logo.png">
   
+  <!-- Custom Styles -->
   <link rel="stylesheet" href="styles.css">
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'active-link': '#a1c565',
+            'hover-link': '#768c4c'
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Scripts -->
   <script src="components.js" defer></script>
   <script src="scripts.js" defer></script>
+  <script src="accessibility.js" defer></script>
+  <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
 </head>
 <body>
   <!-- Skip link for keyboard users -->
@@ -78,10 +100,10 @@
   <div id="footer-container"></div>
 
   <script>
-    // Insert header and footer
+    // Initialize components on page load
     document.addEventListener('DOMContentLoaded', function() {
-      document.getElementById('header-container').innerHTML = generateHeader('work');
-      document.getElementById('footer-container').innerHTML = generateFooter();
+      // Load header and footer
+      loadComponents('work');
     });
   </script>
 </body>

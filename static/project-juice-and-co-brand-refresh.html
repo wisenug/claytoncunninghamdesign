@@ -5,53 +5,50 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Juice & Co Brand Refresh - Clayton Cunningham Design</title>
-  <meta name="description" content="A comprehensive brand refresh for Juice & Co by Clayton Cunningham Design.">
+  <meta name="description" content="Brand refresh project for Juice & Co by Clayton Cunningham Design.">
   <meta name="author" content="Clayton Cunningham Design">
   
   <!-- Favicon -->
   <link rel="icon" href="img/logo.png" type="image/png">
   <link rel="apple-touch-icon" href="img/logo.png">
   
+  <!-- Custom Styles -->
   <link rel="stylesheet" href="styles.css">
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'active-link': '#a1c565',
+            'hover-link': '#768c4c'
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Scripts -->
+  <script src="components.js" defer></script>
+  <script src="scripts.js" defer></script>
+  <script src="accessibility.js" defer></script>
   <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
 </head>
 <body>
-  <header>
-    <div class="portfolio-container">
-      <div class="navbar">
-        <a href="index.html" class="logo">
-          <img src="img/logo.png" alt="Clayton Cunningham Design Logo">
-          <span>Clayton Cunningham Design</span>
-        </a>
-        <nav>
-          <a href="index.html" class="nav-link" tabindex="0">Work</a>
-          <a href="about.html" class="nav-link" tabindex="0">About</a>
-        </nav>
-        <div class="mobile-menu-button">
-          <button onclick="toggleMobileMenu()">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="4" x2="20" y1="12" y2="12"/>
-              <line x1="4" x2="20" y1="6" y2="6"/>
-              <line x1="4" x2="20" y1="18" y2="18"/>
-            </svg>
-          </button>
-        </div>
-      </div>
-    </div>
-    
-    <div id="mobile-menu" class="mobile-menu">
-      <button onclick="toggleMobileMenu()" class="close-button">CLOSE</button>
-      <nav>
-        <a href="index.html" onclick="toggleMobileMenu()">WORK</a>
-        <a href="about.html" onclick="toggleMobileMenu()">ABOUT</a>
-      </nav>
-    </div>
-  </header>
+  <!-- Skip link for keyboard users -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  
+  <!-- Header will be inserted by JavaScript -->
+  <div id="header-container"></div>
 
-  <main>
+  <main id="main-content" tabindex="-1">
     <div class="animate-fade-in">
       <section class="py-24">
         <div class="portfolio-container">
@@ -59,7 +56,7 @@
             <div class="md:col-span-2">
               <h1 class="project-title mb-4">Juice & Co Brand Refresh</h1>
               <p class="project-description">
-                Revitalizing a beloved local juice bar with a contemporary visual identity
+                Refreshing the brand identity for a popular juice bar chain
               </p>
             </div>
             
@@ -67,10 +64,10 @@
               <div>
                 <h3 class="text-sm font-medium mb-2">Services</h3>
                 <ul class="text-muted-foreground">
-                  <li>Brand Identity</li>
-                  <li>Logo Design</li>
+                  <li>Brand Refresh</li>
+                  <li>Visual Identity</li>
                   <li>Packaging Design</li>
-                  <li>Visual System</li>
+                  <li>Environmental Graphics</li>
                 </ul>
               </div>
             </div>
@@ -83,9 +80,8 @@
           <div class="grid grid-cols-1 gap-4 md:gap-6">
             <div class="mb-6">
               <img 
-                id="primary-image"
                 src="img/juice-and-co.png" 
-                alt="Juice & Co Brand Refresh showing logo, packaging, and brand elements"
+                alt="Juice & Co brand refresh showcase with packaging and identity elements"
                 class="w-full"
               />
             </div>
@@ -93,50 +89,13 @@
         </div>
       </section>
 
-      <!-- Content for the juice bar project -->
-      <section class="py-16">
-        <div class="portfolio-container">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-            <div>
-              <p class="text-muted-foreground mb-8">
-                Juice & Co, an established local juice bar, needed a brand refresh to better appeal to modern health-conscious consumers.
-                The goal was to create a vibrant, playful visual identity that maintained the brand's authentic roots while positioning
-                it for growth and expansion.
-              </p>
-              <p class="text-muted-foreground">
-                I designed a comprehensive brand identity system including a new logo, packaging designs, environmental graphics,
-                and digital assets that would help Juice & Co stand out in a competitive market.
-              </p>
-            </div>
-            <div>
-              <img 
-                src="img/juice-packaging.png"
-                alt="Juice & Co packaging designs" 
-                class="w-full"
-              />
-              <p class="text-sm text-muted-foreground mt-4">Updated packaging designs featuring the new brand identity</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <!-- More project content would be here -->
       
       <section class="more-projects-section">
         <div class="portfolio-container pt-16">
           <h3 class="more-projects-title">More Projects</h3>
           
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            <a href="project-autotrader-icons.html" class="group">
-              <div class="overflow-hidden bg-portfolio-light">
-                <img 
-                  src="img/autotrader-icons.png" 
-                  alt="Autotrader Icons" 
-                  class="w-full h-40 object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-              <div class="mt-2">
-                <h4 class="text-sm font-medium text-white">Autotrader Icons</h4>
-              </div>
-            </a>
             <a href="project-autotrader-illustration-simplified.html" class="group">
               <div class="overflow-hidden bg-portfolio-light">
                 <img 
@@ -147,6 +106,18 @@
               </div>
               <div class="mt-2">
                 <h4 class="text-sm font-medium text-white">Autotrader Illustration Style</h4>
+              </div>
+            </a>
+            <a href="project-autotrader-icons.html" class="group">
+              <div class="overflow-hidden bg-portfolio-light">
+                <img 
+                  src="img/autotrader-icons.png" 
+                  alt="Autotrader Icons" 
+                  class="w-full h-40 object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div class="mt-2">
+                <h4 class="text-sm font-medium text-white">Autotrader Icons</h4>
               </div>
             </a>
             <a href="project-grayscale.html" class="group">
@@ -167,14 +138,15 @@
     </div>
   </main>
 
-  <footer>
-    <div class="portfolio-container">
-      <div class="footer-content">
-        <p>© <span id="current-year"></span> Clayton Cunningham Design. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
+  <!-- Footer will be inserted by JavaScript -->
+  <div id="footer-container"></div>
 
-  <script src="scripts.js"></script>
+  <script>
+    // Initialize components on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      // Load header and footer
+      loadComponents();
+    });
+  </script>
 </body>
 </html>

@@ -10,9 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initialize dark mode from localStorage or system preference
   initializeDarkMode();
   
-  // Set up keyboard event listeners for accessibility
-  setupKeyboardNavigation();
-  
   // Initialize header scroll effects
   setupScrollEffects();
 });
@@ -56,21 +53,15 @@ function toggleMobileMenu() {
   // Prevent scrolling when mobile menu is open
   document.body.style.overflow = mobileMenuVisible ? 'hidden' : 'auto';
   
-  // Set focus on first menu item when opened
-  if (mobileMenuVisible) {
-    const firstMenuItem = mobileMenu.querySelector('a');
-    if (firstMenuItem) {
-      setTimeout(() => {
-        firstMenuItem.focus();
-      }, 100);
-    }
-  }
-  
   // Make menu items focusable or not
   const menuItems = mobileMenu.querySelectorAll('a');
   menuItems.forEach(item => {
     item.setAttribute('tabindex', mobileMenuVisible ? '0' : '-1');
   });
+  
+  // Dispatch custom events for accessibility.js to handle focus
+  const event = new CustomEvent(mobileMenuVisible ? 'mobileMenuOpened' : 'mobileMenuClosed');
+  document.dispatchEvent(event);
 }
 
 // Handle scroll effects for header using requestAnimationFrame
@@ -81,7 +72,7 @@ function setupScrollEffects() {
   window.addEventListener('scroll', function() {
     if (!ticking) {
       window.requestAnimationFrame(function() {
-        handleHeaderScroll(lastScrollY);
+        handleHeaderScroll();
         ticking = false;
         lastScrollY = window.scrollY;
       });
@@ -105,7 +96,7 @@ function handleHeaderScroll() {
     header.style.backdropFilter = 'blur(8px)';
   } else {
     header.classList.remove('scrolled');
-    header.style.backgroundColor = 'var(--background)';
+    header.style.backgroundColor = '';
     header.style.backdropFilter = 'none';
   }
 }
@@ -122,27 +113,16 @@ function toggleDarkMode() {
   }
 }
 
-// Improve keyboard navigation
-function setupKeyboardNavigation() {
-  // Add focus styling for keyboard navigation
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Tab') {
-      document.body.classList.add('keyboard-navigation');
-    }
-    
-    // Close mobile menu with Escape key
-    if (e.key === 'Escape' && mobileMenuVisible) {
-      toggleMobileMenu();
-    }
-  });
-
-  document.addEventListener('mousedown', function() {
-    document.body.classList.remove('keyboard-navigation');
-  });
-}
-
-// Helper function to load HTML components
-function loadComponents() {
-  // This would use the components.js functions to insert shared elements
-  // Example implementation would be added when needed
+// Load header and footer using components.js
+function loadComponents(currentPage) {
+  const headerContainer = document.getElementById('header-container');
+  const footerContainer = document.getElementById('footer-container');
+  
+  if (headerContainer) {
+    headerContainer.innerHTML = generateHeader(currentPage);
+  }
+  
+  if (footerContainer) {
+    footerContainer.innerHTML = generateFooter();
+  }
 }
