@@ -11,13 +11,13 @@ function generateHeader(currentPage) {
     <a href="#main-content" class="skip-link">Skip to main content</a>
     <div class="portfolio-container">
       <div class="navbar">
-        <a href="index.html" class="logo" aria-label="Clayton Cunningham Design - Home">
-          <img src="img/logo.png" alt="Clayton Cunningham Design Logo" width="64" height="64">
+        <a href="./index.html" class="logo" aria-label="Clayton Cunningham Design - Home">
+          <img src="./img/logo.png" alt="Clayton Cunningham Design Logo" width="64" height="64">
           <span>Clayton Cunningham Design</span>
         </a>
         <nav aria-label="Main Navigation">
-          <a href="index.html" class="nav-link${currentPage === 'work' ? '-active' : ''}" tabindex="0" ${currentPage === 'work' ? 'aria-current="page"' : ''}>Work</a>
-          <a href="about.html" class="nav-link${currentPage === 'about' ? '-active' : ''}" tabindex="0" ${currentPage === 'about' ? 'aria-current="page"' : ''}>About</a>
+          <a href="./index.html" class="nav-link${currentPage === 'work' ? '-active' : ''}" tabindex="0" ${currentPage === 'work' ? 'aria-current="page"' : ''}>Work</a>
+          <a href="./about.html" class="nav-link${currentPage === 'about' ? '-active' : ''}" tabindex="0" ${currentPage === 'about' ? 'aria-current="page"' : ''}>About</a>
         </nav>
         <div class="mobile-menu-button">
           <button 
@@ -40,8 +40,8 @@ function generateHeader(currentPage) {
         <span aria-hidden="true">CLOSE</span>
       </button>
       <nav id="mobile-navigation" aria-label="Mobile Navigation">
-        <a href="index.html" onclick="toggleMobileMenu()" class="${currentPage === 'work' ? 'active' : ''}" tabindex="-1" ${currentPage === 'work' ? 'aria-current="page"' : ''}>WORK</a>
-        <a href="about.html" onclick="toggleMobileMenu()" class="${currentPage === 'about' ? 'active' : ''}" tabindex="-1" ${currentPage === 'about' ? 'aria-current="page"' : ''}>ABOUT</a>
+        <a href="./index.html" onclick="toggleMobileMenu()" class="${currentPage === 'work' ? 'active' : ''}" tabindex="-1" ${currentPage === 'work' ? 'aria-current="page"' : ''}>WORK</a>
+        <a href="./about.html" onclick="toggleMobileMenu()" class="${currentPage === 'about' ? 'active' : ''}" tabindex="-1" ${currentPage === 'about' ? 'aria-current="page"' : ''}>ABOUT</a>
       </nav>
     </div>
   </header>
@@ -67,7 +67,7 @@ function generateProjectCard(project) {
   <a href="${project.url}" class="group">
     <div class="project-card">
       <img 
-        src="img/${project.image}" 
+        src="./img/${project.image}" 
         alt="${project.title}" 
         loading="lazy" 
         width="600" 
@@ -83,7 +83,7 @@ function generateRelatedProject(project) {
   <a href="${project.url}" class="group">
     <div class="overflow-hidden bg-portfolio-light">
       <img 
-        src="img/${project.image}" 
+        src="./img/${project.image}" 
         alt="${project.title}" 
         class="w-full h-40 object-cover transition-transform duration-500 group-hover:scale-105"
         width="400"
