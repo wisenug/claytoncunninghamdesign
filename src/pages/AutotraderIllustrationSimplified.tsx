@@ -33,7 +33,7 @@ const AutotraderIllustrationSimplified = () => {
   }, []);
 
   return (
-    <div className="animate-fade-in" style={{ backgroundColor: "#E3F2FF" }}>
+    <div className="animate-fade-in" style={{ backgroundColor: "#FFFFFF" }}>
       <section className="py-24">
         <div className="portfolio-container">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
