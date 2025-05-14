@@ -94,7 +94,8 @@ const Navbar = () => {
       </header>
 
       {/* Full screen mobile menu with dark background */}
-      {mobileMenuOpen && <div className="fixed inset-0 bg-black z-50 flex flex-col items-start justify-center p-10 md:hidden">
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 bg-black z-50 flex flex-col items-start justify-center p-10 md:hidden">
           <button 
             onClick={toggleMobileMenu} 
             className="absolute top-[72px] right-6 text-white p-2" 
@@ -111,6 +112,7 @@ const Navbar = () => {
               to="/" 
               onClick={toggleMobileMenu} 
               className={`text-6xl font-bold text-white hover:text-[#a1c565] ${location.pathname === "/" ? "text-[#a1c565]" : ""}`}
+              tabIndex={0}
               aria-current={location.pathname === "/" ? "page" : undefined}
             >
               WORK
@@ -119,12 +121,14 @@ const Navbar = () => {
               to="/about" 
               onClick={toggleMobileMenu} 
               className={`text-6xl font-bold text-white hover:text-[#a1c565] ${location.pathname === "/about" ? "text-[#a1c565]" : ""}`}
+              tabIndex={0}
               aria-current={location.pathname === "/about" ? "page" : undefined}
             >
               ABOUT
             </Link>
           </nav>
-        </div>}
+        </div>
+      )}
     </>;
 };
 

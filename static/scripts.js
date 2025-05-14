@@ -1,128 +1,85 @@
 
-// Global state
-let mobileMenuVisible = false;
+/**
+ * Main JavaScript file for Clayton Cunningham Design portfolio
+ */
 
-// Initialize when DOM is fully loaded
+// Wait for DOM content to be fully loaded before executing scripts
 document.addEventListener('DOMContentLoaded', function() {
   // Set current year in footer
-  updateFooterYear();
+  document.getElementById('current-year').textContent = new Date().getFullYear().toString();
   
-  // Initialize dark mode from localStorage or system preference
-  initializeDarkMode();
-  
-  // Initialize header scroll effects
-  setupScrollEffects();
+  // Initialize AOS animation library if it exists
+  if (typeof AOS !== 'undefined') {
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true,
+      mirror: false
+    });
+  }
 });
 
-// Update footer year
-function updateFooterYear() {
-  const yearSpan = document.getElementById('current-year');
-  if (yearSpan) {
-    yearSpan.textContent = new Date().getFullYear();
-  }
-}
-
-// Initialize dark mode
-function initializeDarkMode() {
-  const savedMode = localStorage.getItem("darkMode");
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  
-  if (savedMode === "true" || (!savedMode && prefersDark)) {
-    document.documentElement.classList.add("dark");
-  } else {
-    document.documentElement.classList.remove("dark");
-  }
-}
-
-// Mobile menu toggle with accessibility improvements
+// Toggle mobile menu visibility
 function toggleMobileMenu() {
-  const mobileMenu = document.getElementById('mobile-menu');
+  const menu = document.getElementById('mobile-menu');
   const toggleButton = document.querySelector('.mobile-menu-button button');
   
-  if (!mobileMenu || !toggleButton) return;
+  if (!menu || !toggleButton) return;
   
-  mobileMenuVisible = !mobileMenuVisible;
+  // Check if menu is currently hidden
+  const isHidden = menu.style.display !== 'flex';
+  
+  // Toggle menu visibility
+  menu.style.display = isHidden ? 'flex' : 'none';
   
   // Update ARIA attributes
-  mobileMenu.setAttribute('aria-hidden', mobileMenuVisible ? 'false' : 'true');
-  toggleButton.setAttribute('aria-expanded', mobileMenuVisible ? 'true' : 'false');
+  toggleButton.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+  menu.setAttribute('aria-hidden', !isHidden);
   
-  // Show/hide menu
-  mobileMenu.style.display = mobileMenuVisible ? 'flex' : 'none';
-  
-  // Prevent scrolling when mobile menu is open
-  document.body.style.overflow = mobileMenuVisible ? 'hidden' : 'auto';
-  
-  // Make menu items focusable or not
-  const menuItems = mobileMenu.querySelectorAll('a');
-  menuItems.forEach(item => {
-    item.setAttribute('tabindex', mobileMenuVisible ? '0' : '-1');
-  });
-  
-  // Dispatch custom events for accessibility.js to handle focus
-  const event = new CustomEvent(mobileMenuVisible ? 'mobileMenuOpened' : 'mobileMenuClosed');
-  document.dispatchEvent(event);
-}
-
-// Handle scroll effects for header using requestAnimationFrame
-function setupScrollEffects() {
-  let lastScrollY = window.scrollY;
-  let ticking = false;
-
-  window.addEventListener('scroll', function() {
-    if (!ticking) {
-      window.requestAnimationFrame(function() {
-        handleHeaderScroll();
-        ticking = false;
-        lastScrollY = window.scrollY;
-      });
-      
-      ticking = true;
-    }
-  });
-}
-
-// Handle header scroll effects
-function handleHeaderScroll() {
-  const header = document.querySelector('header');
-  if (!header) return;
-  
-  if (window.scrollY > 100) {
-    header.classList.add('scrolled');
+  // Handle focus management
+  if (isHidden) {
+    // When opening menu, make links focusable and focus on first item
+    const menuLinks = menu.querySelectorAll('a');
+    menuLinks.forEach(link => link.setAttribute('tabindex', '0'));
     
-    // Change header background based on dark mode
-    const isDark = document.documentElement.classList.contains('dark');
-    header.style.backgroundColor = isDark ? 'rgba(34, 34, 34, 0.8)' : 'rgba(250, 250, 250, 0.8)';
-    header.style.backdropFilter = 'blur(8px)';
+    // Focus on first menu item after a short delay to allow animation
+    setTimeout(() => {
+      if (menuLinks.length > 0) menuLinks[0].focus();
+    }, 100);
+    
+    // Prevent scrolling of background content
+    document.body.style.overflow = 'hidden';
+    
+    // Dispatch custom event for other scripts
+    document.dispatchEvent(new Event('mobileMenuOpened'));
   } else {
-    header.classList.remove('scrolled');
-    header.style.backgroundColor = '';
-    header.style.backdropFilter = 'none';
+    // When closing menu, make links not focusable
+    menu.querySelectorAll('a').forEach(link => link.setAttribute('tabindex', '-1'));
+    
+    // Restore scrolling
+    document.body.style.overflow = '';
+    
+    // Return focus to toggle button
+    toggleButton.focus();
+    
+    // Dispatch custom event for other scripts
+    document.dispatchEvent(new Event('mobileMenuClosed'));
   }
 }
 
-// Toggle dark mode function
-function toggleDarkMode() {
-  const isDark = document.documentElement.classList.contains('dark');
-  if (isDark) {
-    document.documentElement.classList.remove('dark');
-    localStorage.setItem('darkMode', 'false');
-  } else {
-    document.documentElement.classList.add('dark');
-    localStorage.setItem('darkMode', 'true');
-  }
-}
-
-// Load header and footer using components.js
-function loadComponents(currentPage) {
-  const headerContainer = document.getElementById('header-container');
-  const footerContainer = document.getElementById('footer-container');
+// Handle window resize events
+window.addEventListener('resize', function() {
+  const menu = document.getElementById('mobile-menu');
+  if (!menu) return;
   
-  if (headerContainer) {
-    headerContainer.innerHTML = generateHeader(currentPage);
+  // If screen size changes to desktop while mobile menu is open, close it
+  if (window.innerWidth > 768 && menu.style.display === 'flex') {
+    menu.style.display = 'none';
+    document.body.style.overflow = '';
+    
+    // Reset ARIA attributes
+    const toggleButton = document.querySelector('.mobile-menu-button button');
+    if (toggleButton) toggleButton.setAttribute('aria-expanded', 'false');
+    menu.setAttribute('aria-hidden', 'true');
   }
-  
-  if (footerContainer) {
-    footerContainer.innerHTML = generateFooter();
-  }
-}
+});
