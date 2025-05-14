@@ -110,8 +110,7 @@ const Navbar = () => {
             <Link 
               to="/" 
               onClick={toggleMobileMenu} 
-              className={`text-6xl font-bold text-white hover:text-[#a1c565]`}
-              tabIndex={0}
+              className={`text-6xl font-bold text-white hover:text-[#a1c565] ${location.pathname === "/" ? "text-[#a1c565]" : ""}`}
               aria-current={location.pathname === "/" ? "page" : undefined}
             >
               WORK
@@ -119,8 +118,7 @@ const Navbar = () => {
             <Link 
               to="/about" 
               onClick={toggleMobileMenu} 
-              className={`text-6xl font-bold text-white hover:text-[#a1c565]`}
-              tabIndex={0}
+              className={`text-6xl font-bold text-white hover:text-[#a1c565] ${location.pathname === "/about" ? "text-[#a1c565]" : ""}`}
               aria-current={location.pathname === "/about" ? "page" : undefined}
             >
               ABOUT
