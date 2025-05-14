@@ -13,18 +13,22 @@
   <link rel="apple-touch-icon" href="/lovable-uploads/5bb31fdc-7d95-4c14-9a6d-987bb14016f6.png">
   
   <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
 </head>
 <body>
   <header>
     <div class="portfolio-container">
       <div class="navbar">
         <a href="index.html" class="logo">
-          <img src="../public/lovable-uploads/5bb31fdc-7d95-4c14-9a6d-987bb14016f6.png" alt="Clayton Cunningham Design Logo">
+          <img src="/lovable-uploads/5bb31fdc-7d95-4c14-9a6d-987bb14016f6.png" alt="Clayton Cunningham Design Logo">
           <span>Clayton Cunningham Design</span>
         </a>
         <nav>
-          <a href="index.html" class="nav-link">Work</a>
-          <a href="about.html" class="nav-link-active">About</a>
+          <a href="index.html" class="nav-link" tabindex="0">Work</a>
+          <a href="about.html" class="nav-link-active" tabindex="0">About</a>
         </nav>
         <div class="mobile-menu-button">
           <button onclick="toggleMobileMenu()">
@@ -51,14 +55,18 @@
     <div class="animate-fade-in">
       <section class="py-20">
         <div class="portfolio-container">
-          <div class="about-grid">
-            <div class="about-image">
-              <img src="../public/lovable-uploads/82db9077-ea87-46ab-88f4-13c363b213ca.png" alt="Clayton Cunningham">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
+            <div class="mb-8 md:mb-0">
+              <img 
+                src="/lovable-uploads/82db9077-ea87-46ab-88f4-13c363b213ca.png" 
+                alt="Clayton Cunningham" 
+                class="w-full h-auto aspect-square rounded-full"
+              />
             </div>
-            <div class="about-text">
-              <p class="text-xl text-muted-foreground" style="font-size: 2.25rem;">
-                I'm Clayton Cunningham — Designer and Illustrator in Atlanta, GA 🍑. Currently working as a Senior UX Designer for Cox Automotive - Autotrader and Kelley Blue Book.
-              </p>
+            <div>
+              <h1 class="mb-5">
+                I'm Clayton Cunningham — Designer and illustrator in Atlanta, GA 🍑. Currently working as a Senior UX Designer for Cox Automotive - Autotrader and Kelley Blue Book.
+              </h1>
             </div>
           </div>
         </div>
@@ -68,15 +76,12 @@
         <div class="portfolio-container">
           <div class="services-grid">
             <div>
-              <h2 class="text-2xl mb-6">Our Approach</h2>
+              <h2 class="text-2xl mb-6">Approach</h2>
               <p class="text-muted-foreground mb-4">
-                We believe in thoughtful, user-centered design that solves real problems. Our process begins with deep research and understanding of your business, audience, and objectives.
-              </p>
-              <p class="text-muted-foreground mb-4">
-                From there, we collaborate closely with you to develop design solutions that are not only beautiful, but strategic and effective. Our goal is to create work that resonates with your audience and helps your business grow.
+                I believe in thoughtful, user-centered design that solves real problems. My process begins with deep research and understanding of your business, audience, and objectives.
               </p>
               <p class="text-muted-foreground">
-                Whether you're launching a new brand, redesigning a website, or developing a digital product, we bring the same level of care and attention to every project.
+                Whether you have a great new idea for a company and need a logo, or your current brand needs an entire visual refresh, let's work together to bring your ideas to life.
               </p>
             </div>
             
@@ -95,13 +100,34 @@
                 </div>
                 
                 <div>
+                  <h3 class="text-lg font-medium mb-3">Content Design</h3>
+                  <ul class="services-list">
+                    <li>Art Direction</li>
+                    <li>Product Illustrations</li>
+                    <li>Editorial Illustrations</li>
+                    <li>Custom Icon Sets</li>
+                    <li>Animations & Microinteractions</li>
+                  </ul>
+                </div>
+                
+                <div>
                   <h3 class="text-lg font-medium mb-3">Digital Design</h3>
                   <ul class="services-list">
                     <li>Website Design</li>
                     <li>UI/UX Design</li>
                     <li>Mobile App Design</li>
                     <li>Prototyping</li>
-                    <li>User Research</li>
+                  </ul>
+                </div>
+                
+                <div>
+                  <h3 class="text-lg font-medium mb-3">Print & Merchandise</h3>
+                  <ul class="services-list">
+                    <li>Apparel</li>
+                    <li>Posters</li>
+                    <li>Prints</li>
+                    <li>Stickers</li>
+                    <li>Greeting or Business Cards</li>
                   </ul>
                 </div>
               </div>
@@ -114,12 +140,12 @@
         <div class="portfolio-container">
           <div class="cta-section">
             <div class="cta-content">
-              <h2 class="text-2xl md:text-3xl mb-6">Ready to start your project?</h2>
+              <h2 class="text-2xl md:text-3xl mb-6">Ready to make some cool stuff?</h2>
               <p class="text-lg mb-8">
-                We'd love to hear about your project. Contact us to schedule a consultation.
+                I'd love to hear about your project. Contact me to schedule a consultation.
               </p>
-              <a href="mailto:info@claytoncunninghamdesign.com" class="cta-button" style="background-color: #000; border-radius: 4px; height: 48px; padding-left: 24px; padding-right: 24px; display: inline-flex; align-items: center;">
-                <strong>Get in touch</strong>
+              <a href="mailto:info@claytoncunninghamdesign.com" class="cta-button">
+                <strong>Let's Get Started!</strong>
               </a>
             </div>
           </div>

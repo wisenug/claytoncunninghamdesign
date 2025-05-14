@@ -68,3 +68,15 @@ function toggleDarkMode() {
     localStorage.setItem('darkMode', 'true');
   }
 }
+
+// Add focus styling for keyboard navigation
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Tab') {
+    document.body.classList.add('keyboard-navigation');
+  }
+});
+
+document.addEventListener('mousedown', function() {
+  document.body.classList.remove('keyboard-navigation');
+});
+
