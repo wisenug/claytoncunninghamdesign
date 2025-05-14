@@ -5,13 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About - Clayton Cunningham Design</title>
-  <meta name="description" content="About Clayton Cunningham Design - Experience, skills, and design approach.">
+  <meta name="description" content="About Clayton Cunningham Design - Specializing in branding, UI/UX, and digital product design.">
   <meta name="author" content="Clayton Cunningham Design">
-
-  <meta property="og:title" content="About - Clayton Cunningham Design">
-  <meta property="og:description" content="Learn about Clayton Cunningham's design experience, skills, and approach to digital projects.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://example.com/img/profile-image.jpg">
   
   <!-- Favicon -->
   <link rel="icon" href="img/logo.png" type="image/png">
@@ -21,151 +16,137 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <script src="components.js" defer></script>
-  <script src="scripts.js" defer></script>
-  <script src="accessibility.js" defer></script>
+  <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
 </head>
 <body>
-  <!-- Skip link for keyboard users -->
-  <a href="#main-content" class="skip-link">Skip to main content</a>
-  
-  <!-- Header will be inserted by JavaScript -->
-  <div id="header-container"></div>
-  
-  <main id="main-content" tabindex="-1">
+  <header>
+    <div class="portfolio-container">
+      <div class="navbar">
+        <a href="index.html" class="logo">
+          <img src="img/logo.png" alt="Clayton Cunningham Design Logo">
+          <span>Clayton Cunningham Design</span>
+        </a>
+        <nav>
+          <a href="index.html" class="nav-link" tabindex="0">Work</a>
+          <a href="about.html" class="nav-link-active" tabindex="0">About</a>
+        </nav>
+        <div class="mobile-menu-button">
+          <button onclick="toggleMobileMenu()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="4" x2="20" y1="12" y2="12"/>
+              <line x1="4" x2="20" y1="6" y2="6"/>
+              <line x1="4" x2="20" y1="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div id="mobile-menu" class="mobile-menu">
+      <button onclick="toggleMobileMenu()" class="close-button">CLOSE</button>
+      <nav>
+        <a href="index.html" onclick="toggleMobileMenu()">WORK</a>
+        <a href="about.html" onclick="toggleMobileMenu()">ABOUT</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
     <div class="animate-fade-in">
       <section class="py-20">
         <div class="portfolio-container">
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-16">
-            <div class="md:col-span-2">
-              <h1 class="mb-6 text-4xl md:text-5xl font-bold">About Me</h1>
-              <div class="space-y-6">
-                <p>
-                  I'm Clayton Cunningham, a designer with over 10 years of experience specializing in 
-                  digital product design, branding, and illustration. My work focuses on creating meaningful 
-                  experiences that connect with audiences and solve real problems.
-                </p>
-                <p>
-                  Based in New York City, I've worked with clients ranging from startups to established 
-                  companies like Autotrader, Grayscale, and various consumer brands. My approach combines 
-                  strategic thinking with meticulous attention to detail and a commitment to accessibility.
-                </p>
-                <p>
-                  When I'm not designing, you can find me exploring photography, hiking, or experimenting 
-                  with new illustration techniques.
-                </p>
-              </div>
-              
-              <div class="mt-12">
-                <h2 class="text-2xl font-bold mb-4">Services</h2>
-                <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <li class="flex items-start">
-                    <span class="text-xl mr-2">•</span>
-                    <div>
-                      <h3 class="font-medium">Digital Product Design</h3>
-                      <p class="text-muted-foreground">UX/UI design for web and mobile applications</p>
-                    </div>
-                  </li>
-                  <li class="flex items-start">
-                    <span class="text-xl mr-2">•</span>
-                    <div>
-                      <h3 class="font-medium">Illustration</h3>
-                      <p class="text-muted-foreground">Custom illustration systems and spot illustrations</p>
-                    </div>
-                  </li>
-                  <li class="flex items-start">
-                    <span class="text-xl mr-2">•</span>
-                    <div>
-                      <h3 class="font-medium">Brand Identity</h3>
-                      <p class="text-muted-foreground">Logo design and comprehensive brand systems</p>
-                    </div>
-                  </li>
-                  <li class="flex items-start">
-                    <span class="text-xl mr-2">•</span>
-                    <div>
-                      <h3 class="font-medium">Design Systems</h3>
-                      <p class="text-muted-foreground">Creating scalable, consistent design languages</p>
-                    </div>
-                  </li>
-                </ul>
-              </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
+            <div class="mb-8 md:mb-0">
+              <img 
+                src="img/profile.png" 
+                alt="Clayton Cunningham" 
+                class="w-full h-auto aspect-square rounded-full"
+              />
+            </div>
+            <div>
+              <h1 class="mb-5">
+                I'm Clayton Cunningham — Designer and illustrator in Atlanta, GA 🍑. Currently working as a Senior UX Designer for Cox Automotive - Autotrader and Kelley Blue Book.
+              </h1>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section class="pb-10">
+        <div class="portfolio-container">
+          <div class="services-grid">
+            <div>
+              <h2 class="text-2xl mb-6">Approach</h2>
+              <p class="text-muted-foreground mb-4">
+                I believe in thoughtful, user-centered design that solves real problems. My process begins with deep research and understanding of your business, audience, and objectives.
+              </p>
+              <p class="text-muted-foreground">
+                Whether you have a great new idea for a company and need a logo, or your current brand needs an entire visual refresh, let's work together to bring your ideas to life.
+              </p>
             </div>
             
             <div>
-              <div class="sticky top-8">
-                <div class="aspect-square bg-gray-200 mb-6">
-                  <img src="img/profile.jpg" alt="Clayton Cunningham portrait" class="w-full h-full object-cover">
+              <h2 class="text-2xl mb-6">Services & Skills</h2>
+              <div class="services-columns">
+                <div>
+                  <h3 class="text-lg font-medium mb-3">Brand Design</h3>
+                  <ul class="services-list">
+                    <li>Brand Strategy</li>
+                    <li>Visual Identity</li>
+                    <li>Logo Design</li>
+                    <li>Brand Guidelines</li>
+                    <li>Packaging Design</li>
+                  </ul>
                 </div>
                 
-                <h2 class="text-xl font-bold mb-4">Connect</h2>
-                <ul class="space-y-2">
-                  <li>
-                    <a href="mailto:hello@claytoncunningham.design" class="hover:underline">
-                      hello@claytoncunningham.design
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://linkedin.com/in/claytoncunningham" target="_blank" rel="noopener noreferrer" class="hover:underline">
-                      LinkedIn
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://instagram.com/claytoncunningham.design" target="_blank" rel="noopener noreferrer" class="hover:underline">
-                      Instagram
-                    </a>
-                  </li>
-                </ul>
+                <div>
+                  <h3 class="text-lg font-medium mb-3">Content Design</h3>
+                  <ul class="services-list">
+                    <li>Art Direction</li>
+                    <li>Product Illustrations</li>
+                    <li>Editorial Illustrations</li>
+                    <li>Custom Icon Sets</li>
+                    <li>Animations & Microinteractions</li>
+                  </ul>
+                </div>
+                
+                <div>
+                  <h3 class="text-lg font-medium mb-3">Digital Design</h3>
+                  <ul class="services-list">
+                    <li>Website Design</li>
+                    <li>UI/UX Design</li>
+                    <li>Mobile App Design</li>
+                    <li>Prototyping</li>
+                  </ul>
+                </div>
+                
+                <div>
+                  <h3 class="text-lg font-medium mb-3">Print & Merchandise</h3>
+                  <ul class="services-list">
+                    <li>Apparel</li>
+                    <li>Posters</li>
+                    <li>Prints</li>
+                    <li>Stickers</li>
+                    <li>Greeting or Business Cards</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
       
-      <section class="py-16 bg-gray-50">
+      <section class="py-10">
         <div class="portfolio-container">
-          <h2 class="text-3xl font-bold mb-12">Experience</h2>
-          
-          <div class="space-y-12">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-              <div>
-                <p class="text-muted-foreground">2020 — Present</p>
-              </div>
-              <div class="md:col-span-3">
-                <h3 class="text-xl font-bold">Independent Design Studio</h3>
-                <p class="text-lg mb-2">Founder & Designer</p>
-                <p class="text-muted-foreground">
-                  Leading design projects for various clients including Autotrader, Grayscale, and Juice & Co.
-                  Specializing in product design, illustration systems, and brand identity work.
-                </p>
-              </div>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-              <div>
-                <p class="text-muted-foreground">2016 — 2020</p>
-              </div>
-              <div class="md:col-span-3">
-                <h3 class="text-xl font-bold">Digital Agency Partners</h3>
-                <p class="text-lg mb-2">Senior Product Designer</p>
-                <p class="text-muted-foreground">
-                  Led design for major fintech and automotive clients. Established design systems and processes 
-                  that improved workflow efficiency by 40%. Mentored junior designers.
-                </p>
-              </div>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-              <div>
-                <p class="text-muted-foreground">2013 — 2016</p>
-              </div>
-              <div class="md:col-span-3">
-                <h3 class="text-xl font-bold">CreativeStart Studio</h3>
-                <p class="text-lg mb-2">UI/UX Designer</p>
-                <p class="text-muted-foreground">
-                  Designed user interfaces for web and mobile applications. Collaborated with development teams to 
-                  ensure seamless implementation. Created brand identity systems for early-stage startups.
-                </p>
-              </div>
+          <div class="cta-section">
+            <div class="cta-content">
+              <h2 class="text-2xl md:text-3xl mb-6">Ready to make some cool stuff?</h2>
+              <p class="text-lg mb-8">
+                I'd love to hear about your project. Contact me to schedule a consultation.
+              </p>
+              <a href="mailto:info@claytoncunninghamdesign.com" class="cta-button">
+                <strong>Let's Get Started!</strong>
+              </a>
             </div>
           </div>
         </div>
@@ -173,15 +154,14 @@
     </div>
   </main>
 
-  <!-- Footer will be inserted by JavaScript -->
-  <div id="footer-container"></div>
+  <footer>
+    <div class="portfolio-container">
+      <div class="footer-content">
+        <p>© <span id="current-year"></span> Clayton Cunningham Design. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
 
-  <script>
-    // Insert header and footer
-    document.addEventListener('DOMContentLoaded', function() {
-      document.getElementById('header-container').innerHTML = generateHeader('about');
-      document.getElementById('footer-container').innerHTML = generateFooter();
-    });
-  </script>
+  <script src="scripts.js"></script>
 </body>
 </html>
