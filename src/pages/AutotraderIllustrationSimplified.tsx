@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { extractDominantColor, getLightenedColor } from "../utils/colorExtraction";
@@ -66,7 +65,7 @@ const AutotraderIllustrationSimplified = () => {
             <div className="mb-6">
               <img 
                 id="primary-image"
-                src="/lovable-uploads/66eb31cd-f714-4138-a7aa-ce71d8c09815.png" 
+                src="./lovable-uploads/66eb31cd-f714-4138-a7aa-ce71d8c09815.png" 
                 alt="Autotrader Illustration Style showing various automotive and customer illustrations"
                 className="w-full"
               />
@@ -92,7 +91,7 @@ const AutotraderIllustrationSimplified = () => {
             </div>
             <div>
               <img 
-                src="/lovable-uploads/5ce83873-8a81-43aa-8274-0513fd6a2701.png"
+                src="./lovable-uploads/5ce83873-8a81-43aa-8274-0513fd6a2701.png"
                 alt="Vehicle illustration grid showing different types and styles" 
                 className="w-full"
               />
@@ -130,12 +129,12 @@ const AutotraderIllustrationSimplified = () => {
             <div>
               <img 
                 id="spot-illustrations-image"
-                src="/lovable-uploads/b2b315b8-2e13-41f9-bb6a-265cfe53cea1.png"
+                src="./lovable-uploads/b2b315b8-2e13-41f9-bb6a-265cfe53cea1.png"
                 alt="Beach scene with simplified orange vehicle illustration" 
                 className="w-full mb-8"
               />
               <img 
-                src="/lovable-uploads/9cb7594a-feb9-4e65-a5f5-a811316dab85.png"
+                src="./lovable-uploads/9cb7594a-feb9-4e65-a5f5-a811316dab85.png"
                 alt="Road with simplified orange convertible" 
                 className="w-full"
               />
@@ -152,7 +151,7 @@ const AutotraderIllustrationSimplified = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
             <div>
               <img 
-                src="/lovable-uploads/8e612af0-4549-4c6c-8cab-2dcf8f8fe568.png"
+                src="./lovable-uploads/8e612af0-4549-4c6c-8cab-2dcf8f8fe568.png"
                 alt="SUV vehicle illustration with Autotrader styling" 
                 className="w-full rounded-lg"
               />
@@ -211,9 +210,9 @@ const AutotraderIllustrationSimplified = () => {
           
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {[
-              { id: 0, slug: "autotrader-icons", title: "Autotrader Icons", image: "/lovable-uploads/33e76d34-6424-4972-843a-38e12a1a3fc4.png" },
-              { id: 2, slug: "coffee-shop-mobile-app", title: "Coffee Shop Mobile App", image: "/lovable-uploads/6888cf15-ca19-4db7-8112-982404ab95d5.png" },
-              { id: 3, slug: "joe-juice-store-design", title: "Store Design", image: "/lovable-uploads/a851a2a0-bb99-454a-8933-dd8e6aab0a60.png" },
+              { id: 0, slug: "autotrader-icons", title: "Autotrader Icons", image: "./lovable-uploads/33e76d34-6424-4972-843a-38e12a1a3fc4.png" },
+              { id: 2, slug: "coffee-shop-mobile-app", title: "Coffee Shop Mobile App", image: "./lovable-uploads/6888cf15-ca19-4db7-8112-982404ab95d5.png" },
+              { id: 3, slug: "joe-juice-store-design", title: "Store Design", image: "./lovable-uploads/a851a2a0-bb99-454a-8933-dd8e6aab0a60.png" },
             ].map((relatedProject) => (
               <Link 
                 key={relatedProject.id} 
