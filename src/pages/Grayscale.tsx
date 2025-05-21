@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { extractDominantColor, getLightenedColor } from "../utils/colorExtraction";
@@ -133,7 +132,7 @@ const Grayscale = () => {
           <div className="space-y-12">
             <img
               id="hero-image"
-              src="./lovable-uploads/33e76d34-6424-4972-843a-38e12a1a3fc4.png"
+              src="/lovable-uploads/7417c13c-19bb-42fc-a521-449b3fb6c297.png"
               alt="Grayscale hero image"
               className="w-full h-auto object-cover rounded-lg"
             />
@@ -142,7 +141,7 @@ const Grayscale = () => {
               <div>
                 <img
                   id="second-image"
-                  src="./lovable-uploads/33e76d34-6424-4972-843a-38e12a1a3fc4.png"
+                  src="/lovable-uploads/7417c13c-19bb-42fc-a521-449b3fb6c297.png"
                   alt="Grayscale mobile interface"
                   className="w-full h-auto object-cover rounded-lg"
                 />
@@ -150,7 +149,7 @@ const Grayscale = () => {
               </div>
               <div>
                 <img
-                  src="./lovable-uploads/33e76d34-6424-4972-843a-38e12a1a3fc4.png"
+                  src="/lovable-uploads/7417c13c-19bb-42fc-a521-449b3fb6c297.png"
                   alt="Grayscale desktop dashboard"
                   className="w-full h-auto object-cover rounded-lg"
                 />
@@ -195,7 +194,7 @@ const Grayscale = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             <div>
               <img
-                src="./lovable-uploads/33e76d34-6424-4972-843a-38e12a1a3fc4.png"
+                src="/lovable-uploads/7417c13c-19bb-42fc-a521-449b3fb6c297.png"
                 alt="Grayscale typography system"
                 className="w-full h-auto object-cover rounded-lg"
               />
@@ -203,7 +202,7 @@ const Grayscale = () => {
             </div>
             <div>
               <img
-                src="./lovable-uploads/33e76d34-6424-4972-843a-38e12a1a3fc4.png"
+                src="/lovable-uploads/7417c13c-19bb-42fc-a521-449b3fb6c297.png"
                 alt="Grayscale color palette"
                 className="w-full h-auto object-cover rounded-lg"
               />
@@ -237,7 +236,7 @@ const Grayscale = () => {
         <div className="portfolio-container">
           <img
             id="results-image"
-            src="./lovable-uploads/33e76d34-6424-4972-843a-38e12a1a3fc4.png"
+            src="/lovable-uploads/7417c13c-19bb-42fc-a521-449b3fb6c297.png"
             alt="Grayscale platform overview"
             className="w-full h-auto object-cover rounded-lg"
           />
@@ -256,7 +255,7 @@ const Grayscale = () => {
             <Link to="/projects/autotrader-icons" className="group">
               <div className="overflow-hidden bg-gray-900 rounded-lg">
                 <img 
-                  src="./lovable-uploads/33e76d34-6424-4972-843a-38e12a1a3fc4.png" 
+                  src="/lovable-uploads/7417c13c-19bb-42fc-a521-449b3fb6c297.png" 
                   alt="Autotrader Icons"
                   className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105 opacity-80"
                 />
@@ -270,7 +269,7 @@ const Grayscale = () => {
             <Link to="/projects/juice-and-co-brand-refresh" className="group">
               <div className="overflow-hidden bg-gray-900 rounded-lg">
                 <img 
-                  src="./lovable-uploads/8af2a9c3-36c0-4dc6-afa2-095c6980ff1c.png" 
+                  src="/lovable-uploads/7417c13c-19bb-42fc-a521-449b3fb6c297.png" 
                   alt="Juice & Co Brand Refresh"
                   className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105 opacity-80"
                 />
@@ -284,7 +283,7 @@ const Grayscale = () => {
             <Link to="/projects/coffee-shop-mobile-app" className="group">
               <div className="overflow-hidden bg-gray-900 rounded-lg">
                 <img 
-                  src="./lovable-uploads/6888cf15-ca19-4db7-8112-982404ab95d5.png" 
+                  src="/lovable-uploads/7417c13c-19bb-42fc-a521-449b3fb6c297.png" 
                   alt="Coffee Shop Mobile App"
                   className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105 opacity-80"
                 />

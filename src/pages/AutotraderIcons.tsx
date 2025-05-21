@@ -85,7 +85,7 @@ const AutotraderIcons = () => {
             <div className="mb-6">
               <img 
                 id="primary-image"
-                src="./lovable-uploads/33e76d34-6424-4972-843a-38e12a1a3fc4.png" 
+                src="/lovable-uploads/7417c13c-19bb-42fc-a521-449b3fb6c297.png" 
                 alt="Autotrader Icons grid showing various automotive and feature icons"
                 className="w-full"
               />
@@ -111,7 +111,7 @@ const AutotraderIcons = () => {
             </div>
             <div>
               <img 
-                src="./lovable-uploads/de1df8e5-ce8e-4746-9256-ef1104067462.png"
+                src="/lovable-uploads/7417c13c-19bb-42fc-a521-449b3fb6c297.png"
                 alt="Vehicle history icons showing single owner, accident free, clean title, and no flood damage status" 
                 className="w-full"
               />
@@ -138,12 +138,12 @@ const AutotraderIcons = () => {
             <div>
               <img 
                 id="design-system-image"
-                src="./lovable-uploads/abdd53ed-6974-4b16-8654-d7a69f737e97.png"
+                src="/lovable-uploads/7417c13c-19bb-42fc-a521-449b3fb6c297.png"
                 alt="Icon design system documentation showing style guidelines" 
                 className="w-full mb-8"
               />
               <img 
-                src="./lovable-uploads/f33dc7e8-9d5b-4d53-b787-18a701610278.png"
+                src="/lovable-uploads/7417c13c-19bb-42fc-a521-449b3fb6c297.png"
                 alt="Icon examples in two color variants" 
                 className="w-full"
               />
@@ -208,12 +208,12 @@ const AutotraderIcons = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
             <div>
               <img 
-                src="./lovable-uploads/c7d3503e-cc6b-4e60-b9c6-5f48f3f7bc0a.png"
+                src="/lovable-uploads/7417c13c-19bb-42fc-a521-449b3fb6c297.png"
                 alt="Autotrader website interface showing implemented icons" 
                 className="w-full mb-8"
               />
               <img 
-                src="./lovable-uploads/4be92025-a4b7-4288-9a0b-91988ca4d361.png"
+                src="/lovable-uploads/7417c13c-19bb-42fc-a521-449b3fb6c297.png"
                 alt="Autotrader dealer page showing icons in context" 
                 className="w-full"
               />
@@ -229,7 +229,7 @@ const AutotraderIcons = () => {
                 In dealer pages, they provide visual support for services offered and return policies.
               </p>
               <img 
-                src="./lovable-uploads/73236183-13cb-470b-825b-574edc1a967f.png"
+                src="/lovable-uploads/7417c13c-19bb-42fc-a521-449b3fb6c297.png"
                 alt="Autotrader mobile screens showing icon usage" 
                 className="w-full"
               />
@@ -246,7 +246,7 @@ const AutotraderIcons = () => {
           <div className="grid grid-cols-1 gap-8">
             <div>
               <img 
-                src="./lovable-uploads/5cdcfed9-4a62-4301-851a-8c6f24246595.png"
+                src="/lovable-uploads/7417c13c-19bb-42fc-a521-449b3fb6c297.png"
                 alt="Highlighted Autotrader icons for money back guarantee and vehicle exchange" 
                 className="w-full max-w-xl mx-auto"
               />
@@ -278,7 +278,7 @@ const AutotraderIcons = () => {
             </div>
             <div>
               <img 
-                src="./lovable-uploads/8e612af0-4549-4c6c-8cab-2dcf8f8fe568.png"
+                src="/lovable-uploads/7417c13c-19bb-42fc-a521-449b3fb6c297.png"
                 alt="SUV vehicle illustration with Autotrader styling" 
                 className="w-full bg-[#FFF8E7] rounded-lg"
               />
@@ -327,9 +327,9 @@ const AutotraderIcons = () => {
           
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {[
-              { id: 0, slug: "autotrader-illustration-style", title: "Autotrader Illustration Style", image: "./lovable-uploads/66eb31cd-f714-4138-a7aa-ce71d8c09815.png" },
-              { id: 2, slug: "coffee-shop-mobile-app", title: "Coffee Shop Mobile App", image: "./lovable-uploads/6888cf15-ca19-4db7-8112-982404ab95d5.png" },
-              { id: 3, slug: "joe-juice-store-design", title: "Store Design", image: "./lovable-uploads/a851a2a0-bb99-454a-8933-dd8e6aab0a60.png" },
+              { id: 0, slug: "autotrader-illustration-style", title: "Autotrader Illustration Style", image: "/lovable-uploads/7417c13c-19bb-42fc-a521-449b3fb6c297.png" },
+              { id: 2, slug: "coffee-shop-mobile-app", title: "Coffee Shop Mobile App", image: "/lovable-uploads/7417c13c-19bb-42fc-a521-449b3fb6c297.png" },
+              { id: 3, slug: "joe-juice-store-design", title: "Store Design", image: "/lovable-uploads/7417c13c-19bb-42fc-a521-449b3fb6c297.png" },
             ].map((relatedProject) => (
               <Link 
                 key={relatedProject.id} 

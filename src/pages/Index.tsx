@@ -1,27 +1,27 @@
 
 import { Link } from "react-router-dom";
 
-// Updated project data with GitHub-compatible image paths
+// Updated project data with sample image path
 const projects = [
   {
     id: 0,
     slug: "grayscale",
-    image: "./lovable-uploads/33e76d34-6424-4972-843a-38e12a1a3fc4.png"
+    image: "/lovable-uploads/7417c13c-19bb-42fc-a521-449b3fb6c297.png"
   },
   {
     id: 1,
     slug: "autotrader-illustration-style",
-    image: "./lovable-uploads/66eb31cd-f714-4138-a7aa-ce71d8c09815.png"
+    image: "/lovable-uploads/7417c13c-19bb-42fc-a521-449b3fb6c297.png"
   },
   {
     id: 2,
     slug: "autotrader-icons",
-    image: "./lovable-uploads/33e76d34-6424-4972-843a-38e12a1a3fc4.png" 
+    image: "/lovable-uploads/7417c13c-19bb-42fc-a521-449b3fb6c297.png" 
   },
   {
     id: 3,
     slug: "juice-and-co-brand-refresh",
-    image: "./lovable-uploads/8af2a9c3-36c0-4dc6-afa2-095c6980ff1c.png" 
+    image: "/lovable-uploads/7417c13c-19bb-42fc-a521-449b3fb6c297.png" 
   }
 ];
 

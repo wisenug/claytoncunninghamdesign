@@ -9,7 +9,7 @@ const About = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
             <div className="mb-8 md:mb-0">
               <img 
-                src="./lovable-uploads/82db9077-ea87-46ab-88f4-13c363b213ca.png" 
+                src="/lovable-uploads/7417c13c-19bb-42fc-a521-449b3fb6c297.png" 
                 alt="Clayton Cunningham" 
                 className="w-full h-auto aspect-square rounded-full"
               />
