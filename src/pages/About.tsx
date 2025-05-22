@@ -1,7 +1,9 @@
 
 import { Button } from "@/components/ui/button";
+
 const About = () => {
-  return <div className="animate-fade-in">
+  return (
+    <div className="animate-fade-in">
       <section className="py-20">
         <div className="portfolio-container">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
@@ -98,6 +100,8 @@ const About = () => {
           </div>
         </div>
       </section>
-    </div>;
+    </div>
+  );
 };
+
 export default About;
