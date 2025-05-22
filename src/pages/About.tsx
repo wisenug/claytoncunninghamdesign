@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 const About = () => {
   return <div className="animate-fade-in">
@@ -5,7 +6,7 @@ const About = () => {
         <div className="portfolio-container">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
             <div className="mb-8 md:mb-0">
-              <img src="/lovable-uploads/7417c13c-19bb-42fc-a521-449b3fb6c297.png" alt="Clayton Cunningham" className="w-full h-auto aspect-square rounded-full" />
+              <img src="/lovable-uploads/9d94ffac-d134-4e4d-8ed9-22660ec8262d.png" alt="Clayton Cunningham" className="w-full h-auto aspect-square rounded-full" />
             </div>
             <div>
               <h1 className="mb-5">
