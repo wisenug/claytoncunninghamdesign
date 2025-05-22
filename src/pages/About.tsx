@@ -1,18 +1,11 @@
-
 import { Button } from "@/components/ui/button";
-
 const About = () => {
-  return (
-    <div className="animate-fade-in">
+  return <div className="animate-fade-in">
       <section className="py-20">
         <div className="portfolio-container">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
             <div className="mb-8 md:mb-0">
-              <img 
-                src="/lovable-uploads/7417c13c-19bb-42fc-a521-449b3fb6c297.png" 
-                alt="Clayton Cunningham" 
-                className="w-full h-auto aspect-square rounded-full"
-              />
+              <img src="/lovable-uploads/7417c13c-19bb-42fc-a521-449b3fb6c297.png" alt="Clayton Cunningham" className="w-full h-auto aspect-square rounded-full" />
             </div>
             <div>
               <h1 className="mb-5">
@@ -91,15 +84,11 @@ const About = () => {
         <div className="portfolio-container">
           <div className="bg-[#a1c565] rounded-[16px] p-10 md:p-16">
             <div className="max-w-2xl mx-auto text-center">
-              <h2 className="text-2xl md:text-3xl mb-6 text-foreground">Ready to make some cool stuff?</h2>
+              <h2 className="text-2xl md:text-3xl mb-6 text-foreground">Ready to make something cool?</h2>
               <p className="text-lg mb-8 text-foreground">
                 I'd love to hear about your project. Contact me to schedule a consultation.
               </p>
-              <Button 
-                variant="custom" 
-                asChild
-                className="font-bold"
-              >
+              <Button variant="custom" asChild className="font-bold">
                 <a href="mailto:info@claytoncunninghamdesign.com">
                   Let's Get Started!
                 </a>
@@ -108,8 +97,6 @@ const About = () => {
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default About;
