@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { extractDominantColor, getLightenedColor } from "../utils/colorExtraction";
+import LottieAnimation from "../components/LottieAnimation";
+import animationData from "../assets/sample-animation.json";
+
 const Grayscale = () => {
   const [heroImageColor, setHeroImageColor] = useState("#f5f5f5");
   const [secondSectionColor, setSecondSectionColor] = useState("#FAFBFB");
   const [resultsSectionColor, setResultsSectionColor] = useState("#f5f5f5");
+
   useEffect(() => {
     window.scrollTo(0, 0);
 
@@ -54,8 +58,6 @@ const Grayscale = () => {
   return <div className="animate-fade-in">
       <section className="py-12">
         <div className="portfolio-container">
-          
-
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
             <div className="lg:col-span-2">
               <h1 className="project-title">Grayscale</h1>
@@ -63,16 +65,39 @@ const Grayscale = () => {
                 Grayscale needed a partner to design and build a premium platform worthy of their forward-thinking industry leadership in cryptocurrency trading.
               </p>
             </div>
-
             
+            {/* Add Lottie Animation here */}
+            <div className="flex items-center justify-center">
+              <LottieAnimation 
+                animationData={animationData} 
+                className="w-32 h-32 lg:w-48 lg:h-48" 
+              />
+            </div>
           </div>
         </div>
       </section>
 
+      {/* Hero Section with Animation */}
       <section className="pb-16">
         <div className="portfolio-container">
           <div className="space-y-12">
-            <img id="hero-image" src="/lovable-uploads/7417c13c-19bb-42fc-a521-449b3fb6c297.png" alt="Grayscale hero image" className="w-full h-auto object-cover rounded-lg" />
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+              <div className="lg:col-span-2">
+                <img 
+                  id="hero-image" 
+                  src="/lovable-uploads/7417c13c-19bb-42fc-a521-449b3fb6c297.png" 
+                  alt="Grayscale hero image" 
+                  className="w-full h-auto object-cover rounded-lg" 
+                />
+              </div>
+              <div>
+                <LottieAnimation 
+                  animationData={animationData}
+                  className="w-full max-w-xs mx-auto" 
+                />
+                <p className="text-center text-muted-foreground mt-4">Interactive trading experience</p>
+              </div>
+            </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>
@@ -208,4 +233,5 @@ const Grayscale = () => {
       </section>
     </div>;
 };
+
 export default Grayscale;
