@@ -1,9 +1,6 @@
-
 import { Button } from "@/components/ui/button";
-
 const About = () => {
-  return (
-    <div className="animate-fade-in">
+  return <div className="animate-fade-in">
       <section className="py-20">
         <div className="portfolio-container">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
@@ -11,7 +8,7 @@ const About = () => {
               <img src="/lovable-uploads/9d94ffac-d134-4e4d-8ed9-22660ec8262d.png" alt="Clayton Cunningham" className="w-full h-auto aspect-square rounded-full" />
             </div>
             <div>
-              <h1 className="mb-5">
+              <h1 className="mb-5 py-0">
                 I'm Clayton Cunningham — Designer and illustrator in Atlanta, GA 🍑. Currently working as a Senior UX Designer for Cox Automotive - Autotrader and Kelley Blue Book.
               </h1>
             </div>
@@ -100,8 +97,6 @@ const About = () => {
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default About;
