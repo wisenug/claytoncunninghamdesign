@@ -10,63 +10,20 @@ const Grayscale = () => {
   const [secondSectionColor, setSecondSectionColor] = useState("#FAFBFB");
   const [resultsSectionColor, setResultsSectionColor] = useState("#f5f5f5");
 
-  // Use reliable placeholder images for GitHub Pages
-  const heroImageSrc = "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop";
-  const mobileImageSrc = "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=600&fit=crop";
-  const desktopImageSrc = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop";
-  const typographyImageSrc = "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=600&h=400&fit=crop";
-  const colorImageSrc = "https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=600&h=400&fit=crop";
-  const resultsImageSrc = "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=600&fit=crop";
-  const project1ImageSrc = "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=400&h=300&fit=crop";
-  const project2ImageSrc = "https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=400&h=300&fit=crop";
-  const project3ImageSrc = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop";
+  // Use reliable placeholder images
+  const heroImageSrc = "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=center";
+  const mobileImageSrc = "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=600&fit=crop&crop=center";
+  const desktopImageSrc = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop&crop=center";
+  const typographyImageSrc = "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=600&h=400&fit=crop&crop=center";
+  const colorImageSrc = "https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=600&h=400&fit=crop&crop=center";
+  const resultsImageSrc = "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=600&fit=crop&crop=center";
+  const project1ImageSrc = "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=400&h=300&fit=crop&crop=center";
+  const project2ImageSrc = "https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=400&h=300&fit=crop&crop=center";
+  const project3ImageSrc = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop&crop=center";
 
   useEffect(() => {
     window.scrollTo(0, 0);
-
-    // Extract colors from images when they load
-    const heroImage = document.getElementById("hero-image") as HTMLImageElement;
-    const secondImage = document.getElementById("second-image") as HTMLImageElement;
-    const resultsImage = document.getElementById("results-image") as HTMLImageElement;
-    
-    if (heroImage && heroImage.complete) {
-      extractDominantColor(heroImage).then(color => {
-        const lightColor = getLightenedColor(color, 0.8);
-        setHeroImageColor(lightColor);
-      }).catch(() => {});
-    }
-    if (secondImage && secondImage.complete) {
-      extractDominantColor(secondImage).then(color => {
-        const lightColor = getLightenedColor(color, 0.85);
-        setSecondSectionColor(lightColor);
-      }).catch(() => {});
-    }
-    if (resultsImage && resultsImage.complete) {
-      extractDominantColor(resultsImage).then(color => {
-        const lightColor = getLightenedColor(color, 0.7);
-        setResultsSectionColor(lightColor);
-      }).catch(() => {});
-    }
-
-    // For images that haven't loaded yet
-    heroImage?.addEventListener("load", () => {
-      extractDominantColor(heroImage).then(color => {
-        const lightColor = getLightenedColor(color, 0.8);
-        setHeroImageColor(lightColor);
-      }).catch(() => {});
-    });
-    secondImage?.addEventListener("load", () => {
-      extractDominantColor(secondImage).then(color => {
-        const lightColor = getLightenedColor(color, 0.85);
-        setSecondSectionColor(lightColor);
-      }).catch(() => {});
-    });
-    resultsImage?.addEventListener("load", () => {
-      extractDominantColor(resultsImage).then(color => {
-        const lightColor = getLightenedColor(color, 0.7);
-        setResultsSectionColor(lightColor);
-      }).catch(() => {});
-    });
+    console.log("Grayscale page loaded successfully");
   }, []);
 
   return (
@@ -81,7 +38,6 @@ const Grayscale = () => {
               </p>
             </div>
             
-            {/* Add Lottie Animation here */}
             <div className="flex items-center justify-center">
               <LottieAnimation 
                 animationData={animationData} 
@@ -99,7 +55,6 @@ const Grayscale = () => {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
               <div className="lg:col-span-2">
                 <img 
-                  id="hero-image" 
                   src={heroImageSrc}
                   alt="Grayscale hero image" 
                   className="w-full h-auto object-cover rounded-lg" 
@@ -117,7 +72,6 @@ const Grayscale = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>
                 <img 
-                  id="second-image" 
                   src={mobileImageSrc}
                   alt="Grayscale mobile interface" 
                   className="w-full h-auto object-cover rounded-lg" 
@@ -137,7 +91,7 @@ const Grayscale = () => {
         </div>
       </section>
 
-      {/* Text Callout Section - In the middle of page */}
+      {/* Text Callout Section */}
       <section className="py-16" style={{ backgroundColor: heroImageColor }}>
         <div className="portfolio-container">
           <div className="text-callout mx-auto text-center max-w-3xl">
@@ -212,7 +166,6 @@ const Grayscale = () => {
       <section className="py-16">
         <div className="portfolio-container">
           <img 
-            id="results-image" 
             src={resultsImageSrc}
             alt="Grayscale platform overview" 
             className="w-full h-auto object-cover rounded-lg" 
