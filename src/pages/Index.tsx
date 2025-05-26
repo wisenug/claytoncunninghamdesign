@@ -1,27 +1,27 @@
 
 import { Link } from "react-router-dom";
 
-// Updated project data with sample image path
+// Updated project data to use /img folder
 const projects = [
   {
     id: 0,
     slug: "grayscale",
-    image: "/lovable-uploads/7417c13c-19bb-42fc-a521-449b3fb6c297.png"
+    image: "/img/grayscale-hero.jpg"
   },
   {
     id: 1,
     slug: "autotrader-illustration-style",
-    image: "/lovable-uploads/7417c13c-19bb-42fc-a521-449b3fb6c297.png"
+    image: "/img/autotrader-illustration.jpg"
   },
   {
     id: 2,
     slug: "autotrader-icons",
-    image: "/lovable-uploads/7417c13c-19bb-42fc-a521-449b3fb6c297.png" 
+    image: "/img/autotrader-icons.jpg" 
   },
   {
     id: 3,
     slug: "juice-and-co-brand-refresh",
-    image: "/lovable-uploads/7417c13c-19bb-42fc-a521-449b3fb6c297.png" 
+    image: "/img/juice-co-brand.jpg" 
   }
 ];
 

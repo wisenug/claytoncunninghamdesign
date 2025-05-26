@@ -10,16 +10,16 @@ const Grayscale = () => {
   const [secondSectionColor, setSecondSectionColor] = useState("#FAFBFB");
   const [resultsSectionColor, setResultsSectionColor] = useState("#f5f5f5");
 
-  // Use reliable placeholder images
-  const heroImageSrc = "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=center";
-  const mobileImageSrc = "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=600&fit=crop&crop=center";
-  const desktopImageSrc = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop&crop=center";
-  const typographyImageSrc = "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=600&h=400&fit=crop&crop=center";
-  const colorImageSrc = "https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=600&h=400&fit=crop&crop=center";
-  const resultsImageSrc = "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=600&fit=crop&crop=center";
-  const project1ImageSrc = "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=400&h=300&fit=crop&crop=center";
-  const project2ImageSrc = "https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=400&h=300&fit=crop&crop=center";
-  const project3ImageSrc = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop&crop=center";
+  // Use /img folder for all images
+  const heroImageSrc = "/img/grayscale-hero.jpg";
+  const mobileImageSrc = "/img/grayscale-mobile.jpg";
+  const desktopImageSrc = "/img/grayscale-desktop.jpg";
+  const typographyImageSrc = "/img/grayscale-typography.jpg";
+  const colorImageSrc = "/img/grayscale-colors.jpg";
+  const resultsImageSrc = "/img/grayscale-results.jpg";
+  const project1ImageSrc = "/img/autotrader-icons.jpg";
+  const project2ImageSrc = "/img/juice-co-brand.jpg";
+  const project3ImageSrc = "/img/coffee-shop-app.jpg";
 
   useEffect(() => {
     window.scrollTo(0, 0);
