@@ -8,14 +8,14 @@ interface NavigationProps {
 const Navigation = ({ activeTab }: NavigationProps) => {
   return (
     <nav className="flex items-center justify-between w-full py-6 px-6 md:px-12">
-      <div className="flex items-center">
+      <Link to="/" className="flex items-center hover:bg-secondary rounded-md p-2 transition-colors">
         <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center mr-4">
           <div className="w-8 h-8 border-2 border-background rounded-full relative">
             <div className="absolute inset-0 border-l-2 border-background"></div>
           </div>
         </div>
         <span className="text-lg font-medium hidden md:block">Clayton Cunningham Design</span>
-      </div>
+      </Link>
       
       <div className="flex items-center gap-1">
         <Link 

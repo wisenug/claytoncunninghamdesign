@@ -1,4 +1,5 @@
 
+import { Link } from "react-router-dom";
 import Navigation from "../components/Navigation";
 
 const Work = () => {
@@ -22,7 +23,7 @@ const Work = () => {
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           {projects.map((project) => (
-            <div key={project.id} className="group cursor-pointer">
+            <Link key={project.id} to={`/project/${project.id}`} className="group cursor-pointer">
               <div className="aspect-square bg-accent rounded-2xl mb-4 relative overflow-hidden">
                 <div className="absolute inset-0 opacity-30">
                   <div className="grid grid-cols-8 h-full">
@@ -39,7 +40,7 @@ const Work = () => {
               </div>
               <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
               <p className="text-muted-foreground">{project.description}</p>
-            </div>
+            </Link>
           ))}
         </div>
 
