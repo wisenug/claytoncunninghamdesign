@@ -1,5 +1,51 @@
 import { Link } from "react-router-dom";
 import Navigation from "../components/Navigation";
+import Lottie from "lottie-react";
+
+// Sample Lottie animation data (you can replace this with your own JSON file)
+const sampleLottieData = {
+  "v": "5.5.7",
+  "fr": 60,
+  "ip": 0,
+  "op": 180,
+  "w": 200,
+  "h": 200,
+  "nm": "Comp 1",
+  "ddd": 0,
+  "assets": [],
+  "layers": [
+    {
+      "ddd": 0,
+      "ind": 1,
+      "ty": 4,
+      "nm": "Shape Layer 1",
+      "sr": 1,
+      "ks": {
+        "o": {"a": 0, "k": 100},
+        "r": {"a": 1, "k": [{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"t":0,"s":[0]},{"t":179,"s":[360]}]},
+        "p": {"a": 0, "k": [100, 100, 0]},
+        "a": {"a": 0, "k": [0, 0, 0]},
+        "s": {"a": 0, "k": [100, 100, 100]}
+      },
+      "ao": 0,
+      "shapes": [
+        {
+          "ty": "el",
+          "p": {"a": 0, "k": [0, 0]},
+          "s": {"a": 0, "k": [50, 50]}
+        },
+        {
+          "ty": "fl",
+          "c": {"a": 0, "k": [0.2, 0.6, 1, 1]},
+          "o": {"a": 0, "k": 100}
+        }
+      ],
+      "ip": 0,
+      "op": 180,
+      "st": 0
+    }
+  ]
+};
 
 const ProjectDetail = () => {
   const moreProjects = [
@@ -145,7 +191,7 @@ const ProjectDetail = () => {
               </p>
             </section>
 
-            <aside className="bg-secondary text-foreground p-8 rounded" role="complementary">
+            <aside className="text-black p-8 rounded" role="complementary">
               <h3 className="text-xl font-bold mb-4">Text highlight area.</h3>
               <p className="text-lg">
                 Lorem ipsum dolor sit amet consectetur. Eleifend mattis sed et egestas saerra dignissim sed. Lorem ipsum dolor sit amet consectetur. Eleifend mattis sed et egestas saerra dignissimo.
@@ -174,31 +220,73 @@ const ProjectDetail = () => {
               </div>
             </section>
 
-            {/* More Work Section */}
-            <section aria-label="More projects">
-              <h2 className="text-2xl font-bold mb-8">More Projects</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {moreProjects.map((project) => (
-                  <Link 
-                    key={project.id} 
-                    to={`/project/${project.id}`} 
-                    className="group cursor-pointer"
-                    aria-label={`View project: ${project.title}`}
-                  >
-                    <div className="aspect-square bg-foreground rounded relative overflow-hidden mb-4" role="img" aria-label={`${project.title} preview image`}>
-                    </div>
-                    <h3 className="font-semibold mb-1">{project.title}</h3>
-                    <p className="text-sm text-muted-foreground">{project.subtitle}</p>
-                  </Link>
-                ))}
+            {/* Video Section */}
+            <section aria-label="Project video">
+              <h2 className="text-2xl font-bold mb-6">Project Demo</h2>
+              <div className="aspect-video bg-foreground rounded overflow-hidden">
+                <video 
+                  className="w-full h-full object-cover"
+                  controls
+                  poster="/placeholder.svg"
+                >
+                  <source src="/path-to-your-video.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
               </div>
+            </section>
+
+            {/* Lottie Animation Section */}
+            <section aria-label="Project animation" className="text-center">
+              <h2 className="text-2xl font-bold mb-6">Interactive Elements</h2>
+              <div className="flex justify-center">
+                <div className="w-64 h-64">
+                  <Lottie 
+                    animationData={sampleLottieData}
+                    loop={true}
+                    autoplay={true}
+                  />
+                </div>
+              </div>
+              <p className="text-muted-foreground mt-4">
+                This animation showcases the interactive elements and micro-interactions used throughout the project.
+              </p>
             </section>
           </div>
 
+          {/* More Work Section with full-width gray background */}
+          <div className="w-full bg-gray-50 mt-24">
+            <div className="flex justify-center">
+              <div className="w-full max-w-[1200px] px-6 md:px-12 py-16">
+                <section aria-label="More projects">
+                  <h2 className="text-2xl font-bold mb-8">More Work</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {moreProjects.map((project) => (
+                      <Link 
+                        key={project.id} 
+                        to={`/project/${project.id}`} 
+                        className="group cursor-pointer"
+                        aria-label={`View project: ${project.title}`}
+                      >
+                        <div className="aspect-square bg-foreground rounded relative overflow-hidden mb-4" role="img" aria-label={`${project.title} preview image`}>
+                        </div>
+                        <h3 className="font-semibold mb-1">{project.title}</h3>
+                        <p className="text-sm text-muted-foreground">{project.subtitle}</p>
+                      </Link>
+                    ))}
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+
           {/* Footer */}
-          <footer className="text-center mt-16 text-sm text-muted-foreground" role="contentinfo">
-            © 2025 Clayton Cunningham Design. All rights reserved.
-          </footer>
+          <div className="flex justify-center">
+            <div className="w-full max-w-[1200px] px-6 md:px-12">
+              <footer className="text-center py-16 text-sm text-muted-foreground" role="contentinfo">
+                © 2025 Clayton Cunningham Design. All rights reserved.
+              </footer>
+            </div>
+          </div>
         </main>
       </div>
     </div>
