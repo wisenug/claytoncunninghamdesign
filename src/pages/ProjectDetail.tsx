@@ -1,7 +1,19 @@
-
+import { Link } from "react-router-dom";
 import Navigation from "../components/Navigation";
 
 const ProjectDetail = () => {
+  const moreProjects = [
+    { id: 2, title: "Autotrader Icons", subtitle: "Icon System" },
+    { id: 3, title: "Juice & Co Brand Refresh", subtitle: "Brand Refresh" },
+    { id: 4, title: "CoTra Shop Mobile App", subtitle: "Mobile App Design" }
+  ];
+
+  const projectResults = [
+    { percentage: "42%", description: "Increase in user engagement after launch" },
+    { percentage: "63%", description: "Improvement in average session duration" },
+    { percentage: "28%", description: "Growth in new account registrations" }
+  ];
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation activeTab="work" />
@@ -118,7 +130,22 @@ const ProjectDetail = () => {
               </div>
             </section>
 
-            <aside className="bg-primary text-primary-foreground p-8 rounded" role="complementary">
+            <section>
+              <h2 className="text-2xl font-bold mb-6 text-center">Project Results</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                {projectResults.map((result, index) => (
+                  <div key={index} className="text-center">
+                    <div className="text-4xl md:text-6xl font-bold mb-4">{result.percentage}</div>
+                    <p className="text-muted-foreground">{result.description}</p>
+                  </div>
+                ))}
+              </div>
+              <p className="text-center text-muted-foreground max-w-3xl mx-auto">
+                The redesigned platform demonstrates how thoughtful design can make complex financial information accessible without sacrificing sophistication.
+              </p>
+            </section>
+
+            <aside className="bg-secondary text-foreground p-8 rounded" role="complementary">
               <h3 className="text-xl font-bold mb-4">Text highlight area.</h3>
               <p className="text-lg">
                 Lorem ipsum dolor sit amet consectetur. Eleifend mattis sed et egestas saerra dignissim sed. Lorem ipsum dolor sit amet consectetur. Eleifend mattis sed et egestas saerra dignissimo.
@@ -143,6 +170,26 @@ const ProjectDetail = () => {
                       </div>
                     </div>
                   </div>
+                ))}
+              </div>
+            </section>
+
+            {/* More Work Section */}
+            <section aria-label="More projects">
+              <h2 className="text-2xl font-bold mb-8">More Projects</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {moreProjects.map((project) => (
+                  <Link 
+                    key={project.id} 
+                    to={`/project/${project.id}`} 
+                    className="group cursor-pointer"
+                    aria-label={`View project: ${project.title}`}
+                  >
+                    <div className="aspect-square bg-foreground rounded relative overflow-hidden mb-4" role="img" aria-label={`${project.title} preview image`}>
+                    </div>
+                    <h3 className="font-semibold mb-1">{project.title}</h3>
+                    <p className="text-sm text-muted-foreground">{project.subtitle}</p>
+                  </Link>
                 ))}
               </div>
             </section>

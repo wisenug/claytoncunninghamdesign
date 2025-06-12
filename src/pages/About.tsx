@@ -1,3 +1,4 @@
+
 import Navigation from "../components/Navigation";
 
 const About = () => {
@@ -43,7 +44,7 @@ const About = () => {
               <img 
                 src="/lovable-uploads/d0f8ba17-eebc-41d6-a9cb-6bf7a582be32.png"
                 alt="Clayton Cunningham"
-                className="w-48 h-48 rounded-full object-cover mb-8"
+                className="w-96 h-96 rounded-full object-cover mb-8"
               />
               <h1 className="text-2xl font-bold mb-4 leading-tight">
                 I'm Clayton Cunningham — Designer and illustrator in Atlanta, GA 🍑.

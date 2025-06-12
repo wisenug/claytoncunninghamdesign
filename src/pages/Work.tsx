@@ -5,8 +5,7 @@ import Navigation from "../components/Navigation";
 const Work = () => {
   const projects = Array.from({ length: 6 }, (_, i) => ({
     id: i + 1,
-    title: "Project Title",
-    description: "Subheading. Lorem ipsum dolor sit amet consectetur. Eleifend mattis sed et egestas saerra dignissim sed ultrices id."
+    title: "Project Title"
   }));
 
   return (
@@ -32,7 +31,7 @@ const Work = () => {
                   className="group cursor-pointer"
                   aria-label={`View project: ${project.title}`}
                 >
-                  <div className="aspect-square bg-accent rounded-2xl mb-4 relative overflow-hidden" role="img" aria-label={`${project.title} preview image`}>
+                  <div className="aspect-square bg-accent rounded relative overflow-hidden" role="img" aria-label={`${project.title} preview image`}>
                     <div className="absolute inset-0 opacity-30" aria-hidden="true">
                       <div className="grid grid-cols-8 h-full">
                         {Array.from({ length: 64 }).map((_, i) => (
