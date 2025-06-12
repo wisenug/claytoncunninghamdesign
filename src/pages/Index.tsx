@@ -1,10 +1,10 @@
 
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import About from "./About";
+import Work from "./Work";
 
 const Index = () => {
-  return <About />;
+  return <Work />;
 };
 
 export default Index;

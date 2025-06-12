@@ -8,9 +8,13 @@ interface NavigationProps {
 const Navigation = ({ activeTab }: NavigationProps) => {
   return (
     <div className="w-full flex justify-center px-6 md:px-12">
-      <nav className="flex items-center justify-between w-full max-w-[1200px] py-6">
-        <Link to="/" className="flex items-center hover:bg-secondary rounded-md p-2 transition-colors">
-          <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center mr-4">
+      <nav className="flex items-center justify-between w-full max-w-[1200px] py-6" role="navigation" aria-label="Main navigation">
+        <Link 
+          to="/" 
+          className="flex items-center hover:bg-secondary rounded-md p-2 transition-colors"
+          aria-label="Clayton Cunningham Design - Go to homepage"
+        >
+          <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center mr-4" aria-hidden="true">
             <div className="w-8 h-8 border-2 border-background rounded-full relative">
               <div className="absolute inset-0 border-l-2 border-background"></div>
             </div>
@@ -18,26 +22,30 @@ const Navigation = ({ activeTab }: NavigationProps) => {
           <span className="text-lg font-medium hidden md:block">Clayton Cunningham Design</span>
         </Link>
         
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1" role="menubar">
           <Link 
-            to="/work"
+            to="/"
             className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
               activeTab === 'work' 
                 ? 'text-foreground' 
                 : 'text-foreground hover:bg-secondary'
             }`}
             style={activeTab === 'work' ? { backgroundColor: '#A1C565' } : {}}
+            role="menuitem"
+            aria-current={activeTab === 'work' ? 'page' : undefined}
           >
             Work
           </Link>
           <Link 
-            to="/"
+            to="/about"
             className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
               activeTab === 'about' 
                 ? 'text-foreground' 
                 : 'text-foreground hover:bg-secondary'
             }`}
             style={activeTab === 'about' ? { backgroundColor: '#A1C565' } : {}}
+            role="menuitem"
+            aria-current={activeTab === 'about' ? 'page' : undefined}
           >
             About
           </Link>
