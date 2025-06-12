@@ -6,8 +6,8 @@ const ProjectDetail = () => {
     <div className="min-h-screen bg-background">
       <Navigation activeTab="work" />
       
-      <main className="px-6 md:px-12 pb-12">
-        <div className="max-w-4xl">
+      <main className="px-6 md:px-12 pb-12 flex justify-center">
+        <div className="w-full max-w-[1200px]">
           <h1 className="text-3xl md:text-4xl font-bold mb-4">Project Title</h1>
           <p className="text-lg md:text-xl text-muted-foreground mb-12">
             Subheading. Lorem ipsum dolor sit amet consectetur. Eleifend mattis sed et egestas saerra dignissim sed ultrices id.
@@ -142,12 +142,12 @@ const ProjectDetail = () => {
               ))}
             </div>
           </div>
-        </div>
 
-        {/* Footer */}
-        <footer className="text-center mt-16 text-sm text-muted-foreground">
-          © 2025 Clayton Cunningham Design. All rights reserved.
-        </footer>
+          {/* Footer */}
+          <footer className="text-center mt-16 text-sm text-muted-foreground">
+            © 2025 Clayton Cunningham Design. All rights reserved.
+          </footer>
+        </div>
       </main>
     </div>
   );

@@ -41,7 +41,7 @@ const About = () => {
         <div className="block md:hidden">
           <div className="flex flex-col items-center text-center mb-12">
             <img 
-              src="/lovable-uploads/94f44f71-1f6e-4474-b906-e66ddc706fbd.png"
+              src="/lovable-uploads/d0f8ba17-eebc-41d6-a9cb-6bf7a582be32.png"
               alt="Clayton Cunningham"
               className="w-48 h-48 rounded-full object-cover mb-8"
             />
@@ -58,7 +58,7 @@ const About = () => {
         <div className="hidden md:block">
           <div className="flex items-start gap-16 mb-16">
             <img 
-              src="/lovable-uploads/94f44f71-1f6e-4474-b906-e66ddc706fbd.png"
+              src="/lovable-uploads/d0f8ba17-eebc-41d6-a9cb-6bf7a582be32.png"
               alt="Clayton Cunningham"
               className="w-72 h-72 rounded-full object-cover flex-shrink-0"
             />

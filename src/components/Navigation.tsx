@@ -22,9 +22,10 @@ const Navigation = ({ activeTab }: NavigationProps) => {
           to="/work"
           className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
             activeTab === 'work' 
-              ? 'bg-accent text-accent-foreground' 
+              ? 'text-foreground' 
               : 'text-foreground hover:bg-secondary'
           }`}
+          style={activeTab === 'work' ? { backgroundColor: '#A1C565' } : {}}
         >
           Work
         </Link>
@@ -32,9 +33,10 @@ const Navigation = ({ activeTab }: NavigationProps) => {
           to="/"
           className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
             activeTab === 'about' 
-              ? 'bg-accent text-accent-foreground' 
+              ? 'text-foreground' 
               : 'text-foreground hover:bg-secondary'
           }`}
+          style={activeTab === 'about' ? { backgroundColor: '#A1C565' } : {}}
         >
           About
         </Link>
