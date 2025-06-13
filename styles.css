@@ -1,4 +1,3 @@
-
 /* Reset and Base Styles */
 * {
     margin: 0;
@@ -38,6 +37,8 @@ body {
     padding: 8px;
     border-radius: 6px;
     transition: background-color 0.2s;
+    min-width: 0; /* Allow flex shrinking */
+    flex-shrink: 1; /* Allow the logo to shrink if needed */
 }
 
 .logo-link:hover {
@@ -52,6 +53,7 @@ body {
     align-items: center;
     justify-content: center;
     margin-right: 16px;
+    flex-shrink: 0; /* Keep logo size consistent */
 }
 
 .logo-img {
@@ -63,12 +65,16 @@ body {
     font-size: 18px;
     font-weight: 500;
     display: none;
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden; /* Hide overflow text */
+    text-overflow: ellipsis; /* Add ellipsis for overflow */
 }
 
 .nav-links {
     display: flex;
     align-items: center;
     gap: 4px;
+    flex-shrink: 0; /* Ensure nav links don't shrink */
 }
 
 .nav-link {
@@ -503,6 +509,7 @@ body {
     
     .logo-text {
         display: block;
+        max-width: 200px; /* Limit maximum width of logo text */
     }
     
     .mobile-layout {
@@ -569,5 +576,15 @@ body {
     
     .projects-grid {
         grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .logo-text {
+        display: none; /* Hide logo text on very small screens */
+    }
+    
+    .logo-container {
+        margin-right: 8px; /* Reduce margin on small screens */
     }
 }
