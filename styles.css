@@ -38,7 +38,7 @@ body {
     border-radius: 6px;
     transition: background-color 0.2s;
     min-width: 0; /* Allow flex shrinking */
-    flex-shrink: 1; /* Allow the logo to shrink if needed */
+    flex-shrink: 0; /* Prevent logo from shrinking */
 }
 
 .logo-link:hover {
@@ -46,8 +46,8 @@ body {
 }
 
 .logo-container {
-    width: 60px;
-    height: 60px;
+    width: 75px;
+    height: 75px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -57,8 +57,8 @@ body {
 }
 
 .logo-img {
-    width: 48px;
-    height: 48px;
+    width: 60px;
+    height: 60px;
 }
 
 .logo-text {
@@ -66,8 +66,6 @@ body {
     font-weight: 500;
     display: none;
     white-space: nowrap; /* Prevent text wrapping */
-    overflow: hidden; /* Hide overflow text */
-    text-overflow: ellipsis; /* Add ellipsis for overflow */
 }
 
 .nav-links {
@@ -466,6 +464,19 @@ body {
     margin-bottom: 16px;
     position: relative;
     overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.project-image:hover {
+    transform: scale(1.05);
+}
+
+.project-image img {
+    transition: transform 0.3s ease;
+}
+
+.project-image:hover img {
+    transform: scale(1.05);
 }
 
 .project-card-title {
@@ -481,7 +492,7 @@ body {
 /* Footer */
 .footer {
     text-align: center;
-    margin-top: 64px;
+    margin-top: 32px;
     font-size: 14px;
     color: #666;
 }
@@ -509,7 +520,6 @@ body {
     
     .logo-text {
         display: block;
-        max-width: 200px; /* Limit maximum width of logo text */
     }
     
     .mobile-layout {
@@ -580,10 +590,6 @@ body {
 }
 
 @media (max-width: 600px) {
-    .logo-text {
-        display: none; /* Hide logo text on very small screens */
-    }
-    
     .logo-container {
         margin-right: 8px; /* Reduce margin on small screens */
     }
