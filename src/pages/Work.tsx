@@ -1,12 +1,45 @@
 
 import { Link } from "react-router-dom";
+import { useState, useRef, useEffect } from "react";
 import Navigation from "../components/Navigation";
 
 const Work = () => {
+  const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
+  const observerRef = useRef<IntersectionObserver | null>(null);
+  
   const projects = Array.from({ length: 6 }, (_, i) => ({
     id: i + 1,
     title: "Project Title"
   }));
+
+  useEffect(() => {
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const projectId = parseInt(entry.target.getAttribute('data-project-id') || '0');
+            setLoadedImages(prev => new Set([...prev, projectId]));
+            observerRef.current?.unobserve(entry.target);
+          }
+        });
+      },
+      { 
+        threshold: 0.1,
+        rootMargin: '50px'
+      }
+    );
+
+    return () => {
+      observerRef.current?.disconnect();
+    };
+  }, []);
+
+  const observeElement = (element: HTMLDivElement | null, projectId: number) => {
+    if (element && observerRef.current) {
+      element.setAttribute('data-project-id', projectId.toString());
+      observerRef.current.observe(element);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -31,19 +64,28 @@ const Work = () => {
                   className="group cursor-pointer"
                   aria-label={`View project ${project.id}`}
                 >
-                  <div className="aspect-square bg-accent rounded relative overflow-hidden transition-transform duration-300 group-hover:scale-105" role="img" aria-label={`Project ${project.id} preview image`}>
-                    <div className="absolute inset-0 opacity-30" aria-hidden="true">
-                      <div className="grid grid-cols-8 h-full">
-                        {Array.from({ length: 64 }).map((_, i) => (
-                          <div 
-                            key={i} 
-                            className={`${
-                              Math.random() > 0.5 ? 'bg-white' : 'bg-accent'
-                            }`}
-                          ></div>
-                        ))}
+                  <div 
+                    ref={(el) => observeElement(el, project.id)}
+                    className="aspect-square bg-accent rounded relative overflow-hidden transition-transform duration-300 group-hover:scale-105" 
+                    role="img" 
+                    aria-label={`Project ${project.id} preview image`}
+                  >
+                    {loadedImages.has(project.id) ? (
+                      <div className="absolute inset-0 opacity-30" aria-hidden="true">
+                        <div className="grid grid-cols-8 h-full">
+                          {Array.from({ length: 64 }).map((_, i) => (
+                            <div 
+                              key={i} 
+                              className={`${
+                                Math.random() > 0.5 ? 'bg-white' : 'bg-accent'
+                              }`}
+                            ></div>
+                          ))}
+                        </div>
                       </div>
-                    </div>
+                    ) : (
+                      <div className="absolute inset-0 bg-accent animate-pulse" aria-hidden="true"></div>
+                    )}
                   </div>
                 </Link>
               ))}
