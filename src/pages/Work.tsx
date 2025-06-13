@@ -31,7 +31,7 @@ const Work = () => {
                   className="group cursor-pointer"
                   aria-label={`View project ${project.id}`}
                 >
-                  <div className="aspect-square bg-accent rounded relative overflow-hidden" role="img" aria-label={`Project ${project.id} preview image`}>
+                  <div className="aspect-square bg-accent rounded relative overflow-hidden transition-transform duration-300 group-hover:scale-105" role="img" aria-label={`Project ${project.id} preview image`}>
                     <div className="absolute inset-0 opacity-30" aria-hidden="true">
                       <div className="grid grid-cols-8 h-full">
                         {Array.from({ length: 64 }).map((_, i) => (
