@@ -254,7 +254,7 @@ const ProjectDetail = () => {
           </div>
 
           {/* More Work Section with full-width gray background */}
-          <div className="w-full bg-gray-50">
+          <div className="w-full bg-gray-100 mt-24">
             <div className="flex justify-center">
               <div className="w-full max-w-[1200px] px-6 md:px-12 py-16">
                 <section aria-label="More projects">
