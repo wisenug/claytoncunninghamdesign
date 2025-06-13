@@ -11,14 +11,14 @@ const Navigation = ({ activeTab }: NavigationProps) => {
       <nav className="flex items-center justify-between w-full max-w-[1200px] py-6" role="navigation" aria-label="Main navigation">
         <Link 
           to="/" 
-          className="flex items-center hover:bg-gray-100 rounded-md p-2 transition-colors"
+          className="flex items-center hover:bg-muted rounded-md p-2 transition-colors"
           aria-label="Clayton Cunningham Design - Go to homepage"
         >
           <div className="w-15 h-15 rounded-full flex items-center justify-center mr-4" aria-hidden="true">
             <img 
-              src="/lovable-uploads/e8a6176c-a3df-4f64-b98b-09de4d25da43.png" 
+              src="/img/logo.png" 
               alt="Clayton Cunningham Design Logo" 
-              className="w-10 h-10"
+              className="w-12 h-12"
             />
           </div>
           <span className="text-lg font-medium hidden md:block">Clayton Cunningham Design</span>
