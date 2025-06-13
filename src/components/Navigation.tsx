@@ -14,10 +14,12 @@ const Navigation = ({ activeTab }: NavigationProps) => {
           className="flex items-center hover:bg-secondary rounded-md p-2 transition-colors"
           aria-label="Clayton Cunningham Design - Go to homepage"
         >
-          <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center mr-4" aria-hidden="true">
-            <div className="w-8 h-8 border-2 border-background rounded-full relative">
-              <div className="absolute inset-0 border-l-2 border-background"></div>
-            </div>
+          <div className="w-12 h-12 rounded-full flex items-center justify-center mr-4" aria-hidden="true">
+            <img 
+              src="/lovable-uploads/e8a6176c-a3df-4f64-b98b-09de4d25da43.png" 
+              alt="Clayton Cunningham Design Logo" 
+              className="w-8 h-8"
+            />
           </div>
           <span className="text-lg font-medium hidden md:block">Clayton Cunningham Design</span>
         </Link>
