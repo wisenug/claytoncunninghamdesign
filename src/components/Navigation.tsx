@@ -7,11 +7,11 @@ interface NavigationProps {
 
 const Navigation = ({ activeTab }: NavigationProps) => {
   return (
-    <div className="w-full flex justify-center px-6 md:px-12">
-      <nav className="flex items-center justify-between w-full max-w-[1200px] py-6" role="navigation" aria-label="Main navigation">
+    <div className="w-full flex justify-center">
+      <nav className="flex items-center justify-between w-full max-w-[1200px] px-6 md:px-12 py-6" role="navigation" aria-label="Main navigation">
         <Link 
           to="/" 
-          className="flex items-center hover:bg-muted rounded-md p-2 transition-colors min-w-0 flex-shrink-0"
+          className="flex items-center hover:bg-muted rounded-md transition-colors min-w-0 flex-shrink-0"
           aria-label="Clayton Cunningham Design - Go to homepage"
         >
           <div className="w-[75px] h-[75px] rounded-full flex items-center justify-center mr-4" aria-hidden="true">
