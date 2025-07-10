@@ -42,7 +42,7 @@ const About = () => {
           <div className="block md:hidden">
             <div className="flex flex-col items-center text-center mb-12">
               <img 
-                src="/img/profile.png"
+                src="/img/claytoncunningham.png"
                 alt="Clayton Cunningham"
                 className="w-96 h-96 rounded-full object-cover mb-8"
               />
@@ -59,7 +59,7 @@ const About = () => {
           <div className="hidden md:block">
             <div className="flex items-start gap-16 mb-16">
               <img 
-                src="/img/profile.png"
+                src="/img/claytoncunningham.png"
                 alt="Clayton Cunningham"
                 className="w-72 h-72 rounded-full object-cover flex-shrink-0"
               />
