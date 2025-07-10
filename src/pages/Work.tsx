@@ -75,7 +75,7 @@ const Work = () => {
                 >
                   <div 
                     ref={(el) => observeElement(el, project.id)}
-                    className="aspect-square bg-accent rounded relative overflow-hidden transition-transform duration-300 group-hover:scale-105" 
+                    className="aspect-square rounded relative overflow-hidden transition-transform duration-300 group-hover:scale-105" 
                     role="img" 
                     aria-label={`Project ${project.id} preview image`}
                   >
