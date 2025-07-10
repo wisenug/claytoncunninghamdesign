@@ -122,10 +122,6 @@ const AutotraderProject = () => {
               </p>
             </ProjectSection>
 
-            <ProjectHighlight 
-              title="Bringing personality to automotive."
-              description="The Autotrader illustration style successfully balances professionalism with approachability, creating a visual language that makes car shopping feel more human and engaging."
-            />
           </div>
 
           <MoreWork projects={moreProjects} />
