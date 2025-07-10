@@ -44,7 +44,7 @@ const About = () => {
               <img 
                 src="/lovable-uploads/d0f8ba17-eebc-41d6-a9cb-6bf7a582be32.png"
                 alt="Clayton Cunningham"
-                className="w-96 h-96 rounded-full object-cover mb-8"
+                className="w-96 h-96 rounded-full object-cover mb-8 outline-none focus:outline-none hover:outline-none border-none"
               />
               <h1 className="text-2xl font-bold mb-4 leading-tight">
                 I'm Clayton Cunningham — Designer and illustrator in Atlanta, GA 🍑.
@@ -61,7 +61,7 @@ const About = () => {
               <img 
                 src="/lovable-uploads/d0f8ba17-eebc-41d6-a9cb-6bf7a582be32.png"
                 alt="Clayton Cunningham"
-                className="w-72 h-72 rounded-full object-cover flex-shrink-0"
+                className="w-72 h-72 rounded-full object-cover flex-shrink-0 outline-none focus:outline-none hover:outline-none border-none"
               />
               <div className="flex-1">
                 <h1 className="text-5xl font-bold mb-8 leading-tight">
