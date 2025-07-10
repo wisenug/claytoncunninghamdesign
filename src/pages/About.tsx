@@ -106,10 +106,10 @@ const About = () => {
 
           {/* CTA Section */}
           <div className="rounded-3xl p-8 md:p-12 text-center" style={{ backgroundColor: '#A1C565' }}>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-accent-foreground">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-muted-foreground">
               Ready to make something cool?
             </h2>
-            <p className="text-lg md:text-xl mb-8 text-accent-foreground/80">
+            <p className="text-lg md:text-xl mb-8 text-muted-foreground/80">
               I'd love to hear about your project. Contact me to schedule a consultation.
             </p>
             <button className="bg-primary text-primary-foreground px-8 py-4 rounded-lg text-lg font-medium hover:bg-white hover:text-black transition-colors">
