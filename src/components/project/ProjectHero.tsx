@@ -37,7 +37,7 @@ const ProjectHero = ({ imageUrl, alt }: ProjectHeroProps) => {
   return (
     <div 
       ref={observeElement}
-      className="aspect-video bg-accent rounded relative overflow-hidden mb-12"
+      className="aspect-video rounded relative overflow-hidden mb-12"
       role="img"
       aria-label={alt}
     >
@@ -49,7 +49,7 @@ const ProjectHero = ({ imageUrl, alt }: ProjectHeroProps) => {
           loading="lazy"
         />
       ) : (
-        <div className="absolute inset-0 bg-accent animate-pulse" aria-hidden="true"></div>
+        <div className="absolute inset-0 bg-muted animate-pulse" aria-hidden="true"></div>
       )}
     </div>
   );

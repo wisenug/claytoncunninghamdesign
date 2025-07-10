@@ -56,7 +56,7 @@ const ProjectSection = ({ title, imageUrl, imageAlt, reverse = false, children }
         </div>
         <div 
           ref={observeElement}
-          className={`aspect-square bg-accent rounded relative overflow-hidden ${reverse ? 'md:col-start-1' : ''}`}
+          className={`aspect-square rounded relative overflow-hidden ${reverse ? 'md:col-start-1' : ''}`}
           role="img"
           aria-label={imageAlt}
         >
@@ -68,7 +68,7 @@ const ProjectSection = ({ title, imageUrl, imageAlt, reverse = false, children }
               loading="lazy"
             />
           ) : (
-            <div className="absolute inset-0 bg-accent animate-pulse" aria-hidden="true"></div>
+            <div className="absolute inset-0 bg-muted animate-pulse" aria-hidden="true"></div>
           )}
         </div>
       </div>

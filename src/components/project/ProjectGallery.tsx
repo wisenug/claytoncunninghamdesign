@@ -43,7 +43,7 @@ const ProjectGallery = ({ images }: ProjectGalleryProps) => {
           <div 
             key={index}
             ref={(el) => observeElement(el, index)}
-            className="aspect-square bg-accent rounded relative overflow-hidden"
+            className="aspect-square rounded relative overflow-hidden"
             role="img"
             aria-label={`Gallery image ${index + 1}`}
           >
@@ -55,7 +55,7 @@ const ProjectGallery = ({ images }: ProjectGalleryProps) => {
                 loading="lazy"
               />
             ) : (
-              <div className="absolute inset-0 bg-accent animate-pulse" aria-hidden="true"></div>
+              <div className="absolute inset-0 bg-muted animate-pulse" aria-hidden="true"></div>
             )}
           </div>
         ))}
