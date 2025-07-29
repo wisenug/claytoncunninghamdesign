@@ -113,6 +113,58 @@ const AutotraderProject = () => {
             <ProjectGallery images={galleryImages} />
 
             <ProjectSection 
+              title="Spot Illustrations"
+              imageUrl="/lovable-uploads/5a584df9-40c5-4c02-b3ce-57b26da6b8bd.png"
+              imageAlt="Collection of spot illustrations including badges, warning signs, and icons"
+            >
+              <p className="text-muted-foreground">
+                Spot illustrations are simplified, and a more literal interpretation of a single concept. These images are smaller, and usually used for entry points or to represent one subsection within a larger group. They don't include people, or background imagery and there's less detail within objects.
+              </p>
+            </ProjectSection>
+
+            <ProjectSection 
+              title="Automotive Icon Set"
+              imageUrl="/lovable-uploads/5f205967-7e0c-4e5e-814e-5529b46c488f.png"
+              imageAlt="Automotive icons including steering wheel, car rotation, and service indicators"
+              reverse
+            >
+              <p className="text-muted-foreground">
+                A comprehensive set of automotive-specific icons was developed to represent various car-related concepts, services, and features throughout the Autotrader platform.
+              </p>
+            </ProjectSection>
+
+            <ProjectSection 
+              title="Service & Feature Icons"
+              imageUrl="/lovable-uploads/21dc8291-0561-497b-906d-04fc9874986c.png"
+              imageAlt="Icons representing car services, reviews, and value propositions"
+            >
+              <p className="text-muted-foreground">
+                Additional spot illustrations were created to represent key value propositions, customer reviews, pricing information, and premium services offered by Autotrader.
+              </p>
+            </ProjectSection>
+
+            <ProjectSection 
+              title="Maintenance & Care Icons"
+              imageUrl="/lovable-uploads/94b9ff22-2576-4ed0-b7aa-156acd5e4282.png"
+              imageAlt="Icons for car maintenance including paint brush, tire, and umbrella"
+              reverse
+            >
+              <p className="text-muted-foreground">
+                A specialized set of maintenance and care icons helps users understand different service options and vehicle protection plans available through the platform.
+              </p>
+            </ProjectSection>
+
+            <ProjectSection 
+              title="Style Guide & Illustration Library"
+              imageUrl="/lovable-uploads/d707e26c-b323-4455-8a6c-de0e8b050023.png"
+              imageAlt="Comprehensive vehicle library showing various car types and styles"
+            >
+              <p className="text-muted-foreground">
+                A style guide and illustration library for all of the various components within the library was also created. This would provide information on best practices of how and when to use certain elements, instructions on creating new pieces, and establish rules of what to do and not to do.
+              </p>
+            </ProjectSection>
+
+            <ProjectSection 
               title="In Application"
               imageUrl="/public/lovable-uploads/7224b87b-a260-4f05-bdf2-98219a4ff63b.png"
               imageAlt="Autotrader website with illustration integration"
