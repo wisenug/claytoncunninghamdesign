@@ -105,12 +105,6 @@ const Work = () => {
                       <div className="absolute inset-0 bg-accent animate-pulse" aria-hidden="true"></div>
                     )}
                   </div>
-                  {project.subtitle && (
-                    <div className="mt-4">
-                      <h3 className="font-semibold mb-1">{project.title}</h3>
-                      <p className="text-sm text-muted-foreground">{project.subtitle}</p>
-                    </div>
-                  )}
                 </Link>
               ))}
             </div>
