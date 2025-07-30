@@ -164,6 +164,44 @@ const AutotraderProject = () => {
               </p>
             </ProjectSection>
 
+            <ProjectSection>
+              <div className="space-y-8">
+                {/* Full-width hero-style image */}
+                <div className="aspect-video rounded relative overflow-hidden">
+                  <img 
+                    src="/public/lovable-uploads/78835765-5c6e-4bb2-b960-e79d1e4a38c9.png"
+                    alt="Comprehensive Autotrader illustration showcase"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                
+                {/* Grid of three images */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="aspect-square rounded relative overflow-hidden">
+                    <img 
+                      src="/public/lovable-uploads/80fa7262-750d-4794-a5b0-f68446ef5c16.png"
+                      alt="Autotrader illustration detail 1"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="aspect-square rounded relative overflow-hidden">
+                    <img 
+                      src="/public/lovable-uploads/94f44f71-1f6e-4474-b906-e66ddc706fbd.png"
+                      alt="Autotrader illustration detail 2"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="aspect-square rounded relative overflow-hidden">
+                    <img 
+                      src="/public/lovable-uploads/a3404da1-ff93-4a59-8229-647129525ff5.png"
+                      alt="Autotrader illustration detail 3"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+              </div>
+            </ProjectSection>
+
             <ProjectSection 
               title="In Application"
               imageUrl="/public/lovable-uploads/7224b87b-a260-4f05-bdf2-98219a4ff63b.png"
