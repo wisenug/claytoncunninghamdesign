@@ -99,15 +99,11 @@ img {
     line-height: 1.7;
 }
 
-/* UNIFIED CONTENT SECTION - The Magic Happens Here */
+/* UNIFIED CONTENT SECTION */
 .content-section {
     margin-bottom: 5rem;
     display: grid;
     gap: 2.5rem;
-}
-
-/* Single column by default */
-.content-section {
     grid-template-columns: 1fr;
 }
 
@@ -254,6 +250,138 @@ img {
     color: #666;
 }
 
+/* ==========================================
+   ABOUT PAGE STYLES
+   ========================================== */
+
+/* Profile Section */
+.profile-section {
+    display: grid;
+    gap: 3rem;
+    margin-bottom: 6rem;
+    align-items: start;
+}
+
+.profile-img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 12px;
+    margin: 0 auto;
+}
+
+.profile-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.profile-heading {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #333;
+}
+
+.profile-subheading {
+    font-size: 1.25rem;
+    line-height: 1.7;
+    color: #666;
+}
+
+/* Services Section */
+.services-section {
+    margin-bottom: 6rem;
+}
+
+.services-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.services-grid {
+    display: grid;
+    gap: 3rem;
+}
+
+.service-category {
+    background: #f8f9fa;
+    padding: 2.5rem;
+    border-radius: 12px;
+}
+
+.category-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.skills-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.skill-item {
+    font-size: 1.125rem;
+    color: #666;
+    padding-left: 1.25rem;
+    position: relative;
+}
+
+.skill-item::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #333;
+    font-weight: 700;
+}
+
+/* CTA Section */
+.cta-section {
+    background: #f8f9fa;
+    padding: 4rem 3rem;
+    border-radius: 12px;
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.cta-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.cta-text {
+    font-size: 1.25rem;
+    color: #666;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-button {
+    background: #333;
+    color: white;
+    border: none;
+    padding: 1rem 2.5rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Raleway', sans-serif;
+}
+
+.cta-button:hover {
+    background: #555;
+    transform: translateY(-2px);
+}
+
 /* Footer */
 .footer {
     text-align: center;
@@ -263,7 +391,31 @@ img {
     margin-top: 5rem;
 }
 
-/* Responsive Design */
+/* ==========================================
+   RESPONSIVE DESIGN
+   ========================================== */
+
+@media (min-width: 900px) {
+    /* About page desktop layout */
+    .profile-section {
+        grid-template-columns: 400px 1fr;
+        gap: 5rem;
+    }
+    
+    .profile-img {
+        margin: 0;
+    }
+    
+    .profile-heading {
+        font-size: 2.5rem;
+    }
+    
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.5rem;
+    }
+}
+
 @media (max-width: 1200px) {
     .page-container {
         padding: 100px 2rem 2rem;
@@ -366,5 +518,42 @@ img {
     .more-work {
         padding: 3rem 1.5rem;
         margin: 3rem -1.5rem 0;
+    }
+    
+    /* About page mobile adjustments */
+    .profile-heading {
+        font-size: 1.75rem;
+    }
+    
+    .profile-subheading {
+        font-size: 1.125rem;
+    }
+    
+    .services-title {
+        font-size: 1.75rem;
+    }
+    
+    .service-category {
+        padding: 2rem;
+    }
+    
+    .category-title {
+        font-size: 1.25rem;
+    }
+    
+    .skill-item {
+        font-size: 1rem;
+    }
+    
+    .cta-section {
+        padding: 3rem 2rem;
+    }
+    
+    .cta-title {
+        font-size: 1.75rem;
+    }
+    
+    .cta-text {
+        font-size: 1.125rem;
     }
 }
