@@ -139,6 +139,40 @@ img {
     border-radius: 8px;
 }
 
+/* Video Container */
+.video-container {
+    position: relative;
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #000;
+}
+
+.video-container video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Lottie Animation Container */
+.lottie-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#lottie-animation {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+}
+
 /* Two column layout */
 .content-section.cols-2 {
     grid-template-columns: repeat(2, 1fr);
@@ -435,16 +469,12 @@ img {
         font-size: 1.125rem;
     }
     
-    /* Stack two-column layouts */
-    .content-section.cols-2,
+    /* Stack only split-layout (not cols-2 or cols-3) */
     .content-section.split-layout {
         grid-template-columns: 1fr;
     }
     
-    /* Stack three-column into two */
-    .content-section.cols-3 {
-        grid-template-columns: repeat(2, 1fr);
-    }
+    /* Keep cols-2 and cols-3 layouts on tablet */
     
     .projects-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -555,5 +585,10 @@ img {
     
     .cta-text {
         font-size: 1.125rem;
+    }
+    
+    /* Video and Lottie mobile adjustments */
+    .lottie-container {
+        padding: 2rem 1.5rem;
     }
 }
