@@ -157,11 +157,10 @@ img {
 /* Lottie Animation Container */
 .lottie-container {
     width: 100%;
-    max-width: 800px;
+    max-width: 2000px;
     margin: 0 auto;
-    background: #f8f9fa;
+    background: #ffffff;
     border-radius: 8px;
-    padding: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;
