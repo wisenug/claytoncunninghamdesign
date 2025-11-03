@@ -8,6 +8,9 @@
     <link rel="icon" type="image/png" sizes="32x32" href="./img/logo.png">
     <link rel="apple-touch-icon" sizes="180x180" href="./img/logo.png">
     <link rel="stylesheet" href="styles.css">
+    
+    <!-- Lottie Player Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -46,6 +49,25 @@
             <img src="./img/autotrader_icons_library.png" alt="UI of Autotrader login screen showcasing all elements of the illustration style" loading="lazy" />
         </section>
 
+             <!-- Lottie Animation Section -->
+                <section class="content-section">
+                    <h2 class="section-title">Animation & Microinteractions</h2>
+                    <div class="single-content">
+                        <p class="text-paragraph">
+                            Custom animations enhance the user experience by adding personality and delight to key interactions throughout the platform.
+                        </p>
+                        
+                        <!-- Lottie Animation Container -->
+                        <div class="lottie-container">
+                            <div id="lottie-animation"></div>
+                        </div>
+                        
+                        <p class="text-paragraph">
+                            These animated elements help guide users through their journey while maintaining brand consistency and visual appeal.
+                        </p>
+                    </div>
+                </section>
+
         <!-- Title + Text + Image -->
         <section class="content-section">
             <h2>Vehicles</h2>
@@ -68,6 +90,8 @@
             </div>
             <img src="./img/autotrader_icons_thumbnail.png" alt="!!!!!!!!" loading="lazy" />
         </section>
+
+        
 
         <br />
         <br />
@@ -226,5 +250,23 @@
     <footer class="footer">
         © 2025 Clayton Cunningham Design. All rights reserved.
     </footer>
+
+     <!-- ie Animation Script -->
+    <script>
+        // Load and play Lottie animation
+        // Replace the path below with your actual Lottie JSON file
+        var animation = lottie.loadAnimation({
+            container: document.getElementById('lottie-animation'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: './animations/spot_icons.json' // REPLACE THIS with your Lottie JSON file path
+        });
+        
+        // Optional: Customize animation behavior
+        // animation.setSpeed(0.75); // Adjust playback speed (0.75 = 75% speed)
+        // animation.pause(); // Pause the animation
+        // animation.play(); // Play the animation
+    </script>
 </body>
 </html>
