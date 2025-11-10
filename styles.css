@@ -344,11 +344,28 @@ img {
     border-radius: 12px;
 }
 
+/* Individual color variations for service categories */
+.service-category:nth-child(1) {
+    background: #B9D130;
+}
+
+.service-category:nth-child(2) {
+    background: #75CAFD;
+}
+
+.service-category:nth-child(3) {
+    background: #FFE17F;
+}
+
+.service-category:nth-child(4) {
+    background: #E96805;
+}
+
 .category-title {
     font-size: 1.5rem;
     font-weight: 700;
     margin-bottom: 1.5rem;
-    color: #333;
+    color: #2D2D2D;
 }
 
 .skills-list {
@@ -359,7 +376,7 @@ img {
 
 .skill-item {
     font-size: 1.125rem;
-    color: #666;
+    color: #2D2D2D;
     padding-left: 1.25rem;
     position: relative;
 }
@@ -368,7 +385,7 @@ img {
     content: "•";
     position: absolute;
     left: 0;
-    color: #333;
+    color: #2D2D2D;
     font-weight: 700;
 }
 
