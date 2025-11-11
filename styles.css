@@ -70,8 +70,7 @@ img {
 
 .nav-link:hover,
 .nav-link.active {
-    color: #3A501B;
-    font-weight: 500;
+    color: #333;
 }
 
 /* Main Container */
@@ -346,16 +345,40 @@ img {
     background: #9EC646;
 }
 
+.service-category:nth-child(1) .category-title,
+.service-category:nth-child(1) .skill-item,
+.service-category:nth-child(1) .skill-item::before {
+    color: #2D2D2D;
+}
+
 .service-category:nth-child(2) {
-    background: #028FEE;
+    background: #75CAFD;
+}
+
+.service-category:nth-child(2) .category-title,
+.service-category:nth-child(2) .skill-item,
+.service-category:nth-child(2) .skill-item::before {
+    color: #2D2D2D;
 }
 
 .service-category:nth-child(3) {
-    background: #DE4138;
+    background: #FFE17F;
+}
+
+.service-category:nth-child(3) .category-title,
+.service-category:nth-child(3) .skill-item,
+.service-category:nth-child(3) .skill-item::before {
+    color: #2D2D2D;
 }
 
 .service-category:nth-child(4) {
-    background: #1B561A;
+    background: #E96805;
+}
+
+.service-category:nth-child(4) .category-title,
+.service-category:nth-child(4) .skill-item,
+.service-category:nth-child(4) .skill-item::before {
+    color: #FFFFFF;
 }
 
 .category-title {
@@ -388,7 +411,7 @@ img {
 
 /* CTA Section */
 .cta-section {
-    background: #002A69;
+    background: #75CAFD;
     padding: 4rem 3rem;
     border-radius: 12px;
     text-align: center;
@@ -399,12 +422,12 @@ img {
     font-size: 2rem;
     font-weight: 700;
     margin-bottom: 1rem;
-    color: #D4E5FE;
+    color: #2D2D2D;
 }
 
 .cta-text {
     font-size: 1.25rem;
-    color: #D4E5FE;
+    color: #2D2D2D;
     margin-bottom: 2rem;
     max-width: 600px;
     margin-left: auto;
@@ -412,8 +435,8 @@ img {
 }
 
 .cta-button {
-    background: #D4E5FE;
-    color: #002A69;
+    background: #2D2D2D;
+    color: #75CAFD;
     border: none;
     padding: 1rem 2.5rem;
     font-size: 1.125rem;
@@ -425,7 +448,7 @@ img {
 }
 
 .cta-button:hover {
-    background: #028FEE;
+    background: #1a1a1a;
     transform: translateY(-2px);
 }
 
@@ -543,10 +566,10 @@ img {
         max-width: 100%;
     }
     
-    /* All columns become single column on mobile */
+    /* Keep cols-2 and cols-3 layouts on mobile with tighter gap */
     .content-section.cols-2,
     .content-section.cols-3 {
-        grid-template-columns: 1fr;
+        gap: 0.5rem;
     }
     
     .content-section.highlight {
