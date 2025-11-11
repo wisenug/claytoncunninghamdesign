@@ -342,19 +342,19 @@ img {
 
 /* Individual color variations for service categories */
 .service-category:nth-child(1) {
-    background: #B9D130;
+    background: #9EC646;
 }
 
 .service-category:nth-child(2) {
-    background: #75CAFD;
+    background: #2E66EE;
 }
 
 .service-category:nth-child(3) {
-    background: #FFE17F;
+    background: #DE4138;
 }
 
 .service-category:nth-child(4) {
-    background: #E96805;
+    background: #1B561A;
 }
 
 .category-title {
@@ -387,7 +387,7 @@ img {
 
 /* CTA Section */
 .cta-section {
-    background: #f8f9fa;
+    background: #002A69;
     padding: 4rem 3rem;
     border-radius: 12px;
     text-align: center;
@@ -398,12 +398,12 @@ img {
     font-size: 2rem;
     font-weight: 700;
     margin-bottom: 1rem;
-    color: #333;
+    color: #D4E5FE;
 }
 
 .cta-text {
     font-size: 1.25rem;
-    color: #666;
+    color: #D4E5FE;
     margin-bottom: 2rem;
     max-width: 600px;
     margin-left: auto;
@@ -411,8 +411,8 @@ img {
 }
 
 .cta-button {
-    background: #333;
-    color: white;
+    background: #D4E5FE;
+    color: #D4E5FE;
     border: none;
     padding: 1rem 2.5rem;
     font-size: 1.125rem;
@@ -424,7 +424,7 @@ img {
 }
 
 .cta-button:hover {
-    background: #555;
+    background: #1a1a1a;
     transform: translateY(-2px);
 }
 
