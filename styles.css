@@ -70,7 +70,8 @@ img {
 
 .nav-link:hover,
 .nav-link.active {
-    color: #333;
+    color: #3A501B;
+    font-weight: 700;
 }
 
 /* Main Container */
@@ -346,7 +347,7 @@ img {
 }
 
 .service-category:nth-child(2) {
-    background: #2E66EE;
+    background: #028FEE;
 }
 
 .service-category:nth-child(3) {
@@ -412,7 +413,7 @@ img {
 
 .cta-button {
     background: #D4E5FE;
-    color: #D4E5FE;
+    color: #002A69;
     border: none;
     padding: 1rem 2.5rem;
     font-size: 1.125rem;
@@ -424,7 +425,7 @@ img {
 }
 
 .cta-button:hover {
-    background: #1a1a1a;
+    background: #028FEE;
     transform: translateY(-2px);
 }
 
