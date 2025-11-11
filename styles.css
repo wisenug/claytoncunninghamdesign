@@ -157,10 +157,7 @@ img {
 /* Lottie Animation Container */
 .lottie-container {
     width: 100%;
-    max-width: 4000px;
-    margin: 0 auto;
-    background: #ffffff;
-    border-radius: 8px;
+    margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -168,7 +165,6 @@ img {
 
 #lottie-animation {
     width: 100%;
-    max-width: 1000px;
     height: auto;
 }
 
@@ -358,7 +354,7 @@ img {
 }
 
 .service-category:nth-child(4) {
-    background: #CFF5A0;
+    background: #E96805;
 }
 
 .category-title {
@@ -602,6 +598,7 @@ img {
     .cta-text {
         font-size: 1.125rem;
     }
+}
     
     /* Video and Lottie mobile adjustments */
     .lottie-container {
