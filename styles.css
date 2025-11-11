@@ -71,7 +71,7 @@ img {
 .nav-link:hover,
 .nav-link.active {
     color: #3A501B;
-    font-weight: 700;
+    font-weight: 500;
 }
 
 /* Main Container */
