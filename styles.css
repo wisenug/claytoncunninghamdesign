@@ -58,7 +58,7 @@ img {
 
 .nav-links {
     display: flex;
-    gap: 2rem;
+    gap: 2.5rem;
 }
 
 .nav-link {
@@ -70,7 +70,7 @@ img {
 
 .nav-link:hover,
 .nav-link.active {
-    color: #333;
+    color: #0C310D;
 }
 
 /* Main Container */
