@@ -312,9 +312,9 @@ img {
 }
 
 .profile-subheading {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     line-height: 1.7;
-    color: #666;
+    color: #333;
 }
 
 /* Services Section */
@@ -348,37 +348,37 @@ img {
 .service-category:nth-child(1) .category-title,
 .service-category:nth-child(1) .skill-item,
 .service-category:nth-child(1) .skill-item::before {
-    color: #2D2D2D;
+    color: #3A501B;
 }
 
 .service-category:nth-child(2) {
-    background: #75CAFD;
+    background: #028FEE;
 }
 
 .service-category:nth-child(2) .category-title,
 .service-category:nth-child(2) .skill-item,
 .service-category:nth-child(2) .skill-item::before {
-    color: #2D2D2D;
+    color: #041835;
 }
 
 .service-category:nth-child(3) {
-    background: #FFE17F;
+    background: #DE4138;
 }
 
 .service-category:nth-child(3) .category-title,
 .service-category:nth-child(3) .skill-item,
 .service-category:nth-child(3) .skill-item::before {
-    color: #2D2D2D;
+    color: #000000;
 }
 
 .service-category:nth-child(4) {
-    background: #E96805;
+    background: #1B561A;
 }
 
 .service-category:nth-child(4) .category-title,
 .service-category:nth-child(4) .skill-item,
 .service-category:nth-child(4) .skill-item::before {
-    color: #FFFFFF;
+    color: #E0FAE0;
 }
 
 .category-title {
@@ -411,7 +411,7 @@ img {
 
 /* CTA Section */
 .cta-section {
-    background: #75CAFD;
+    background: #002A69;
     padding: 4rem 3rem;
     border-radius: 12px;
     text-align: center;
@@ -422,12 +422,12 @@ img {
     font-size: 2rem;
     font-weight: 700;
     margin-bottom: 1rem;
-    color: #2D2D2D;
+    color: #D4E5FE;
 }
 
 .cta-text {
     font-size: 1.25rem;
-    color: #2D2D2D;
+    color: #D4E5FE;
     margin-bottom: 2rem;
     max-width: 600px;
     margin-left: auto;
@@ -435,8 +435,8 @@ img {
 }
 
 .cta-button {
-    background: #2D2D2D;
-    color: #75CAFD;
+    background: #D4E5FE;
+    color: #002A69;
     border: none;
     padding: 1rem 2.5rem;
     font-size: 1.125rem;
@@ -448,7 +448,7 @@ img {
 }
 
 .cta-button:hover {
-    background: #1a1a1a;
+    background: #028FEE;
     transform: translateY(-2px);
 }
 
