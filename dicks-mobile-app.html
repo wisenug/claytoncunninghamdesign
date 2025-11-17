@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DICK'S TSHQ Mobile App - Clayton Cunningham Design</title>
+    <meta name="description" content="Mobile app design for DICK'S Team Sports Headquarters helping busy parents and coaches manage youth sports logistics on the go. Features include custom events, RSVP tracking, and team messaging." />
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./img/logo.png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <div class="nav-content">
+            <a href="index.html" class="logo-link">
+                <img src="./img/logo.png" alt="Clayton Cunningham Design" class="logo-img" />
+                <span class="logo-text">Clayton Cunningham Design</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link active">Work</a>
+                <a href="about.html" class="nav-link">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="page-container">
+        <!-- Header -->
+        <header class="project-header">
+            <h1>DICK'S TSHQ Mobile App</h1>
+            <p>
+                The DICK'S Team Sports Headquarters mobile app is a way for busy parents and coaches to ease the pain of youth sports logistics on the go, and to extend the excitement past the playing field.
+            </p>
+            <p>
+                I worked as the lead product designer for the project, alongside the mobile development team and the mobile product manager, and was tasked with creating new features for our already established app.
+            </p>
+        </header>
+
+        <!-- Hero -->
+        <section class="content-section">
+            <img src="./img/tshq_app_hero.png" alt="TSHQ mobile app hero image showing iPhone mockups displaying team schedule, custom event creation, and player roster screens" />
+        </section>
+
+        <!-- Research -->
+        <section class="content-section">
+            <h2>Research</h2>
+            <p>
+                After conducting user interviews and surveys with parents, coaches, administrators, and league officials, who were all current users of the app, we got a better sense of how and what they were currently using the app for. I gathered as much information from them to understand the challenges they face and how to minimize their frustrations.
+            </p>
+            <p><strong>Parsing the research data, the users biggest challenges and pain points when using the app were:</strong></p>
+            <p>
+                1. Not having a way to schedule a new event easily.<br />
+                2. Being unable to track which players were going to show up for a given practice or game.<br />
+                3. Not being able to quickly message the entire team with a change or update to the schedule.
+            </p>
+        </section>
+
+        <!-- Personas -->
+        <section class="content-section">
+            <img src="./img/tshq_app_personas.jpg" alt="User personas showing demographic information, goals, and pain points for parent, coach, and administrator archetypes with photos and behavioral patterns" />
+            <p>Personas were created to help place a face to our users.</p>
+            <p>
+                Based off the findings from our research, we saw an opportunity to integrate new functionality that the product initially was missing. The team finalized a plan of action that targeted all of the core problem areas we wanted to solve.
+            </p>
+        </section>
+
+        <!-- Custom Events -->
+        <section class="content-section">
+            <h2>Custom Events</h2>
+            <p>
+                With custom events, users can create games or practices for their team. The true benefit of the custom events process is that the system is able to handle complex constraints such as team and player schedules, availability of fields and locations, and time slots.
+            </p>
+            <p>
+                Users do not have to juggle all the necessary data needed to create an event and send it out to the rest of the team, they just select what type of event they are creating, a time, and location and all the hard work is taken care of in the background.
+            </p>
+            <p>
+                Previously, in order for a user to add a new event, they had to go through the logistical challenge of figuring out when their team had availability, or figure out who else is using the field and when. Or they had to use whatever system the league had in place such as sending an email to all the parents.
+            </p>
+        </section>
+
+        <!-- Wireframes -->
+        <section class="content-section">
+            <img src="./img/tshq_app_wireframes.jpg" alt="Hand-drawn wireframe sketches showing initial layout concepts for custom event creation flow with annotations and user flow arrows" />
+            <p>Early sketched wireframes.</p>
+        </section>
+
+        <!-- User Flow -->
+        <section class="content-section">
+            <p>The first flow we tackled was for the creation of a new custom event. The pattern of this flow had to be scalable to all of the sports supported by the TSHQ platform. The process for shepherding a user through the event creation process was tough to nail down, and took many iterations and logic hoops to make sense on our end.</p>
+            <img src="./img/tshq_app_user_flow.png" alt="User flow diagram mapping the custom event creation process from entry point through sport selection, time/location picking, to confirmation" />
+            <p>User flow for creating a new custom event.</p>
+        </section>
+
+        <!-- Lo-Fi Designs -->
+        <section class="content-section">
+            <img src="./img/tshq_app_early_lo-fi_designs.png" alt="Low-fidelity mobile screen designs showing basic layout structure and content hierarchy for event creation interface" />
+            <p>Lo-fi designs.</p>
+        </section>
+
+        <!-- Final Designs -->
+        <section class="content-section">
+            <img src="./img/tshq_app_custom_events.png" alt="Final high-fidelity mobile app screens displaying polished custom events interface with TSHQ branding, imagery, and interactive elements" />
+            <p>Final designs.</p>
+        </section>
+
+        <!-- Walkthrough Videos -->
+        <section class="content-section">
+            <div class="video-container">
+                <video autoplay loop muted playsinline>
+                    <source src="./img/tshq_app_custom_events_walkthrough.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <p>Creating a new custom event.</p>
+        </section>
+
+        <section class="content-section">
+            <div class="video-container">
+                <video autoplay loop muted playsinline>
+                    <source src="./img/tshq_app_custom_events_walkthrough_B.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <p>Picking a time and location.</p>
+        </section>
+
+        <!-- Weather Feature -->
+        <section class="content-section">
+            <img src="./img/tshq_app_weather.png" alt="Weather integration feature showing current conditions and 5-day forecast at field location within event details screen" />
+            <p>Within the custom events flow we also added some features such as including the current and future weather conditions at the field location.</p>
+        </section>
+
+        <!-- Scores Feature -->
+        <section class="content-section">
+            <div class="video-container">
+                <video autoplay loop muted playsinline>
+                    <source src="./img/tshq_app_scores.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <p>Another feature within custom events involved scores. Users were requesting an ability to see past games wins and losses, so they didn't have to keep track of it. Usually scores would be inputted automatically, but in an instance that they weren't, an admin could manually enter them.</p>
+        </section>
+
+        <!-- RSVP -->
+        <section class="content-section">
+            <h2>RSVP</h2>
+            <p>
+                To help alleviate concerns with who was going to be available for any given game or practice for a team we created a simple RSVP system that the whole team could see at a glance who was attending what event. Users were prompted 24 hours ahead of time to enter their planned attendance so the coaching staff could plan accordingly.
+            </p>
+            <img src="./img/tshq_app_rsvp.png" alt="RSVP interface showing player roster with attendance status indicators (going, not going, maybe) for upcoming team event" />
+        </section>
+
+        <!-- Bulk Messaging -->
+        <section class="content-section">
+            <h2>Bulk Messaging</h2>
+            <p>
+                We needed an easy and fast way for the admins or coaches to quickly reach all the individuals and send out updates for a team all at once. We created a bulk messaging system that would notify any or all members of the team with an in app message. This prevented admins and coaching staffs from having to rely on email or calling every parent when a schedule change occurred.
+            </p>
+            <img src="./img/tshq_app_messages.png" alt="Bulk messaging interface with recipient selection checkboxes, message composition field, and send options for team communication" />
+            <p>Quickly send out a message to a few or all of the members of your team.</p>
+        </section>
+
+        <!-- Profile -->
+        <section class="content-section">
+            <img src="./img/tshq_app_profile.png" alt="User profile screens showing personal information, team affiliations, and DICK'S ScoreCard rewards integration with points balance" />
+            <p>Redesigned profile view for a user, and integration with DICK'S scorecard loyalty rewards program.</p>
+        </section>
+
+        <!-- Icons -->
+        <section class="content-section">
+            <img src="./img/tshq_app_icons.png" alt="Complete icon set library displaying sport-specific symbols, navigation elements, and functional icons used throughout the mobile app" />
+            <p>Icons used throughout the app.</p>
+        </section>
+
+        <!-- Usability Testing -->
+        <section class="content-section">
+            <h2>Usability Testing</h2>
+            <p>
+                I tested the product at various points throughout the process to validate overall concepts, and to see if we were solving the right problems.
+            </p>
+            <p>
+                <strong>Lo-Fi Prototypes</strong> - Stakeholders and developers helped to gauge ideas and feasibility of the problem solves and functionality by testing out initial concepts and ideas through prototypes created with Adobe XD and Marvel.
+            </p>
+            <p>
+                <strong>User Testing</strong> - I conducted some guerrilla testing sessions at an Atlanta area DICK'S Sporting Goods, as well as some sessions at our small user testing lab in our office. Testing included a general flow of custom events to see any potential pitfalls or unforeseen issues had arisen.
+            </p>
+            <p>
+                <strong>Beta Testing</strong> - Before release, a few star admins and parents tested some of the new features to try out with their clubs.
+            </p>
+            <p>
+                <strong>[UPDATE] The DICK'S TSHQ mobile app has been sunsetted as of July 2019</strong>
+            </p>
+        </section>
+
+        <!-- More Work Section -->
+        <section class="more-work">
+            <h2>More Work</h2>
+            <div class="projects-grid">
+                <a href="dicks-tshq-registration.html" class="project-card">
+                    <div class="project-image">
+                        <img src="./img/tshq_reg_thumbnail.gif" alt="DICK'S TSHQ Registration" loading="lazy" />
+                    </div>
+                    <h3>DICK'S TSHQ Registration Redesign</h3>
+                </a>
+                <a href="dicks-tshq-fanwear.html" class="project-card">
+                    <div class="project-image">
+                        <img src="./img/tshq_fanwear_thumbnail.png" alt="DICK'S TSHQ Fan Wear" loading="lazy" />
+                    </div>
+                    <h3>DICK'S TSHQ Fan Wear Redesign</h3>
+                </a>
+                <a href="dicks-tshq-assorted.html" class="project-card">
+                    <div class="project-image">
+                        <img src="./img/tshq_assorted_projects_thumbnail.png" alt="DICK'S TSHQ Assorted" loading="lazy" />
+                    </div>
+                    <h3>DICK'S TSHQ Assorted Projects</h3>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        © 2025 Clayton Cunningham Design. All rights reserved.
+    </footer>
+</body>
+</html>
