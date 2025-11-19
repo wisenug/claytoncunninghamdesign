@@ -278,6 +278,11 @@ img {
     border-radius: 8px;
 }
 
+  /* Blue Inverted Section Variant */
+.inverted-section.inverted-blue {
+    background: #162D5B;
+}
+
 /* Responsive adjustments for inverted section */
 @media (max-width: 1200px) {
     .inverted-section {
@@ -298,11 +303,9 @@ img {
         padding: 0 1.5rem;
     }
 
-    /* Blue Inverted Section Variant */
-.inverted-section.inverted-blue {
-    background: #162D5B;
+  
 }
-}
+
 
 /* More Work Section (back to light) */
 
