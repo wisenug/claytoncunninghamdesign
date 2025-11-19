@@ -297,6 +297,11 @@ img {
     .inverted-content {
         padding: 0 1.5rem;
     }
+
+    /* Blue Inverted Section Variant */
+.inverted-section.inverted-blue {
+    background: #162D5B;
+}
 }
 
 /* More Work Section (back to light) */
