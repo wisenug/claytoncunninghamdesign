@@ -239,12 +239,16 @@ img {
     background: #000000;
     color: #ffffff;
     padding: 5rem 3rem;
-    margin: 5rem -3rem 0;
+    margin-left: calc(-100vw / 2 + 100% / 2);
+    margin-right: calc(-100vw / 2 + 100% / 2);
+    margin-top: 5rem;
+    margin-bottom: 0;
 }
 
 .inverted-content {
     max-width: 1400px;
     margin: 0 auto;
+    padding: 0 3rem;
 }
 
 .inverted-section h2 {
@@ -272,6 +276,27 @@ img {
 .inverted-image img {
     width: 100%;
     border-radius: 8px;
+}
+
+/* Responsive adjustments for inverted section */
+@media (max-width: 1200px) {
+    .inverted-section {
+        padding: 4rem 2rem;
+    }
+    
+    .inverted-content {
+        padding: 0 2rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .inverted-section {
+        padding: 3rem 1.5rem;
+    }
+    
+    .inverted-content {
+        padding: 0 1.5rem;
+    }
 }
 
 /* More Work Section (back to light) */
