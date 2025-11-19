@@ -231,6 +231,51 @@ img {
     text-align: center;
 }
 
+/* ==========================================
+   INVERTED SECTION (Black Background)
+   ========================================== */
+
+.inverted-section {
+    background: #000000;
+    color: #ffffff;
+    padding: 5rem 3rem;
+    margin: 5rem -3rem 0;
+}
+
+.inverted-content {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.inverted-section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: #ffffff;
+}
+
+.inverted-section p {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: #ffffff;
+    margin-bottom: 3rem;
+}
+
+.inverted-image {
+    margin-bottom: 5rem;
+}
+
+.inverted-image:last-child {
+    margin-bottom: 0;
+}
+
+.inverted-image img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+/* More Work Section (back to light) */
+
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
