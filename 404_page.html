@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: url('./img/404-bg.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+
+        .container {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: white;
+            background: rgba(0, 0, 0, 0.75);
+            padding: 1.5rem 3rem;
+            display: inline-block;
+            line-height: 1.2;
+            border-radius: 8px;
+            backdrop-filter: blur(4px);
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: white;
+            background: rgba(0, 0, 0, 0.75);
+            padding: 1rem 2.5rem;
+            display: inline-block;
+            border-radius: 8px;
+            backdrop-filter: blur(4px);
+        }
+
+        a {
+            margin-top: 2rem;
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: rgba(0, 0, 0, 0.85);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-size: 1.125rem;
+        }
+
+        a:hover {
+            background: rgba(0, 0, 0, 0.95);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+                padding: 1rem 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+                padding: 0.75rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Nothing to see here...</h1>
+        <h2>Page not found</h2>
+        <a href="/">← Go Back Home</a>
+    </div>
+</body>
+</html>
