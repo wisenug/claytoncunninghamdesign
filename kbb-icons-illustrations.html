@@ -70,6 +70,17 @@
         <section class="inverted-section inverted-blue">
             <div class="inverted-content">
                 <h2>Illustrations</h2>
+
+                 <!-- Lottie Animation Section -->
+                <section class="content-section">
+                    <div class="single-content">
+                       
+                        <!-- Lottie Animation Container -->
+                        <div class="lottie-container">
+                            <div id="lottie-animation"></div>
+                        </div>
+                    </div>
+                </section>
                 
                 <div class="inverted-image">
                     <img src="./img/kbb_22.png" alt="KBB Vehicle Library" />
@@ -174,5 +185,22 @@
     <footer class="footer">
         © 2025 Clayton Cunningham Design. All rights reserved.
     </footer>
+     <!-- ie Animation Script -->
+    <script>
+        // Load and play Lottie animation
+        // Replace the path below with your actual Lottie JSON file
+        var animation = lottie.loadAnimation({
+            container: document.getElementById('lottie-animation'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: './animations/kbb-cars.json' // REPLACE THIS with your Lottie JSON file path
+        });
+        
+        // Optional: Customize animation behavior
+        // animation.setSpeed(0.75); // Adjust playback speed (0.75 = 75% speed)
+        // animation.pause(); // Pause the animation
+        // animation.play(); // Play the animation
+    </script>
 </body>
 </html>
