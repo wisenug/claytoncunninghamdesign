@@ -159,6 +159,7 @@ img {
     width: 100%;
     margin: 0;
     display: flex;
+    border-radius: 8px;
     justify-content: center;
     align-items: center;
 }
