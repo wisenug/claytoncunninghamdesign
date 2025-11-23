@@ -72,10 +72,9 @@
             <div class="inverted-content">
                 <h2>Illustrations</h2>
 
-            <!-- Lottie Animation Section -->
+                <!-- Lottie Animation Section -->
                 <section class="content-section">
                     <div class="single-content">
-                       
                         <!-- Lottie Animation Container -->
                         <div class="lottie-container">
                             <div id="lottie-animation"></div>
@@ -83,8 +82,8 @@
                     </div>
                 </section>
                 
-                  <div class="inverted-image">
-                    <img src="./img/kbb_22.png" alt="KBB Vehicle Librar" />
+                <div class="inverted-image">
+                    <img src="./img/kbb_22.png" alt="KBB Vehicle Library" />
                 </div>
 
                 <div class="inverted-image">
@@ -120,16 +119,12 @@
                 <!-- Lottie Animation Section -->
                 <section class="content-section">
                     <div class="single-content">
-                       
                         <!-- Lottie Animation Container -->
                         <div class="lottie-container">
-                            <div id="lottie-animation"></div>
+                            <div id="lottie-animation-2"></div>
                         </div>
                     </div>
                 </section>
-
-
-                
 
                 <!-- Editorial Illustrations -->
                 <div class="inverted-image">
@@ -200,22 +195,26 @@
     <footer class="footer">
         © 2025 Clayton Cunningham Design. All rights reserved.
     </footer>
-     <!-- ie Animation Script -->
+
+    <!-- Lottie Animation Script -->
     <script>
-        // Load and play Lottie animation
-        // Replace the path below with your actual Lottie JSON file
-        var animation = lottie.loadAnimation({
+        // Load and play first Lottie animation
+        var animation1 = lottie.loadAnimation({
             container: document.getElementById('lottie-animation'),
             renderer: 'svg',
             loop: true,
             autoplay: true,
-            path: './animations/kbb-cars.json' // REPLACE THIS with your Lottie JSON file path
+            path: './animations/kbb-cars.json'
         });
-        
-        // Optional: Customize animation behavior
-        // animation.setSpeed(0.75); // Adjust playback speed (0.75 = 75% speed)
-        // animation.pause(); // Pause the animation
-        // animation.play(); // Play the animation
+
+        // Load and play second Lottie animation
+        var animation2 = lottie.loadAnimation({
+            container: document.getElementById('lottie-animation-2'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: './animations/your-second-animation.json' // REPLACE THIS with your second animation JSON file path
+        });
     </script>
 </body>
 </html>
