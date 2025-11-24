@@ -40,6 +40,16 @@
             <p>Spot Iconography library used throughout the KBB site</p>
         </section>
 
+        <!-- Lottie Animation Section -->
+                <section class="content-section">
+                    <div class="single-content">
+                        <!-- Lottie Animation Container -->
+                        <div class="lottie-container">
+                            <div id="lottie-animation-3"></div>
+                        </div>
+                    </div>
+                </section>
+
         <section class="content-section">
             <img src="./img/kbb_2.png" alt="Spot Icon Grid System" />
         </section>
@@ -220,6 +230,14 @@
             loop: true,
             autoplay: true,
             path: './animations/kbb-car-heart.json' // REPLACE THIS with your second animation JSON file path
+        });
+        / Load and play second Lottie animation
+        var animation3 = lottie.loadAnimation({
+            container: document.getElementById('lottie-animation-3'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: './animations/kbb-spot-icons.json' // REPLACE THIS with your second animation JSON file path
         });
     </script>
 </body>
