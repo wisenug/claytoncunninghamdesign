@@ -64,6 +64,17 @@
             <img src="./img/autotrader_icons_wallet_srp.png" alt="Autotrader spot icons in production of the UI of the website." loading="lazy" />
 
         </section>
+
+        <!-- Lottie Animation Section -->
+                <section class="content-section">
+                    <div class="single-content">
+                       
+                        <!-- Lottie Animation Container -->
+                        <div class="lottie-container">
+                            <div id="lottie-animation-at-psx"></div>
+                        </div>
+                    </div>
+                </section>
         
         
         <!-- Split Layout: Two Stacked Left, One Right -->
@@ -124,22 +135,27 @@
         © 2025 Clayton Cunningham Design. All rights reserved.
     </footer>
 
-     <!-- ie Animation Script -->
+<!-- Lottie Animation Script -->
     <script>
-        // Load and play Lottie animation
-        // Replace the path below with your actual Lottie JSON file
-        var animation = lottie.loadAnimation({
+        // Load and play first Lottie animation
+        var animation1 = lottie.loadAnimation({
             container: document.getElementById('lottie-animation'),
             renderer: 'svg',
             loop: true,
             autoplay: true,
-            path: './animations/spot_icons.json' // REPLACE THIS with your Lottie JSON file path
+            path: './animations/spot_icons.json'
         });
-        
-        // Optional: Customize animation behavior
-        // animation.setSpeed(0.75); // Adjust playback speed (0.75 = 75% speed)
-        // animation.pause(); // Pause the animation
-        // animation.play(); // Play the animation
+
+        // Load and play second Lottie animation
+        var animation2 = lottie.loadAnimation({
+            container: document.getElementById('lottie-animation-at-psx'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: './animations/psx-spot-icons.json' // REPLACE THIS with your second animation JSON file path
+        });
     </script>
+
+    
 </body>
 </html>
