@@ -181,35 +181,9 @@ img {
     padding: 0;
 }
 
-/* Play/Pause Control Button */
-.lottie-controls {
-    position: absolute;
-    bottom: 12px;
-    right: 12px;
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    width: 32px;
-    height: 32px;
-    border-radius: 4px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-    z-index: 10;
-    padding: 0;
-}
 
-.lottie-controls:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.6);
-}
 
-.lottie-controls svg {
-    width: 16px;
-    height: 16px;
-    color: rgba(255, 255, 255, 0.7);
-}
+
 
 /* Two column layout */
 .content-section.cols-2 {
