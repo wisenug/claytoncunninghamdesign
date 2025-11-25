@@ -183,8 +183,6 @@ img {
 
 
 
-
-
 /* Two column layout */
 .content-section.cols-2 {
     grid-template-columns: repeat(2, 1fr);
@@ -713,10 +711,5 @@ img {
     
     .cta-text {
         font-size: 1.125rem;
-    }
-    
-    /* Video and Lottie mobile adjustments */
-    .lottie-container {
-        padding: 2rem 1.5rem;
     }
 }
