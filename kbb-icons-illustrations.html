@@ -213,7 +213,8 @@
     </footer>
     
 
-  <!-- Lottie Animation Script -->
+  
+<!-- Lottie Animation Script -->
     <script>
         // Animation configuration array
         const animations = [
@@ -250,9 +251,11 @@
             button.className = 'lottie-controls';
             button.setAttribute('aria-label', 'Play/Pause animation');
             button.innerHTML = `
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8 5v14l11-7z" class="play-icon"/>
-                    <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" class="pause-icon" style="display:none;"/>
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="play-icon">
+                    <path d="M8 5v14l11-7z" fill="currentColor"/>
+                </svg>
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="pause-icon" style="display:none;">
+                    <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" fill="currentColor"/>
                 </svg>
             `;
 
@@ -260,17 +263,21 @@
             const animationId = Object.keys(loadedAnimations)[index];
             const animation = loadedAnimations[animationId];
 
-            button.addEventListener('click', () => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                
                 if (isPlaying) {
                     animation.pause();
-                    button.querySelector('.play-icon').style.display = 'block';
-                    button.querySelector('.pause-icon').style.display = 'none';
-                } else {
-                    animation.play();
                     button.querySelector('.play-icon').style.display = 'none';
                     button.querySelector('.pause-icon').style.display = 'block';
+                    isPlaying = false;
+                } else {
+                    animation.play();
+                    button.querySelector('.play-icon').style.display = 'block';
+                    button.querySelector('.pause-icon').style.display = 'none';
+                    isPlaying = true;
                 }
-                isPlaying = !isPlaying;
             });
 
             container.appendChild(button);
