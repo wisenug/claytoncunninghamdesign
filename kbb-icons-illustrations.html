@@ -211,33 +211,69 @@
     <footer class="footer">
         © 2025 Clayton Cunningham Design. All rights reserved.
     </footer>
+    
 
-    <!-- Lottie Animation Script -->
+  <!-- Lottie Animation Script -->
     <script>
-        // Load and play first Lottie animation
-        var animation1 = lottie.loadAnimation({
-            container: document.getElementById('lottie-animation'),
-            renderer: 'svg',
-            loop: true,
-            autoplay: true,
-            path: './animations/kbb-cars.json'
+        // Animation configuration array
+        const animations = [
+            {
+                id: 'lottie-animation',
+                path: './animations/kbb-cars.json'
+            },
+            {
+                id: 'lottie-animation-2',
+                path: './animations/kbb-car-heart.json'
+            },
+            {
+                id: 'lottie-animation-3',
+                path: './animations/kbb-spot-icons.json'
+            }
+        ];
+
+        // Load all animations
+        const loadedAnimations = {};
+
+        animations.forEach(config => {
+            loadedAnimations[config.id] = lottie.loadAnimation({
+                container: document.getElementById(config.id),
+                renderer: 'svg',
+                loop: true,
+                autoplay: true,
+                path: config.path
+            });
         });
 
-        // Load and play second Lottie animation
-        var animation2 = lottie.loadAnimation({
-            container: document.getElementById('lottie-animation-2'),
-            renderer: 'svg',
-            loop: true,
-            autoplay: true,
-            path: './animations/kbb-car-heart.json' // REPLACE THIS with your second animation JSON file path
-        });
-        // Load and play second Lottie animation
-        var animation3 = lottie.loadAnimation({
-            container: document.getElementById('lottie-animation-3'),
-            renderer: 'svg',
-            loop: true,
-            autoplay: true,
-            path: './animations/kbb-spot-icons.json' // REPLACE THIS with your second animation JSON file path
+        // Add play/pause controls to each container
+        document.querySelectorAll('.lottie-container').forEach((container, index) => {
+            const button = document.createElement('button');
+            button.className = 'lottie-controls';
+            button.setAttribute('aria-label', 'Play/Pause animation');
+            button.innerHTML = `
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 5v14l11-7z" class="play-icon"/>
+                    <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" class="pause-icon" style="display:none;"/>
+                </svg>
+            `;
+
+            let isPlaying = true;
+            const animationId = Object.keys(loadedAnimations)[index];
+            const animation = loadedAnimations[animationId];
+
+            button.addEventListener('click', () => {
+                if (isPlaying) {
+                    animation.pause();
+                    button.querySelector('.play-icon').style.display = 'block';
+                    button.querySelector('.pause-icon').style.display = 'none';
+                } else {
+                    animation.play();
+                    button.querySelector('.play-icon').style.display = 'none';
+                    button.querySelector('.pause-icon').style.display = 'block';
+                }
+                isPlaying = !isPlaying;
+            });
+
+            container.appendChild(button);
         });
     </script>
 </body>
