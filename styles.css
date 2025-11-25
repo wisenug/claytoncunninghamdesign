@@ -101,7 +101,7 @@ img {
 
 /* UNIFIED CONTENT SECTION */
 .content-section {
-    margin-bottom: 5rem;
+    margin-bottom: 2.5rem;
     display: grid;
     gap: 2.5rem;
     grid-template-columns: 1fr;
@@ -157,16 +157,51 @@ img {
 /* Lottie Animation Container */
 .lottie-container {
     width: 100%;
+    height: auto;
     margin: 0;
     display: flex;
     border-radius: 8px;
     justify-content: center;
     align-items: center;
+    position: relative;
+    background: #f5f5f5;
 }
 
-#lottie-animation {
+#lottie-animation,
+#lottie-animation-2,
+#lottie-animation-3 {
     width: 100%;
     height: auto;
+}
+
+/* Play/Pause Control Button */
+.lottie-controls {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    z-index: 10;
+    padding: 0;
+}
+
+.lottie-controls:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+.lottie-controls svg {
+    width: 16px;
+    height: 16px;
+    color: rgba(255, 255, 255, 0.7);
 }
 
 /* Two column layout */
@@ -279,7 +314,7 @@ img {
     border-radius: 8px;
 }
 
-  /* Blue Inverted Section Variant */
+/* Blue Inverted Section Variant */
 .inverted-section.inverted-blue {
     background: #162D5B;
 }
@@ -303,10 +338,7 @@ img {
     .inverted-content {
         padding: 0 1.5rem;
     }
-
-  
 }
-
 
 /* More Work Section (back to light) */
 
@@ -701,7 +733,6 @@ img {
     .cta-text {
         font-size: 1.125rem;
     }
-}
     
     /* Video and Lottie mobile adjustments */
     .lottie-container {
