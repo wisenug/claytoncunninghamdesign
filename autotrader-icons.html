@@ -173,17 +173,21 @@
             const animationId = Object.keys(loadedAnimations)[index];
             const animation = loadedAnimations[animationId];
 
-            button.addEventListener('click', () => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                
                 if (isPlaying) {
                     animation.pause();
                     button.querySelector('.play-icon').style.display = 'none';
                     button.querySelector('.pause-icon').style.display = 'block';
+                    isPlaying = false;
                 } else {
                     animation.play();
                     button.querySelector('.play-icon').style.display = 'block';
                     button.querySelector('.pause-icon').style.display = 'none';
+                    isPlaying = true;
                 }
-                isPlaying = !isPlaying;
             });
 
             container.appendChild(button);
