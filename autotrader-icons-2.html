@@ -83,10 +83,17 @@
 
              <!-- Two Images Side by Side -->
         <section class="content-section cols-2">
-            <img src="./img/grid.svg" alt="icon design grid" loading="lazy" />
-            <img src="./img/orthogonals.svg" alt="orthogonals used for orienting directions of icon" loading="lazy" />
-            <p>Icons are set on a 1px grid with a 1.5 px trim area. (Left) <br />
-           Orthogonals are the keylines that intersect the center point of the icon frame to create additional vertices. Placed at 90Ëš, 45Ëš, and 15Ëš. These help to further give icon shapes guidance. (Right)</p>
+             <!-- Lottie Animation Section -->
+                <section class="content-section">
+                    <div class="single-content">
+                        <!-- Lottie Animation Container -->
+                        <div class="lottie-container">
+                            <div id="lottie-animation-at-icon-labels"></div>
+                        </div>
+                    </div>
+                </section>
+            <img src="./img/vdp-ui-icons.png" alt="vdp vehicle detail icons" loading="lazy" />
+            
         </section>
 
                   <!--  Image -->
@@ -224,8 +231,17 @@
             path: './animations/at_icon-grid.json'
         });
 
-        // Load and play spot icons animation
+          // Load and play grid animation
         var animation3 = lottie.loadAnimation({
+            container: document.getElementById('lottie-animation-at-grid'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: './animations/at_icon-grid.json'
+        });
+
+        // Load and play spot icons animation
+        var animation4 = lottie.loadAnimation({
             container: document.getElementById('lottie-animation'),
             renderer: 'svg',
             loop: true,
@@ -233,13 +249,13 @@
             path: './animations/spot_icons.json'
         });
 
-        // Load and play PSX spot icons animation
-        var animation4 = lottie.loadAnimation({
+        // Load and play labels animation
+        var animation5 = lottie.loadAnimation({
             container: document.getElementById('lottie-animation-at-psx'),
             renderer: 'svg',
             loop: true,
             autoplay: true,
-            path: './animations/psx-spot-icons.json'
+            path: './animations/at-icon-labels.json'
         });
     </script>
     
