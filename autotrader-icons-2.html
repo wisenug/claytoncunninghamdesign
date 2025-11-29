@@ -56,7 +56,7 @@
             <img src="./img/grid.svg" alt="icon design grid" loading="lazy" />
             <img src="./img/orthogonals.svg" alt="orthogonals used for orienting directions of icon shapes" loading="lazy" />
             <p>Icons are set on a 1px grid with a 1.5 px trim area. (Left) <br />
-           Orthogonals are the keylines that intersect the center point of the icon frame to create additional vertices. Placed at 90˚, 45˚, and 15˚. These help to further give icon shapes guidance. (Right)</p>
+           Orthogonals are the keylines that intersect the center point of the icon frame to create additional vertices. Placed at 90Ëš, 45Ëš, and 15Ëš. These help to further give icon shapes guidance. (Right)</p>
         </section>
 
                 <!--  Image -->
@@ -86,7 +86,7 @@
             <img src="./img/grid.svg" alt="icon design grid" loading="lazy" />
             <img src="./img/orthogonals.svg" alt="orthogonals used for orienting directions of icon" loading="lazy" />
             <p>Icons are set on a 1px grid with a 1.5 px trim area. (Left) <br />
-           Orthogonals are the keylines that intersect the center point of the icon frame to create additional vertices. Placed at 90˚, 45˚, and 15˚. These help to further give icon shapes guidance. (Right)</p>
+           Orthogonals are the keylines that intersect the center point of the icon frame to create additional vertices. Placed at 90Ëš, 45Ëš, and 15Ëš. These help to further give icon shapes guidance. (Right)</p>
         </section>
 
                   <!--  Image -->
@@ -99,7 +99,7 @@
             <img src="./img/B.png" alt="global navigation icons used on autotrader" loading="lazy" />
             <img src="./img/C.png" alt="orthogonals used for orienting directions of icon shapes" />
             <p>Icons are set on a 1px grid with a 1.5 px trim area. (Left) <br />
-           Orthogonals are the keylines that intersect the center point of the icon frame to create additional vertices. Placed at 90˚, 45˚, and 15˚. These help to further give icon shapes guidance. (Right)</p>
+           Orthogonals are the keylines that intersect the center point of the icon frame to create additional vertices. Placed at 90Ëš, 45Ëš, and 15Ëš. These help to further give icon shapes guidance. (Right)</p>
         </section>
 
 
@@ -149,7 +149,7 @@
                 <img src="./img/autotrader_icons_marketplace.png" alt="Private Seller Marketplace." loading="lazy" />
 
             </div>
-            <img src="./img/autotrader_icons_battery-health.png" alt=battery health chart on vdp" loading="lazy" />
+            <img src="./img/autotrader_icons_battery-health.png" alt="battery health chart on vdp" loading="lazy" />
         </section>
 
         <!-- Lottie Animation Section -->
@@ -206,8 +206,26 @@
 
     <!-- Lottie Animation Script -->
     <script>
-        // Load and play first Lottie animation
+        // Load and play icon details animation
         var animation1 = lottie.loadAnimation({
+            container: document.getElementById('lottie-animation-icon-details'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: './animations/icon_details.json'
+        });
+
+        // Load and play grid animation
+        var animation2 = lottie.loadAnimation({
+            container: document.getElementById('lottie-animation-at-grid'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: './animations/at_grid.json'
+        });
+
+        // Load and play spot icons animation
+        var animation3 = lottie.loadAnimation({
             container: document.getElementById('lottie-animation'),
             renderer: 'svg',
             loop: true,
@@ -215,8 +233,8 @@
             path: './animations/spot_icons.json'
         });
 
-        // Load and play second Lottie animation
-        var animation2 = lottie.loadAnimation({
+        // Load and play PSX spot icons animation
+        var animation4 = lottie.loadAnimation({
             container: document.getElementById('lottie-animation-at-psx'),
             renderer: 'svg',
             loop: true,
