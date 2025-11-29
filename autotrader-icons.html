@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autotrader Icons - Clayton Cunningham Design</title>
+    <meta name="description" content="Spot icon style created for Autotrader. Iconography." />
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./img/logo.png">
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Lottie Player Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <div class="nav-content">
+            <a href="index.html" class="logo-link">
+                <img src="./img/logo.png" alt="Clayton Cunningham Design" class="logo-img" />
+                <span class="logo-text">Clayton Cunningham Design</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link active">Work</a>
+                <a href="about.html" class="nav-link">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="page-container">
+        <!-- Header -->
+        <header class="project-header">
+            <h1>Autotrader Icons</h1>
+            <p>
+                Autotrader lacked a consistent style of icon used throughout the product. In conjunction with defining the illustration style, I established a spot iconography style for use across the AT website and mobile apps.
+            </p>
+        </header>
+
+        <!-- Hero Image -->
+        <section class="content-section">
+            <img src="./img/autotrader_icons_vdp.png" alt="Autotrader Vehicle Details Page (VDP) wiht vehicle details listed." />
+        </section>
+
+        <!-- Text + Image -->
+        <section class="content-section">
+           
+            <img src="./img/autotrader_icons_library.png" alt="UI of Autotrader login screen showcasing all elements of the illustration style" loading="lazy" />
+
+             <!-- Lottie Animation Section -->
+                <section class="content-section">
+                    <div class="single-content">
+                        <!-- Lottie Animation Container -->
+                        <div class="lottie-container">
+                            <div id="lottie-animation"></div>
+                        </div>
+                    </div>
+                </section>
+        </section>
+
+        <!--  Image -->
+        <section class="content-section">
+            <img src="./img/autotrader_icons_11.png" alt="specs of the spot icon construction" loading="lazy" />
+            <img src="./img/autotrader_icons_wallet_srp.png" alt="Autotrader spot icons in production of the UI of the website." loading="lazy" />
+
+        </section>
+
+        
+        <!-- Split Layout: Two Stacked Left, One Right -->
+        <section class="content-section split-layout reverse">
+            <div>
+                <img src="./img/autotrader_icons_cars_by_type.png" alt="Vehicles by type: Offroad, Hybrid, Electric." loading="lazy" />
+                <img src="./img/autotrader_icons_marketplace.png" alt="Private Seller Marketplace." loading="lazy" />
+
+            </div>
+            <img src="./img/autotrader_icons_battery-health.png" alt=battery health chart on vdp" loading="lazy" />
+        </section>
+
+        <!-- Lottie Animation Section -->
+                <section class="content-section">
+                    <div class="single-content">
+                        <!-- Lottie Animation Container -->
+                        <div class="lottie-container">
+                            <div id="lottie-animation-at-psx"></div>
+                        </div>
+                    </div>
+                </section>
+
+        
+
+
+        
+
+       
+
+        <!-- More Work Section -->
+        <section class="more-work">
+            <h2>More Work</h2>
+            <div class="projects-grid">
+                <a href="autotrader-illustrations.html" class="project-card">
+                    <div class="project-image">
+                  <img src="./img/at_illustration_style_1.png" alt="Autotrader Illustration Style" loading="lazy" />
+                    </div>
+                    <h3>Autotrader Illustrations</h3>
+                </a>
+                  <a href="kbb-icons-illustrations.html" class="project-card">
+                    <div class="project-image">
+                    <img src="./img/Kbb_thumbnail.png" alt="Kelley blue book car with thumbs up and down inside speech bubbles" loading="lazy" />
+                    </div>
+                    <h3>Kelley Blue Book Icons & Illustrations</h3>
+                </a>
+                
+                <a href="sketches.html" class="project-card">
+                    <div class="project-image">
+                    <img src="./img/sketch_stipple.png" alt="Sketches" loading="lazy" />
+                    </div>
+                    <h3>Sketches, Illustrations, and Doodles</h3>
+                </a>
+                
+                
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        © 2025 Clayton Cunningham Design. All rights reserved.
+    </footer>
+
+    <!-- Lottie Animation Script -->
+    <script>
+        // Load and play first Lottie animation
+        var animation1 = lottie.loadAnimation({
+            container: document.getElementById('lottie-animation'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: './animations/spot_icons.json'
+        });
+
+        // Load and play second Lottie animation
+        var animation2 = lottie.loadAnimation({
+            container: document.getElementById('lottie-animation-at-psx'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: './animations/psx-spot-icons.json'
+        });
+    </script>
+    
+</body>
+</html>
