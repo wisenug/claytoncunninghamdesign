@@ -38,7 +38,7 @@
 
           <!-- Hero Image -->
         <section class="content-section">
-            <img src="./img/hero-at-icons.png" alt="hero image with road in lush gree nforest and autotrader icons overlayed ontop." />
+            <img src="./img/hero-at-icons.png" alt="hero image with road in lush green forest and autotrader icons overlayed ontop." />
         </section>
 
         <!-- Lottie Animation Section -->
@@ -56,7 +56,7 @@
             <img src="./img/grid.svg" alt="icon design grid" loading="lazy" />
             <img src="./img/orthogonals.svg" alt="orthogonals used for orienting directions of icon shapes" loading="lazy" />
             <p>Icons are set on a 1px grid with a 1.5 px trim area. (Left) <br />
-           Orthogonals are the keylines that intersect the center point of the icon frame to create additional vertices. Placed at 90Ëš, 45Ëš, and 15Ëš. These help to further give icon shapes guidance. (Right)</p>
+           Orthogonals are the keylines that intersect the center point of the icon frame to create additional vertices. Placed at 90°, 45°, and 15°. These help to further give icon shapes guidance. (Right)</p>
         </section>
 
                 <!--  Image -->
@@ -106,7 +106,7 @@
             <img src="./img/B.png" alt="global navigation icons used on autotrader" loading="lazy" />
             <img src="./img/C.png" alt="orthogonals used for orienting directions of icon shapes" />
             <p>Icons are set on a 1px grid with a 1.5 px trim area. (Left) <br />
-           Orthogonals are the keylines that intersect the center point of the icon frame to create additional vertices. Placed at 90Ëš, 45Ëš, and 15Ëš. These help to further give icon shapes guidance. (Right)</p>
+           Orthogonals are the keylines that intersect the center point of the icon frame to create additional vertices. Placed at 90°, 45°, and 15°. These help to further give icon shapes guidance. (Right)</p>
         </section>
 
 
@@ -135,7 +135,7 @@
                     <div class="single-content">
                         <!-- Lottie Animation Container -->
                         <div class="lottie-container">
-                            <div id="lottie-animation"></div>
+                            <div id="lottie-animation-spot-icons"></div>
                         </div>
                     </div>
                 </section>
@@ -219,7 +219,7 @@
             renderer: 'svg',
             loop: true,
             autoplay: true,
-            path: './animations/at-icon_details.json'
+            path: './animations/at-icon-details.json'
         });
 
         // Load and play grid animation
@@ -228,34 +228,34 @@
             renderer: 'svg',
             loop: true,
             autoplay: true,
-            path: './animations/at_icon-grid.json'
+            path: './animations/at-icon-grid.json'
         });
 
-          // Load and play grid animation
+        // Load and play icon labels animation
         var animation3 = lottie.loadAnimation({
-            container: document.getElementById('lottie-animation-at-grid'),
+            container: document.getElementById('lottie-animation-at-icon-labels'),
             renderer: 'svg',
             loop: true,
             autoplay: true,
-            path: './animations/at_icon-grid.json'
+            path: './animations/at-icon-labels.json'
         });
 
         // Load and play spot icons animation
         var animation4 = lottie.loadAnimation({
-            container: document.getElementById('lottie-animation'),
+            container: document.getElementById('lottie-animation-spot-icons'),
             renderer: 'svg',
             loop: true,
             autoplay: true,
             path: './animations/spot_icons.json'
         });
 
-        // Load and play labels animation
+        // Load and play PSX spot icons animation
         var animation5 = lottie.loadAnimation({
             container: document.getElementById('lottie-animation-at-psx'),
             renderer: 'svg',
             loop: true,
             autoplay: true,
-            path: './animations/at-icon-labels.json'
+            path: './animations/psx-spot-icons.json'
         });
     </script>
     
