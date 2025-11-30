@@ -89,12 +89,12 @@
             <div class="inverted-content">
                 <h2>Illustrations</h2> 
 
-                <!-- Lottie Animation Section -->
+                 <!-- Lottie Animation Section -->
                 <section class="content-section">
                     <div class="single-content">
                         <!-- Lottie Animation Container -->
                         <div class="lottie-container">
-                            <div id="lottie-animation"></div>
+                            <div id="lottie-animation-2"></div>
                         </div>
                     </div>
                 </section>
@@ -133,16 +133,7 @@
                     <img src="./img/kbb_20.png" alt="Spot Illustration UI" />
                 </div>
 
-                <!-- Lottie Animation Section -->
-                <section class="content-section">
-                    <div class="single-content">
-                        <!-- Lottie Animation Container -->
-                        <div class="lottie-container">
-                            <div id="lottie-animation-2"></div>
-                        </div>
-                    </div>
-                </section>
-
+               
                 <div class="inverted-image">
                     <img src="./img/dashboard-empty-state-screens.png" alt="dashboard illustrations" />
                 </div>
@@ -231,16 +222,9 @@
 
     <!-- Lottie Animation Script -->
     <script>
-        // Load and play first Lottie animation
-        var animation1 = lottie.loadAnimation({
-            container: document.getElementById('lottie-animation'),
-            renderer: 'svg',
-            loop: true,
-            autoplay: true,
-            path: './animations/kbb-cars.json'
-        });
+        
 
-        // Load and play second Lottie animation
+        // Load and play first Lottie animation
         var animation2 = lottie.loadAnimation({
             container: document.getElementById('lottie-animation-2'),
             renderer: 'svg',
@@ -249,7 +233,7 @@
             path: './animations/kbb-car-heart.json'
         });
 
-        // Load and play third Lottie animation
+        // Load and play second Lottie animation
         var animation3 = lottie.loadAnimation({
             container: document.getElementById('lottie-animation-3'),
             renderer: 'svg',
