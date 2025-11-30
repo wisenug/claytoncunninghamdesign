@@ -146,12 +146,14 @@ img {
     border-radius: 8px;
     overflow: hidden;
     background: #000;
+    aspect-ratio: 16/9;
 }
 
 .video-container video {
     width: 100%;
-    height: auto;
+    height: 100%;
     display: block;
+    object-fit: cover;
 }
 
 /* Lottie Animation Container */
