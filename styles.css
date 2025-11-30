@@ -165,10 +165,19 @@ img {
     justify-content: center;
     align-items: center;
     position: relative;
-    background: #f5f5f5;
+    background: transparent;
     line-height: 0;
     font-size: 0;
     overflow: hidden;
+}
+
+/* Remove gray background from Lottie SVG and Canvas */
+.lottie-container svg {
+    background-color: transparent !important;
+}
+
+.lottie-container canvas {
+    background-color: transparent !important;
 }
 
 #lottie-animation,
@@ -180,8 +189,6 @@ img {
     margin: 0;
     padding: 0;
 }
-
-
 
 /* Two column layout */
 .content-section.cols-2 {
