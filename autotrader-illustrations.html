@@ -8,6 +8,8 @@
     <link rel="icon" type="image/png" sizes="32x32" href="./img/logo.png">
     <link rel="apple-touch-icon" sizes="180x180" href="./img/logo.png">
     <link rel="stylesheet" href="styles.css">
+      <!-- Lottie Player Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -109,10 +111,17 @@
                 Background environments were created to help establish a setting for these vehicles and people to live in. Placing a vehicle in front of a dealership, city, or landscape helped to ground them further in reality.
             </p>
             <img src="./img/at_illustration_style_11.png" alt="background environments" loading="lazy" />
-            <img src="./img/at_illustration_style_13.png" alt="trees and foliage" loading="lazy" />
-            <img src="./img/at_illustration_style_12.png" alt="cityscape" loading="lazy" />
             <img src="./img/at_illustration_style_dealer_contact form_empty state.png" alt="empty state screens of illustrated dealership exterior" loading="lazy" />
          </section>
+
+           <!-- Two Images Side by Side -->
+        <section class="content-section cols-2" style="margin: 0; padding: 0; gap: 0;">
+            <div style="width: 100%; height: 1000px; margin: 0; padding: 0;">
+                <div id="lottie-animation-at-background-wide" style="width: 100%; height: 100%; margin: 0; padding: 0;"></div>
+            </div>
+         <div style="width: 100%; height: 1000px; margin: 0; padding: 0;">
+                <div id="lottie-animation-background-elements" style="width: 100%; height: 100%; margin: 0; padding: 0;"></div>
+            </div>        </section>
         
         <br />
         <br />
@@ -188,5 +197,29 @@
     <footer class="footer">
         © 2025 Clayton Cunningham Design. All rights reserved.
     </footer>
+
+      <!-- Lottie Animation Script -->
+    <script>
+        // Load and play icon details animation
+        var animation1 = lottie.loadAnimation({
+            container: document.getElementById('lottie-animation-background-wide'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: './animations/at-illustrations-background-wide.json'
+        });
+
+
+       
+
+        // Load and play PSX spot icons animation
+        var animation5 = lottie.loadAnimation({
+            container: document.getElementById('lottie-animation-background-elements'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: './animations/at-illustrations-background-elements.json'
+        });
+    </script>
 </body>
 </html>
