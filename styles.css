@@ -160,14 +160,14 @@ img {
 .lottie-container {
     width: 100%;
     height: auto;
-    margin: 0;
-    padding: 0;
+    margin: 0 !important;
+    padding: 0 !important;
     display: flex;
     border-radius: 8px;
     justify-content: center;
     align-items: center;
     position: relative;
-    background: transparent;
+    background: transparent !important;
     line-height: 0;
     font-size: 0;
     overflow: hidden;
@@ -180,6 +180,14 @@ img {
 
 .lottie-container canvas {
     background-color: transparent !important;
+}
+
+/* Lottie inner divs */
+.lottie-container > div {
+    width: 100%;
+    height: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 #lottie-animation,
@@ -720,5 +728,16 @@ img {
     
     .cta-text {
         font-size: 1.125rem;
+    }
+    
+    /* Mobile Lottie fixes */
+    .lottie-container {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
+    .lottie-container > div {
+        margin: 0 !important;
+        padding: 0 !important;
     }
 }
