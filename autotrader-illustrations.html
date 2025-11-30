@@ -57,8 +57,17 @@
             <p>
                 The vehicles needed a unique look and feel to everything else in the market. Utilizing a semi-realistic style that could help compliment the tone of the Autotrader brand and voice.
             </p>
-            <img src="./img/at_illustration_style_2_.png" alt="Collection of illustrated vehicles" loading="lazy" />
         </section>
+
+        <!-- Lottie Animation Section -->
+                <section class="content-section">
+                    <div class="single-content">
+                        <!-- Lottie Animation Container -->
+                        <div class="lottie-container">
+                            <div id="lottie-animation-at-cars"></div>
+                        </div>
+                    </div>
+                </section>
 
         <!-- Single Full Width Image -->
         <section class="content-section">
@@ -152,6 +161,7 @@
             A style guide and illustration library for all of the various components within the library was created. This would provide information on best practices of how and when to use certain elements, instructions on creating new pieces, and establish rules of what to do and not do. 
             <br />
                 <br />
+                <br />
                 The illustration library was built in Figma so that designers across Autotrader teams could plug in and compose illustrations with the various elements where appropriate.</p>
             <img src="./img/at_illustration_style_15.png" alt="Figma Illustration Style Guide" loading="lazy" />
             <img src="./img/at_illustration_style_32.png" alt="figma library - cars" loading="lazy" />
@@ -199,6 +209,17 @@
 
       <!-- Lottie Animation Script -->
     <script>
+
+        // Load and play at-cars animation
+        var animation5 = lottie.loadAnimation({
+            container: document.getElementById('lottie-animation-at-cars'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: './animations/at-cars.json'
+        });
+
+        
         // Load and play icon details animation
         var animation1 = lottie.loadAnimation({
             container: document.getElementById('lottie-animation-background-wide'),
@@ -219,6 +240,8 @@
             autoplay: true,
             path: './animations/at-illustrations-background-elements.json'
         });
+
+        
     </script>
 </body>
 </html>
