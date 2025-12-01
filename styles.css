@@ -178,12 +178,16 @@ img {
     background-color: transparent !important;
     width: 100% !important;
     height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .lottie-container canvas {
     background-color: transparent !important;
     width: 100% !important;
     height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 /* Lottie inner divs */
