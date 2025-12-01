@@ -159,7 +159,7 @@ img {
 /* Lottie Animation Container */
 .lottie-container {
     width: 100%;
-    height: auto;
+    height: 100%;
     margin: 0 !important;
     padding: 0 !important;
     display: flex;
@@ -176,10 +176,14 @@ img {
 /* Remove gray background from Lottie SVG and Canvas */
 .lottie-container svg {
     background-color: transparent !important;
+    width: 100% !important;
+    height: 100% !important;
 }
 
 .lottie-container canvas {
     background-color: transparent !important;
+    width: 100% !important;
+    height: 100% !important;
 }
 
 /* Lottie inner divs */
@@ -203,6 +207,11 @@ img {
 /* Two column layout */
 .content-section.cols-2 {
     grid-template-columns: repeat(2, 1fr);
+    align-items: start;
+}
+
+.content-section.cols-2 .lottie-container {
+    align-self: start;
 }
 
 /* Three column layout */
