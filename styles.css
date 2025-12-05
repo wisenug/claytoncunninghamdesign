@@ -212,9 +212,18 @@ img {
 .content-section.cols-2 {
     grid-template-columns: repeat(2, 1fr);
     align-items: start;
+    gap: 2.5rem;
 }
 
 .content-section.cols-2 .lottie-container {
+    width: 100%;
+    min-width: 0;
+    align-self: start;
+}
+
+.content-section.cols-2 img {
+    width: 100%;
+    min-width: 0;
     align-self: start;
 }
 
