@@ -246,6 +246,12 @@ img {
     align-self: start;
 }
 
+/* Specific height for icon details animation */
+.lottie-icon-details {
+    min-height: 500px !important;
+    width: 100% !important;
+}
+
 /* Three column layout */
 .content-section.cols-3 {
     grid-template-columns: repeat(3, 1fr);
