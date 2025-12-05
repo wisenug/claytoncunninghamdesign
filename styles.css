@@ -233,6 +233,17 @@ img {
     grid-template-columns: repeat(2, 1fr);
     gap: 2.5rem;
     margin-bottom: 2.5rem;
+    align-items: start;
+}
+
+.lottie-two-col .lottie-container {
+    width: 100%;
+    align-self: start;
+}
+
+.lottie-two-col img {
+    width: 100%;
+    align-self: start;
 }
 
 /* Three column layout */
