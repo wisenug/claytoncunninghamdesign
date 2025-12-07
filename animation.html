@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autotrader Icons - Clayton Cunningham Design</title>
-    <meta name="description" content="Spot icon style created for Autotrader. Iconography." />
+    <title>Animation and Motion Design</title>
+    <meta name="description" content="Animation and Motion design for Autotrader and Kelley Blue Book. Ai, and data visualization ." />
     <link rel="icon" type="image/png" sizes="32x32" href="./img/logo.png">
     <link rel="apple-touch-icon" sizes="180x180" href="./img/logo.png">
     <link rel="stylesheet" href="styles.css">
@@ -30,36 +30,43 @@
     <main class="page-container">
         <!-- Header -->
         <header class="project-header">
-            <h1>Autotrader Icons</h1>
+            <h1>Animation and Motion Design</h1>
             <p>
-                Autotrader lacked a consistent style of icon used throughout the product. In conjunction with defining the illustration style, I established a spot iconography style for use across the AT website and mobile apps.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fringilla, est ac vehicula semper, ex urna posuere est, 
+                ut faucibus tortor ex vel odio. Quisque vitae ligula eros. Nam sit amet odio interdum urna laoreet tincidunt. Donec pharetra
+                malesuada mi, vel fermentum tortor vestibulum eu. Suspendisse eleifend ut risus sit amet commodo. Sed sit amet ante scelerisque, 
+                aliquet nunc sed, vulputate velit. Vivamus dolor sapien, tristique vitae sollicitudin sit amet, interdum et mi. Nam vitae diam eget
+                erat facilisis accumsan ut a metus. Proin libero lacus, dapibus in quam in, cursus elementum erat. Vivamus bibendum facilisis purus,
+                in sagittis est lobortis in. Duis ultrices erat in augue fermentum pulvinar. Sed eu augue tempus lacus tempus bibendum. Maecenas
+                dignissim sit amet risus eu volutpat. Mauris finibus augue id est euismod, finibus placerat elit pellentesque.
             </p>
         </header>
 
-          <!-- Hero Image -->
-        <section class="content-section">
-            <img src="./img/hero-at-icons.png" alt="hero image with road in lush green forest and autotrader icons overlayed ontop." />
-        </section>
 
         <!-- Lottie Animation Section -->
         <section class="content-section">
             <div class="lottie-container" style="height: 500px;">
-                <div id="lottie-animation-icon-details"></div>
+                <div id="lottie-animation-ask-at-hero"></div>
             </div>
+             <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fringilla, est ac vehicula semper, ex urna posuere est, 
+                ut faucibus tortor ex vel odio. Quisque vitae ligula eros. 
+            </p>
         </section>
         
              <!-- Two Images Side by Side -->
         <section class="content-section cols-2">
-            <img src="./img/grid.svg" alt="icon design grid" loading="lazy" />
-            <img src="./img/orthogonals.svg" alt="orthogonals used for orienting directions of icon shapes" loading="lazy" />
+             <div class="lottie-container" ;">
+                <div id="lottie-animation-ask-at-intro"></div>
+            </div>
             <p>Icons are set on a 1px grid with a 1.5 px trim area. (Left) <br />
-           Orthogonals are the keylines that intersect the center point of the icon frame to create additional vertices. Placed at 90Â°, 45Â°, and 15Â°. These help to further give icon shapes guidance. (Right)</p>
+           o90Â°, 45Â°, and 15Â°. These help to further give icon shape </p>
         </section>
 
                 <!--  Image -->
         <section class="content-section">
-            <img src="./img/keyshapes.png" alt="key lines used for sizing Autotrader icon shapes" loading="lazy" />
-            <img src="./img/3-icons-grid.svg" alt="grid of 3 icons." loading="lazy" />
+             <div class="lottie-container" ;">
+                <div id="lottie-animation-ask-at-chat-ui"></div>
 
         </section>
 
@@ -196,11 +203,11 @@
     <script>
         // Load and play icon details animation
         var animation1 = lottie.loadAnimation({
-            container: document.getElementById('lottie-animation-icon-details'),
+            container: document.getElementById('lottie-animation-ask-at-hero'),
             renderer: 'svg',
             loop: true,
             autoplay: true,
-            path: './animations/at-icon-details.json'
+            path: './animations/ask-at-hero.json'
         });
 
         // Load and play grid animation
@@ -209,7 +216,7 @@
             renderer: 'svg',
             loop: true,
             autoplay: true,
-            path: './animations/at-icon-grid.json'
+            path: './animations/ask-at-intro.json'
         });
 
         // Load and play icon labels animation
