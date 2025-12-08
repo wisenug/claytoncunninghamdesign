@@ -44,19 +44,6 @@
             height: 600px;
             width: 100%;
         }
-
-        /* Two-column responsive animation heights */
-        .cols-2 .lottie-container {
-            height: 300px;
-            width: 100%;
-        }
-
-        .cols-2 .lottie-container svg,
-        .cols-2 .lottie-container canvas {
-            width: 100% !important;
-            height: 100% !important;
-            object-fit: contain;
-        }
     </style>
 
     <!-- Lottie Player Script -->
@@ -109,10 +96,10 @@
 
         <!-- Two Column: Animations Side by Side -->
         <section class="content-section cols-2">
-            <div class="lottie-container">
+            <div class="lottie-container lottie-large">
                 <div id="lottie-ask-at-intro-comparison"></div>
             </div>
-            <div class="lottie-container">
+            <div class="lottie-container lottie-large">
                 <div id="lottie-ask-at-chat-ui-comparison"></div>
             </div>
         </section>
