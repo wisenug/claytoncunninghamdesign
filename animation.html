@@ -9,6 +9,43 @@
     <link rel="apple-touch-icon" sizes="180x180" href="./img/logo.png">
     <link rel="stylesheet" href="styles.css">
     
+    <style>
+        /* Ensure Lottie animations fill their containers */
+        .lottie-container {
+            width: 100% !important;
+            height: auto;
+        }
+
+        .lottie-container svg,
+        .lottie-container canvas {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        .lottie-container > div {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        /* Hero animation specific height */
+        .lottie-hero {
+            height: 500px;
+            width: 100%;
+        }
+
+        /* Medium animation heights */
+        .lottie-medium {
+            height: 400px;
+            width: 100%;
+        }
+
+        /* Large animation heights */
+        .lottie-large {
+            height: 600px;
+            width: 100%;
+        }
+    </style>
+
     <!-- Lottie Player Script -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
 </head>
@@ -36,9 +73,9 @@
             </p>
         </header>
 
-        <!-- Ask at Hero Section -->
+        <!-- Ask at Bounce Hero Section -->
         <section class="content-section">
-            <div class="lottie-container" style="height: 2000px; width=2000px; ">
+            <div class="lottie-container lottie-hero">
                 <div id="lottie-ask-at-hero"></div>
             </div>
             <p>
@@ -48,7 +85,7 @@
 
         <!-- Two Column: Animation & Description -->
         <section class="content-section cols-2">
-            <div class="lottie-container">
+            <div class="lottie-container lottie-medium">
                 <div id="lottie-ask-at-intro"></div>
             </div>
             <div>
@@ -61,42 +98,27 @@
 
         <!-- Chat UI Animation -->
         <section class="content-section">
-            <div class="lottie-container" style="height: 400px;">
+            <div class="lottie-container lottie-medium">
                 <div id="lottie-ask-at-chat-ui"></div>
             </div>
         </section>
 
-     
-
-
         <!-- Two Column: Icon Labels & VDP -->
         <section class="content-section cols-2">
-            <div class="lottie-container" style="height: 600px;">
-                <div id="lottie-at-icon-labels"></div>
-            </div>
-            <img src="./img/vdp-ui-icons.png" alt="Vehicle Detail Page UI icons showing specifications and indicators" loading="lazy" />
-        </section>
-        
-       <section class="content-section cols-2">
-            <div class="lottie-container" style="height: 600px;">
+            <div class="lottie-container lottie-large">
                 <div id="lottie-at-icon-labels"></div>
             </div>
             <img src="./img/vdp-ui-icons.png" alt="Vehicle Detail Page UI icons showing specifications and indicators" loading="lazy" />
         </section>
 
-        
-
-        <!-- inverted color section -->
+        <!-- Inverted Section -->
         <section class="inverted-section">
             <div class="inverted-content">
+                <h2>Data Visualization</h2>
                 
-                <!-- Lottie Animation Section -->
                 <section class="content-section">
-                    <div class="single-content">
-                        <!-- Lottie Animation Container -->
-                        <div class="lottie-container">
-                            <div id="lottie-animation-car-road"></div>
-                        </div>
+                    <div class="lottie-container lottie-medium">
+                        <div id="lottie-animation-car-road"></div>
                     </div>
                 </section>
             </div>
@@ -139,7 +161,10 @@
         const animationConfig = {
             renderer: 'svg',
             loop: true,
-            autoplay: true
+            autoplay: true,
+            rendererSettings: {
+                preserveAspectRatio: 'xMidYMid slice'
+            }
         };
 
         // Animation objects to load
@@ -147,10 +172,8 @@
             { id: 'lottie-ask-at-hero', path: './animations/ask-at-hero.json' },
             { id: 'lottie-ask-at-intro', path: './animations/ask-at-intro.json' },
             { id: 'lottie-ask-at-chat-ui', path: './animations/ask-at-chat-ui.json' },
-            { id: 'lottie-car-road', path: './animations/car-road.json' },
             { id: 'lottie-at-icon-labels', path: './animations/at-icon-labels.json' },
-            { id: 'lottie-spot-icons', path: './animations/spot-icons.json' },
-            { id: 'lottie-at-psx', path: './animations/psx-spot-icons.json' }
+            { id: 'lottie-animation-car-road', path: './animations/car-road.json' }
         ];
 
         // Load all animations
