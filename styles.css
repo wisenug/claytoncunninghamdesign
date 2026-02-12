@@ -615,6 +615,39 @@ img {
     margin-top: 5rem;
 }
 
+
+/* Fix for icon details animation - maintain aspect ratio */
+#lottie-animation-icon-details {
+    width: 100%;
+    height: auto;
+    max-height: 600px;
+    margin: 0 auto;
+    display: block;
+}
+
+#lottie-animation-icon-details svg {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 600px;
+    display: block;
+}
+
+/* Responsive adjustments for icon details animation */
+@media (max-width: 900px) {
+    #lottie-animation-icon-details,
+    #lottie-animation-icon-details svg {
+        max-height: 400px;
+    }
+}
+
+@media (max-width: 600px) {
+    #lottie-animation-icon-details,
+    #lottie-animation-icon-details svg {
+        max-height: 300px;
+    }
+}
+
+
 /* ==========================================
    RESPONSIVE DESIGN
    ========================================== */
