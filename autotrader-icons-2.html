@@ -76,8 +76,8 @@
         </section>
 
              <!-- Two Images Side by Side - FIXED LOTTIE ALIGNMENT -->
-        <section class="content-section cols-2">
-            <div class="lottie-container" style="align-self: start;">
+        <section class="content-section cols-2" style="align-items: center;">
+            <div class="lottie-container">
                 <div id="lottie-animation-at-icon-labels"></div>
             </div>
             <img src="./img/vdp-ui-icons.png" alt="Vehicle Detail Page icons showing various UI indicators and specifications for vehicle listings" loading="lazy" />
@@ -218,10 +218,7 @@
             renderer: 'svg',
             loop: true,
             autoplay: true,
-            path: './animations/at-icon-labels.json',
-            rendererSettings: {
-                preserveAspectRatio: 'xMidYMin slice'
-            }
+            path: './animations/at-icon-labels.json'
         });
 
         // Load and play spot icons animation
