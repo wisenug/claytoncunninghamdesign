@@ -820,4 +820,50 @@ img {
         margin: 0 !important;
         padding: 0 !important;
     }
+
+    /* Fix for icon details animation - maintain aspect ratio */
+#lottie-animation-icon-details {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+}
+
+#lottie-animation-icon-details svg {
+    width: 100% !important;
+    height: auto !important;
+    display: block;
+}
+
+/* On larger screens, limit the height so it doesn't get too tall */
+@media (min-width: 1400px) {
+    #lottie-animation-icon-details {
+        max-height: 700px;
+    }
+    
+    #lottie-animation-icon-details svg {
+        max-height: 700px;
+    }
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 900px) {
+    #lottie-animation-icon-details {
+        max-height: 500px;
+    }
+    
+    #lottie-animation-icon-details svg {
+        max-height: 500px;
+    }
+}
+
+@media (max-width: 600px) {
+    #lottie-animation-icon-details {
+        max-height: 400px;
+    }
+    
+    #lottie-animation-icon-details svg {
+        max-height: 400px;
+    }
+
 }
