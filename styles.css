@@ -425,12 +425,13 @@ img {
 .project-card h3 {
     font-size: 1.5rem;
     font-weight: 700;
-    margin-bottom: 0.2rem;
+    margin-bottom: 0.1rem;
 }
 
 .project-card p {
     font-size: 1.125rem;
     color: #666;
+    line-height: 1.2;
 }
 
 /* ==========================================
