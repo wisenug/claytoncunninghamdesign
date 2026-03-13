@@ -43,6 +43,7 @@ html {
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
   scroll-behavior: smooth;
+  background-color: #F0C0CC;
 }
 
 body {
