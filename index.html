@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="img/clayton-cunningham-design-logo.svg">
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <link rel="apple-touch-icon" href="img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clayton Cunningham Design</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,300;1,9..40,400&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    :root {
+      --color-bg: #92C821;
+      --color-black: #345110;
+    }
+
+    /* ── Staggered two-column image grid ── */
+    .work-grid {
+      padding: 4rem var(--page-margin) 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.6rem;
+      align-items: start;
+    }
+
+    .work-col {
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+    }
+
+    .work-col--right {
+      padding-top: 0;
+    }
+
+    /* ── Project card with hover label ── */
+    .work-card {
+      position: relative;
+      display: block;
+      overflow: hidden;
+      border-radius: var(--radius-img);
+      text-decoration: none;
+    }
+
+    .work-card__ink-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0;
+    }
+
+    .work-img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      border-radius: 0;
+      aspect-ratio: 4 / 3;
+      transform: scale(1);
+      transition: transform 0.5s cubic-bezier(1, 0, 1, 1);
+    }
+
+    .work-card:hover .work-img,
+    .work-card.is-active .work-img {
+      transform: scale(1.14);
+      transition: transform 1.1s linear(0, 0.1206, 0.2168, 0.3001, 0.3741, 0.4409, 0.5016, 0.5572, 0.6083, 0.6555, 0.699, 0.7394, 0.7768, 0.8114, 0.8435, 0.8733, 0.9008, 0.9263, 0.9499, 0.9715, 0.9915, 1.0097, 1.0264, 1.0415, 1.0552, 1.0676, 1.0785, 1.0882, 1.0967, 1.104, 1.1101, 1.1151, 1.1191, 1.122, 1.1239, 1.1249, 1.1249, 1.1244, 1.1234, 1.1218, 1.1198, 1.1172, 1.1142, 1.1109, 1.1072, 1.1033, 1.0992, 1.095, 1.0907, 1.0865, 1.0823, 1.0782, 1.0741, 1.0702, 1.0664, 1.0627, 1.0591, 1.0557, 1.0525, 1.0493, 1.0463, 1.0435, 1.0407, 1.0381, 1.0356, 1.0332, 1.031, 1.0288, 1.0268, 1.0248, 1.023, 1.0212, 1.0195, 1.018, 1.0165, 1.0151, 1.0137, 1.0125, 1.0113, 1.0102, 1.0091, 1.0082, 1.0073, 1.0064, 1.0056, 1.0049, 1.0042, 1.0036, 1.003, 1.0025, 1.0021, 1.0017, 1.0013, 1.001, 1.0007, 1.0005, 1.0003, 1.0002, 1.0001, 1, 1);
+    }
+
+    .work-img--tall {
+      aspect-ratio: 3 / 4;
+    }
+
+    .work-card__label-client {
+      display: block;
+      font-size: 3.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 0.4rem;
+    }
+
+    .work-card__label {
+      position: absolute;
+      bottom: -3rem;
+      left: 0;
+      right: 0;
+      padding: 2rem 2.4rem 3.6rem;
+      background: #E3F2FF;
+      color: #001F6E;
+      font-size: 2.4rem;
+      font-weight: 400;
+      letter-spacing: 0;
+      line-height: 1.5;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      box-sizing: border-box;
+      transform: translateY(101%);
+      transition: transform 0.5s cubic-bezier(1, 0, 1, 1);
+    }
+
+    .work-card:hover .work-card__label,
+    .work-card.is-active .work-card__label {
+      transform: translateY(0);
+      transition: transform 0.8s linear(0, 0.1206, 0.2168, 0.3001, 0.3741, 0.4409, 0.5016, 0.5572, 0.6083, 0.6555, 0.699, 0.7394, 0.7768, 0.8114, 0.8435, 0.8733, 0.9008, 0.9263, 0.9499, 0.9715, 0.9915, 1.0097, 1.0264, 1.0415, 1.0552, 1.0676, 1.0785, 1.0882, 1.0967, 1.104, 1.1101, 1.1151, 1.1191, 1.122, 1.1239, 1.1249, 1.1249, 1.1244, 1.1234, 1.1218, 1.1198, 1.1172, 1.1142, 1.1109, 1.1072, 1.1033, 1.0992, 1.095, 1.0907, 1.0865, 1.0823, 1.0782, 1.0741, 1.0702, 1.0664, 1.0627, 1.0591, 1.0557, 1.0525, 1.0493, 1.0463, 1.0435, 1.0407, 1.0381, 1.0356, 1.0332, 1.031, 1.0288, 1.0268, 1.0248, 1.023, 1.0212, 1.0195, 1.018, 1.0165, 1.0151, 1.0137, 1.0125, 1.0113, 1.0102, 1.0091, 1.0082, 1.0073, 1.0064, 1.0056, 1.0049, 1.0042, 1.0036, 1.003, 1.0025, 1.0021, 1.0017, 1.0013, 1.001, 1.0007, 1.0005, 1.0003, 1.0002, 1.0001, 1, 1);
+    }
+
+    /* ── Capabilities section ── */
+    .capabilities-section {
+      margin: 10rem 0 0;
+      padding: 8rem var(--page-margin) 8rem;
+      background-color: var(--color-black);
+      position: relative;
+    }
+
+    .capabilities-inner {
+      display: flex;
+      align-items: flex-start;
+      gap: 2.4rem;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .capabilities-heading {
+      font-size: clamp(6.4rem, 9vw, 11.2rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 0.95;
+      color: var(--color-bg);
+      flex: 1;
+    }
+
+    .capabilities-caret {
+      flex-shrink: 0;
+      margin-top: 0.6rem;
+      width: clamp(5rem, 7vw, 8rem);
+      height: clamp(5rem, 7vw, 8rem);
+      color: var(--color-bg);
+      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                  opacity 0.2s ease;
+    }
+
+    .capabilities-caret:hover {
+      opacity: 0.7;
+    }
+
+    .capabilities-section.is-open .capabilities-caret {
+      transform: rotate(180deg);
+    }
+
+    /* ── Accordion list ── */
+    .capabilities-list-wrap {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .capabilities-section.is-open .capabilities-list-wrap {
+      max-height: 80rem;
+    }
+
+    .capabilities-list {
+      list-style: none;
+      padding: 4rem 0 0;
+      margin-top: 4rem;
+    }
+
+    .capabilities-list li {
+      border-bottom: 1px solid rgba(146, 200, 33, 0.15);
+    }
+
+    .capabilities-list li:last-child {
+      border-bottom: none;
+    }
+
+    .capabilities-list a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2.4rem 0;
+      font-size: clamp(2.2rem, 3vw, 3.2rem);
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      color: var(--color-bg);
+      text-decoration: none;
+      opacity: 0.75;
+      transition: opacity 0.2s ease;
+    }
+
+    .capabilities-list a:hover {
+      opacity: 1;
+    }
+
+    .capabilities-list a .cap-link-text {
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .capabilities-list a:hover .cap-link-text {
+      transform: translateX(8px);
+    }
+
+    .capabilities-list a svg {
+      width: 2rem;
+      height: 2rem;
+      flex-shrink: 0;
+      opacity: 0.5;
+      transition: opacity 0.2s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .capabilities-list a:hover svg {
+      opacity: 1;
+      transform: translateX(4px);
+    }
+
+    /* ── Bottom image strip ── */
+    .work-grid-bottom {
+      padding: 0 var(--page-margin) 10rem;
+      margin-top: 1.6rem;
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 640px) {
+      .work-grid {
+        grid-template-columns: 1fr;
+        padding-top: 2.4rem;
+      }
+
+      .work-col--right {
+        padding-top: 0;
+      }
+
+      .work-img--tall {
+        aspect-ratio: 4 / 3;
+      }
+
+      .capabilities-section {
+        margin-top: 6rem;
+        padding: 6rem var(--page-margin);
+      }
+
+      .capabilities-list a {
+        padding: 2rem 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-icon" aria-hidden="true"></span>
+      <span class="nav-logo-name">Clayton Cunningham Design</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" aria-current="page">Work</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <!-- Staggered two-column image grid -->
+    <section class="work-grid">
+      <!-- Left column — starts at baseline -->
+      <div class="work-col work-col--left">
+        <a href="autotrader-illustration-system.html" class="work-card">
+          <img class="work-img work-img--tall" src="img/at_illustration_style_10.png" alt="Illustration system — character designs" loading="eager">
+          <div class="work-card__label"><span class="work-card__label-client">Autotrader</span>Designing a scalable illustration system across web, mobile apps, and marketing</div>
+        </a>
+        <a href="autotrader-icons.html" class="work-card">
+          <img class="work-img" src="img/autotrader_icons_thumbnail.png" alt="Autotrader iconography system" loading="lazy">
+          <div class="work-card__label"><span class="work-card__label-client">Autotrader</span>Unifying a fragmented icon language</div>
+        </a>
+        <a href="sketches-illustrations-doodles.html" class="work-card">
+          <img class="work-img" src="img/sketch_thumbnail.jpg" alt="Sketches, illustrations, and doodles" loading="lazy">
+          <div class="work-card__label" style="background: #4D93FC; color: #19133A;"><span class="work-card__label-client">Sketches, Illustrations and Doodles</span>A collection of drawn things</div>
+        </a>
+<a href="paradesmith.html" class="work-card">
+          <img class="work-img" src="img/paradesmith_thumbnail.jpg" alt="Paradesmith" loading="lazy">
+          <div class="work-card__label" style="background: #1BBFCA; color: #07465A;"><span class="work-card__label-client">Paradesmith</span>Building an MVP to transform scattered online content into curated community experiences</div>
+        </a>
+        <a href="tshq-fanwear-redesign.html" class="work-card">
+          <img class="work-img" src="img/tshq_fanwear_thumbnail.png" alt="DICK'S TSHQ Fan Wear Redesign" loading="lazy">
+          <div class="work-card__label" style="background: #FF5F1F; color: #0D0D1A;"><span class="work-card__label-client">DICK'S TSHQ Fan Wear</span>Designing a standalone fan wear store that turned team spirit into club revenue</div>
+        </a>
+        <a href="logos.html" class="work-card">
+          <img class="work-img" src="img/lotuslion_thumbnail.jpg" alt="Logos and brand identity work" loading="lazy">
+          <div class="work-card__label" style="background: #FFF8D5; color: #553B06;"><span class="work-card__label-client">Logos</span>A collection of logo and brand identity work</div>
+        </a>
+      </div>
+
+      <!-- Right column — staggered lower -->
+      <div class="work-col work-col--right">
+        <a href="kbb-icons-illustrations.html" class="work-card">
+          <img class="work-img" src="img/Kbb_thumbnail.png" alt="KBB icons and illustrations" loading="eager">
+          <div class="work-card__label"><span class="work-card__label-client">Kelley Blue Book</span>Growing a renowned leader's visual library</div>
+        </a>
+        <a href="tshq-mobile-app.html" class="work-card">
+          <img class="work-img" src="img/tshq_app_thumbnail.png" alt="DICK'S TSHQ mobile app" loading="lazy">
+          <div class="work-card__label" style="background: #006554; color: #E0FAE0;"><span class="work-card__label-client">DICK'S TSHQ Mobile App</span>Designing mobile app features that ease the pain of youth sports management</div>
+        </a>
+        <a href="tshq-registration.html" class="work-card">
+          <img class="work-img" src="img/tshq_reg_thumbnail.gif" alt="DICK'S TSHQ Registration Redesign" loading="lazy">
+          <div class="work-card__label" style="background: #f0f0f0; color: #1B561A;"><span class="work-card__label-client">DICK'S TSHQ Registration</span>Redesigning youth sports registration for over 3 million players and 10,000 teams</div>
+        </a>
+        <a href="coca-cola-campus-messaging.html" class="work-card">
+          <img class="work-img" src="img/cm_thumbnail.jpg" alt="Coca-Cola Campus Messaging" loading="lazy">
+          <div class="work-card__label" style="background: #000000; color: #ffffff;"><span class="work-card__label-client">Coca-Cola</span>Unified campus communication experiences across Coca-Cola's world headquarters</div>
+        </a>
+        <a href="coca-cola-assorted-projects.html" class="work-card">
+          <img class="work-img" src="img/cc_misc_BIG_PAC_website.jpg" alt="Coca-Cola Assorted Projects" loading="lazy">
+          <div class="work-card__label" style="background: #ffffff; color: #F02D2D;"><span class="work-card__label-client">Coca-Cola</span>Designing for one of the world's most iconic brands</div>
+        </a>
+        <a href="tshq-assorted-projects.html" class="work-card">
+          <img class="work-img" src="img/tshq_assorted_projects_thumbnail.png" alt="DICK'S TSHQ Assorted Projects" loading="lazy">
+          <div class="work-card__label" style="background: #2E1F4A; color: #F0E6FF;"><span class="work-card__label-client">DICK'S TSHQ Assorted</span>Selected works from DICK's Team Sports Headquarters</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Capabilities section -->
+    <section class="capabilities-section" id="capabilities-section">
+      <div class="capabilities-inner" id="capabilities-trigger" role="button" aria-expanded="false" tabindex="0">
+        <h2 class="capabilities-heading">Capabilities</h2>
+        <!-- Caret SVG -->
+        <svg class="capabilities-caret" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M16 28L40 52L64 28" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <!-- Accordion list -->
+      <div class="capabilities-list-wrap" id="capabilities-list-wrap">
+        <ul class="capabilities-list">
+          <li>
+            <a href="capabilities.html">
+              <span class="cap-link-text">All Capabilities</span>
+              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="capabilities.html?tag=Product+Design">
+              <span class="cap-link-text">Product Design</span>
+              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="capabilities.html?tag=Illustration+System">
+              <span class="cap-link-text">Illustration System</span>
+              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="capabilities.html?tag=Design+Systems">
+              <span class="cap-link-text">Design Systems</span>
+              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="capabilities.html?tag=Visual+Design">
+              <span class="cap-link-text">Visual Design</span>
+              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="capabilities.html?tag=Brand+Expression">
+              <span class="cap-link-text">Brand Expression</span>
+              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="capabilities.html?tag=UX">
+              <span class="cap-link-text">UX</span>
+              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="capabilities.html?tag=Figma">
+              <span class="cap-link-text">Figma</span>
+              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p class="footer-copy">&copy; <span id="footer-year"></span> Clayton Cunningham Design. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Hide nav on scroll down, reveal on scroll up
+    (function() {
+      var nav = document.querySelector('nav');
+      var lastY = 0;
+      window.addEventListener('scroll', function() {
+        var y = window.scrollY;
+        if (y > lastY && y > 80) {
+          nav.classList.add('nav--hidden');
+        } else {
+          nav.classList.remove('nav--hidden');
+        }
+        lastY = y;
+      }, { passive: true });
+    })();
+
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+    // View transition: ink-spill from card into project page.
+    // To add a new project, add its href here with the page's --color-bg and --color-black values.
+    var PAGE_BG  = {
+      'autotrader-illustration-system.html': '#E3F2FF',
+      'kbb-icons-illustrations.html':        '#FFBF00',
+      'autotrader-icons.html':               '#FF8806',
+      'sketches-illustrations-doodles.html': '#4D93FC',
+      'paradesmith.html':                    '#1BBFCA',
+      'tshq-fanwear-redesign.html':          '#FF5F1F',
+      'tshq-mobile-app.html':               '#006554',
+      'tshq-registration.html':             '#f0f0f0',
+      'coca-cola-campus-messaging.html':    '#000000',
+      'coca-cola-assorted-projects.html':   '#ffffff',
+      'tshq-assorted-projects.html':        '#2E1F4A',
+      'logos.html':                         '#FFF8D5'
+    };
+    var PAGE_FG  = {
+      'autotrader-illustration-system.html': '#0F2960',
+      'kbb-icons-illustrations.html':        '#002B5C',
+      'autotrader-icons.html':               '#001F6E',
+      'sketches-illustrations-doodles.html': '#19133A',
+      'paradesmith.html':                    '#07465A',
+      'tshq-fanwear-redesign.html':          '#0D0D1A',
+      'tshq-mobile-app.html':               '#E0FAE0',
+      'tshq-registration.html':             '#1B561A',
+      'coca-cola-campus-messaging.html':    '#ffffff',
+      'coca-cola-assorted-projects.html':   '#F02D2D',
+      'tshq-assorted-projects.html':        '#F0E6FF',
+      'logos.html':                         '#553B06'
+    };
+    document.querySelectorAll('.work-card').forEach(function(card) {
+      var href = card.getAttribute('href');
+      var bg = PAGE_BG[href];
+      if (!bg) return;
+      var inkEl = document.createElement('div');
+      inkEl.className = 'work-card__ink-bg';
+      inkEl.setAttribute('aria-hidden', 'true');
+      inkEl.style.background = bg;
+      card.insertBefore(inkEl, card.firstChild);
+      var labelEl = card.querySelector('.work-card__label');
+      labelEl.style.background = bg;
+      if (PAGE_FG[href]) labelEl.style.color = PAGE_FG[href];
+      card.addEventListener('click', function() {
+        inkEl.style.opacity = '1';
+        inkEl.style.viewTransitionName = 'ink-bg';
+        card.querySelector('.work-card__label').style.viewTransitionName = 'page-title';
+      });
+    });
+
+    // Skip view transition on back/forward navigation
+    window.addEventListener('pagereveal', function(e) {
+      if (e.viewTransition && navigation?.activation?.navigationType === 'traverse') {
+        e.viewTransition.skipTransition();
+      }
+    });
+
+    // Capabilities accordion
+    (function() {
+      var section = document.getElementById('capabilities-section');
+      var trigger = document.getElementById('capabilities-trigger');
+      var wrap    = document.getElementById('capabilities-list-wrap');
+
+      function toggle() {
+        var open = section.classList.toggle('is-open');
+        trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+
+        if (open) {
+          // Wait a tick for max-height transition to start, then scroll section into view
+          requestAnimationFrame(function() {
+            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          });
+        }
+      }
+
+      trigger.addEventListener('click', toggle);
+      trigger.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggle();
+        }
+      });
+    })();
+
+    // Card overlay: tap-to-reveal on touch devices
+    (function () {
+      var cards = Array.from(document.querySelectorAll('.work-card'));
+      function clearAll(except) {
+        cards.forEach(function (c) { if (c !== except) c.classList.remove('is-active'); });
+      }
+      cards.forEach(function (card) {
+        card.addEventListener('touchend', function (e) {
+          var isActive = card.classList.contains('is-active');
+          clearAll(card);
+          if (isActive) {
+            card.classList.remove('is-active');
+          } else {
+            e.preventDefault(); // prevent immediate navigation on first tap
+            card.classList.add('is-active');
+          }
+        }, { passive: false });
+      });
+      // Tap outside any card dismisses all
+      document.addEventListener('touchend', function (e) {
+        if (!e.target.closest('.work-card')) clearAll(null);
+      });
+    })();
+  </script>
+</body>
+</html>

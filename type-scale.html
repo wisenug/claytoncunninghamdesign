@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Typography Scale — Clayton Cunningham</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,300;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ─── Base ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:    #201515;
+      --bg:       #f0efeb;
+      --bg-alt:   #e8e7e2;
+      --orange:   #fe5000;
+      --aqua:     #04abe0;
+      --merlot:   #630331;
+      --smoke:    #9e9e9e;
+      --rule:     rgba(32,21,21,0.1);
+      --font:     'DM Sans', 'Neue Haas Grotesk Display Pro', Helvetica, Arial, sans-serif;
+      --mono:     'DM Mono', 'Courier New', monospace;
+      font-size:  10px;
+    }
+
+    html { font-family: var(--font); background: var(--bg); color: var(--black); -webkit-font-smoothing: antialiased; }
+    body { min-height: 100vh; }
+
+    /* ─── Page shell ─── */
+    .page { max-width: 1200px; margin: 0 auto; padding: 8rem 4rem 12rem; }
+
+    /* ─── Header ─── */
+    .doc-header {
+      padding-bottom: 5.6rem;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 7.2rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 4rem;
+    }
+    .doc-eyebrow {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--smoke);
+      margin-bottom: 1.6rem;
+    }
+    .doc-title {
+      font-size: 3.6rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      color: var(--black);
+    }
+    .doc-meta {
+      text-align: right;
+    }
+    .doc-meta-line {
+      font-size: 1.2rem;
+      font-family: var(--mono);
+      color: var(--smoke);
+      line-height: 2;
+    }
+    .doc-meta-line span {
+      color: var(--black);
+      font-weight: 500;
+    }
+
+    /* ─── Section label ─── */
+    .section-label {
+      font-size: 1.0rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--smoke);
+      margin-bottom: 2.4rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .type-group {
+      margin-bottom: 8rem;
+    }
+
+    /* ─── Type row ─── */
+    .type-row {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 0;
+      border-bottom: 1px solid var(--rule);
+      padding: 3.2rem 0;
+      align-items: start;
+    }
+    .type-row:first-of-type {
+      border-top: 1px solid var(--rule);
+    }
+
+    /* Spec sidebar */
+    .type-specs {
+      padding-top: 0.4rem;
+      padding-right: 3.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      position: sticky;
+      top: 2rem;
+    }
+    .spec-token {
+      font-size: 1.15rem;
+      font-family: var(--mono);
+      font-weight: 500;
+      color: var(--orange);
+      letter-spacing: 0.01em;
+      margin-bottom: 0.4rem;
+    }
+    .spec-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.8rem;
+    }
+    .spec-key {
+      font-size: 1.0rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--smoke);
+      min-width: 5.6rem;
+    }
+    .spec-val {
+      font-size: 1.15rem;
+      font-family: var(--mono);
+      color: var(--black);
+    }
+    .spec-val.responsive {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+    .spec-val.responsive .bp {
+      display: flex;
+      gap: 0.6rem;
+      align-items: center;
+    }
+    .spec-val.responsive .bp-label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--smoke);
+      min-width: 3rem;
+    }
+    .tag-pill {
+      display: inline-block;
+      font-size: 1.0rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: var(--aqua);
+      color: #fff;
+      border-radius: 10rem;
+      padding: 0.2rem 0.8rem;
+      margin-top: 0.4rem;
+      width: fit-content;
+    }
+    .tag-pill.fluid { background: var(--merlot); }
+    .tag-pill.label { background: var(--black); }
+
+    /* Sample area */
+    .type-sample {
+      overflow: hidden;
+    }
+    .sample-label {
+      font-size: 1.0rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--smoke);
+      margin-bottom: 1.6rem;
+    }
+
+    /* ─── Actual type specimens ─── */
+    .specimen-display-hero {
+      font-family: var(--font);
+      font-size: clamp(5.6rem, 3.8vw + 4.1rem, 9.6rem);
+      font-weight: 800;
+      line-height: 0.97;
+      letter-spacing: -0.035em;
+      color: var(--black);
+    }
+    .specimen-display-next {
+      font-family: var(--font);
+      font-size: clamp(6.4rem, 9vw, 11.2rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 0.95;
+      color: var(--black);
+    }
+    .specimen-intro {
+      font-family: var(--font);
+      font-size: 4.8rem;
+      font-weight: 400;
+      line-height: 1.4;
+      color: var(--black);
+    }
+    .specimen-section-heading {
+      font-family: var(--font);
+      font-size: 4.8rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: var(--black);
+    }
+    .specimen-body {
+      font-family: var(--font);
+      font-size: 2.4rem;
+      font-weight: 400;
+      line-height: 1.75;
+      color: var(--black);
+    }
+    .specimen-nav {
+      font-family: var(--font);
+      font-size: 1.25rem;
+      font-weight: 400;
+      letter-spacing: 0.005em;
+      color: var(--black);
+    }
+    .specimen-label {
+      font-family: var(--font);
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--black);
+    }
+    .specimen-tag {
+      font-family: var(--font);
+      font-size: 1.3rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      color: var(--black);
+    }
+    .specimen-next-eyebrow {
+      font-family: var(--font);
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--black);
+    }
+
+    /* ─── Scale bar ─── */
+    .scale-section {
+      margin-bottom: 8rem;
+    }
+    .scale-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .scale-row {
+      display: grid;
+      grid-template-columns: 72px 40px 1fr;
+      align-items: center;
+      gap: 2.4rem;
+      padding: 1.6rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .scale-row:first-of-type { border-top: 1px solid var(--rule); }
+    .scale-step {
+      font-family: var(--mono);
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--smoke);
+      letter-spacing: 0.04em;
+    }
+    .scale-px {
+      font-family: var(--mono);
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--black);
+      text-align: right;
+    }
+    .scale-bar-wrap {
+      position: relative;
+      height: 2.8rem;
+      display: flex;
+      align-items: center;
+    }
+    .scale-bar {
+      height: 100%;
+      background: var(--black);
+      border-radius: 0.3rem;
+      opacity: 0.08;
+      position: absolute;
+      left: 0;
+    }
+    .scale-sample {
+      font-family: var(--font);
+      color: var(--black);
+      white-space: nowrap;
+      position: relative;
+      z-index: 1;
+      line-height: 1;
+    }
+    .scale-row.active .scale-bar { opacity: 0.12; background: var(--orange); }
+    .scale-row.active .scale-px { color: var(--orange); }
+    .scale-row.active .scale-step { color: var(--orange); }
+
+    /* ─── Weight chart ─── */
+    .weight-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      border-radius: 0.8rem;
+      overflow: hidden;
+      margin-bottom: 8rem;
+    }
+    .weight-cell {
+      background: var(--bg);
+      padding: 3.2rem 2.4rem;
+    }
+    .weight-label {
+      font-family: var(--mono);
+      font-size: 1.0rem;
+      font-weight: 500;
+      color: var(--smoke);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 1.6rem;
+    }
+    .weight-numeral {
+      font-family: var(--mono);
+      font-size: 1.1rem;
+      color: var(--orange);
+      margin-bottom: 0.8rem;
+    }
+    .weight-sample {
+      font-family: var(--font);
+      font-size: 2.8rem;
+      line-height: 1.1;
+      color: var(--black);
+    }
+
+    /* ─── Letter spacing chart ─── */
+    .tracking-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-bottom: 8rem;
+    }
+    .tracking-row {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      align-items: center;
+      gap: 3.2rem;
+      padding: 2.4rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .tracking-row:first-of-type { border-top: 1px solid var(--rule); }
+    .tracking-spec {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .tracking-val {
+      font-family: var(--mono);
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--orange);
+    }
+    .tracking-name {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--smoke);
+    }
+    .tracking-sample {
+      font-family: var(--font);
+      font-size: 2.4rem;
+      font-weight: 600;
+      color: var(--black);
+    }
+
+    /* ─── Responsive table ─── */
+    .responsive-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 8rem;
+    }
+    .responsive-table th {
+      font-size: 1.0rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--smoke);
+      text-align: left;
+      padding: 1.2rem 2rem 1.2rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .responsive-table td {
+      font-family: var(--mono);
+      font-size: 1.25rem;
+      color: var(--black);
+      padding: 1.6rem 2rem 1.6rem 0;
+      border-bottom: 1px solid var(--rule);
+      vertical-align: top;
+    }
+    .responsive-table td.token {
+      color: var(--orange);
+      font-weight: 500;
+    }
+    .responsive-table td.class {
+      color: var(--merlot);
+    }
+    .responsive-table tr:hover td { background: var(--bg-alt); }
+
+    /* ─── Dividers ─── */
+    .section-divider {
+      height: 1px;
+      background: var(--rule);
+      margin: 0 0 7.2rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- ── Header ── -->
+    <header class="doc-header">
+      <div>
+        <div class="doc-eyebrow">Design System Reference</div>
+        <h1 class="doc-title">Typography Scale</h1>
+      </div>
+      <div class="doc-meta">
+        <div class="doc-meta-line">Typeface <span>DM Sans</span></div>
+        <div class="doc-meta-line">Base <span>10px (html font-size)</span></div>
+        <div class="doc-meta-line">Unit <span>rem → px at 1rem = 10px</span></div>
+        <div class="doc-meta-line">Source <span>styles.css</span></div>
+      </div>
+    </header>
+
+    <!-- ── 1. Type Specimens ── -->
+    <div class="type-group">
+      <div class="section-label">01 — Display</div>
+
+      <div class="type-row">
+        <div class="type-specs">
+          <div class="spec-token">.project-title</div>
+          <div class="spec-row"><span class="spec-key">Size</span><span class="spec-val">clamp(56px → 96px)</span></div>
+          <div class="spec-row"><span class="spec-key">Weight</span><span class="spec-val">800</span></div>
+          <div class="spec-row"><span class="spec-key">Leading</span><span class="spec-val">0.97</span></div>
+          <div class="spec-row"><span class="spec-key">Tracking</span><span class="spec-val">−0.035em</span></div>
+          <div class="tag-pill fluid">Fluid / clamp</div>
+        </div>
+        <div class="type-sample">
+          <div class="sample-label">Project Title</div>
+          <div class="specimen-display-hero">Autotrader<br>Illustrations</div>
+        </div>
+      </div>
+
+      <div class="type-row">
+        <div class="type-specs">
+          <div class="spec-token">.next-project-title</div>
+          <div class="spec-row"><span class="spec-key">Size</span><span class="spec-val">clamp(64px → 112px)</span></div>
+          <div class="spec-row"><span class="spec-key">Weight</span><span class="spec-val">800</span></div>
+          <div class="spec-row"><span class="spec-key">Leading</span><span class="spec-val">0.95</span></div>
+          <div class="spec-row"><span class="spec-key">Tracking</span><span class="spec-val">−0.04em</span></div>
+          <div class="tag-pill fluid">Fluid / clamp</div>
+        </div>
+        <div class="type-sample">
+          <div class="sample-label">Next Project Link</div>
+          <div class="specimen-display-next">Cox Automotive<br>Design System</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── 2. Editorial ── -->
+    <div class="type-group">
+      <div class="section-label">02 — Editorial</div>
+
+      <div class="type-row">
+        <div class="type-specs">
+          <div class="spec-token">.intro-text p</div>
+          <div class="spec-row"><span class="spec-key">Size</span>
+            <span class="spec-val responsive">
+              <span class="bp"><span class="bp-label">D</span>48px / 4.8rem</span>
+              <span class="bp"><span class="bp-label">T</span>36px / 3.6rem</span>
+              <span class="bp"><span class="bp-label">M</span>28px / 2.8rem</span>
+            </span>
+          </div>
+          <div class="spec-row"><span class="spec-key">Weight</span><span class="spec-val">400</span></div>
+          <div class="spec-row"><span class="spec-key">Leading</span><span class="spec-val">1.4</span></div>
+          <div class="tag-pill">Responsive</div>
+        </div>
+        <div class="type-sample">
+          <div class="sample-label">Intro / Lede</div>
+          <div class="specimen-intro">Illustration style for Autotrader.<br>Created to work throughout the<br>entire product experience.</div>
+        </div>
+      </div>
+
+      <div class="type-row">
+        <div class="type-specs">
+          <div class="spec-token">.section-heading</div>
+          <div class="spec-row"><span class="spec-key">Size</span>
+            <span class="spec-val responsive">
+              <span class="bp"><span class="bp-label">D</span>48px / 4.8rem</span>
+              <span class="bp"><span class="bp-label">M</span>36px / 3.6rem</span>
+            </span>
+          </div>
+          <div class="spec-row"><span class="spec-key">Weight</span><span class="spec-val">700</span></div>
+          <div class="spec-row"><span class="spec-key">Leading</span><span class="spec-val">—</span></div>
+          <div class="spec-row"><span class="spec-key">Tracking</span><span class="spec-val">−0.025em</span></div>
+          <div class="tag-pill">Responsive</div>
+        </div>
+        <div class="type-sample">
+          <div class="sample-label">Section Heading (h2)</div>
+          <div class="specimen-section-heading">Vehicles</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── 3. Body ── -->
+    <div class="type-group">
+      <div class="section-label">03 — Body</div>
+
+      <div class="type-row">
+        <div class="type-specs">
+          <div class="spec-token">.body-text</div>
+          <div class="spec-row"><span class="spec-key">Size</span>
+            <span class="spec-val responsive">
+              <span class="bp"><span class="bp-label">D</span>24px / 2.4rem</span>
+              <span class="bp"><span class="bp-label">M</span>18px / 1.8rem</span>
+            </span>
+          </div>
+          <div class="spec-row"><span class="spec-key">Weight</span><span class="spec-val">400</span></div>
+          <div class="spec-row"><span class="spec-key">Leading</span><span class="spec-val">1.75</span></div>
+          <div class="spec-row"><span class="spec-key">Max-w</span><span class="spec-val">72rem / 720px</span></div>
+          <div class="tag-pill">Responsive</div>
+        </div>
+        <div class="type-sample">
+          <div class="sample-label">Body / Description</div>
+          <div class="specimen-body">The vehicles needed a unique look and feel<br>to everything else in the market. Utilizing<br>a semi-realistic style that could help<br>compliment the tone of the Autotrader<br>brand and voice.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── 4. UI ── -->
+    <div class="type-group">
+      <div class="section-label">04 — UI & Labels</div>
+
+      <div class="type-row">
+        <div class="type-specs">
+          <div class="spec-token">.nav-links a</div>
+          <div class="spec-row"><span class="spec-key">Size</span><span class="spec-val">12.5px / 1.25rem</span></div>
+          <div class="spec-row"><span class="spec-key">Weight</span><span class="spec-val">400</span></div>
+          <div class="spec-row"><span class="spec-key">Tracking</span><span class="spec-val">0.005em</span></div>
+          <div class="spec-row"><span class="spec-key">Opacity</span><span class="spec-val">0.65 (rest)</span></div>
+          <div class="tag-pill label">UI</div>
+        </div>
+        <div class="type-sample">
+          <div class="sample-label">Navigation Link</div>
+          <div class="specimen-nav">Work &nbsp;&nbsp; Talent &nbsp;&nbsp; About &nbsp;&nbsp; News &nbsp;&nbsp; Contact &nbsp;&nbsp; Culture</div>
+        </div>
+      </div>
+
+      <div class="type-row">
+        <div class="type-specs">
+          <div class="spec-token">.capabilities-label</div>
+          <div class="spec-row"><span class="spec-key">Size</span><span class="spec-val">11px / 1.1rem</span></div>
+          <div class="spec-row"><span class="spec-key">Weight</span><span class="spec-val">600</span></div>
+          <div class="spec-row"><span class="spec-key">Tracking</span><span class="spec-val">0.12em</span></div>
+          <div class="spec-row"><span class="spec-key">Case</span><span class="spec-val">uppercase</span></div>
+          <div class="spec-row"><span class="spec-key">Opacity</span><span class="spec-val">0.45</span></div>
+          <div class="tag-pill label">UI</div>
+        </div>
+        <div class="type-sample">
+          <div class="sample-label">Eyebrow / Category Label</div>
+          <div class="specimen-label">Capabilities</div>
+        </div>
+      </div>
+
+      <div class="type-row">
+        <div class="type-specs">
+          <div class="spec-token">.tag</div>
+          <div class="spec-row"><span class="spec-key">Size</span><span class="spec-val">13px / 1.3rem</span></div>
+          <div class="spec-row"><span class="spec-key">Weight</span><span class="spec-val">500</span></div>
+          <div class="spec-row"><span class="spec-key">Tracking</span><span class="spec-val">0.01em</span></div>
+          <div class="spec-row"><span class="spec-key">Radius</span><span class="spec-val">10rem (pill)</span></div>
+          <div class="tag-pill label">UI</div>
+        </div>
+        <div class="type-sample">
+          <div class="sample-label">Tag / Pill</div>
+          <div class="specimen-tag">Product Design &nbsp; Illustration System &nbsp; Design Systems</div>
+        </div>
+      </div>
+
+      <div class="type-row">
+        <div class="type-specs">
+          <div class="spec-token">.next-label</div>
+          <div class="spec-row"><span class="spec-key">Size</span><span class="spec-val">11px / 1.1rem</span></div>
+          <div class="spec-row"><span class="spec-key">Weight</span><span class="spec-val">700</span></div>
+          <div class="spec-row"><span class="spec-key">Tracking</span><span class="spec-val">0.14em</span></div>
+          <div class="spec-row"><span class="spec-key">Case</span><span class="spec-val">uppercase</span></div>
+          <div class="tag-pill label">UI</div>
+        </div>
+        <div class="type-sample">
+          <div class="sample-label">Section Eyebrow (e.g., "Next Project")</div>
+          <div class="specimen-next-eyebrow">Next Project</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── 5. Size Scale Bar Chart ── -->
+    <div class="scale-section">
+      <div class="section-label">05 — Size Scale</div>
+      <div class="scale-grid">
+
+        <div class="scale-row active">
+          <div class="scale-step">D → 112px</div>
+          <div class="scale-px">11.2rem</div>
+          <div class="scale-bar-wrap">
+            <div class="scale-bar" style="width:100%"></div>
+            <div class="scale-sample" style="font-size:4.8rem; font-weight:800; letter-spacing:-0.04em; line-height:1;">.next-project-title (max)</div>
+          </div>
+        </div>
+
+        <div class="scale-row active">
+          <div class="scale-step">D → 96px</div>
+          <div class="scale-px">9.6rem</div>
+          <div class="scale-bar-wrap">
+            <div class="scale-bar" style="width:89%"></div>
+            <div class="scale-sample" style="font-size:4.2rem; font-weight:800; letter-spacing:-0.035em; line-height:1;">.project-title (max)</div>
+          </div>
+        </div>
+
+        <div class="scale-row active">
+          <div class="scale-step">D → 64px</div>
+          <div class="scale-px">6.4rem</div>
+          <div class="scale-bar-wrap">
+            <div class="scale-bar" style="width:57%"></div>
+            <div class="scale-sample" style="font-size:3.2rem; font-weight:800; letter-spacing:-0.04em; line-height:1;">.next-project-title (min)</div>
+          </div>
+        </div>
+
+        <div class="scale-row active">
+          <div class="scale-step">D → 56px</div>
+          <div class="scale-px">5.6rem</div>
+          <div class="scale-bar-wrap">
+            <div class="scale-bar" style="width:50%"></div>
+            <div class="scale-sample" style="font-size:2.8rem; font-weight:800; letter-spacing:-0.035em; line-height:1;">.project-title (min)</div>
+          </div>
+        </div>
+
+        <div class="scale-row active">
+          <div class="scale-step">D → 48px</div>
+          <div class="scale-px">4.8rem</div>
+          <div class="scale-bar-wrap">
+            <div class="scale-bar" style="width:43%"></div>
+            <div class="scale-sample" style="font-size:2.4rem; font-weight:700; letter-spacing:-0.025em; line-height:1;">.section-heading / .intro-text p</div>
+          </div>
+        </div>
+
+        <div class="scale-row">
+          <div class="scale-step">T → 36px</div>
+          <div class="scale-px">3.6rem</div>
+          <div class="scale-bar-wrap">
+            <div class="scale-bar" style="width:32%"></div>
+            <div class="scale-sample" style="font-size:2rem; font-weight:700; line-height:1;">.section-heading (mobile) / .intro-text p (tablet)</div>
+          </div>
+        </div>
+
+        <div class="scale-row">
+          <div class="scale-step">D → 24px</div>
+          <div class="scale-px">2.4rem</div>
+          <div class="scale-bar-wrap">
+            <div class="scale-bar" style="width:21%"></div>
+            <div class="scale-sample" style="font-size:1.6rem; font-weight:400; line-height:1;">.body-text</div>
+          </div>
+        </div>
+
+        <div class="scale-row">
+          <div class="scale-step">M → 28px</div>
+          <div class="scale-px">2.8rem</div>
+          <div class="scale-bar-wrap">
+            <div class="scale-bar" style="width:25%"></div>
+            <div class="scale-sample" style="font-size:1.6rem; font-weight:400; line-height:1;">.intro-text p (mobile)</div>
+          </div>
+        </div>
+
+        <div class="scale-row">
+          <div class="scale-step">— 18px</div>
+          <div class="scale-px">1.8rem</div>
+          <div class="scale-bar-wrap">
+            <div class="scale-bar" style="width:16%"></div>
+            <div class="scale-sample" style="font-size:1.4rem; font-weight:400; line-height:1;">.body-text (mobile)</div>
+          </div>
+        </div>
+
+        <div class="scale-row">
+          <div class="scale-step">— 13px</div>
+          <div class="scale-px">1.3rem</div>
+          <div class="scale-bar-wrap">
+            <div class="scale-bar" style="width:12%"></div>
+            <div class="scale-sample" style="font-size:1.3rem; font-weight:500; line-height:1;">.tag</div>
+          </div>
+        </div>
+
+        <div class="scale-row">
+          <div class="scale-step">— 12.5px</div>
+          <div class="scale-px">1.25rem</div>
+          <div class="scale-bar-wrap">
+            <div class="scale-bar" style="width:11%"></div>
+            <div class="scale-sample" style="font-size:1.25rem; font-weight:400; line-height:1;">.nav-links a</div>
+          </div>
+        </div>
+
+        <div class="scale-row">
+          <div class="scale-step">— 11px</div>
+          <div class="scale-px">1.1rem</div>
+          <div class="scale-bar-wrap">
+            <div class="scale-bar" style="width:10%"></div>
+            <div class="scale-sample" style="font-size:1.1rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; line-height:1;">.capabilities-label / .next-label</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── 6. Weight Chart ── -->
+    <div class="section-label">06 — Weight Scale</div>
+    <div class="weight-grid">
+      <div class="weight-cell">
+        <div class="weight-label">Light</div>
+        <div class="weight-numeral">300</div>
+        <div class="weight-sample" style="font-weight:300;">Aa</div>
+      </div>
+      <div class="weight-cell">
+        <div class="weight-label">Regular</div>
+        <div class="weight-numeral">400</div>
+        <div class="weight-sample" style="font-weight:400;">Aa</div>
+      </div>
+      <div class="weight-cell">
+        <div class="weight-label">Medium</div>
+        <div class="weight-numeral">500</div>
+        <div class="weight-sample" style="font-weight:500;">Aa</div>
+      </div>
+      <div class="weight-cell">
+        <div class="weight-label">SemiBold</div>
+        <div class="weight-numeral">600</div>
+        <div class="weight-sample" style="font-weight:600;">Aa</div>
+      </div>
+      <div class="weight-cell">
+        <div class="weight-label">Bold</div>
+        <div class="weight-numeral">700</div>
+        <div class="weight-sample" style="font-weight:700;">Aa</div>
+      </div>
+    </div>
+
+    <!-- ── 7. Letter Spacing ── -->
+    <div class="section-label" style="margin-bottom:2.4rem;">07 — Letter Spacing</div>
+    <div class="tracking-grid">
+      <div class="tracking-row">
+        <div class="tracking-spec">
+          <div class="tracking-val">−0.04em</div>
+          <div class="tracking-name">.next-project-title</div>
+        </div>
+        <div class="tracking-sample" style="letter-spacing:-0.04em;">Autotrader</div>
+      </div>
+      <div class="tracking-row">
+        <div class="tracking-spec">
+          <div class="tracking-val">−0.035em</div>
+          <div class="tracking-name">.project-title</div>
+        </div>
+        <div class="tracking-sample" style="letter-spacing:-0.035em;">Autotrader</div>
+      </div>
+      <div class="tracking-row">
+        <div class="tracking-spec">
+          <div class="tracking-val">−0.025em</div>
+          <div class="tracking-name">.section-heading</div>
+        </div>
+        <div class="tracking-sample" style="letter-spacing:-0.025em;">Autotrader</div>
+      </div>
+      <div class="tracking-row">
+        <div class="tracking-spec">
+          <div class="tracking-val">0em (default)</div>
+          <div class="tracking-name">.body-text / .intro-text</div>
+        </div>
+        <div class="tracking-sample" style="letter-spacing:0;">Autotrader</div>
+      </div>
+      <div class="tracking-row">
+        <div class="tracking-spec">
+          <div class="tracking-val">+0.005em</div>
+          <div class="tracking-name">.nav-links a</div>
+        </div>
+        <div class="tracking-sample" style="letter-spacing:0.005em;">Autotrader</div>
+      </div>
+      <div class="tracking-row">
+        <div class="tracking-spec">
+          <div class="tracking-val">+0.01em</div>
+          <div class="tracking-name">.tag</div>
+        </div>
+        <div class="tracking-sample" style="letter-spacing:0.01em;">Autotrader</div>
+      </div>
+      <div class="tracking-row">
+        <div class="tracking-spec">
+          <div class="tracking-val">+0.12em</div>
+          <div class="tracking-name">.capabilities-label</div>
+        </div>
+        <div class="tracking-sample" style="letter-spacing:0.12em; font-weight:600; font-size:1.8rem; text-transform:uppercase;">Capabilities</div>
+      </div>
+      <div class="tracking-row">
+        <div class="tracking-spec">
+          <div class="tracking-val">+0.14em</div>
+          <div class="tracking-name">.next-label</div>
+        </div>
+        <div class="tracking-sample" style="letter-spacing:0.14em; font-weight:700; font-size:1.8rem; text-transform:uppercase;">Next Project</div>
+      </div>
+    </div>
+
+    <!-- ── 8. Responsive Breakpoints Table ── -->
+    <div class="section-label" style="margin-bottom:2.4rem;">08 — Responsive Breakpoints</div>
+    <table class="responsive-table">
+      <thead>
+        <tr>
+          <th>Token / Class</th>
+          <th>Desktop (≥1025px)</th>
+          <th>Tablet (641–1024px)</th>
+          <th>Mobile (≤640px)</th>
+          <th>Weight</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="token">.project-title</td>
+          <td>clamp(56–96px)</td>
+          <td>fluid</td>
+          <td>fluid</td>
+          <td>800</td>
+        </tr>
+        <tr>
+          <td class="token">.next-project-title</td>
+          <td>clamp(64–112px)</td>
+          <td>fluid</td>
+          <td>fluid</td>
+          <td>800</td>
+        </tr>
+        <tr>
+          <td class="token">.intro-text p</td>
+          <td>48px / 4.8rem</td>
+          <td>36px / 3.6rem</td>
+          <td>28px / 2.8rem</td>
+          <td>400</td>
+        </tr>
+        <tr>
+          <td class="token">.section-heading</td>
+          <td>48px / 4.8rem</td>
+          <td>48px / 4.8rem</td>
+          <td>36px / 3.6rem</td>
+          <td>700</td>
+        </tr>
+        <tr>
+          <td class="token">.body-text</td>
+          <td>24px / 2.4rem</td>
+          <td>24px / 2.4rem</td>
+          <td>18px / 1.8rem</td>
+          <td>400</td>
+        </tr>
+        <tr>
+          <td class="token">.nav-links a</td>
+          <td>12.5px / 1.25rem</td>
+          <td>12.5px / 1.25rem</td>
+          <td>12.5px / 1.25rem</td>
+          <td>400</td>
+        </tr>
+        <tr>
+          <td class="token">.capabilities-label</td>
+          <td>11px / 1.1rem</td>
+          <td>11px / 1.1rem</td>
+          <td>11px / 1.1rem</td>
+          <td>600</td>
+        </tr>
+        <tr>
+          <td class="token">.tag</td>
+          <td>13px / 1.3rem</td>
+          <td>13px / 1.3rem</td>
+          <td>13px / 1.3rem</td>
+          <td>500</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</body>
+</html>

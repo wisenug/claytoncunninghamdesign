@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="img/clayton-cunningham-design-logo.svg">
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <link rel="apple-touch-icon" href="img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Autotrader Illustration System — Clayton Cunningham</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,300;1,9..40,400&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    :root {
+      --color-bg: #E3F2FF;
+      --color-blue: #0F2960;
+      --color-black: #0F2960;
+    }
+
+    /* View transition — incoming (from index / capabilities) */
+    .vt-bg {
+      position: fixed;
+      inset: 0;
+      background-color: #E3F2FF;
+      z-index: -1;
+      pointer-events: none;
+      view-transition-name: ink-bg;
+    }
+    .project-title      { view-transition-name: page-title; }
+
+    /* View transition — outgoing (to next project); names assigned via JS on click */
+    .next-project-title { position: relative; }
+    .next-label         { position: relative; }
+
+    /* Next project text — KBB navy */
+    .next-label,
+    .next-project-title {
+      color: #0F2960;
+    }
+    .next-label:hover,
+    .next-project-title:hover {
+      color: #0F2960;
+    }
+
+    /* ── Scroll reveal ── */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .scroll-reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <!-- Full-viewport background: ink-bg anchor for incoming view transition -->
+  <div class="vt-bg" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-icon" aria-hidden="true"></span>
+      <span class="nav-logo-name">Clayton Cunningham Design</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" aria-current="page">Work</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main content -->
+  <main>
+
+    <!-- Project title + capabilities -->
+    <header class="project-header">
+      <h1 class="project-title fade-up fade-up-1">
+        Autotrader<br>Illustration System
+      </h1>
+      <div class="capabilities-block fade-up fade-up-2">
+        <div class="capabilities-tags">
+          <a href="capabilities.html?tag=Illustration+System" class="tag">Illustration System</a>          <a href="capabilities.html?tag=Design+Systems" class="tag">Design Systems</a>        </div>
+      </div>
+    </header>
+
+    <!-- Hero image -->
+    <section class="hero-image fade-up fade-up-3">
+      <img src="img/at_illustration_style_2.png" alt="Autotrader illustration style guide showing four vehicle types across different color palettes">
+    </section>
+
+    <!-- Intro text -->
+    <div class="intro-text">
+      <p>An illustration system for Autotrader, built to span every product experience. From website and mobile app UI to marketing and social placement.</p>
+      <p>Three core elements: vehicles, people, and environments — plus a library of spot illustrations for tighter UI placements.</p>
+    </div>
+
+    <!-- Full image — UI in context -->
+    <div class="full-image scroll-reveal">
+      <img src="img/at_illustration_style_3_ui.png" alt="Autotrader Sell Your Car Center UI with illustration system applied in context">
+    </div>
+
+    
+    <!-- Vehicles -->
+    <div class="text-section">
+      <h2 class="section-heading">Vehicles</h2>
+      <p class="body-text">A semi-realistic illustration style, distinct from anything else in the automotive space. Designed to feel at home within Autotrader's brand without competing with photography.</p>
+    </div>
+
+    <!-- 3-up vehicle grid -->
+    <div class="image-grid-3 scroll-reveal">
+      <img src="img/at_illustration_style_1.png" alt="White SUV with city skyline illustration — night style">
+      <img src="img/at_illustration_style_4.png" alt="Orange truck with coastal scene — light style">
+      <img src="img/at_illustration_style_5.png" alt="White minivan with dealership scene — brand orange style">
+    </div>
+
+    <!-- Lottie: at-cars -->
+    <div class="lottie-container">
+      <div id="lottie-animation-at-cars"></div>
+    </div>
+
+    <!-- 2-up vehicle grid -->
+    <div class="image-grid-2 scroll-reveal">
+      <img src="img/at_illustration_style_8.png" alt="Red convertible on a scenic desert road" loading="lazy">
+      <img src="img/at_illustration_style_9.png" alt="Autotrader illustration" loading="lazy">
+    </div>
+
+    <!-- UI in context: At Home Services + VDP -->
+    <div class="image-grid-2 scroll-reveal">
+      <img src="img/at_illustration_style_27.png" alt="Spot icons applied in Autotrader At Home Services and Vehicle Details UI" loading="lazy">
+      <img src="img/at_illustration_style_29.png" alt="Autotrader vehicle detail page listing with spot icons in context" loading="lazy">
+    </div>
+
+    <!-- People -->
+    <div class="text-section">
+      <h2 class="section-heading">People</h2>
+      <p class="body-text">Character design that avoids cartoon extremes. Grounded enough to feel real, yet stylized enough to belong within the vehicles and environments.</p>
+    </div>
+
+    <div class="image-split-tall image-split-tall--mirror">
+      <div class="image-split-tall__stack">
+        <img src="img/at_illustration_style_23.png" alt="Character sketches — pencil studies for portrait expressions" loading="lazy">
+        <img src="img/at_illustration_style_24.png" alt="Character sketches — figure studies with mobile devices" loading="lazy">
+      </div>
+      <div class="image-split-tall__tall">
+        <img src="img/at_illustration_style_10.png" alt="Character designs — diverse group of illustrated people" loading="lazy">
+      </div>
+    </div>
+
+    <!-- Backgrounds -->
+    <div class="text-section">
+      <h2 class="section-heading">Backgrounds</h2>
+      <p class="body-text">Environmental settings that anchor the system in familiar moments — a dealership lot, a city street, an open road. Context that makes each scene feel earned rather than generic.</p>
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/at_illustration_style_11.png" alt="Background environment illustrations" loading="lazy">
+    </div>
+
+    <!-- Lottie: background-wide + background-elements (two-col) -->
+    <section class="lottie-two-col">
+      <div class="lottie-container">
+        <div id="lottie-animation-background-wide"></div>
+      </div>
+      <div class="lottie-container">
+        <div id="lottie-animation-background-elements"></div>
+      </div>
+    </section>
+
+    <div class="image-grid-2 scroll-reveal">
+      <img src="img/at_illustration_style_6.png" alt="Mixed-media illustration: real Subaru crossover with illustrated coastal scene" loading="lazy">
+      <img src="img/at_illustration_style_12.png" alt="Autotrader illustration" loading="lazy">
+    </div>
+
+    <!-- Spot Illustrations -->
+    <div class="text-section">
+      <h2 class="section-heading">Spot Illustrations</h2>
+      <p class="body-text">Simplified, concept-driven illustrations for tight UI placements — entry points, empty states, and sub-navigation. No people or backgrounds. Just the idea, distilled.</p>
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/at_illustration_style_13.png" alt="Autotrader illustration" loading="lazy">
+    </div>
+
+    <div class="image-grid-4">
+      <img src="img/at_illustration_style_25.png" alt="Spot icons: badge, warning, shield, sparkle" loading="lazy">
+      <img src="img/at_illustration_style_26.png" alt="Spot icons: steering wheel, 360 view, tow truck, mobile form" loading="lazy">
+      <img src="img/at_illustration_style_28.png" alt="Spot icons: crash, star rating, price thumbs up, diamond" loading="lazy">
+      <img src="img/at_illustration_style_30.png" alt="Spot icons: paint brush, chassis, tire, umbrella" loading="lazy">
+    </div>
+
+    <div class="image-grid-2 scroll-reveal">
+      <img src="img/at_illustration_style_31.png" alt="Spot illustration — Buy Now online car purchase scene" loading="lazy">
+      <img src="img/at_illustration_style_empty_states.png" alt="Empty state notifications in Autotrader mobile app" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/at_illustration_style_dealer_contact%20form_empty%20state.png" alt="Dealer contact form empty state — illustration applied in mobile and desktop UI" loading="lazy">
+    </div>
+
+    <!-- Style Guide & Illustration Library -->
+    <div class="text-section">
+      <h2 class="section-heading">Style Guide & Illustration Library</h2>
+      <div class="text-two-col">
+        <p class="body-text">A comprehensive style guide documenting usage rules, component definitions, and instructions for extending the system — establishing what to do, and what not to.</p>
+        <p class="body-text">The library lives in Figma, giving teams across Autotrader a shared source to compose and extend illustrations where needed.</p>
+      </div>
+    </div>
+
+    <!-- Scrolling carousel -->
+    <div class="carousel-wrapper">
+      <div class="carousel-track">
+        <div class="carousel-item"><img src="img/at_illustration_style_guidelines-1.png" alt="Illustration style guidelines 1" loading="lazy"></div>
+        <div class="carousel-item"><img src="img/at_illustration_style_guidelines-2.png" alt="Illustration style guidelines 2" loading="lazy"></div>
+        <div class="carousel-item"><img src="img/at_illustration_style_guidelines-3.png" alt="Illustration style guidelines 3" loading="lazy"></div>
+        <div class="carousel-item"><img src="img/at_illustration_style_guidelines-3b.png" alt="Illustration style guidelines vehicle library" loading="lazy"></div>
+        <div class="carousel-item"><img src="img/at_illustration_style_guidelines-4.png" alt="Illustration style guidelines 4" loading="lazy"></div>
+        <div class="carousel-item"><img src="img/at_illustration_style_guidelines-5.png" alt="Illustration style guidelines 5" loading="lazy"></div>
+        <div class="carousel-item"><img src="img/at_illustration_style_guidelines-6.png" alt="Illustration style guidelines 6" loading="lazy"></div>
+        <div class="carousel-item"><img src="img/at_illustration_style_guidelines-7.png" alt="Illustration style guidelines 7" loading="lazy"></div>
+        <div class="carousel-item"><img src="img/at_illustration_style_guidelines-8.png" alt="Illustration style guidelines 8" loading="lazy"></div>
+        <div class="carousel-item"><img src="img/at_illustration_style_guidelines-9.png" alt="Illustration style guidelines 9" loading="lazy"></div>
+        <div class="carousel-item"><img src="img/at_illustration_style_guidelines-10.png" alt="Illustration style guidelines 10" loading="lazy"></div>
+        <div class="carousel-item"><img src="img/at_illustration_style_guidelines-11.png" alt="Illustration style guidelines 11" loading="lazy"></div>
+        <div class="carousel-item"><img src="img/at_illustration_style_guidelines-12.png" alt="Illustration style guidelines 12" loading="lazy"></div>
+        <div class="carousel-item"><img src="img/at_illustration_style_guidelines-13.png" alt="Illustration style guidelines 13" loading="lazy"></div>
+        <div class="carousel-item"><img src="img/at_illustration_style_guidelines-14.png" alt="Illustration style guidelines 14" loading="lazy"></div>
+        <!-- duplicated for infinite scroll -->
+        <div class="carousel-item"><img src="img/at_illustration_style_guidelines-1.png" alt="" loading="lazy"></div>
+        <div class="carousel-item"><img src="img/at_illustration_style_guidelines-2.png" alt="" loading="lazy"></div>
+        <div class="carousel-item"><img src="img/at_illustration_style_guidelines-3.png" alt="" loading="lazy"></div>
+        <div class="carousel-item"><img src="img/at_illustration_style_guidelines-3b.png" alt="" loading="lazy"></div>
+        <div class="carousel-item"><img src="img/at_illustration_style_guidelines-4.png" alt="" loading="lazy"></div>
+        <div class="carousel-item"><img src="img/at_illustration_style_guidelines-5.png" alt="" loading="lazy"></div>
+        <div class="carousel-item"><img src="img/at_illustration_style_guidelines-6.png" alt="" loading="lazy"></div>
+        <div class="carousel-item"><img src="img/at_illustration_style_guidelines-7.png" alt="" loading="lazy"></div>
+        <div class="carousel-item"><img src="img/at_illustration_style_guidelines-8.png" alt="" loading="lazy"></div>
+        <div class="carousel-item"><img src="img/at_illustration_style_guidelines-9.png" alt="" loading="lazy"></div>
+        <div class="carousel-item"><img src="img/at_illustration_style_guidelines-10.png" alt="" loading="lazy"></div>
+        <div class="carousel-item"><img src="img/at_illustration_style_guidelines-11.png" alt="" loading="lazy"></div>
+        <div class="carousel-item"><img src="img/at_illustration_style_guidelines-12.png" alt="" loading="lazy"></div>
+        <div class="carousel-item"><img src="img/at_illustration_style_guidelines-13.png" alt="" loading="lazy"></div>
+        <div class="carousel-item"><img src="img/at_illustration_style_guidelines-14.png" alt="" loading="lazy"></div>
+      </div>
+    </div>
+
+    <!-- Next project -->
+    <section class="next-project">
+      <div class="next-project-bg" aria-hidden="true"></div>
+      <span class="next-label">Next Project</span>
+      <a href="kbb-icons-illustrations.html" class="next-project-title">
+        Kelley Blue Book<br>Icons & Illustrations
+      </a>
+    </section>
+
+  </main>
+
+  <footer>
+    <p class="footer-copy">&copy; <span id="footer-year"></span> Clayton Cunningham Design. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    (function() {
+      var els = document.querySelectorAll('.scroll-reveal');
+      if (!els.length) return;
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08 });
+      els.forEach(function(el) { observer.observe(el); });
+    })();
+
+    // Skip view transition on back/forward navigation
+    window.addEventListener('pagereveal', function(e) {
+      if (e.viewTransition && navigation?.activation?.navigationType === 'traverse') {
+        e.viewTransition.skipTransition();
+      }
+    });
+
+    // On Next Project click: swap ink-bg/page-title from incoming elements to outgoing elements
+    var nextLink = document.querySelector('.next-project-title');
+    if (nextLink && nextLink.getAttribute('href') !== '#') {
+      nextLink.addEventListener('click', function() {
+        var vtBg = document.querySelector('.vt-bg');
+        var nextBg = document.querySelector('.next-project-bg');
+        var projTitle = document.querySelector('.project-title');
+        if (vtBg)      vtBg.style.viewTransitionName = '';
+        if (nextBg)    nextBg.style.viewTransitionName = 'ink-bg';
+        if (projTitle) projTitle.style.viewTransitionName = '';
+        nextLink.style.viewTransitionName = 'page-title';
+      });
+    }
+
+    // Hide nav on scroll down, reveal on scroll up
+    (function() {
+      var nav = document.querySelector('nav');
+      var lastY = 0;
+      window.addEventListener('scroll', function() {
+        var y = window.scrollY;
+        if (y > lastY && y > 80) {
+          nav.classList.add('nav--hidden');
+        } else {
+          nav.classList.remove('nav--hidden');
+        }
+        lastY = y;
+      }, { passive: true });
+    })();
+
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+    // Carousel: drag to scroll while keeping continuous auto-scroll
+    (function() {
+      var DURATION = 36; // must match CSS marquee animation duration (seconds)
+      var wrapper = document.querySelector('.carousel-wrapper');
+      var track = document.querySelector('.carousel-track');
+      if (!wrapper || !track) return;
+
+      var isDragging = false;
+      var startX = 0;
+      var startTranslateX = 0;
+
+      function getTranslateX() {
+        var matrix = new DOMMatrix(getComputedStyle(track).transform);
+        return matrix.m41;
+      }
+
+      function startDrag(x) {
+        isDragging = true;
+        startX = x;
+        startTranslateX = getTranslateX();
+        track.style.animation = 'none';
+        track.style.transform = 'translateX(' + startTranslateX + 'px)';
+        wrapper.classList.add('is-dragging');
+      }
+
+      function moveDrag(x) {
+        if (!isDragging) return;
+        var dx = x - startX;
+        var newX = startTranslateX + dx;
+        var half = track.scrollWidth / 2;
+        if (newX > 0) newX -= half;
+        if (newX < -half) newX += half;
+        track.style.transform = 'translateX(' + newX + 'px)';
+      }
+
+      function endDrag() {
+        if (!isDragging) return;
+        isDragging = false;
+        wrapper.classList.remove('is-dragging');
+        var x = getTranslateX();
+        var half = track.scrollWidth / 2;
+        var progress = Math.abs(x) / half;
+        track.style.transform = '';
+        track.style.animation = 'marquee ' + DURATION + 's linear infinite';
+        track.style.animationDelay = '-' + (progress * DURATION).toFixed(3) + 's';
+      }
+
+      wrapper.addEventListener('mousedown', function(e) { startDrag(e.clientX); e.preventDefault(); });
+      window.addEventListener('mousemove', function(e) { moveDrag(e.clientX); });
+      window.addEventListener('mouseup', endDrag);
+      wrapper.addEventListener('touchstart', function(e) { startDrag(e.touches[0].clientX); }, { passive: true });
+      wrapper.addEventListener('touchmove', function(e) { moveDrag(e.touches[0].clientX); e.preventDefault(); }, { passive: false });
+      wrapper.addEventListener('touchend', endDrag);
+    })();
+
+    function loadLottie(id, file) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      lottie.loadAnimation({
+        container: el,
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        path: '/animations/' + file,
+        rendererSettings: {
+          preserveAspectRatio: 'xMidYMid slice',
+          progressiveLoad: true
+        }
+      });
+    }
+
+    loadLottie('lottie-animation-at-cars',          'at-cars.json');
+    loadLottie('lottie-animation-background-wide',  'at-illustrations-background-wide.json');
+    loadLottie('lottie-animation-background-elements', 'at-illustrations-background-elements.json');
+  </script>
+  <script>
+    (function () {
+      var hero = document.querySelector('.hero-image');
+      var heroImg = hero && hero.querySelector('img');
+      if (!hero || !heroImg) return;
+      function updateHero() {
+        var p = Math.min(1, Math.max(0, window.scrollY / 400));
+        var pad = (5 * (1 - p)).toFixed(3);
+        var rad = (0.8 * (1 - p)).toFixed(3);
+        hero.style.paddingLeft  = pad + 'vw';
+        hero.style.paddingRight = pad + 'vw';
+        heroImg.style.borderRadius = rad + 'rem';
+      }
+      window.addEventListener('scroll', updateHero, { passive: true });
+      updateHero();
+    })();
+  </script>
+  <script>
+    document.querySelectorAll("a.tag[href*=\"capabilities\"]").forEach(function(t) {
+      t.addEventListener("click", function() { t.style.viewTransitionName = "active-chip"; });
+    });
+  </script>
+</body>
+</html>

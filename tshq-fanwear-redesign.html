@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="img/clayton-cunningham-design-logo.svg">
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <link rel="apple-touch-icon" href="img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DICK'S TSHQ Fan Wear Redesign — Clayton Cunningham</title>
+  <meta name="description" content="Redesigning the DICK'S TSHQ fan wear ecommerce experience to drive sales and meet modern expectations.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,300;1,9..40,400&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    :root {
+      --color-bg: #FF5F1F;
+      --color-black: #0D0D1A;
+    }
+
+    .vt-bg {
+      position: fixed;
+      inset: 0;
+      background-color: #FF5F1F;
+      z-index: -1;
+      pointer-events: none;
+      view-transition-name: ink-bg;
+    }
+
+    .project-title { view-transition-name: page-title; }
+
+    .tag {
+      border-color: rgba(13, 13, 26, 0.35);
+      color: rgba(13, 13, 26, 0.65);
+    }
+
+    .tag:hover,
+    .tag--active {
+      background: #0D0D1A;
+      color: var(--color-bg);
+      border-color: #0D0D1A;
+    }
+
+    .img-caption {
+      color: rgba(13, 13, 26, 0.5);
+    }
+
+    .footer-copy {
+      color: #0D0D1A;
+    }
+
+    /* ── Scroll reveal ── */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .scroll-reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .full-image video {
+      width: 100%;
+      display: block;
+      border-radius: var(--radius-img);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="vt-bg" aria-hidden="true"></div>
+
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-icon" aria-hidden="true"></span>
+      <span class="nav-logo-name">Clayton Cunningham Design</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Work</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <header class="project-header">
+      <h1 class="project-title fade-up fade-up-1">
+        DICK'S TSHQ<br>Fan Wear Redesign
+      </h1>
+      <div class="capabilities-block fade-up fade-up-2">
+        <div class="capabilities-tags">
+          <a href="capabilities.html?tag=Product+Design" class="tag">Product Design</a>          <a href="capabilities.html?tag=UX" class="tag">UX</a>          <a href="capabilities.html?tag=Ecommerce" class="tag">Ecommerce</a>        </div>
+      </div>
+    </header>
+
+    <section class="hero-image fade-up fade-up-3">
+      <img src="img/tshq_fanwear_hero.jpg" alt="DICK'S TSHQ Fan Wear Redesign" loading="eager">
+    </section>
+
+    <div class="intro-text">
+      <p>In early 2018 DICK'S TSHQ launched a standalone fan wear store — an expanded version of the store featured in registration. It allowed users to purchase made-to-order clothing like hoodies and t-shirts with their team logos and colors, offered as a free service with a portion of sales returning to the club.</p>
+      <p>For this project, I worked as the lead designer alongside the ecommerce dev team and product manager.</p>
+    </div>
+
+    <div class="text-section">
+      <h2 class="section-heading">The Challenge</h2>
+      <p class="body-text">The concept was great, but the store was built on a tight deadline by a small team. There were quality control issues with the overall experience, and it wasn't marketed at all — many customers were unaware it existed. The store was bare bones and just didn't look or perform the way one would expect an ecommerce experience to in the present day. I was tasked with giving the fan wear store an update: easier to use, aligned with current ecommerce expectations, with the ultimate goal of selling more fan wear.</p>
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_fanwear_old_store.jpg" alt="Legacy fan wear UI" loading="lazy">
+      <p class="img-caption">Legacy fan wear UI.</p>
+    </div>
+
+    <div class="text-section">
+      <h2 class="section-heading">Research</h2>
+      <p class="body-text">The PM and I identified current issues with the product, user needs, and our business goals. A customer journey map was created to understand how customers were using the site. Since TSHQ had already launched a fan wear store, we had initial research on our customer target base and what clothing items they were most interested in. I also worked with the support team to understand current frustrations and pain points.<br><br>I conducted external research to better understand the competitive field — Nike, Adidas, Amazon — analyzing their approaches to similar problems and highlighting best practices.</p>
+    </div>
+
+    <div class="text-section">
+      <h2 class="section-heading">Problem Areas and Assumptions</h2>
+      <p class="body-text">A big problem identified through user feedback was confusion with our personalization flow. Customers could personalize garments with a name and number, but the process was confusing — customers were mistakenly buying items that didn't reflect what they wanted. Our assumption: redesigning the personalization process would lead to more personalized items in cart and higher revenue.<br><br>Analytics and support feedback also showed high shopping cart abandonment. Assumptions: users not noticing the increased cost of personalization, and high shipping costs. We also identified that users had to be logged in to make a purchase — we needed to allow non-users like relatives or friends to also buy.</p>
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_fanwear_sketch.jpg" alt="Early sketches" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_fanwear_wireframes.jpg" alt="Wireframes" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_fanwear_wireframes_2.png" alt="Wireframes" loading="lazy">
+      <p class="img-caption">Early sketches and wireframes.</p>
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_fanwear_user_flow.png" alt="User flow" loading="lazy">
+      <p class="img-caption">User flow.</p>
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_fanwear_prototype_overview.png" alt="Mobile prototype" loading="lazy">
+      <p class="img-caption">Mobile prototype.</p>
+    </div>
+
+    <div class="text-section">
+      <h2 class="section-heading">Design Solutions</h2>
+    </div>
+
+    <div class="text-section">
+      <h2 class="section-heading">Personalization</h2>
+      <p class="body-text">User testing revealed customers were filling out personalization fields but failing to click the checkmark to confirm — the system required this confirmation but it wasn't clear. I worked with dev to have the system accept field input in real time as it was typed. I also added a clear "Remove Personalization" button to reduce ambiguity, and made item price update in real time when personalization was added.</p>
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_fanwear_personalization.png" alt="Personalization redesign" loading="lazy">
+      <p class="img-caption">Personalization.</p>
+    </div>
+
+    <div class="text-section">
+      <h2 class="section-heading">Landing Pages</h2>
+      <p class="body-text">The previous store suffered from having a very small selection of items — the overall feeling was underwhelming. I noticed that many retailers sell relatively small categories of clothing but give their websites the appearance of grandeur through landing pages that market their shiniest and newest items. Landing pages were created for personalization and seasonal items we could rotate, like hoodies or tank tops.</p>
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_fanwear_personalization_landing.png" alt="Landing page for personalization" loading="lazy">
+      <p class="img-caption">Landing pages for personalization.</p>
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_fanwear_hoodies_mobile.png" alt="Hoodies landing page mobile" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_fanwear_home.jpg" alt="Fan wear home screen" loading="lazy">
+      <p class="img-caption">Home screen.</p>
+    </div>
+
+    <div class="text-section">
+      <h2 class="section-heading">Visual Feedback</h2>
+      <p class="body-text">Once a user adds an item to the cart, they receive direct visual feedback in an overlay showing the item and details, with two options — "View Cart" or "Checkout." This overlay acts as a clear CTA to funnel customers into checkout. If the customer isn't finished shopping, they can click off the overlay or it disappears after 2 seconds.</p>
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <video autoplay muted playsinline loop>
+        <source src="img/tshq_fanwear_cart_overlay.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="text-section">
+      <h2 class="section-heading">Shopping Cart and Checkout Abandonment</h2>
+      <p class="body-text">Our initial assumption about cart abandonment was that users weren't seeing shipping rates until after entering their address. The solution: provide an estimated shipping cost in the shopping cart upfront. We also introduced promotions including free shipping, testing variations from a catch-all "FREE SHIPPING" to conditional "buy X amount and receive free shipping."</p>
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_fanwear_guest_checkout.png" alt="Guest checkout" loading="lazy">
+      <p class="img-caption">Guest checkout.</p>
+    </div>
+
+    <div class="text-section">
+      <h2 class="section-heading">Photography</h2>
+      <p class="body-text">The store originally only had individual product images from manufacturers — great for product detail screens but absent of a human element. We worked directly with DICK'S Sporting Goods corporate photo partners to diversify our image asset library with models of various ages wearing our apparel and laydown product images.<br><br>We also leveraged illustrations I created for registration to keep a consistent look across TSHQ products.</p>
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_fanwear_illustrations.jpg" alt="Illustrations throughout TSHQ products" loading="lazy">
+      <p class="img-caption">Illustrations found throughout TSHQ products.</p>
+    </div>
+
+    <div class="text-section">
+      <h2 class="section-heading">Results</h2>
+      <p class="body-text">This project launched in early 2019. Initial testing has been promising and most assumptions are proving correct. The number of items sold with personalization increased by 10%, and shopping cart and checkout abandonment rates dropped by close to 20% since implementing the redesign.</p>
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_fanwear_sales_chart.png" alt="2019 Fan Wear Sales Chart" loading="lazy">
+      <p class="img-caption">As of mid August, with 4.5 months left in the calendar year, we are already at 32% YoY (vs 2018) growth in sales!</p>
+    </div>
+
+    <!-- Next project -->
+    <section class="next-project next-project-wrap" style="background-color: #2E1F4A; margin-top: 8rem;">
+      <span class="next-label" style="color: rgba(240, 230, 255, 0.5);">Next Project</span>
+      <a href="tshq-assorted-projects.html" class="next-project-title" style="color: rgba(240, 230, 255, 0.8);">
+        DICK'S TSHQ<br>Assorted Projects
+      </a>
+    </section>
+
+  </main>
+
+  <footer>
+    <p class="footer-copy">&copy; <span id="footer-year"></span> Clayton Cunningham Design. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+  </script>
+  <script>
+    // Scroll reveal
+    (function() {
+      var els = document.querySelectorAll('.scroll-reveal');
+      if (!els.length) return;
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08 });
+      els.forEach(function(el) { observer.observe(el); });
+    })();
+
+    window.addEventListener('pagereveal', function(e) {
+      if (e.viewTransition && navigation?.activation?.navigationType === 'traverse') {
+        e.viewTransition.skipTransition();
+      }
+    });
+    (function() {
+      var nav = document.querySelector('nav');
+      var lastY = 0;
+      window.addEventListener('scroll', function() {
+        var y = window.scrollY;
+        if (y > lastY && y > 80) { nav.classList.add('nav--hidden'); }
+        else { nav.classList.remove('nav--hidden'); }
+        lastY = y;
+      }, { passive: true });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var hero = document.querySelector('.hero-image');
+      var heroImg = hero && hero.querySelector('img');
+      if (!hero || !heroImg) return;
+      function updateHero() {
+        var p = Math.min(1, Math.max(0, window.scrollY / 400));
+        var pad = (5 * (1 - p)).toFixed(3);
+        var rad = (0.8 * (1 - p)).toFixed(3);
+        hero.style.paddingLeft  = pad + 'vw';
+        hero.style.paddingRight = pad + 'vw';
+        heroImg.style.borderRadius = rad + 'rem';
+      }
+      window.addEventListener('scroll', updateHero, { passive: true });
+      updateHero();
+    })();
+  </script>
+
+  <script>
+    document.querySelectorAll("a.tag[href*=\"capabilities\"]").forEach(function(t) {
+      t.addEventListener("click", function() { t.style.viewTransitionName = "active-chip"; });
+    });
+  </script>
+</body>
+</html>

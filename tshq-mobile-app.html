@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="img/clayton-cunningham-design-logo.svg">
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <link rel="apple-touch-icon" href="img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DICK'S TSHQ Mobile App — Clayton Cunningham</title>
+  <meta name="description" content="DICK'S Team Sports Headquarters mobile app — product design case study by Clayton Cunningham.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,300;1,9..40,400&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    :root {
+      --color-bg: #006554;
+      --color-black: #E0FAE0;
+    }
+
+    /* ── Image captions ── */
+    .img-caption {
+      font-size: 1.5rem;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      color: rgba(255, 255, 255, 0.55);
+      margin-top: 1.2rem;
+      padding: 0 0.4rem;
+    }
+
+    /* ── Inline text block after a full-image ── */
+    .image-note {
+      padding: 2.4rem var(--page-margin) 0;
+    }
+
+    .image-note p {
+      font-size: 2.4rem;
+      font-weight: 400;
+      line-height: 1.75;
+      color: var(--color-black);
+      max-width: 72rem;
+    }
+
+    /* ── Update notice ── */
+    .update-notice {
+      padding: 0 var(--page-margin) 4rem;
+    }
+
+    .update-notice p {
+      font-size: 2rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 1.6;
+    }
+
+    /* ── More Work section ── */
+    .more-work {
+      padding: 8rem var(--page-margin) 0;
+    }
+
+    .more-work__heading {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 3.2rem;
+    }
+
+    .more-work__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.6rem;
+    }
+
+    .more-work__card {
+      display: block;
+      text-decoration: none;
+      overflow: hidden;
+      border-radius: var(--radius-img);
+      position: relative;
+    }
+
+    .more-work__card img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      display: block;
+      border-radius: var(--radius-img);
+      transform: scale(1);
+      transition: transform 1.1s linear(0, 0.1206, 0.2168, 0.3001, 0.3741, 0.4409, 0.5016, 0.5572, 0.6083, 0.6555, 0.699, 0.7394, 0.7768, 0.8114, 0.8435, 0.8733, 0.9008, 0.9263, 0.9499, 0.9715, 0.9915, 1.0097, 1.0264, 1.0415, 1.0552, 1.0676, 1.0785, 1.0882, 1.0967, 1.104, 1.1101, 1.1151, 1.1191, 1.122, 1.1239, 1.1249, 1.1249, 1.1244, 1.1234, 1.1218, 1.1198, 1.1172, 1.1142, 1.1109, 1.1072, 1.1033, 1.0992, 1.095, 1.0907, 1.0865, 1.0823, 1.0782, 1.0741, 1.0702, 1.0664, 1.0627, 1.0591, 1.0557, 1.0525, 1.0493, 1.0463, 1.0435, 1.0407, 1.0381, 1.0356, 1.0332, 1.031, 1.0288, 1.0268, 1.0248, 1.023, 1.0212, 1.0195, 1.018, 1.0165, 1.0151, 1.0137, 1.0125, 1.0113, 1.0102, 1.0091, 1.0082, 1.0073, 1.0064, 1.0056, 1.0049, 1.0042, 1.0036, 1.003, 1.0025, 1.0021, 1.0017, 1.0013, 1.001, 1.0007, 1.0005, 1.0003, 1.0002, 1.0001, 1, 1);
+    }
+
+    .more-work__card:hover img {
+      transform: scale(1.06);
+    }
+
+    .more-work__card-label {
+      margin-top: 1.2rem;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.75);
+      letter-spacing: -0.01em;
+      padding: 0 0.2rem;
+      transition: color 0.2s ease;
+    }
+
+    .more-work__card:hover .more-work__card-label {
+      color: #fff;
+    }
+
+    .more-work__card-client {
+      display: block;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.3rem;
+    }
+
+    /* ── Next project ── */
+    .next-project-wrap {
+      margin-top: 8rem;
+    }
+
+    /* ── Scroll reveal ── */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .scroll-reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Inverted tag hover ── */
+    .tag {
+      border-color: rgba(255, 255, 255, 0.45);
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .tag:hover,
+    .tag--active {
+      background: #fff;
+      color: var(--color-bg);
+      border-color: #fff;
+    }
+
+    /* ── Nav link states on dark bg ── */
+    .nav-links a:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .nav-links a[aria-current="page"] {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    /* ── Video elements ── */
+    .full-image video {
+      width: 100%;
+      display: block;
+      border-radius: var(--radius-img);
+    }
+
+    /* ── Bold pain-points block ── */
+    .pain-points {
+      padding: 0 var(--page-margin) 6rem;
+    }
+
+    .pain-points p {
+      font-size: 2.4rem;
+      font-weight: 600;
+      line-height: 1.75;
+      color: var(--color-black);
+      max-width: 72rem;
+    }
+
+    /* ── View transition ── */
+    .vt-bg {
+      position: fixed;
+      inset: 0;
+      background-color: #006554;
+      z-index: -1;
+      pointer-events: none;
+      view-transition-name: ink-bg;
+    }
+
+    .project-title { view-transition-name: page-title; }
+
+    /* ── Mobile ── */
+    @media (max-width: 640px) {
+      .more-work__grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Full-viewport background: ink-bg anchor for view transition -->
+  <div class="vt-bg" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-icon" aria-hidden="true"></span>
+      <span class="nav-logo-name">Clayton Cunningham Design</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Work</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main content -->
+  <main>
+
+    <!-- Project title + capabilities -->
+    <header class="project-header">
+      <h1 class="project-title fade-up fade-up-1">
+        DICK'S TSHQ<br>Mobile App
+      </h1>
+      <div class="capabilities-block fade-up fade-up-2">
+        <div class="capabilities-tags">
+          <a href="capabilities.html?tag=Product+Design" class="tag">Product Design</a>          <a href="capabilities.html?tag=UX" class="tag">UX</a>          <a href="capabilities.html?tag=Illustration+System" class="tag">Illustration System</a>        </div>
+      </div>
+    </header>
+
+    <!-- Hero image -->
+    <section class="hero-image fade-up fade-up-3">
+      <img src="img/tshq_app_hero.png" alt="DICK'S TSHQ Mobile App hero — app screens showing the team sports experience">
+    </section>
+
+    <!-- Intro text -->
+    <div class="intro-text">
+      <p>The DICK'S Team Sports Headquarters mobile app is a way for busy parents and coaches to ease the pain of youth sports logistics on the go, and to extend the excitement past the playing field.</p>
+      <p>I worked as the lead product designer for the project, alongside the mobile development team and the mobile product manager, and was tasked with creating new features for our already established app.</p>
+    </div>
+
+    <!-- Research section -->
+    <div class="text-section">
+      <h2 class="section-heading">Research</h2>
+      <p class="body-text">After conducting user interviews and surveys with parents, coaches, administrators, and league officials, who were all current users of the app, we got a better sense of how and what they were currently using the app for. I gathered as much information from them to understand the challenges they face and how to minimize their frustrations.</p>
+    </div>
+
+    <!-- Pain points -->
+    <div class="pain-points">
+      <p>Parsing the research data, the users biggest challenges and pain points when using the app were:<br><br>
+      1. Not having a way to schedule a new event easily.<br>
+      2. Being unable to track which players were going to show up for a given practice or game.<br>
+      3. Not being able to quickly message the entire team with a change or update to the schedule.</p>
+    </div>
+
+    <!-- Personas -->
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_app_personas.jpg" alt="User personas — parents, coaches, and administrators" loading="lazy">
+      <p class="img-caption">Personas were created to help place a face to our users.</p>
+    </div>
+
+    <!-- Post-research text -->
+    <div class="text-section" style="padding-top: 4.8rem;">
+      <p class="body-text">Based off the findings from our research, we saw an opportunity to integrate new functionality that the product initially was missing. The team finalized a plan of action that targeted all of the core problem areas we wanted to solve.</p>
+    </div>
+
+    <!-- Custom Events section -->
+    <div class="text-section">
+      <h2 class="section-heading">Custom Events</h2>
+      <p class="body-text">With custom events, users can create games or practices for their team. The true benefit of the custom events process is that the system is able to handle complex constraints such as team and player schedules, availability of fields and locations, and time slots.<br><br>Users do not have to juggle all the necessary data needed to create an event and send it out to the rest of the team, they just select what type of event they are creating, a time, and location and all the hard work is taken care of in the background.<br><br>Previously, in order for a user to add a new event, they had to go through the logistical challenge of figuring out when their team had availability, or figure out who else is using the field and when. Or they had to use whatever system the league had in place such as sending an email to all the parents.</p>
+    </div>
+
+    <!-- Wireframes -->
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_app_wireframes.jpg" alt="Early sketched wireframes for the custom events flow" loading="lazy">
+      <p class="img-caption">Early sketched wireframes.</p>
+    </div>
+
+    <!-- User flow -->
+    <div class="full-image scroll-reveal">
+      <p class="body-text" style="padding-bottom: 2.4rem;">The first flow we tackled was for the creation of a new custom event. The pattern of this flow had to be scalable to all of the sports supported by the TSHQ platform. The process for shepherding a user through the event creation process was tough to nail down, and took many iterations and logic hoops to make sense on our end.</p>
+      <img src="img/tshq_app_user_flow.png" alt="User flow diagram for creating a new custom event" loading="lazy">
+      <p class="img-caption">User flow for creating a new custom event.</p>
+    </div>
+
+    <!-- Lo-fi designs -->
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_app_early_lo-fi_designs.png" alt="Low-fidelity screen designs for the custom events flow" loading="lazy">
+      <p class="img-caption">Lo-fi designs.</p>
+    </div>
+
+    <!-- Final designs -->
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_app_custom_events.png" alt="Final high-fidelity designs for the custom events feature" loading="lazy">
+      <p class="img-caption">Final designs.</p>
+    </div>
+
+    <!-- Video walkthrough A -->
+    <div class="full-image scroll-reveal">
+      <video src="img/tshq_app_custom_events_walkthrough.mp4" autoplay muted playsinline loop></video>
+      <p class="img-caption">Creating a new custom event.</p>
+    </div>
+
+    <!-- Video walkthrough B -->
+    <div class="full-image scroll-reveal">
+      <video src="img/tshq_app_custom_events_walkthrough_B.mp4" autoplay muted playsinline loop></video>
+      <p class="img-caption">Picking a time and location.</p>
+    </div>
+
+    <!-- Weather -->
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_app_weather.png" alt="Weather feature — current and forecast conditions at field location" loading="lazy">
+    </div>
+    <div class="image-note">
+      <p>Within the custom events flow we also added some features such as including the current and future weather conditions at the field location.</p>
+    </div>
+
+    <!-- Scores video -->
+    <div class="full-image scroll-reveal" style="padding-top: 4rem;">
+      <video src="img/tshq_app_scores.mp4" autoplay muted playsinline loop></video>
+    </div>
+    <div class="image-note">
+      <p>Another feature within custom events involved scores. Users were requesting an ability to see past games wins and losses, so they didn't have to keep track of it. Usually scores would be inputted automatically, but in an instance that they weren't, an admin could manually enter them.</p>
+    </div>
+
+    <!-- RSVP section -->
+    <div class="text-section" style="padding-top: 8rem;">
+      <h2 class="section-heading">RSVP</h2>
+      <p class="body-text">To help alleviate concerns with who was going to be available for any given game or practice for a team we created a simple RSVP system that the whole team could see at a glance who was attending what event. Users were prompted 24 hours ahead of time to enter their planned attendance so the coaching staff could plan accordingly.</p>
+    </div>
+
+    <!-- RSVP image -->
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_app_rsvp.png" alt="RSVP feature — team attendance tracking interface" loading="lazy">
+    </div>
+
+    <!-- Bulk Messaging section -->
+    <div class="text-section">
+      <h2 class="section-heading">Bulk Messaging</h2>
+      <p class="body-text">We needed an easy and fast way for the admins or coaches to quickly reach all the individuals and send out updates for a team all at once. We created a bulk messaging system that would notify any or all members of the team with an in app message. This prevented admins and coaching staffs from having to rely on email or calling every parent when a schedule change occurred.</p>
+    </div>
+
+    <!-- Messages image -->
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_app_messages.png" alt="Bulk messaging — send updates to the whole team at once" loading="lazy">
+      <p class="img-caption">Quickly send out a message to a few or all of the members of your team.</p>
+    </div>
+
+    <!-- Profile image -->
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_app_profile.png" alt="Redesigned profile view with DICK'S Scorecard loyalty integration" loading="lazy">
+      <p class="img-caption">Redesigned profile view for a user, and integration with DICK'S scorecard loyalty rewards program.</p>
+    </div>
+
+    <!-- Icons image -->
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_app_icons.png" alt="Custom icon set used throughout the TSHQ app" loading="lazy">
+      <p class="img-caption">Icons used throughout the app.</p>
+    </div>
+
+    <!-- Usability Testing section -->
+    <div class="text-section">
+      <h2 class="section-heading">Usability Testing</h2>
+      <p class="body-text">I tested the product at various points throughout the process to validate overall concepts, and to see if we were solving the right problems.<br><br><strong>Lo-Fi Prototypes</strong> — Stakeholders and developers helped to gauge ideas and feasibility of the problem solves and functionality by testing out initial concepts and ideas through prototypes created with Adobe XD and Marvel.<br><br><strong>User Testing</strong> — I conducted some guerrilla testing sessions at an Atlanta area DICK'S Sporting Goods, as well as some sessions at our small user testing lab in our office. Testing included a general flow of custom events to see any potential pitfalls or unforeseen issues had arisen.<br><br><strong>Beta Testing</strong> — Before release, a few star admins and parents tested some of the new features to try out with their clubs.</p>
+    </div>
+
+    <!-- Update notice -->
+    <div class="update-notice">
+      <p>[UPDATE] The DICK'S TSHQ mobile app has been sunsetted as of July 2019.</p>
+    </div>
+
+    <!-- Next project -->
+    <section class="next-project next-project-wrap" style="background-color: #FFBF00; margin-top: 8rem;">
+      <span class="next-label" style="color: rgba(0, 43, 92, 0.5);">Next Project</span>
+      <a href="kbb-icons-illustrations.html" class="next-project-title" style="color: rgba(0, 43, 92, 0.75);">
+        Kelley Blue Book<br>Icons &amp; Illustrations
+      </a>
+    </section>
+
+  </main>
+
+  <footer>
+    <p class="footer-copy">&copy; <span id="footer-year"></span> Clayton Cunningham Design. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+  </script>
+  <script>
+    // Scroll reveal
+    (function() {
+      var els = document.querySelectorAll('.scroll-reveal');
+      if (!els.length) return;
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08 });
+      els.forEach(function(el) { observer.observe(el); });
+    })();
+
+    // Skip view transition on back/forward navigation
+    window.addEventListener('pagereveal', function(e) {
+      if (e.viewTransition && navigation?.activation?.navigationType === 'traverse') {
+        e.viewTransition.skipTransition();
+      }
+    });
+
+    // Hide nav on scroll down, reveal on scroll up
+    (function() {
+      var nav = document.querySelector('nav');
+      var lastY = 0;
+      window.addEventListener('scroll', function() {
+        var y = window.scrollY;
+        if (y > lastY && y > 80) {
+          nav.classList.add('nav--hidden');
+        } else {
+          nav.classList.remove('nav--hidden');
+        }
+        lastY = y;
+      }, { passive: true });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var hero = document.querySelector('.hero-image');
+      var heroImg = hero && hero.querySelector('img');
+      if (!hero || !heroImg) return;
+      function updateHero() {
+        var p = Math.min(1, Math.max(0, window.scrollY / 400));
+        var pad = (5 * (1 - p)).toFixed(3);
+        var rad = (0.8 * (1 - p)).toFixed(3);
+        hero.style.paddingLeft  = pad + 'vw';
+        hero.style.paddingRight = pad + 'vw';
+        heroImg.style.borderRadius = rad + 'rem';
+      }
+      window.addEventListener('scroll', updateHero, { passive: true });
+      updateHero();
+    })();
+  </script>
+
+  <script>
+    document.querySelectorAll("a.tag[href*=\"capabilities\"]").forEach(function(t) {
+      t.addEventListener("click", function() { t.style.viewTransitionName = "active-chip"; });
+    });
+  </script>
+</body>
+</html>

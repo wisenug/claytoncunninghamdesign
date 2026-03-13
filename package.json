@@ -1,0 +1,9 @@
+{
+  "name": "ccd-portfolio",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "lottie-web": "^5.13.0",
+    "puppeteer": "^22.0.0"
+  }
+}

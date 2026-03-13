@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e \"const sharp = require\\(''sharp''\\); sharp\\(''/Users/cunningham/Desktop/ccd-updated/img/logo.png''\\).webp\\(\\).toFile\\(''/Users/cunningham/Desktop/ccd-updated/img/logo.webp''\\).then\\(\\(\\)=>console.log\\(''done''\\)\\).catch\\(e=>console.error\\(e.message\\)\\)\")",
+      "Bash(node screenshot.mjs http://localhost:3000 initial)",
+      "Bash(npm install puppeteer --prefix /Users/cunningham/Desktop/ccd-updated)",
+      "Bash(zsh -i -c \"npm init -y && npm install puppeteer\")",
+      "Read(//Users/cunningham/Desktop/obsidian-player/**)",
+      "Bash(node screenshot-bottom.mjs)",
+      "Bash(node screenshot-nextproject.mjs)",
+      "Bash(node screenshot.mjs http://localhost:3000 final)",
+      "Bash(node screenshot.mjs http://localhost:3000 top)",
+      "Bash(node screenshot.mjs http://localhost:3000/kbb-icons-illustrations.html hero)",
+      "Bash(node screenshot.mjs http://localhost:3000/autotrader-illustration-system-test.html test)",
+      "Bash(lsof -i :3000)",
+      "Bash(node -e \":*)"
+    ],
+    "additionalDirectories": [
+      "/Users/cunningham/Desktop/ccd-updated"
+    ]
+  }
+}

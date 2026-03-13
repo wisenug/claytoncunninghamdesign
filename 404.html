@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 — Page Not Found · Clayton Cunningham Design</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      overflow: hidden;
+      height: 100vh;
+      background: #9BB8D4;
+    }
+
+    /* Background image */
+    .bg-image {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background-image: url('img/Pallet_Town_Guide.webp');
+      background-size: cover;
+      background-position: center;
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+    }
+
+    /* Nav override */
+    nav {
+      background: rgba(10, 20, 40, 0.72);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .nav-logo-name { color: #A8C8E8; }
+    .nav-links a {
+      color: #A8C8E8;
+      opacity: 1;
+    }
+    .nav-links a:hover {
+      background: rgba(168, 200, 232, 0.15);
+      color: #D0E8FF;
+    }
+
+    /* Scanlines */
+    .fx-scanlines {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background: repeating-linear-gradient(
+        to bottom,
+        transparent,
+        transparent 3px,
+        rgba(0,0,0,0.045) 3px,
+        rgba(0,0,0,0.045) 4px
+      );
+    }
+
+    /* Vignette */
+    .fx-vignette {
+      position: fixed;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      background: radial-gradient(
+        ellipse 75% 65% at 50% 50%,
+        transparent 35%,
+        rgba(0,0,0,0.62) 100%
+      );
+    }
+
+    /* Center overlay */
+    .lost-wrap {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 8rem;
+    }
+
+    /* GB battle menu dialog */
+    .dialog {
+      background: #F8F8F0;
+      border: 4px solid #181818;
+      position: relative;
+      padding: 3.2rem 4rem 2.8rem;
+      max-width: 60rem;
+      width: calc(100% - 4rem);
+      animation: dialogRise 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+      image-rendering: pixelated;
+    }
+
+    /* Inner border */
+    .dialog::before {
+      content: '';
+      position: absolute;
+      inset: 5px;
+      border: 2px solid #181818;
+      pointer-events: none;
+    }
+
+    /* Corner diamond ornaments */
+    .dialog-corner {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: #181818;
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      z-index: 2;
+    }
+    .dialog-corner--tl { top: -5px; left: -5px; }
+    .dialog-corner--tr { top: -5px; right: -5px; }
+    .dialog-corner--bl { bottom: -5px; left: -5px; }
+    .dialog-corner--br { bottom: -5px; right: -5px; }
+
+    @keyframes dialogRise {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .dialog-exclaim {
+      font-family: 'Press Start 2P', monospace;
+      font-size: clamp(1.0rem, 1.4vw, 1.3rem);
+      color: #181818;
+      letter-spacing: 0.06em;
+      margin-bottom: 1.6rem;
+    }
+
+    .dialog-heading {
+      font-family: 'Press Start 2P', monospace;
+      font-size: clamp(1.6rem, 2.8vw, 2.6rem);
+      color: #181818;
+      line-height: 1.6;
+      margin-bottom: 2.4rem;
+      text-shadow: none;
+    }
+
+    .dialog-body {
+      font-family: 'Press Start 2P', monospace;
+      font-size: clamp(1.1rem, 1.4vw, 1.4rem);
+      color: #181818;
+      line-height: 2.2;
+      margin-bottom: 3.2rem;
+    }
+
+    .dialog-cta {
+      font-family: 'Press Start 2P', monospace;
+      font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+      color: #181818;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.2rem 2rem;
+      border: 3px solid #181818;
+      transition: background 0.08s ease, color 0.08s ease, transform 0.08s ease;
+      background: transparent;
+    }
+    .dialog-cta:hover {
+      background: #181818;
+      color: #F8F8F0;
+    }
+    .dialog-cta:active {
+      transform: translate(2px, 2px);
+    }
+
+    .dialog-cursor {
+      position: absolute;
+      bottom: 1.4rem;
+      right: 2rem;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 1.2rem;
+      color: #181818;
+      animation: blink 0.9s step-end infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-image"></div>
+  <div class="fx-scanlines"></div>
+  <div class="fx-vignette"></div>
+
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="img/logo.png" alt="Clayton Cunningham">
+      <span class="nav-logo-name">Clayton Cunningham Design</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Work</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <div class="lost-wrap">
+    <div class="dialog">
+      <span class="dialog-corner dialog-corner--tl"></span>
+      <span class="dialog-corner dialog-corner--tr"></span>
+      <span class="dialog-corner dialog-corner--bl"></span>
+      <span class="dialog-corner dialog-corner--br"></span>
+      <p class="dialog-exclaim">! 404</p>
+      <p class="dialog-heading">Are you lost?</p>
+      <p class="dialog-body">
+        This page wandered into tall<br>
+        grass and never came back.
+      </p>
+      <a href="index.html" class="dialog-cta">
+        <span>▶</span> Return Home
+      </a>
+      <span class="dialog-cursor">▼</span>
+    </div>
+  </div>
+
+  <script></script>
+</body>
+</html>

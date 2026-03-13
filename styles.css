@@ -1,0 +1,730 @@
+/* ============================================================
+   Clayton Cunningham — Portfolio
+   styles.css
+   ============================================================ */
+
+/* Cross-document view transitions */
+@view-transition {
+  navigation: auto;
+}
+
+/* Variables */
+:root {
+  --color-black: #201515;
+  --color-white: #fff;
+  --color-orange: #fe5000;
+  --color-grass: #00c142;
+  --color-aqua: #04abe0;
+  --color-bus: #ffc700;
+  --color-merlot: #630331;
+  --color-concrete: #e0e0e0;
+  --color-smoke: #9e9e9e;
+  --color-cream: #fff3e6;
+  --color-bg: #F5B990;
+  --color-asphalt: #3c4043;
+
+  --page-margin: 5vw;
+
+  --radius-img: 0.8rem;
+  --font-body: 'DM Sans', 'Neue Haas Grotesk Display Pro', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Base */
+html {
+  font-size: 10px;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-black);
+  min-height: 100%;
+}
+
+/* ============================================================
+   Navigation
+   ============================================================ */
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--page-margin);
+  height: 10rem;
+  background: var(--color-bg);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+nav.nav--hidden {
+  transform: translateY(-100%);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: filter 0.2s ease;
+}
+
+.nav-logo:hover {
+  filter: brightness(0.8);
+}
+
+.nav-logo:active {
+  filter: brightness(0.6);
+}
+
+.nav-logo-icon {
+  display: block;
+  flex-shrink: 0;
+  width: 5.6rem;
+  height: 5.6rem;
+  color: var(--color-black);
+  background-color: currentColor;
+  mask-image: url('img/clayton-cunningham-design-logo.svg');
+  -webkit-mask-image: url('img/clayton-cunningham-design-logo.svg');
+  mask-size: contain;
+  -webkit-mask-size: contain;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-position: center;
+}
+
+.nav-logo {
+  gap: 1.4rem;
+}
+
+.nav-logo-name {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--color-black);
+  white-space: nowrap;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 3.2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 2.2rem;
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  color: var(--color-black);
+  text-decoration: none;
+  opacity: 0.65;
+  border-radius: 0.6rem;
+  padding: 0.5rem 1rem;
+  transition: background 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+}
+
+.nav-links a:hover {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.07);
+}
+
+.nav-links a[aria-current="page"] {
+  opacity: 1;
+  font-weight: 600;
+  background: rgba(0, 0, 0, 0.17);
+}
+
+/* ============================================================
+   Main Layout
+   ============================================================ */
+
+main {
+  padding-top: 10rem;
+}
+
+/* ============================================================
+   Project Header
+   ============================================================ */
+
+.project-header {
+  padding: 7rem var(--page-margin) 4rem;
+}
+
+.project-title {
+  font-size: clamp(5.6rem, 8.3vw + 1.5rem, 14.4rem);
+  font-weight: 800;
+  line-height: 0.97;
+  letter-spacing: -0.035em;
+  color: var(--color-black);
+  margin-bottom: 3.6rem;
+}
+
+.capabilities-block {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.capabilities-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.tag {
+  font-size: 1.7rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--color-black);
+  border: 2px solid var(--color-black);
+  border-radius: 10rem;
+  padding: 0.8rem 2rem;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.tag:hover,
+.tag--active {
+  background: var(--color-black);
+  color: var(--color-bg);
+  border-color: var(--color-black);
+}
+
+/* ============================================================
+   Hero Image
+   ============================================================ */
+
+.hero-image {
+  margin: 0;
+  padding: 0 var(--page-margin);
+}
+
+.hero-image img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: var(--radius-img);
+}
+
+/* ============================================================
+   Intro Text (two-column)
+   ============================================================ */
+
+.intro-text {
+  padding: 7rem var(--page-margin) 6rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+}
+
+.intro-text p {
+  font-size: 4.8rem; /* 48px — 3rem at standard 16px base */
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--color-black);
+}
+
+/* ============================================================
+   Image Grids
+   ============================================================ */
+
+.image-grid-3 {
+  padding: 0 var(--page-margin) 1.6rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.6rem;
+}
+
+.image-grid-2 {
+  padding: 0 var(--page-margin) 1.6rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.6rem;
+}
+
+.image-grid-4 {
+  padding: 0 var(--page-margin) 1.6rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.2rem;
+}
+
+.image-grid-3 img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  aspect-ratio: 4/3;
+  border-radius: var(--radius-img);
+}
+
+.image-grid-2 img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  aspect-ratio: 16/10;
+  border-radius: var(--radius-img);
+}
+
+.image-grid-4 img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  aspect-ratio: 1/1;
+  border-radius: var(--radius-img);
+}
+
+/* ============================================================
+   Full-Width Image
+   ============================================================ */
+
+.full-image {
+  padding: 0 var(--page-margin) 1.6rem;
+}
+
+.full-image img {
+  width: 100%;
+  display: block;
+  border-radius: var(--radius-img);
+}
+
+/* ============================================================
+   Text Sections
+   ============================================================ */
+
+.text-section {
+  padding: 4.8rem var(--page-margin) 6rem;
+  text-align: center;
+}
+
+.section-heading {
+  font-size: 4.8rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--color-black);
+  margin-bottom: 1.8rem;
+}
+
+.body-text {
+  font-size: 2.4rem;
+  font-weight: 400;
+  line-height: 1.75;
+  color: var(--color-black);
+  max-width: 72rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.text-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+}
+
+/* ============================================================
+   Pull Quote
+   ============================================================ */
+
+.pullquote {
+  padding: 8rem var(--page-margin);
+  text-align: center;
+}
+
+.pullquote blockquote {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(3.6rem, 3vw + 1.8rem, 5.6rem);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: var(--color-black);
+  max-width: 96rem;
+  margin: 0 auto;
+}
+
+/* ============================================================
+   Next Project
+   ============================================================ */
+
+.next-project {
+  padding: 8rem var(--page-margin) 10rem;
+  background-color: transparent;
+  position: relative;
+}
+
+.next-project-bg {
+  position: absolute;
+  inset: 0;
+  background-color: #FFBF00;
+}
+
+.next-label {
+  display: block;
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.68);
+  margin-bottom: 1.6rem;
+  transition: filter 0.2s ease;
+  cursor: default;
+}
+
+.next-label:hover {
+  filter: brightness(0.8);
+}
+
+.next-label:active {
+  filter: brightness(0.6);
+}
+
+.next-project-title {
+  font-size: clamp(6.4rem, 9vw, 11.2rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  color: rgba(0, 0, 0, 0.68);
+  transition: filter 0.2s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.next-project-title:hover {
+  filter: brightness(0.8);
+}
+
+.next-project-title:active {
+  filter: brightness(0.6);
+}
+
+/* ============================================================
+   Footer
+   ============================================================ */
+
+footer {
+  padding: 5.6rem var(--page-margin);
+  background-color: #F0C0CC;
+  text-align: center;
+}
+
+.footer-copy {
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: #000;
+}
+
+/* ============================================================
+   Image Split — Stacked + Tall
+   ============================================================ */
+
+/* Stacked on left, tall on right */
+.image-split-tall {
+  padding: 0 var(--page-margin) 1.6rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.6rem;
+  align-items: stretch;
+}
+
+/* Mirrored: tall on left, stacked on right */
+.image-split-tall--mirror {
+  direction: rtl;
+}
+
+.image-split-tall--mirror > * {
+  direction: ltr;
+}
+
+.image-split-tall__stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.image-split-tall__stack img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  display: block;
+  object-fit: cover;
+  border-radius: var(--radius-img);
+}
+
+.image-split-tall__tall {
+  display: flex;
+}
+
+.image-split-tall__tall img {
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  display: block;
+  object-fit: cover;
+  border-radius: var(--radius-img);
+}
+
+@media (max-width: 640px) {
+  .image-split-tall {
+    grid-template-columns: 1fr;
+  }
+
+  .image-split-tall--mirror {
+    direction: ltr;
+  }
+
+  .image-split-tall__tall img {
+    aspect-ratio: 16 / 10;
+    flex: none;
+  }
+}
+
+/* ============================================================
+   Scrolling Carousel
+   ============================================================ */
+
+.carousel-wrapper {
+  overflow: hidden;
+  padding-bottom: 8rem;
+  cursor: grab;
+  user-select: none;
+}
+
+.carousel-wrapper.is-dragging {
+  cursor: grabbing;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 1.6rem;
+  width: max-content;
+  animation: marquee 36s linear infinite;
+}
+
+
+.carousel-item {
+  width: 40rem;
+  flex-shrink: 0;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 28rem;
+  object-fit: cover;
+  border-radius: var(--radius-img);
+  display: block;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ============================================================
+   Lottie
+   ============================================================ */
+
+.lottie-container {
+  padding: 0 var(--page-margin) 1.6rem;
+}
+
+.lottie-container > div {
+  width: 100%;
+  height: 600px;
+  border-radius: var(--radius-img);
+  overflow: hidden;
+}
+
+.lottie-container > div svg {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+.lottie-two-col {
+  padding: 0 var(--page-margin) 1.6rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.6rem;
+}
+
+.lottie-two-col .lottie-container {
+  padding: 0;
+}
+
+.lottie-two-col .lottie-container > div {
+  height: 500px;
+}
+
+@media (max-width: 640px) {
+  .lottie-two-col {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   Animations
+   ============================================================ */
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-up {
+  animation: fadeUp 0.45s ease-in-out both;
+}
+
+.fade-up-1 { animation-delay: 0.03s; }
+.fade-up-2 { animation-delay: 0.09s; }
+.fade-up-3 { animation-delay: 0.15s; }
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .intro-text p {
+    font-size: 3.6rem;
+  }
+}
+
+/* Hide logo name when it can't fit alongside nav links */
+@media (max-width: 800px) {
+  .nav-logo-name {
+    display: none;
+  }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  nav {
+    height: 8rem;
+    padding-right: calc(var(--page-margin) + 0.8rem);
+  }
+
+  main {
+    padding-top: 8rem;
+  }
+
+  .intro-text {
+    grid-template-columns: 1fr;
+    gap: 3.2rem;
+  }
+
+  .intro-text p {
+    font-size: 2.8rem;
+  }
+
+  .text-section {
+    text-align: left;
+  }
+
+  .section-heading {
+    font-size: 3.6rem;
+  }
+
+  .body-text {
+    font-size: 1.8rem;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .text-two-col {
+    grid-template-columns: 1fr;
+    gap: 3.2rem;
+  }
+
+  .image-grid-2,
+  .image-grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .image-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Uniform image-to-image vertical spacing — matches horizontal gap */
+  .image-grid-2,
+  .image-grid-3,
+  .image-grid-4,
+  .full-image,
+  .lottie-container,
+  .lottie-two-col,
+  .image-split-tall {
+    padding-bottom: 1.6rem;
+  }
+
+  .image-grid-2,
+  .image-grid-3,
+  .lottie-two-col,
+  .image-split-tall {
+    gap: 2.4rem;
+  }
+
+  .image-split-tall__stack {
+    gap: 2.4rem;
+  }
+}
+
+/* ============================================================
+   View Transitions — Ink Spill Navigation
+   ============================================================ */
+
+@view-transition {
+  navigation: auto;
+}
+
+/* Ink background: geometric morph only — no opacity fade */
+::view-transition-group(ink-bg) {
+  animation-duration: 0.85s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+}
+
+::view-transition-old(ink-bg),
+::view-transition-new(ink-bg) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* Title: position + size morph */
+::view-transition-group(page-title) {
+  animation-duration: 0.75s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 2;
+}
+
+/* Root: old page stays visible while ink covers it, then fades */
+::view-transition-old(root) {
+  animation: vt-old-linger 0.85s ease-out both;
+}
+
+@keyframes vt-old-linger {
+  0%   { opacity: 1; }
+  70%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* New page: fade in after ink has covered the screen */
+::view-transition-new(root) {
+  animation: vt-new-reveal 0.25s 0.65s ease-in both;
+}
+
+@keyframes vt-new-reveal {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}

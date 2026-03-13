@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="img/clayton-cunningham-design-logo.svg">
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <link rel="apple-touch-icon" href="img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sketches, Illustrations, and Doodles — Clayton Cunningham</title>
+  <meta name="description" content="A collection of drawn things — sketches, illustrations, and doodles by Clayton Cunningham.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,300;1,9..40,400&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    :root {
+      --color-bg: #4D93FC;
+      --color-black: #19133A;
+    }
+
+    /* ── View transition ── */
+    .vt-bg {
+      position: fixed;
+      inset: 0;
+      background-color: #4D93FC;
+      z-index: -1;
+      pointer-events: none;
+      view-transition-name: ink-bg;
+    }
+
+    .project-title { view-transition-name: page-title; }
+
+    /* ── Inverted tag hover ── */
+    .tag {
+      border-color: rgba(25, 19, 58, 0.4);
+      color: rgba(25, 19, 58, 0.7);
+    }
+
+    .tag:hover,
+    .tag--active {
+      background: #19133A;
+      color: var(--color-bg);
+      border-color: #19133A;
+    }
+
+    /* ── Video elements ── */
+    .full-image video {
+      width: 100%;
+      display: block;
+      border-radius: var(--radius-img);
+    }
+
+    /* ── Full-width intro override ── */
+    .intro-text--full {
+      grid-template-columns: 1fr !important;
+      gap: 0 !important;
+    }
+
+    /* ── Scroll reveal ── */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .scroll-reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── More Work section ── */
+    .more-work {
+      padding: 8rem var(--page-margin) 0;
+    }
+
+    .more-work__heading {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(25, 19, 58, 0.45);
+      margin-bottom: 3.2rem;
+    }
+
+    .more-work__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.6rem;
+    }
+
+    .more-work__card {
+      display: block;
+      text-decoration: none;
+      overflow: hidden;
+      border-radius: var(--radius-img);
+      position: relative;
+    }
+
+    .more-work__card img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      display: block;
+      border-radius: var(--radius-img);
+      transform: scale(1);
+      transition: transform 1.1s linear(0, 0.1206, 0.2168, 0.3001, 0.3741, 0.4409, 0.5016, 0.5572, 0.6083, 0.6555, 0.699, 0.7394, 0.7768, 0.8114, 0.8435, 0.8733, 0.9008, 0.9263, 0.9499, 0.9715, 0.9915, 1.0097, 1.0264, 1.0415, 1.0552, 1.0676, 1.0785, 1.0882, 1.0967, 1.104, 1.1101, 1.1151, 1.1191, 1.122, 1.1239, 1.1249, 1.1249, 1.1244, 1.1234, 1.1218, 1.1198, 1.1172, 1.1142, 1.1109, 1.1072, 1.1033, 1.0992, 1.095, 1.0907, 1.0865, 1.0823, 1.0782, 1.0741, 1.0702, 1.0664, 1.0627, 1.0591, 1.0557, 1.0525, 1.0493, 1.0463, 1.0435, 1.0407, 1.0381, 1.0356, 1.0332, 1.031, 1.0288, 1.0268, 1.0248, 1.023, 1.0212, 1.0195, 1.018, 1.0165, 1.0151, 1.0137, 1.0125, 1.0113, 1.0102, 1.0091, 1.0082, 1.0073, 1.0064, 1.0056, 1.0049, 1.0042, 1.0036, 1.003, 1.0025, 1.0021, 1.0017, 1.0013, 1.001, 1.0007, 1.0005, 1.0003, 1.0002, 1.0001, 1, 1);
+    }
+
+    .more-work__card:hover img {
+      transform: scale(1.06);
+    }
+
+    .more-work__card-label {
+      margin-top: 1.2rem;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: rgba(25, 19, 58, 0.65);
+      letter-spacing: -0.01em;
+      padding: 0 0.2rem;
+      transition: color 0.2s ease;
+    }
+
+    .more-work__card:hover .more-work__card-label {
+      color: #19133A;
+    }
+
+    .more-work__card-client {
+      display: block;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #19133A;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.3rem;
+    }
+
+    /* ── Next project ── */
+    .next-project-wrap {
+      margin-top: 8rem;
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 640px) {
+      .more-work__grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Full-viewport background: ink-bg anchor for view transition -->
+  <div class="vt-bg" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-icon" aria-hidden="true"></span>
+      <span class="nav-logo-name">Clayton Cunningham Design</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Work</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main content -->
+  <main>
+
+    <!-- Project title + capabilities -->
+    <header class="project-header">
+      <h1 class="project-title fade-up fade-up-1">
+        Sketches, Illustrations,<br>and Doodles
+      </h1>
+      <div class="capabilities-block fade-up fade-up-2">
+        <div class="capabilities-tags">
+          <a href="capabilities.html?tag=Illustration+System" class="tag">Illustration System</a>        </div>
+      </div>
+    </header>
+
+    <!-- Hero image -->
+    <section class="hero-image fade-up fade-up-3">
+      <img src="img/sketch_stipple.png" alt="Stipple brush illustration" loading="eager">
+    </section>
+
+    <!-- Intro text -->
+    <div class="intro-text intro-text--full">
+      <p>Choice nugs from my collection of sketchbooks, and digital procreate fun too. From quick ballpoint doodles to fully rendered digital illustrations.</p>
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/sketch_c.png" alt="Sketchbook pages" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <video autoplay muted playsinline loop>
+        <source src="img/sketch_pooch.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/sketch_pizza.jpg" alt="Pizza illustration" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/sketch_choptober.jpg" alt="Atlanta Braves Choptober" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/sketch_peace_hand.png" alt="Peace hand illustration" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <video autoplay muted playsinline loop>
+        <source src="img/sketch_alligator.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="image-grid-2 scroll-reveal">
+      <img src="img/sketch_a.png" alt="Linework sketchbook" loading="lazy">
+      <img src="img/sketch_iso_bigpink.png" alt="Isometric pink world" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/sketch_gsu_eagles.png" alt="GSU Georgia Southern Eagles football" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <video autoplay muted playsinline loop>
+        <source src="img/sketch_wizards_n_thangzcollage.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/sketch_allgood_koozie.png" alt="Allgood music festival koozie" loading="lazy">
+    </div>
+
+    <div class="image-grid-2 scroll-reveal">
+      <img src="img/sketch_flowers.png" alt="Flowers illustration" loading="lazy">
+      <img src="img/sketch_killer_acid.png" alt="Killer acid illustration" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/sketch_yellow.png" alt="Yellow sketchbook" loading="lazy">
+    </div>
+
+    <div class="image-grid-2 scroll-reveal">
+      <img src="img/sketch_iso_blue.png" alt="Isometric blue world" loading="lazy">
+      <img src="img/sketch_iso_neongreen.png" alt="Isometric neon green world" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/sketch_pattern.png" alt="Pattern design" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/sketch_cunningham_crest.jpg" alt="Cunningham family crest" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/sketch_kool-aid_man.png" alt="Kool-Aid Man illustration" loading="lazy">
+    </div>
+
+    <div class="image-grid-3 scroll-reveal">
+      <img src="img/sketch_1_yellow.jpg" alt="Stipple art 1" loading="lazy">
+      <img src="img/sketch_2_yellow_detail_lower.jpg" alt="Stipple art 2" loading="lazy">
+      <img src="img/sketch_2_yellow_detail_upper.jpg" alt="Stipple art 3" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/sketch_red_bg.jpg" alt="Red background illustration" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <video autoplay muted playsinline loop>
+        <source src="img/sketch_wooly_bully.mov" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/sketch_rawr.png" alt="Cat rawr" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/sketch_stipple_stuff.png" alt="Stipple illustrations" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/sketch_venus.jpg" alt="Venus line drawing" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/sketch_tri-color.png" alt="Tri-color illustration" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <video autoplay muted playsinline loop>
+        <source src="img/sketch_friday.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="image-grid-2 scroll-reveal">
+      <img src="img/sketch_leaves.png" alt="Green leaves" loading="lazy">
+      <img src="img/sketch_yellow_wizard.png" alt="Wizard linework" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/sketch_b.png" alt="Sketchbook pages" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/sketch_supastar.png" alt="Supastar" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/sketch_wanee_1_shirt.jpg" alt="Wanee music festival shirt design" loading="lazy">
+    </div>
+
+    <div class="image-grid-2 scroll-reveal">
+      <img src="img/sketch_wanee_2.jpg" alt="Wanee music festival design" loading="lazy">
+      <img src="img/sketch_wanee_6_live.jpg" alt="Wanee music festival live" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/sketch_procreate_fun.png" alt="Procreate shapes" loading="lazy">
+    </div>
+
+    <div class="image-grid-2 scroll-reveal">
+      <img src="img/sketch_green.png" alt="Green illustration" loading="lazy">
+      <img src="img/sketch_meeting_notes_blue.jpg" alt="Blue room meeting notes" loading="lazy">
+    </div>
+
+    <div class="image-grid-3 scroll-reveal">
+      <img src="img/sketch_crosshatch.png" alt="Crosshatch linework" loading="lazy">
+      <img src="img/sketch_s-thing.png" alt="S-thing linework" loading="lazy">
+      <img src="img/sketch_stay-cool.png" alt="Stay cool" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/sketch_stipple_yoga.png" alt="Stipple yoga illustration" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <video autoplay muted playsinline loop>
+        <source src="img/sketch_blue_rooster.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/sketch_meeting_notes.jpg" alt="Meeting notes sketch" loading="lazy">
+    </div>
+
+    <div class="image-grid-2 scroll-reveal">
+      <img src="img/sketch_fishhead_2.jpg" alt="Fish on a head" loading="lazy">
+      <img src="img/sketch_fishhead_1.jpg" alt="Fish on head" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/sketch_dino_2.jpg" alt="Dinosaur illustration" loading="lazy">
+    </div>
+
+    <div class="image-grid-3 scroll-reveal">
+      <img src="img/sketch_big_lebowski.jpg" alt="Big Lebowski sketch" loading="lazy">
+      <img src="img/sketch_bear_creek.jpg" alt="Bear Creek" loading="lazy">
+      <img src="img/sketch_atl.jpg" alt="ATL sketch" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/sketch_4_blue.jpg" alt="Blue sketchbook" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/sketch_lotus+lion_t-shirt.jpg" alt="Lotus and lion t-shirt design" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <video autoplay muted playsinline loop>
+        <source src="img/sketch_howdy.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="image-grid-2 scroll-reveal">
+      <img src="img/sketch_holiday_card.jpg" alt="Holiday card design" loading="lazy">
+      <img src="img/sketch_coke_bottle.jpg" alt="Coke bottle sketch" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/sketch_plantlife.jpg" alt="Plant life illustration" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/sketch_porcupine_juice.jpg" alt="Porcupine in a blender" loading="lazy">
+    </div>
+
+    <div class="image-grid-3 scroll-reveal">
+      <img src="img/sketch_palmetto_state.jpg" alt="Palmetto state" loading="lazy">
+      <img src="img/sketch_sweet_sour.jpg" alt="Sweet and sour" loading="lazy">
+      <img src="img/sketch_moonshine_turtle.jpg" alt="Moonshine turtle" loading="lazy">
+    </div>
+
+    <div class="image-grid-2 scroll-reveal">
+      <img src="img/sketch_mustache_detail.jpg" alt="Mustache detail" loading="lazy">
+      <img src="img/sketch_detail.jpg" alt="Sketch detail" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/sketch_strongman.jpg" alt="Strongman lifting weights" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/sketch_thirdeye.jpg" alt="Third eye illustration" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <video autoplay muted playsinline loop>
+        <source src="img/sketch_turkeyday.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="image-grid-2 scroll-reveal">
+      <img src="img/sketch_typography.jpg" alt="Typography sketch" loading="lazy">
+      <img src="img/sketch_wiretap.jpg" alt="Wiretap illustration" loading="lazy">
+    </div>
+
+    <div class="image-grid-2 scroll-reveal">
+      <img src="img/sketch_valentines_card.jpg" alt="Valentine's card design" loading="lazy">
+      <img src="img/sketch_linework.jpg" alt="Linework sketch" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/sketch_dawg_house_beer_garden.jpg" alt="Dawg House Beer Garden" loading="lazy">
+    </div>
+
+    <!-- Next project -->
+    <section class="next-project next-project-wrap" style="background-color: #E3F2FF; margin-top: 8rem;">
+      <span class="next-label" style="color: rgba(15, 41, 96, 0.5);">Next Project</span>
+      <a href="autotrader-illustration-system.html" class="next-project-title" style="color: rgba(15, 41, 96, 0.75);">
+        Autotrader<br>Illustration System
+      </a>
+    </section>
+
+  </main>
+
+  <footer>
+    <p class="footer-copy">&copy; <span id="footer-year"></span> Clayton Cunningham Design. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+  </script>
+  <script>
+    // Skip view transition on back/forward navigation
+    window.addEventListener('pagereveal', function(e) {
+      if (e.viewTransition && navigation?.activation?.navigationType === 'traverse') {
+        e.viewTransition.skipTransition();
+      }
+    });
+
+    // Scroll reveal
+    (function() {
+      var els = document.querySelectorAll('.scroll-reveal');
+      if (!els.length) return;
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08 });
+      els.forEach(function(el) { observer.observe(el); });
+    })();
+
+    // Hide nav on scroll down, reveal on scroll up
+    (function() {
+      var nav = document.querySelector('nav');
+      var lastY = 0;
+      window.addEventListener('scroll', function() {
+        var y = window.scrollY;
+        if (y > lastY && y > 80) {
+          nav.classList.add('nav--hidden');
+        } else {
+          nav.classList.remove('nav--hidden');
+        }
+        lastY = y;
+      }, { passive: true });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var hero = document.querySelector('.hero-image');
+      var heroImg = hero && hero.querySelector('img');
+      if (!hero || !heroImg) return;
+      function updateHero() {
+        var p = Math.min(1, Math.max(0, window.scrollY / 400));
+        var pad = (5 * (1 - p)).toFixed(3);
+        var rad = (0.8 * (1 - p)).toFixed(3);
+        hero.style.paddingLeft  = pad + 'vw';
+        hero.style.paddingRight = pad + 'vw';
+        heroImg.style.borderRadius = rad + 'rem';
+      }
+      window.addEventListener('scroll', updateHero, { passive: true });
+      updateHero();
+    })();
+  </script>
+
+  <script>
+    document.querySelectorAll("a.tag[href*=\"capabilities\"]").forEach(function(t) {
+      t.addEventListener("click", function() { t.style.viewTransitionName = "active-chip"; });
+    });
+  </script>
+</body>
+</html>

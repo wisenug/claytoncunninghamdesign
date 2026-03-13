@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="img/clayton-cunningham-design-logo.svg">
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <link rel="apple-touch-icon" href="img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DICK'S TSHQ Registration Redesign — Clayton Cunningham</title>
+  <meta name="description" content="DICK'S TSHQ registration redesign — product design case study by Clayton Cunningham.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,300;1,9..40,400&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    :root {
+      --color-bg: #f0f0f0;
+      --color-black: #1B561A;
+    }
+
+    /* ── View transition ── */
+    .vt-bg {
+      position: fixed;
+      inset: 0;
+      background-color: #f0f0f0;
+      z-index: -1;
+      pointer-events: none;
+      view-transition-name: ink-bg;
+    }
+
+    .project-title { view-transition-name: page-title; }
+
+    /* ── Image captions ── */
+    .img-caption {
+      font-size: 1.5rem;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      color: rgba(27, 86, 26, 0.5);
+      margin-top: 1.2rem;
+      padding: 0 0.4rem;
+    }
+
+    /* ── Assumption callouts ── */
+    .assumption {
+      padding: 0 var(--page-margin) 3.2rem;
+    }
+
+    .assumption p {
+      font-size: 2.4rem;
+      font-weight: 600;
+      font-style: italic;
+      line-height: 1.7;
+      color: var(--color-black);
+      max-width: 72rem;
+    }
+
+    /* ── Next project ── */
+    .next-project-wrap {
+      margin-top: 8rem;
+    }
+
+    /* ── Scroll reveal ── */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .scroll-reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="vt-bg" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-icon" aria-hidden="true"></span>
+      <span class="nav-logo-name">Clayton Cunningham Design</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Work</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <!-- Project header -->
+    <header class="project-header">
+      <h1 class="project-title fade-up fade-up-1">
+        DICK'S TSHQ<br>Registration Redesign
+      </h1>
+      <div class="capabilities-block fade-up fade-up-2">
+        <div class="capabilities-tags">
+          <a href="capabilities.html?tag=Product+Design" class="tag">Product Design</a>          <a href="capabilities.html?tag=UX" class="tag">UX</a>        </div>
+      </div>
+    </header>
+
+    <!-- Hero image -->
+    <section class="hero-image fade-up fade-up-3">
+      <img src="img/tshq_reg_hero.png" alt="DICK'S TSHQ Registration Redesign hero" loading="eager">
+    </section>
+
+    <!-- Intro text -->
+    <div class="intro-text">
+      <p>DICK'S Team Sports Headquarters is one of the leaders in the space of software for youth sports — with over 3,000,000 players and over 10,000 team websites, all counting on our products to make their lives and jobs easier.</p>
+      <p>One of the main products at TSHQ is the online registration experience to sign up participants for their respective leagues and teams. The challenge was bringing our bloated and dated software up to the level of quality that customers have come to expect in the age of smartphones and social media.</p>
+    </div>
+
+    <!-- Legacy UI -->
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_reg_legacy_ui.png" alt="Previous TSHQ registration UI" loading="lazy">
+      <p class="img-caption">Previous TSHQ registration UI.</p>
+    </div>
+
+    <!-- The Challenge -->
+    <div class="text-section">
+      <h2 class="section-heading">The Challenge</h2>
+      <p class="body-text">Year after year new features and functionality were added without considering the effect on the product as a whole. The result was a monstrosity with no cohesive UI and a poor user experience.<br><br>A complete, front to back redesign was called for in order to overhaul the entire registration process. My team, the UX team, was tasked with that challenge and tried to innovate as much as possible to keep DICK'S TSHQ on the forefront of youth sports.</p>
+    </div>
+
+    <!-- Research -->
+    <div class="text-section">
+      <h2 class="section-heading">Research</h2>
+      <p class="body-text">A key step in this redesign was understanding how current users interacted with the product and the different goals they would each have. We conducted interviews with current administrators, non-governing bodies, parents and coaches about their experiences with the product and how and what they used it for. We also gathered information from our customer support team, and determined a multitude of issues and pain points that needed to be addressed.</p>
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_reg_persona.jpg" alt="User personas" loading="lazy">
+    </div>
+
+    <div class="text-section" style="padding-top: 4rem;">
+      <p class="body-text">I created personas and my team extrapolated how and what these users use the product. Based on research data and interviews, we identified current issues with the product, user needs and our own business goals and requirements. We created assumptions for how best to solve our biggest issues based on those observations and insights.</p>
+    </div>
+
+    <!-- Assumptions -->
+    <div class="text-section">
+      <h2 class="section-heading">Assumptions</h2>
+      <p class="body-text"><strong>Mobile Experience</strong><br>The legacy mobile version of our registration process was so outdated that it was essentially unusable. It had been built before smartphones existed, and was nearly impossible to use. When looking at our analytics we could see that the abandonment rate for registration on mobile was at 88%. On desktop it was closer to an 18% rate of abandonment. Our users indicated a large pain point was not being able to complete these tasks on the go, and essentially being forced to sit at a desktop or laptop computer to complete the process.</p>
+    </div>
+
+    <div class="assumption">
+      <p>Improving the user experience for mobile devices will decrease the abandonment rates for mobile and will greatly increase our overall registrations completed from mobile devices.</p>
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_reg_legacy_mobile.png" alt="Previous TSHQ mobile UI" loading="lazy">
+      <p class="img-caption">Previous TSHQ mobile UI.</p>
+    </div>
+
+    <div class="text-section" style="padding-top: 4.8rem;">
+      <p class="body-text"><strong>Guiding the User</strong><br>The process for completing the registration process was confusing to users. Many were unsure as to what tasks they were trying to accomplish at any given moment. TSHQ has a support website with tutorials and walkthroughs for every step of the registration process, but they involve reading pages of information and watching long explainer videos. On top of this, the legacy UI was inconsistent and confusing. Our support team would get weekly calls for simple tasks that should not be an issue. The amount of support calls tagged with "registration issues" in Zendesk were hovering around 45% year over year.</p>
+    </div>
+
+    <div class="assumption">
+      <p>Giving users a greater sense of context by instructing them on tasks with less text to read, and leading them with prompts to begin a task, will reduce confusion and reduce the frequency of calls to our support team.</p>
+    </div>
+
+    <div class="text-section" style="padding-top: 4.8rem;">
+      <p class="body-text"><strong>Improve Fan Wear Sales</strong><br>This was more of a business goal and problem than design one, but my team was still tasked with solving it. We introduced a fan wear store a few years ago to allow people to wear their team colors and show team spirit. Fan wear sales were not particularly stunning. The online stores for fan wear had to be sent through a special link by an administrator and when users did find the store, the lack of products and the bad UI and UX did not add a lot of confidence that this was a legit website at all.<br><br>With these assumptions in mind we began an array of different tests to put them through the paces and try to validate them as best we could.</p>
+    </div>
+
+    <div class="assumption">
+      <p>Including fan wear into the registration process will greatly increase our sales of fan wear merchandise and reduce friction of the experience.</p>
+    </div>
+
+    <!-- Process before design work -->
+    <div class="text-section">
+      <h2 class="section-heading">Process Before Design Work</h2>
+      <p class="body-text">My team used affinity mapping to break down every screen of the registration process. We discussed every single aspect good and bad. We documented what we should keep, what we should kill, what we should overhaul.</p>
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_reg_affinity_map.jpg" alt="Affinity mapping exercise" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_reg_affinity_map_2.jpg" alt="Affinity mapping exercise" loading="lazy">
+    </div>
+
+    <div class="text-section" style="padding-top: 4.8rem;">
+      <p class="body-text">A refined information architecture was created as were wireframes after we had removed unnecessary steps and screens in our process. We worked with the development team to see what was feasible and realistic and what may cause future issues. With this new IA in mind, I created wireframes, highlighting what requirements were needed for each screen.</p>
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_reg_ia.jpg" alt="Refined information architecture" loading="lazy">
+      <p class="img-caption">Refined IA.</p>
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_reg_lo_fi.png" alt="Lo-fi designs" loading="lazy">
+      <p class="img-caption">Lo-fi designs.</p>
+    </div>
+
+    <!-- Testing -->
+    <div class="text-section">
+      <h2 class="section-heading">Testing and Validating Assumptions</h2>
+      <p class="body-text">We tested our initial assumptions with low fidelity designs through methods such as: A/B tests, user interviews, prototype walkthroughs, and user surveys. We tested our prototypes remotely as well as in person at Atlanta area DICK'S Sporting Goods stores via some guerrilla testing.<br><br>After testing our assumptions, we felt that we had validated many of them and developed strong solutions on how to solve our issues.</p>
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_reg_prototype.jpg" alt="Prototype screen in Adobe XD" loading="lazy">
+      <p class="img-caption">Prototype screen in Adobe XD.</p>
+    </div>
+
+    <!-- Art Direction -->
+    <div class="text-section">
+      <h2 class="section-heading">Art Direction and Style</h2>
+      <p class="body-text">An art direction was established for the redesign as well as a design system with elements that would work for both mobile and desktop. We decided to use a modified version of Google Material Design for ease of use. Instead of using everything strictly material, we customized components to create our own look and feel for the product, so it didn't just end up looking like every other Android app you see in the wild.</p>
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_reg_style_guide.png" alt="Style guide" loading="lazy">
+      <p class="img-caption">Style guide.</p>
+    </div>
+
+    <div class="text-section" style="padding-top: 4.8rem;">
+      <p class="body-text">I created an illustration style that would serve to liven up the, at times, mundane registration process full of text fields and forms and bring in a touch of fun.</p>
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_reg_sketches_1.jpg" alt="Initial sketches for illustration style" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_reg_sketches_2.jpg" alt="Initial sketches for illustration style" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_reg_illustrations.png" alt="Illustration style" loading="lazy">
+    </div>
+
+    <div class="text-section" style="padding-top: 4.8rem;">
+      <p class="body-text">After all the pieces had been discussed and vetted with stakeholders, and once we got sign off on an art direction and style, we started building full fidelity screens. The actual design work for the screens were split in half by myself and another teammate, with each of us designing 3 of the 6 steps of the registration process for both mobile and desktop.</p>
+    </div>
+
+    <!-- Design System -->
+    <div class="text-section">
+      <h2 class="section-heading">Design System</h2>
+      <p class="body-text">Before development work began, I collaborated with the dev team to help create a design system incorporating the elements of the redesign in order to expedite the development process. This step streamlined the process and reduced friction within the designer/developer relationship. This also considerably cut back on our QA time as all the elements — type sizes for different areas, button sizes, margins, colors, etc — were all clearly defined and agreed upon as to help serve the product best.</p>
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_reg_design_system.png" alt="Design system" loading="lazy">
+    </div>
+
+    <!-- Design Solutions: Mobile -->
+    <div class="text-section">
+      <h2 class="section-heading">Design Solutions</h2>
+      <p class="body-text"><strong>Solving the Assumptions: Mobile Experience</strong><br>By designing with a mobile first approach we were able to address many of the harder to solve for issues associated with our multi-step registration process by consolidating and refining the UI. We emphasized a clearer hierarchy, and made the entire user experience more understandable and enjoyable.</p>
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_reg_mobile.png" alt="Mobile screens" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_reg_context_screens.gif" alt="Mobile context screens" loading="lazy">
+      <p class="img-caption">Mobile screens.</p>
+    </div>
+
+    <!-- Guide the User -->
+    <div class="text-section">
+      <h2 class="section-heading">Guide the User</h2>
+      <p class="body-text">Users had a better understanding of objectives they needed to complete during the registration process when given more guidance and context as to what they were trying to accomplish. The simplified and decluttered UI of the redesign also helped with the user having a better understanding of objectives.</p>
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_reg_path.png" alt="Conversational UI path" loading="lazy">
+    </div>
+
+    <div class="text-section" style="padding-top: 4rem;">
+      <p class="body-text">We created a more conversational approach to the UI, in how it interacted with our users. This helped them to see a clearer path in their goals when using the product.</p>
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_reg_checkout.png" alt="Checkout UI" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_reg_sport_select_.png" alt="Sport selection UI" loading="lazy">
+    </div>
+
+    <div class="text-section" style="padding-top: 4.8rem;">
+      <p class="body-text">Between each of the 6 steps of the registration process, a screen would appear with a quick and simple overview of what tasks the user was trying to accomplish. We referred to these as "context screens" as they were giving the users context and clarity along the registration journey. These screens would only appear the first time a user went through the registration process.</p>
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_reg_hypothesis_2_context_screen.png" alt="Context screens for mobile" loading="lazy">
+      <p class="img-caption">Context screens for mobile.</p>
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_reg_context-screen.png" alt="Context screens for desktop" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_reg_context-screen-2.png" alt="Context screens for desktop" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_reg_context_screen_3.png" alt="Context screens for desktop" loading="lazy">
+      <p class="img-caption">Context screens for desktop.</p>
+    </div>
+
+    <div class="text-section" style="padding-top: 4.8rem;">
+      <p class="body-text">We introduced empty state screens throughout the registration process to inform users when they had reached a dead end; rather than just leaving them on a blank screen, we offered them a call to action.</p>
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_reg_empty_state.png" alt="Empty state screen" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_reg_empty_state_2.png" alt="Empty state screen" loading="lazy">
+      <p class="img-caption">Empty state screens.</p>
+    </div>
+
+    <!-- Fan Wear -->
+    <div class="text-section">
+      <h2 class="section-heading">Improve Fan Wear Sales</h2>
+      <p class="body-text">We wanted to include fan wear into the registration to help supplement the already existing standalone store. Adding fan wear into registration had to be an organic and seamless process. It needed to feel like it was another step in the registration — we wanted to treat the fan wear almost like exiting through the gift shop at amusement parks.<br><br>Our assumption was that if fan wear were included into the process of registration, users will be much more likely to buy something while thinking about the sign up process for the sport, rather than remembering to go back to the store at a later time. The results of our research and testing were showing this assumption to be correct.</p>
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_reg_fanwear_in_reg.png" alt="Fan wear in registration" loading="lazy">
+    </div>
+
+    <div class="full-image scroll-reveal">
+      <img src="img/tshq_reg_fanwear_in_reg_2.png" alt="Fan wear in registration — mobile" loading="lazy">
+    </div>
+
+    <!-- Next project -->
+    <section class="next-project next-project-wrap" style="background-color: #006554; margin-top: 8rem;">
+      <span class="next-label" style="color: rgba(224, 250, 224, 0.5);">Next Project</span>
+      <a href="tshq-mobile-app.html" class="next-project-title" style="color: rgba(224, 250, 224, 0.75);">
+        DICK'S TSHQ<br>Mobile App
+      </a>
+    </section>
+
+  </main>
+
+  <footer>
+    <p class="footer-copy">&copy; <span id="footer-year"></span> Clayton Cunningham Design. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+  </script>
+  <script>
+    // Scroll reveal
+    (function() {
+      var els = document.querySelectorAll('.scroll-reveal');
+      if (!els.length) return;
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08 });
+      els.forEach(function(el) { observer.observe(el); });
+    })();
+
+    window.addEventListener('pagereveal', function(e) {
+      if (e.viewTransition && navigation?.activation?.navigationType === 'traverse') {
+        e.viewTransition.skipTransition();
+      }
+    });
+
+    (function() {
+      var nav = document.querySelector('nav');
+      var lastY = 0;
+      window.addEventListener('scroll', function() {
+        var y = window.scrollY;
+        if (y > lastY && y > 80) {
+          nav.classList.add('nav--hidden');
+        } else {
+          nav.classList.remove('nav--hidden');
+        }
+        lastY = y;
+      }, { passive: true });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var hero = document.querySelector('.hero-image');
+      var heroImg = hero && hero.querySelector('img');
+      if (!hero || !heroImg) return;
+      function updateHero() {
+        var p = Math.min(1, Math.max(0, window.scrollY / 400));
+        var pad = (5 * (1 - p)).toFixed(3);
+        var rad = (0.8 * (1 - p)).toFixed(3);
+        hero.style.paddingLeft  = pad + 'vw';
+        hero.style.paddingRight = pad + 'vw';
+        heroImg.style.borderRadius = rad + 'rem';
+      }
+      window.addEventListener('scroll', updateHero, { passive: true });
+      updateHero();
+    })();
+  </script>
+
+  <script>
+    document.querySelectorAll("a.tag[href*=\"capabilities\"]").forEach(function(t) {
+      t.addEventListener("click", function() { t.style.viewTransitionName = "active-chip"; });
+    });
+  </script>
+</body>
+</html>
