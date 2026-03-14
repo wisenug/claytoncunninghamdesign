@@ -49,6 +49,7 @@ body {
   background-color: var(--color-bg);
   color: var(--color-black);
   min-height: 100%;
+  overflow-x: hidden;
 }
 
 /* ============================================================
