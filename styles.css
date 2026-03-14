@@ -420,6 +420,7 @@ footer {
   padding: 5.6rem var(--page-margin);
   background-color: #F0C0CC;
   text-align: center;
+  color: #000;
 }
 
 .footer-copy {
