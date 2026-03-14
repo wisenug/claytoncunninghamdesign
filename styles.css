@@ -476,20 +476,6 @@ footer {
   border-radius: var(--radius-img);
 }
 
-@media (max-width: 640px) {
-  .image-split-tall {
-    grid-template-columns: 1fr;
-  }
-
-  .image-split-tall--mirror {
-    direction: ltr;
-  }
-
-  .image-split-tall__tall img {
-    aspect-ratio: 16 / 10;
-    flex: none;
-  }
-}
 
 /* ============================================================
    Scrolling Carousel
@@ -568,11 +554,6 @@ footer {
   height: 500px;
 }
 
-@media (max-width: 640px) {
-  .lottie-two-col {
-    grid-template-columns: 1fr;
-  }
-}
 
 /* ============================================================
    Animations
@@ -646,11 +627,6 @@ footer {
   .text-two-col {
     grid-template-columns: 1fr;
     gap: 3.2rem;
-  }
-
-  .image-grid-2,
-  .image-grid-3 {
-    grid-template-columns: 1fr;
   }
 
   .image-grid-4 {
