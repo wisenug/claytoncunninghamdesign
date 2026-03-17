@@ -268,24 +268,18 @@ main {
 .image-grid-3 img {
   width: 100%;
   display: block;
-  object-fit: cover;
-  aspect-ratio: 4/3;
   border-radius: var(--radius-img);
 }
 
 .image-grid-2 img {
   width: 100%;
   display: block;
-  object-fit: cover;
-  aspect-ratio: 16/10;
   border-radius: var(--radius-img);
 }
 
 .image-grid-4 img {
   width: 100%;
   display: block;
-  object-fit: cover;
-  aspect-ratio: 1/1;
   border-radius: var(--radius-img);
 }
 
@@ -465,9 +459,7 @@ footer {
 
 .image-split-tall__stack img {
   width: 100%;
-  aspect-ratio: 16 / 10;
   display: block;
-  object-fit: cover;
   border-radius: var(--radius-img);
 }
 
@@ -477,10 +469,7 @@ footer {
 
 .image-split-tall__tall img {
   width: 100%;
-  flex: 1;
-  min-height: 0;
   display: block;
-  object-fit: cover;
   border-radius: var(--radius-img);
 }
 
