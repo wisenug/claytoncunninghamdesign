@@ -641,7 +641,7 @@ footer {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  /* Uniform image-to-image vertical spacing — matches horizontal gap */
+  /* Uniform image-to-image spacing — horizontal gap matches vertical padding */
   .image-grid-2,
   .image-grid-3,
   .image-grid-4,
@@ -649,11 +649,12 @@ footer {
   .lottie-container,
   .lottie-two-col,
   .image-split-tall {
-    padding-bottom: 1.6rem;
+    padding-bottom: 2.4rem;
   }
 
   .image-grid-2,
   .image-grid-3,
+  .image-grid-4,
   .lottie-two-col,
   .image-split-tall {
     gap: 2.4rem;
