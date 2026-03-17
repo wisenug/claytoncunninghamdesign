@@ -225,13 +225,28 @@
     /* ── Mobile ── */
     @media (max-width: 640px) {
       .work-grid {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
         padding-top: 2.4rem;
+        gap: 1.6rem;
       }
 
-      .work-col--right {
-        padding-top: 0;
+      .work-col {
+        display: contents;
       }
+
+      a[href="autotrader-illustration-system.html"].work-card { order: 1; }
+      a[href="kbb-icons-illustrations.html"].work-card          { order: 2; }
+      a[href="autotrader-icons.html"].work-card                 { order: 3; }
+      a[href="tshq-mobile-app.html"].work-card                  { order: 4; }
+      a[href="tshq-registration.html"].work-card                { order: 5; }
+      a[href="sketches-illustrations-doodles.html"].work-card   { order: 6; }
+      a[href="paradesmith.html"].work-card                      { order: 7; }
+      a[href="coca-cola-campus-messaging.html"].work-card       { order: 8; }
+      a[href="coca-cola-assorted-projects.html"].work-card      { order: 9; }
+      a[href="tshq-fanwear-redesign.html"].work-card            { order: 10; }
+      a[href="tshq-assorted-projects.html"].work-card           { order: 11; }
+      a[href="logos.html"].work-card                            { order: 12; }
 
       .work-img--tall {
         aspect-ratio: 4 / 3;
