@@ -118,7 +118,7 @@
 
     .capabilities-inner {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       gap: 2.4rem;
       cursor: pointer;
       user-select: none;
@@ -135,10 +135,9 @@
 
     .capabilities-caret {
       flex-shrink: 0;
-      margin-top: 0.6rem;
-      margin-right: 0.4rem;
-      width: clamp(3.6rem, 5vw, 6rem);
-      height: clamp(3.6rem, 5vw, 6rem);
+      width: clamp(3.2rem, 4vw, 5.2rem);
+      height: clamp(3.2rem, 4vw, 5.2rem);
+      overflow: visible;
       color: var(--color-bg);
       transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
                   opacity 0.2s ease;
@@ -343,7 +342,7 @@
       <div class="capabilities-inner" id="capabilities-trigger" role="button" aria-expanded="false" tabindex="0">
         <h2 class="capabilities-heading">Capabilities</h2>
         <!-- Plus icon -->
-        <svg class="capabilities-caret" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <svg class="capabilities-caret" viewBox="-4 -4 88 88" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M40 16V64M16 40H64" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
         </svg>
       </div>
