@@ -136,8 +136,9 @@
     .capabilities-caret {
       flex-shrink: 0;
       margin-top: 0.6rem;
-      width: clamp(5rem, 7vw, 8rem);
-      height: clamp(5rem, 7vw, 8rem);
+      margin-right: 0.4rem;
+      width: clamp(3.6rem, 5vw, 6rem);
+      height: clamp(3.6rem, 5vw, 6rem);
       color: var(--color-bg);
       transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
                   opacity 0.2s ease;
@@ -148,7 +149,7 @@
     }
 
     .capabilities-section.is-open .capabilities-caret {
-      transform: rotate(180deg);
+      transform: rotate(45deg);
     }
 
     /* ── Accordion list ── */
@@ -326,9 +327,9 @@
     <section class="capabilities-section" id="capabilities-section">
       <div class="capabilities-inner" id="capabilities-trigger" role="button" aria-expanded="false" tabindex="0">
         <h2 class="capabilities-heading">Capabilities</h2>
-        <!-- Caret SVG -->
+        <!-- Plus icon -->
         <svg class="capabilities-caret" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M16 28L40 52L64 28" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M40 16V64M16 40H64" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
         </svg>
       </div>
 
