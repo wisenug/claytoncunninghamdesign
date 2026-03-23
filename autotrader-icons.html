@@ -132,13 +132,13 @@
     </div>
 
     <!-- Grid + Orthogonals 2-up -->
-    <div class="image-grid-2 scroll-reveal">
+    <div class="image-grid-2">
       <img src="img/autotrader_icons_grid.svg" alt="Icon design grid — 1px grid with 1.5px trim area" loading="lazy" style="object-fit: contain; aspect-ratio: auto; height: auto;">
       <img src="img/autotrader_icons_orthogonals.svg" alt="Icon orthogonal keylines — guides at 90°, 45°, and 15° intersecting the center point" loading="lazy" style="object-fit: contain; aspect-ratio: auto; height: auto;">
     </div>
 
     <!-- Keyshapes + 3 icons on grid -->
-    <div class="image-grid-2 scroll-reveal">
+    <div class="image-grid-2">
       <img src="img/autotrader_icons_keyshapes.svg" alt="Icon key shapes — circles, squares, and rectangles for consistent sizing" loading="lazy" style="object-fit: contain; aspect-ratio: auto; height: auto;">
       <img src="img/autotrader_icons_3-icons-grid.svg" alt="Three Autotrader icons on alignment grid demonstrating proper spacing and construction" loading="lazy" style="object-fit: contain; aspect-ratio: auto; height: auto;">
     </div>
@@ -149,7 +149,7 @@
     </div>
 
     <!-- Nav Icons -->
-    <div class="full-image scroll-reveal">
+    <div class="full-image">
       <img src="img/autotrader_icons_nav-A.png" alt="Autotrader global navigation icons — menu, search, notifications, and user account" loading="lazy">
     </div>
 
@@ -164,12 +164,12 @@
     </div>
 
     <!-- Nav B -->
-    <div class="full-image scroll-reveal">
+    <div class="full-image">
       <img src="img/autotrader_icons_nav-B.png" alt="Autotrader secondary navigation and UI icons" loading="lazy">
     </div>
 
     <!-- Wallet / SRP icons -->
-    <div class="full-image scroll-reveal">
+    <div class="full-image">
       <img src="img/autotrader_icons_wallet_srp.png" alt="Autotrader MyWallet and Search Results Page icons — payment, financing, and transaction indicators" loading="lazy">
     </div>
 
@@ -184,17 +184,17 @@
       </div>
 
       <!-- Full icon library -->
-      <div class="full-image scroll-reveal">
+      <div class="full-image">
         <img src="img/autotrader_icons_library.png" alt="Autotrader spot icon library — complete collection spanning vehicle specs, features, and UI elements" loading="lazy">
       </div>
 
       <!-- Spec sheet + wallet/SRP in-context -->
-      <div class="full-image scroll-reveal">
+      <div class="full-image">
         <img src="img/autotrader_icons_11.png" alt="Spot icon technical specifications — stroke weight, corner radius, color palette, and sizing guidelines" loading="lazy">
       </div>
 
       <!-- VDP in-context UI -->
-      <div class="full-image scroll-reveal">
+      <div class="full-image">
         <img src="img/autotrader_icons_vdp.png" alt="Autotrader Vehicle Detail Page — icons for mileage, transmission, fuel economy, drivetrain, and price indicators applied in context" loading="lazy">
       </div>
 
@@ -252,7 +252,7 @@
   <script>
     // Scroll reveal
     (function() {
-      var els = document.querySelectorAll('.scroll-reveal');
+      var els = document.querySelectorAll('.text-section, .intro-text, .assumption, .pain-points, .image-note, .update-notice');
       if (!els.length) return;
       var observer = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {

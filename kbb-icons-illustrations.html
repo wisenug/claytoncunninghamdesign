@@ -138,28 +138,28 @@
       <div id="lottie-spot-icons" class="lottie-block" role="img" aria-label="Animated KBB spot icon library cycling through the full iconography set"></div>
     </div>
 
-    <div class="full-image scroll-reveal">
+    <div class="full-image">
       <img src="img/kbb_2.png" alt="KBB icon construction — grid and geometry specs for EV, value, and fuel icons" loading="lazy">
     </div>
 
     <!-- Full UI context -->
-    <div class="full-image scroll-reveal">
+    <div class="full-image">
       <img src="img/kbb_4.png" alt="KBB icons applied in mobile and desktop vehicle specifications UI" loading="lazy">
     </div>
 
     <!-- 2-up: VDP screenshot + icon specs diagram -->
-    <div class="image-grid-2 scroll-reveal">
+    <div class="image-grid-2">
       <img src="img/kbb_3.png" alt="KBB vehicle detail page — icons in listing context" loading="lazy">
       <img src="img/vdp-icons-all.svg" alt="KBB VDP icon set — full specification icon grid" loading="lazy" style="object-fit: contain; aspect-ratio: auto; height: auto;">
     </div>
 
     <!-- Icon strip banner -->
-    <div class="full-image scroll-reveal">
+    <div class="full-image">
       <img src="img/kbb_7.png" alt="KBB icon strip — UI icons on navy background" loading="lazy">
     </div>
 
     <!-- Color icon variations -->
-    <div class="image-grid-3 scroll-reveal">
+    <div class="image-grid-3">
       <img src="img/kbb_icons_color-1.svg" alt="KBB color icons on a light background showing vehicle feature symbols" loading="lazy" style="object-fit: contain; aspect-ratio: auto; height: auto;">
       <img src="img/kbb_icons_color-2.svg" alt="KBB color icons on a medium blue background showing vehicle feature symbols" loading="lazy" style="object-fit: contain; aspect-ratio: auto; height: auto;">
       <img src="img/kbb_icons_color-3.svg" alt="KBB color icons on a dark navy background showing vehicle feature symbols" loading="lazy" style="object-fit: contain; aspect-ratio: auto; height: auto;">
@@ -180,7 +180,7 @@
     </div>
 
     <!-- Illustration grid — 6-up in specified order -->
-    <div class="image-grid-3 scroll-reveal">
+    <div class="image-grid-3">
       <img src="img/kbb_22.png" alt="KBB vehicle illustration library — compact grid of body styles and angles" loading="lazy">
       <img src="img/kbb_18.png" alt="KBB illustration — hand holding phone with camera icon next to blue car" loading="lazy">
       <img src="img/kbb_9.png" alt="KBB spot illustrations — shopping and instant cash offer scenes" loading="lazy">
@@ -190,21 +190,21 @@
     </div>
 
     <!-- Full image -->
-    <div class="full-image scroll-reveal">
+    <div class="full-image">
       <img src="img/kbb_14.png" alt="KBB review illustration system — rating, thumbs, and owner review scenes" loading="lazy">
     </div>
 
-    <div class="full-image scroll-reveal">
+    <div class="full-image">
       <img src="img/kbb_20.png" alt="KBB Instant Cash Offer — illustration in mobile and desktop context" loading="lazy">
     </div>
 
     <!-- Empty State Illustrations video -->
-    <div class="full-image scroll-reveal">
+    <div class="full-image">
       <video src="animations/kbb-empty-state-llustrations.mov" autoplay loop muted playsinline aria-label="Animated KBB empty state screens cycling through illustrated spot icon scenes"></video>
     </div>
 
     <!-- 3-up illustration library grid -->
-    <div class="image-grid-3 scroll-reveal">
+    <div class="image-grid-3">
       <img src="img/kbb_13.png" alt="KBB people illustration library — diverse cast of characters across postures and contexts" loading="lazy">
       <img src="img/kbb_16.png" alt="KBB building illustration library — house and dealership asset set across color themes" loading="lazy">
       <img src="img/kbb_15.png" alt="KBB empty state illustrations — review submission, rejection, and approval states" loading="lazy">
@@ -244,7 +244,7 @@
   <script>
     // Scroll reveal
     (function() {
-      var els = document.querySelectorAll('.scroll-reveal');
+      var els = document.querySelectorAll('.text-section, .intro-text, .assumption, .pain-points, .image-note, .update-notice');
       if (!els.length) return;
       var observer = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
