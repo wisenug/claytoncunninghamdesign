@@ -23,7 +23,7 @@
   --color-bg: #F5B990;
   --color-asphalt: #3c4043;
 
-  --page-margin: 5vw;
+  --page-margin: max(5vw, calc((100vw - 1200px) / 2));
 
   --radius-img: 0.8rem;
   --font-body: 'DM Sans', 'Neue Haas Grotesk Display Pro', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
