@@ -122,7 +122,7 @@
 
     <!-- Icon Details Lottie -->
     <div class="full-image">
-      <div id="lottie-icon-details" class="lottie-block" role="img" aria-label="Animated breakdown of Autotrader icon construction details and stroke specifications" style="height: 600px;"></div>
+      <div id="lottie-icon-details" class="lottie-block" role="img" aria-label="Animated breakdown of Autotrader icon construction details and stroke specifications" style="aspect-ratio: 2/1; height: auto;"></div>
     </div>
 
     <!-- Icon Construction System -->
@@ -148,8 +148,8 @@
     </div>
 
     <!-- AT Grid Lottie -->
-    <div class="lottie-container" role="img" aria-label="Animated Autotrader icon grid demonstrating alignment and optical balance">
-      <div id="lottie-at-grid"></div>
+    <div class="lottie-container" role="img" aria-label="Animated Autotrader icon grid demonstrating alignment and optical balance" style="padding: 0 var(--page-margin) 1.6rem;">
+      <div id="lottie-at-grid" style="aspect-ratio: 2000/1760; height: auto;"></div>
     </div>
 
     <!-- Nav Icons -->
@@ -165,7 +165,7 @@
     <!-- 2-up: Icon labels Lottie + VDP icons -->
     <div class="lottie-two-col">
       <div class="lottie-container" role="img" aria-label="Animated Autotrader icons cycling through label states and hover interactions" style="padding: 0;">
-        <div id="lottie-icon-labels" style="height: 100%; min-height: 500px; border-radius: var(--radius-img); overflow: hidden;"></div>
+        <div id="lottie-icon-labels" style="aspect-ratio: 1/1; height: auto; border-radius: var(--radius-img); overflow: hidden;"></div>
       </div>
       <div style="display: flex; align-items: stretch;">
         <img src="img/autotrader_icons_vdp-ui-icons.png" alt="Autotrader Vehicle Detail Page — icon specs applied in desktop listing context" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block; border-radius: var(--radius-img);">
@@ -252,8 +252,7 @@
       renderer: 'svg',
       loop: true,
       autoplay: true,
-      path: 'animations/at-icon-grid.json',
-      rendererSettings: { preserveAspectRatio: 'xMidYMid slice' }
+      path: 'animations/at-icon-grid.json'
     });
     lottie.loadAnimation({
       container: document.getElementById('lottie-spot-icon-hp'),
@@ -267,8 +266,7 @@
       renderer: 'svg',
       loop: true,
       autoplay: true,
-      path: 'animations/at-icon-labels.json',
-      rendererSettings: { preserveAspectRatio: 'xMidYMid slice' }
+      path: 'animations/at-icon-labels.json'
     });
   </script>
 
