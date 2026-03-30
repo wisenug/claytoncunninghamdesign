@@ -363,14 +363,6 @@
         label: 'Unifying a fragmented icon language',
         tags: ['Iconography', 'Visual Identity']
       },
-      {
-        href: '#',
-        image: 'img/at_illustration_style_3_ui.png',
-        alt: 'Autotrader product UI',
-        client: 'Autotrader',
-        title: 'Sell Your Car Center',
-        tags: ['UI/UX Design', 'Research']
-      },
     ];
 
     // ── Tag metadata: title + description for each tag ────────────────────────
@@ -441,12 +433,6 @@
       chip.textContent = tag;
       chipsContainer.appendChild(chip);
     });
-
-    // View transition: mark the active chip as the morph target for incoming transitions from project pages
-    if (activeTag) {
-      var activeChipEl = chipsContainer.querySelector('.tag--active');
-      if (activeChipEl) activeChipEl.style.viewTransitionName = 'active-chip';
-    }
 
     // Sync filter bar top with nav visibility
     (function() {
