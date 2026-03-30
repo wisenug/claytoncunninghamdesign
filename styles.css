@@ -652,6 +652,10 @@ footer {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .lottie-two-col {
+    grid-template-columns: 1fr;
+  }
+
   /* Uniform image-to-image spacing — horizontal gap matches vertical padding */
   .image-grid-2,
   .image-grid-3,
