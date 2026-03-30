@@ -197,6 +197,11 @@
         <div id="lottie-spot-icon-hp"></div>
       </div>
 
+      <!-- Spot Icons Lottie -->
+      <div class="lottie-container" role="img" aria-label="Animated Autotrader spot icons cycling through the full library">
+        <div id="lottie-spot-icons" style="aspect-ratio: 2000/1409; height: auto;"></div>
+      </div>
+
       <!-- Spot Icon Details Lottie -->
       <div class="lottie-container" role="img" aria-label="Animated breakdown of Autotrader spot icon construction details">
         <div id="lottie-spot-icon-details" style="aspect-ratio: 2/1; height: auto;"></div>
@@ -258,6 +263,13 @@
       loop: true,
       autoplay: true,
       path: 'animations/at-icon-grid.json'
+    });
+    lottie.loadAnimation({
+      container: document.getElementById('lottie-spot-icons'),
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      path: 'animations/spot_icons.json'
     });
     lottie.loadAnimation({
       container: document.getElementById('lottie-spot-icon-details'),
