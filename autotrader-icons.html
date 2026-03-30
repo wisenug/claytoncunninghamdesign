@@ -197,6 +197,11 @@
         <div id="lottie-spot-icon-hp"></div>
       </div>
 
+      <!-- Spot Icon Details Lottie -->
+      <div class="lottie-container" role="img" aria-label="Animated breakdown of Autotrader spot icon construction details">
+        <div id="lottie-spot-icon-details" style="aspect-ratio: 2/1; height: auto;"></div>
+      </div>
+
       <!-- VDP in-context UI -->
       <div class="full-image">
         <img src="img/autotrader_icons_vdp.png" alt="Autotrader Vehicle Detail Page — icons for mileage, transmission, fuel economy, drivetrain, and price indicators applied in context" loading="lazy">
@@ -253,6 +258,13 @@
       loop: true,
       autoplay: true,
       path: 'animations/at-icon-grid.json'
+    });
+    lottie.loadAnimation({
+      container: document.getElementById('lottie-spot-icon-details'),
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      path: 'animations/at-icon-details.json'
     });
     lottie.loadAnimation({
       container: document.getElementById('lottie-spot-icon-hp'),
