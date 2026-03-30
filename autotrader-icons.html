@@ -137,9 +137,13 @@
       <img src="img/autotrader_icons_orthogonals.svg" alt="Icon orthogonal keylines — guides at 90°, 45°, and 15° intersecting the center point" loading="lazy" style="object-fit: contain; aspect-ratio: auto; height: auto;">
     </div>
 
-    <!-- Keyshapes + 3 icons on grid -->
-    <div class="image-grid-2">
+    <!-- Keyshapes -->
+    <div class="full-image">
       <img src="img/autotrader_icons_keyshapes.svg" alt="Icon key shapes — circles, squares, and rectangles for consistent sizing" loading="lazy" style="object-fit: contain; aspect-ratio: auto; height: auto;">
+    </div>
+
+    <!-- 3 icons on grid -->
+    <div class="full-image">
       <img src="img/autotrader_icons_3-icons-grid.svg" alt="Three Autotrader icons on alignment grid demonstrating proper spacing and construction" loading="lazy" style="object-fit: contain; aspect-ratio: auto; height: auto;">
     </div>
 
@@ -186,6 +190,11 @@
       <!-- Full icon library -->
       <div class="full-image">
         <img src="img/autotrader_icons_library.png" alt="Autotrader spot icon library — complete collection spanning vehicle specs, features, and UI elements" loading="lazy">
+      </div>
+
+      <!-- Spot Icon HP Lottie -->
+      <div class="lottie-container" role="img" aria-label="Animated Autotrader spot icons in context">
+        <div id="lottie-spot-icon-hp"></div>
       </div>
 
       <!-- VDP in-context UI -->
@@ -245,6 +254,13 @@
       autoplay: true,
       path: 'animations/at-icon-grid.json',
       rendererSettings: { preserveAspectRatio: 'xMidYMid slice' }
+    });
+    lottie.loadAnimation({
+      container: document.getElementById('lottie-spot-icon-hp'),
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      path: 'animations/_AT-SPOT-ICON-HP.json'
     });
     lottie.loadAnimation({
       container: document.getElementById('lottie-icon-labels'),
