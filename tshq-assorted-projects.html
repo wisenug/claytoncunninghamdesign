@@ -156,30 +156,25 @@
       <p class="img-caption">Persona icons.</p>
     </div>
 
-    <div class="full-image">
-      <img src="img/tshq_storefront_kick_it.png" alt="Kick It — ecommerce banner" loading="lazy">
+    <!-- Ecommerce banners carousel -->
+    <div class="carousel-wrapper" role="region" aria-label="DICK'S TSHQ ecommerce banners">
+      <div class="carousel-track" aria-hidden="true">
+        <div class="carousel-item"><img src="img/tshq_storefront_kick_it.png" alt="Kick It — ecommerce banner" loading="lazy"></div>
+        <div class="carousel-item"><img src="img/tshq_storefront_gear_up.png" alt="Gear Up — ecommerce banner" loading="lazy"></div>
+        <div class="carousel-item"><img src="img/tshq_storefront_hoops.png" alt="Hoops — ecommerce banner" loading="lazy"></div>
+        <div class="carousel-item"><img src="img/tshq_storefront_lax.png" alt="Lax — ecommerce banner" loading="lazy"></div>
+        <div class="carousel-item"><img src="img/tshq_storefont_bump_it.png" alt="Bump It — ecommerce banner" loading="lazy"></div>
+        <div class="carousel-item"><img src="img/tshq_storefront_get_your_kicks.png" alt="Get Your Kicks — ecommerce header" loading="lazy"></div>
+        <!-- duplicates for seamless loop -->
+        <div class="carousel-item"><img src="img/tshq_storefront_kick_it.png" alt="" loading="lazy"></div>
+        <div class="carousel-item"><img src="img/tshq_storefront_gear_up.png" alt="" loading="lazy"></div>
+        <div class="carousel-item"><img src="img/tshq_storefront_hoops.png" alt="" loading="lazy"></div>
+        <div class="carousel-item"><img src="img/tshq_storefront_lax.png" alt="" loading="lazy"></div>
+        <div class="carousel-item"><img src="img/tshq_storefont_bump_it.png" alt="" loading="lazy"></div>
+        <div class="carousel-item"><img src="img/tshq_storefront_get_your_kicks.png" alt="" loading="lazy"></div>
+      </div>
     </div>
-
-    <div class="full-image">
-      <img src="img/tshq_storefront_gear_up.png" alt="Gear Up — ecommerce banner" loading="lazy">
-    </div>
-
-    <div class="full-image">
-      <img src="img/tshq_storefront_hoops.png" alt="Hoops — ecommerce banner" loading="lazy">
-    </div>
-
-    <div class="full-image">
-      <img src="img/tshq_storefront_lax.png" alt="Lax — ecommerce banner" loading="lazy">
-    </div>
-
-    <div class="full-image">
-      <img src="img/tshq_storefont_bump_it.png" alt="Bump It — ecommerce banner" loading="lazy">
-    </div>
-
-    <div class="full-image">
-      <img src="img/tshq_storefront_get_your_kicks.png" alt="Get Your Kicks — ecommerce header" loading="lazy">
-      <p class="img-caption">Banners for a DICK'S ecommerce platform.</p>
-    </div>
+    <p class="img-caption" style="text-align: center; margin-top: -6rem; padding-bottom: 8rem;">Banners for a DICK'S ecommerce platform.</p>
 
     <!-- Next project -->
     <section class="next-project next-project-wrap" style="background-color: #FFF8D5; margin-top: 8rem;">
@@ -246,6 +241,63 @@
       }
       window.addEventListener('scroll', updateHero, { passive: true });
       updateHero();
+    })();
+  </script>
+
+  <script>
+    // Carousel: drag to scroll while keeping continuous auto-scroll
+    (function() {
+      var DURATION = 36;
+      var wrapper = document.querySelector('.carousel-wrapper');
+      var track = document.querySelector('.carousel-track');
+      if (!wrapper || !track) return;
+
+      var isDragging = false;
+      var startX = 0;
+      var startTranslateX = 0;
+
+      function getTranslateX() {
+        var matrix = new DOMMatrix(getComputedStyle(track).transform);
+        return matrix.m41;
+      }
+
+      function startDrag(x) {
+        isDragging = true;
+        startX = x;
+        startTranslateX = getTranslateX();
+        track.style.animation = 'none';
+        track.style.transform = 'translateX(' + startTranslateX + 'px)';
+        wrapper.classList.add('is-dragging');
+      }
+
+      function moveDrag(x) {
+        if (!isDragging) return;
+        var dx = x - startX;
+        var newX = startTranslateX + dx;
+        var half = track.scrollWidth / 2;
+        if (newX > 0) newX -= half;
+        if (newX < -half) newX += half;
+        track.style.transform = 'translateX(' + newX + 'px)';
+      }
+
+      function endDrag() {
+        if (!isDragging) return;
+        isDragging = false;
+        wrapper.classList.remove('is-dragging');
+        var x = getTranslateX();
+        var half = track.scrollWidth / 2;
+        var progress = Math.abs(x) / half;
+        track.style.transform = '';
+        track.style.animation = 'marquee ' + DURATION + 's linear infinite';
+        track.style.animationDelay = '-' + (progress * DURATION).toFixed(3) + 's';
+      }
+
+      wrapper.addEventListener('mousedown', function(e) { startDrag(e.clientX); e.preventDefault(); });
+      window.addEventListener('mousemove', function(e) { moveDrag(e.clientX); });
+      window.addEventListener('mouseup', endDrag);
+      wrapper.addEventListener('touchstart', function(e) { startDrag(e.touches[0].clientX); }, { passive: true });
+      wrapper.addEventListener('touchmove', function(e) { moveDrag(e.touches[0].clientX); e.preventDefault(); }, { passive: false });
+      wrapper.addEventListener('touchend', endDrag);
     })();
   </script>
 
