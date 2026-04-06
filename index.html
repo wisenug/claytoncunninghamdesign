@@ -92,18 +92,6 @@
       transform: translateY(0);
     }
 
-    /* ── KBB: gradient label ── */
-    a[href="kbb-icons-illustrations.html"].work-card .work-card__label {
-      background: linear-gradient(to top, rgba(255,191,0,0.95) 0%, rgba(255,191,0,0) 100%);
-      color: #002B5C;
-    }
-
-    /* ── Autotrader illustration: gradient label ── */
-    a[href="autotrader-illustration-system.html"].work-card .work-card__label {
-      background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0) 100%);
-      color: #ffffff;
-    }
-
     /* ── Capabilities section ── */
     .capabilities-section {
       margin: 10rem 0 0;
@@ -483,10 +471,8 @@
       inkEl.style.background = bg;
       card.insertBefore(inkEl, card.firstChild);
       var labelEl = card.querySelector('.work-card__label');
-      if (href !== 'autotrader-illustration-system.html' && href !== 'kbb-icons-illustrations.html') {
-        labelEl.style.background = bg;
-        if (PAGE_FG[href]) labelEl.style.color = PAGE_FG[href];
-      }
+      labelEl.style.background = bg;
+      if (PAGE_FG[href]) labelEl.style.color = PAGE_FG[href];
       card.addEventListener('click', function() {
         inkEl.style.opacity = '1';
         inkEl.style.viewTransitionName = 'ink-bg';
