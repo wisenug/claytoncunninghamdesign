@@ -41,7 +41,6 @@
     .work-card {
       position: relative;
       display: block;
-      overflow: hidden;
       border-radius: var(--radius-img);
       text-decoration: none;
     }
@@ -51,12 +50,13 @@
       inset: 0;
       pointer-events: none;
       opacity: 0;
+      border-radius: var(--radius-img);
     }
 
     .work-img {
       width: 100%;
       display: block;
-      border-radius: 0;
+      border-radius: var(--radius-img);
       object-fit: cover;
     }
 
@@ -75,10 +75,10 @@
 
     .work-card__label {
       position: absolute;
-      bottom: -3rem;
+      bottom: -6rem;
       left: 0;
       right: 0;
-      padding: 1rem 2.4rem 3.6rem;
+      padding: 2rem 2.4rem 3.6rem;
       background: #E3F2FF;
       color: #001F6E;
       font-size: 1.6rem;
@@ -89,6 +89,7 @@
       flex-direction: column;
       justify-content: flex-start;
       box-sizing: border-box;
+      border-radius: 0 0 var(--radius-img) var(--radius-img);
       transform: translateY(0);
     }
 
