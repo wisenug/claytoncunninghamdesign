@@ -430,14 +430,15 @@
   <script>
     (function () {
       var hero = document.querySelector('.hero-image');
-      var heroImg = hero && hero.querySelector('img');
-      if (!hero || !heroImg) return;
+      var heroImg = hero && hero.querySelector('img, video');
+      if (!hero) return;
+      var basePad = parseFloat(getComputedStyle(hero).paddingLeft);
       function updateHero() {
         var p = Math.min(1, Math.max(0, window.scrollY / 400));
-        var pad = (5 * (1 - p)).toFixed(3);
+        var pad = (basePad * (1 - p)).toFixed(3);
         var rad = (0.8 * (1 - p)).toFixed(3);
-        hero.style.paddingLeft  = pad + 'vw';
-        hero.style.paddingRight = pad + 'vw';
+        hero.style.paddingLeft  = pad + 'px';
+        hero.style.paddingRight = pad + 'px';
         heroImg.style.borderRadius = rad + 'rem';
       }
       window.addEventListener('scroll', updateHero, { passive: true });
