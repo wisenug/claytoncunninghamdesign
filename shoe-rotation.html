@@ -8,9 +8,9 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #ffffff;
+      --bg: transparent;
       --fg: #111;
-      --muted: #aaa;
+      --muted: #777;
     }
 
     html, body {
@@ -18,7 +18,7 @@
     }
 
     body {
-      background: var(--bg);
+      background: #b8e4f0;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -35,7 +35,8 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
+      min-height: 25vh;
+      padding: 4rem 0;
       width: 100%;
       flex-shrink: 0;
     }
@@ -47,6 +48,13 @@
       aspect-ratio: 1 / 0.85;
       cursor: grab;
       flex-shrink: 0;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .stage.has-bg {
+      background: #fff;
+      box-shadow: 0 2px 24px rgba(0,0,0,0.06);
     }
 
     .stage:active { cursor: grabbing; }
@@ -79,7 +87,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: var(--bg);
+      background: transparent;
       z-index: 10;
       transition: opacity 0.4s ease;
     }
@@ -164,7 +172,7 @@
 
   <!-- ═══ Reebok Kamikaze II ═══ -->
   <div class="shoe-section">
-    <div class="stage" id="stage-reebok">
+    <div class="stage has-bg" id="stage-reebok">
       <div class="loader" id="loader-reebok">
         <div class="loader-bar">
           <div class="loader-fill" id="loader-fill-reebok"></div>
@@ -311,6 +319,22 @@
         startSpin();
       });
     }
+
+    // ── Scroll-driven gradient ──
+    function updateGradient() {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const t = docHeight > 0 ? Math.min(scrollTop / docHeight, 1) : 0;
+
+      // Baby blue (#b8e4f0) → aquamarine green (#7fffd4)
+      const r = Math.round(184 + (127 - 184) * t);
+      const g = Math.round(228 + (255 - 228) * t);
+      const b = Math.round(240 + (212 - 240) * t);
+      document.body.style.background = `rgb(${r},${g},${b})`;
+    }
+
+    window.addEventListener('scroll', updateGradient, { passive: true });
+    updateGradient();
 
     // ── Reebok Kamikaze II ──
     createRotation({
