@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reebok Kamikaze II — 360°</title>
+  <title>Shoe Collection — 360°</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -23,12 +23,21 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      overflow: hidden;
       user-select: none;
       -webkit-user-select: none;
       touch-action: none;
+    }
+
+    /* ── Section ── */
+    .shoe-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      width: 100%;
+      flex-shrink: 0;
     }
 
     /* ── Stage ── */
@@ -121,23 +130,6 @@
       text-transform: uppercase;
     }
 
-    /* ── Hint ── */
-    .hint {
-      position: fixed;
-      bottom: 2.4rem;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 0.6rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--muted);
-      white-space: nowrap;
-      opacity: 0;
-      transition: opacity 1s ease;
-    }
-
-    .hint.visible { opacity: 1; }
-
     /* ── Drag indicator arrows ── */
     .drag-arrows {
       display: flex;
@@ -170,140 +162,176 @@
 </head>
 <body>
 
-  <div class="stage" id="stage">
-    <div class="loader" id="loader">
-      <div class="loader-bar">
-        <div class="loader-fill" id="loader-fill"></div>
+  <!-- ═══ Reebok Kamikaze II ═══ -->
+  <div class="shoe-section">
+    <div class="stage" id="stage-reebok">
+      <div class="loader" id="loader-reebok">
+        <div class="loader-bar">
+          <div class="loader-fill" id="loader-fill-reebok"></div>
+        </div>
+      </div>
+    </div>
+    <div class="meta">
+      <h1>Reebok Kamikaze II</h1>
+      <p>OG Black &middot; White &middot; Dark Green &middot; 2020</p>
+      <div class="drag-arrows" id="drag-arrows-reebok">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        <span>Drag to rotate</span>
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
       </div>
     </div>
   </div>
 
-  <div class="meta">
-    <h1>Reebok Kamikaze II</h1>
-    <p>OG Black &middot; White &middot; Dark Green &middot; 2020</p>
-    <div class="drag-arrows" id="drag-arrows">
-      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-      <span>Drag to rotate</span>
-      <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+  <!-- ═══ New Balance 992 ═══ -->
+  <div class="shoe-section">
+    <div class="stage" id="stage-nb992">
+      <div class="loader" id="loader-nb992">
+        <div class="loader-bar">
+          <div class="loader-fill" id="loader-fill-nb992"></div>
+        </div>
+      </div>
+    </div>
+    <div class="meta">
+      <h1>New Balance 992</h1>
+      <p>MiUSA Grey &middot; Silver Metallic</p>
+      <div class="drag-arrows" id="drag-arrows-nb992">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        <span>Drag to rotate</span>
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
     </div>
   </div>
 
   <script>
-    const FRAMES = Array.from({length: 36}, (_, i) =>
-      `img/shoes/shoe-${String(i + 1).padStart(2, '0')}.png`
-    );
+    function createRotation(config) {
+      const { stageId, loaderId, loaderFillId, dragArrowsId, frames } = config;
+      const TOTAL = frames.length;
+      const stage = document.getElementById(stageId);
+      const loader = document.getElementById(loaderId);
+      const loaderFill = document.getElementById(loaderFillId);
+      const dragArrows = document.getElementById(dragArrowsId);
 
-    const TOTAL = FRAMES.length;
-    const stage = document.getElementById('stage');
-    const loader = document.getElementById('loader');
-    const loaderFill = document.getElementById('loader-fill');
-    const dragArrows = document.getElementById('drag-arrows');
+      let currentFrame = 0;
+      let spinInterval = null;
+      let isDragging = false;
+      let dragStartX = 0;
+      let dragStartFrame = 0;
+      let loadedCount = 0;
+      let ready = false;
 
-    let currentFrame = 0;
-    let spinInterval = null;
-    let isDragging = false;
-    let dragStartX = 0;
-    let dragStartFrame = 0;
-    let loadedCount = 0;
-    let ready = false;
+      const frameEls = frames.map((src, i) => {
+        const div = document.createElement('div');
+        div.className = 'frame' + (i === 0 ? ' active' : '');
+        const img = document.createElement('img');
+        img.src = src;
+        img.draggable = false;
+        img.alt = '';
+        div.appendChild(img);
+        stage.appendChild(div);
+        return div;
+      });
 
-    // Build frame elements
-    const frameEls = FRAMES.map((src, i) => {
-      const div = document.createElement('div');
-      div.className = 'frame' + (i === 0 ? ' active' : '');
-      const img = document.createElement('img');
-      img.src = src;
-      img.draggable = false;
-      img.alt = '';
-      div.appendChild(img);
-      stage.appendChild(div);
-      return div;
-    });
+      function showFrame(n) {
+        const next = ((n % TOTAL) + TOTAL) % TOTAL;
+        frameEls[currentFrame].classList.remove('active');
+        frameEls[next].classList.add('active');
+        currentFrame = next;
+      }
 
-    function showFrame(n) {
-      const next = ((n % TOTAL) + TOTAL) % TOTAL;
-      frameEls[currentFrame].classList.remove('active');
-      frameEls[next].classList.add('active');
-      currentFrame = next;
-    }
+      function startSpin() {
+        if (spinInterval) return;
+        spinInterval = setInterval(() => showFrame(currentFrame + 1), 75);
+      }
 
-    function startSpin() {
-      if (spinInterval) return;
-      spinInterval = setInterval(() => showFrame(currentFrame + 1), 75);
-    }
+      function stopSpin() {
+        clearInterval(spinInterval);
+        spinInterval = null;
+      }
 
-    function stopSpin() {
-      clearInterval(spinInterval);
-      spinInterval = null;
-    }
-
-    // Preload with progress
-    FRAMES.forEach((src) => {
-      const img = new Image();
-      img.onload = img.onerror = () => {
-        loadedCount++;
-        const pct = (loadedCount / TOTAL) * 100;
-        loaderFill.style.width = pct + '%';
-        if (loadedCount === TOTAL && !ready) {
-          ready = true;
-          setTimeout(() => {
-            loader.classList.add('hidden');
-            startSpin();
-            // After a few full rotations, show drag hint and stop
+      // Preload
+      frames.forEach((src) => {
+        const img = new Image();
+        img.onload = img.onerror = () => {
+          loadedCount++;
+          loaderFill.style.width = (loadedCount / TOTAL) * 100 + '%';
+          if (loadedCount === TOTAL && !ready) {
+            ready = true;
             setTimeout(() => {
-              dragArrows.classList.add('visible');
-            }, 1200);
-          }, 300);
-        }
-      };
-      img.src = src;
+              loader.classList.add('hidden');
+              startSpin();
+              setTimeout(() => dragArrows.classList.add('visible'), 1200);
+            }, 300);
+          }
+        };
+        img.src = src;
+      });
+
+      // Mouse drag
+      stage.addEventListener('mousedown', e => {
+        if (!ready) return;
+        stopSpin();
+        isDragging = true;
+        dragStartX = e.clientX;
+        dragStartFrame = currentFrame;
+        e.preventDefault();
+      });
+
+      window.addEventListener('mousemove', e => {
+        if (!isDragging) return;
+        const delta = e.clientX - dragStartX;
+        const sensitivity = stage.offsetWidth / TOTAL;
+        showFrame(dragStartFrame + Math.round(delta / sensitivity));
+      });
+
+      window.addEventListener('mouseup', () => {
+        if (!isDragging) return;
+        isDragging = false;
+        startSpin();
+      });
+
+      // Touch drag
+      stage.addEventListener('touchstart', e => {
+        if (!ready) return;
+        stopSpin();
+        isDragging = true;
+        dragStartX = e.touches[0].clientX;
+        dragStartFrame = currentFrame;
+      }, { passive: true });
+
+      window.addEventListener('touchmove', e => {
+        if (!isDragging) return;
+        const delta = e.touches[0].clientX - dragStartX;
+        const sensitivity = stage.offsetWidth / TOTAL;
+        showFrame(dragStartFrame + Math.round(delta / sensitivity));
+      }, { passive: true });
+
+      window.addEventListener('touchend', () => {
+        if (!isDragging) return;
+        isDragging = false;
+        startSpin();
+      });
+    }
+
+    // ── Reebok Kamikaze II ──
+    createRotation({
+      stageId: 'stage-reebok',
+      loaderId: 'loader-reebok',
+      loaderFillId: 'loader-fill-reebok',
+      dragArrowsId: 'drag-arrows-reebok',
+      frames: Array.from({length: 36}, (_, i) =>
+        `img/shoes/shoe-${String(i + 1).padStart(2, '0')}.png`
+      )
     });
 
-    // Mouse drag
-    stage.addEventListener('mousedown', e => {
-      if (!ready) return;
-      stopSpin();
-      isDragging = true;
-      dragStartX = e.clientX;
-      dragStartFrame = currentFrame;
-      e.preventDefault();
-    });
-
-    window.addEventListener('mousemove', e => {
-      if (!isDragging) return;
-      const delta = e.clientX - dragStartX;
-      const sensitivity = stage.offsetWidth / TOTAL;
-      const frameDelta = Math.round(delta / sensitivity);
-      showFrame(dragStartFrame + frameDelta);
-    });
-
-    window.addEventListener('mouseup', () => {
-      if (!isDragging) return;
-      isDragging = false;
-      startSpin();
-    });
-
-    // Touch drag
-    stage.addEventListener('touchstart', e => {
-      if (!ready) return;
-      stopSpin();
-      isDragging = true;
-      dragStartX = e.touches[0].clientX;
-      dragStartFrame = currentFrame;
-    }, { passive: true });
-
-    window.addEventListener('touchmove', e => {
-      if (!isDragging) return;
-      const delta = e.touches[0].clientX - dragStartX;
-      const sensitivity = stage.offsetWidth / TOTAL;
-      const frameDelta = Math.round(delta / sensitivity);
-      showFrame(dragStartFrame + frameDelta);
-    }, { passive: true });
-
-    window.addEventListener('touchend', () => {
-      if (!isDragging) return;
-      isDragging = false;
-      startSpin();
+    // ── New Balance 992 ──
+    createRotation({
+      stageId: 'stage-nb992',
+      loaderId: 'loader-nb992',
+      loaderFillId: 'loader-fill-nb992',
+      dragArrowsId: 'drag-arrows-nb992',
+      frames: Array.from({length: 36}, (_, i) =>
+        `img/shoes/nb992/nb992-${String(i + 1).padStart(2, '0')}.png`
+      )
     });
   </script>
 
