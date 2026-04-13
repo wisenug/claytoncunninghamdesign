@@ -117,7 +117,7 @@
 
     /* ── Meta ── */
     .meta {
-      margin-top: 3.2rem;
+      margin-top: 1.6rem;
       text-align: center;
       flex-shrink: 0;
     }
@@ -203,6 +203,126 @@
       <h1>New Balance 992</h1>
       <p>MiUSA Grey &middot; Silver Metallic</p>
       <div class="drag-arrows" id="drag-arrows-nb992">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        <span>Drag to rotate</span>
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ Nike Air Max 1 SH Treeline ═══ -->
+  <div class="shoe-section">
+    <div class="stage" id="stage-treeline">
+      <div class="loader" id="loader-treeline">
+        <div class="loader-bar">
+          <div class="loader-fill" id="loader-fill-treeline"></div>
+        </div>
+      </div>
+    </div>
+    <div class="meta">
+      <h1>Nike Air Max 1 SH</h1>
+      <p>Treeline &middot; Khaki &middot; Pink Rise</p>
+      <div class="drag-arrows" id="drag-arrows-treeline">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        <span>Drag to rotate</span>
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ Nike Air Max 1 Big Bubble ═══ -->
+  <div class="shoe-section">
+    <div class="stage" id="stage-bigbubble">
+      <div class="loader" id="loader-bigbubble">
+        <div class="loader-bar">
+          <div class="loader-fill" id="loader-fill-bigbubble"></div>
+        </div>
+      </div>
+    </div>
+    <div class="meta">
+      <h1>Nike Air Max 1 '86 OG</h1>
+      <p>Big Bubble &middot; Sport Red</p>
+      <div class="drag-arrows" id="drag-arrows-bigbubble">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        <span>Drag to rotate</span>
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ Nike Air Max 1 Easter ═══ -->
+  <div class="shoe-section">
+    <div class="stage" id="stage-easter">
+      <div class="loader" id="loader-easter">
+        <div class="loader-bar">
+          <div class="loader-fill" id="loader-fill-easter"></div>
+        </div>
+      </div>
+    </div>
+    <div class="meta">
+      <h1>Nike Air Max 1 PRM</h1>
+      <p>Easter &middot; Multi-Color</p>
+      <div class="drag-arrows" id="drag-arrows-easter">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        <span>Drag to rotate</span>
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ Air Jordan 1 Low ═══ -->
+  <div class="shoe-section">
+    <div class="stage" id="stage-aj1">
+      <div class="loader" id="loader-aj1">
+        <div class="loader-bar">
+          <div class="loader-fill" id="loader-fill-aj1"></div>
+        </div>
+      </div>
+    </div>
+    <div class="meta">
+      <h1>Air Jordan 1 Low</h1>
+      <p>Black &middot; White &middot; Gorge Green</p>
+      <div class="drag-arrows" id="drag-arrows-aj1">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        <span>Drag to rotate</span>
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ Reebok The Answer DMX ═══ -->
+  <div class="shoe-section">
+    <div class="stage" id="stage-answer">
+      <div class="loader" id="loader-answer">
+        <div class="loader-bar">
+          <div class="loader-fill" id="loader-fill-answer"></div>
+        </div>
+      </div>
+    </div>
+    <div class="meta">
+      <h1>Reebok The Answer DMX</h1>
+      <p>Black &middot; Gold &middot; Iverson</p>
+      <div class="drag-arrows" id="drag-arrows-answer">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        <span>Drag to rotate</span>
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ Birkenstock Arizona ═══ -->
+  <div class="shoe-section">
+    <div class="stage" id="stage-birkenstock">
+      <div class="loader" id="loader-birkenstock">
+        <div class="loader-bar">
+          <div class="loader-fill" id="loader-fill-birkenstock"></div>
+        </div>
+      </div>
+    </div>
+    <div class="meta">
+      <h1>Birkenstock Arizona</h1>
+      <p>Taupe Suede &middot; Soft Footbed</p>
+      <div class="drag-arrows" id="drag-arrows-birkenstock">
         <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
         <span>Drag to rotate</span>
         <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
@@ -355,6 +475,72 @@
       dragArrowsId: 'drag-arrows-nb992',
       frames: Array.from({length: 36}, (_, i) =>
         `img/shoes/nb992/nb992-${String(i + 1).padStart(2, '0')}.png`
+      )
+    });
+
+    // ── Nike Air Max 1 SH Treeline ──
+    createRotation({
+      stageId: 'stage-treeline',
+      loaderId: 'loader-treeline',
+      loaderFillId: 'loader-fill-treeline',
+      dragArrowsId: 'drag-arrows-treeline',
+      frames: Array.from({length: 36}, (_, i) =>
+        `img/shoes/treeline/treeline-${String(i + 1).padStart(2, '0')}.png`
+      )
+    });
+
+    // ── Nike Air Max 1 Big Bubble ──
+    createRotation({
+      stageId: 'stage-bigbubble',
+      loaderId: 'loader-bigbubble',
+      loaderFillId: 'loader-fill-bigbubble',
+      dragArrowsId: 'drag-arrows-bigbubble',
+      frames: Array.from({length: 36}, (_, i) =>
+        `img/shoes/am1-bigbubble/am1-bigbubble-${String(i + 1).padStart(2, '0')}.png`
+      )
+    });
+
+    // ── Nike Air Max 1 Easter ──
+    createRotation({
+      stageId: 'stage-easter',
+      loaderId: 'loader-easter',
+      loaderFillId: 'loader-fill-easter',
+      dragArrowsId: 'drag-arrows-easter',
+      frames: Array.from({length: 35}, (_, i) =>
+        `img/shoes/am1-easter/am1-easter-${String(i + 1).padStart(2, '0')}.png`
+      )
+    });
+
+    // ── Air Jordan 1 Low ──
+    createRotation({
+      stageId: 'stage-aj1',
+      loaderId: 'loader-aj1',
+      loaderFillId: 'loader-fill-aj1',
+      dragArrowsId: 'drag-arrows-aj1',
+      frames: Array.from({length: 36}, (_, i) =>
+        `img/shoes/aj1/aj1-${String(i + 1).padStart(2, '0')}.png`
+      )
+    });
+
+    // ── Reebok The Answer DMX ──
+    createRotation({
+      stageId: 'stage-answer',
+      loaderId: 'loader-answer',
+      loaderFillId: 'loader-fill-answer',
+      dragArrowsId: 'drag-arrows-answer',
+      frames: Array.from({length: 36}, (_, i) =>
+        `img/shoes/reebok-answer/reebok-answer-${String(i + 1).padStart(2, '0')}.png`
+      )
+    });
+
+    // ── Birkenstock Arizona ──
+    createRotation({
+      stageId: 'stage-birkenstock',
+      loaderId: 'loader-birkenstock',
+      loaderFillId: 'loader-fill-birkenstock',
+      dragArrowsId: 'drag-arrows-birkenstock',
+      frames: Array.from({length: 35}, (_, i) =>
+        `img/shoes/birkenstock/birkenstock-${String(i + 1).padStart(2, '0')}.png`
       )
     });
   </script>
