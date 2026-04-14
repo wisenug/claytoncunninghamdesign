@@ -147,18 +147,18 @@
 </head>
 <body>
 
-  <!-- ═══ Reebok Kamikaze II ═══ -->
+  <!-- ═══ Nike Air Max 1 SH Treeline ═══ -->
   <div class="shoe-section">
-    <div class="stage" id="stage-reebok">
-      <div class="loader" id="loader-reebok">
+    <div class="stage" id="stage-treeline">
+      <div class="loader" id="loader-treeline">
         <div class="loader-bar">
-          <div class="loader-fill" id="loader-fill-reebok"></div>
+          <div class="loader-fill" id="loader-fill-treeline"></div>
         </div>
       </div>
     </div>
     <div class="meta">
-      <h1>Reebok Kamikaze II</h1>
-      <p>OG Black &middot; White &middot; Dark Green &middot; 2020</p>
+      <h1>Nike Air Max 1 SH</h1>
+      <p>Treeline &middot; Khaki &middot; Pink Rise</p>
     </div>
   </div>
 
@@ -177,18 +177,18 @@
     </div>
   </div>
 
-  <!-- ═══ Nike Air Max 1 SH Treeline ═══ -->
+  <!-- ═══ Reebok Kamikaze II ═══ -->
   <div class="shoe-section">
-    <div class="stage" id="stage-treeline">
-      <div class="loader" id="loader-treeline">
+    <div class="stage" id="stage-reebok">
+      <div class="loader" id="loader-reebok">
         <div class="loader-bar">
-          <div class="loader-fill" id="loader-fill-treeline"></div>
+          <div class="loader-fill" id="loader-fill-reebok"></div>
         </div>
       </div>
     </div>
     <div class="meta">
-      <h1>Nike Air Max 1 SH</h1>
-      <p>Treeline &middot; Khaki &middot; Pink Rise</p>
+      <h1>Reebok Kamikaze II</h1>
+      <p>OG Black &middot; White &middot; Dark Green &middot; 2020</p>
     </div>
   </div>
 
@@ -433,13 +433,14 @@
     });
 
     // ── Nike Air Max 1 Easter ──
+    // Frames 14 and 32 are out-of-sequence duplicates that cause visible skips
     createRotation({
       stageId: 'stage-easter',
       loaderId: 'loader-easter',
       loaderFillId: 'loader-fill-easter',
-      frames: Array.from({length: 35}, (_, i) =>
-        `img/shoes/am1-easter/am1-easter-${String(i + 1).padStart(2, '0')}.png`
-      )
+      frames: Array.from({length: 35}, (_, i) => i + 1)
+        .filter(n => n !== 14 && n !== 32)
+        .map(n => `img/shoes/am1-easter/am1-easter-${String(n).padStart(2, '0')}.png`)
     });
 
     // ── Air Jordan 1 Low ──
