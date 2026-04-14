@@ -14,8 +14,27 @@
   <link rel="stylesheet" href="styles.css">
   <style>
     :root {
-      --color-bg: #000000;
+      --color-bg: #0B2D52;
       --color-black: #ffffff;
+    }
+
+    .nav-logo-icon,
+    .nav-logo-name,
+    .nav-links a {
+      color: #B8D9F5;
+    }
+
+    .nav-links a {
+      opacity: 1;
+    }
+
+    .nav-links a:hover {
+      background: rgba(184, 217, 245, 0.12);
+      color: #B8D9F5;
+    }
+
+    .nav-links a[aria-current="page"] {
+      background: rgba(184, 217, 245, 0.22);
     }
 
     /* ── Staggered two-column image grid ── */
@@ -124,9 +143,9 @@
 
     .capabilities-caret {
       flex-shrink: 0;
-      width: clamp(5rem, 7.5vw, 10rem);
-      height: clamp(3rem, 4.5vw, 6rem);
-      overflow: hidden;
+      margin-top: 0.6rem;
+      width: clamp(5rem, 7vw, 8rem);
+      height: clamp(5rem, 7vw, 8rem);
       color: var(--color-bg);
       transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
                   opacity 0.2s ease;
@@ -294,6 +313,10 @@
           <img class="work-img" src="img/lotuslion_thumbnail.jpg" alt="Logos and brand identity work" loading="lazy">
           <div class="work-card__label" style="background: #FFF8D5; color: #553B06;"><span class="work-card__label-client">Logos</span>Collection of logo and brand identity work</div>
         </a>
+        <a href="shoe-rotation.html" class="work-card">
+          <img class="work-img rotation-thumb" src="img/shoes/treeline/treeline-01.png" alt="Nike Air Max 1 SH Treeline spinning in 360 degrees" loading="lazy" data-rotation-prefix="img/shoes/treeline/treeline-" data-rotation-total="36" style="background: #ffffff;">
+          <div class="work-card__label" style="background: #b8e4f0; color: #0F3D4A;"><span class="work-card__label-client">Just for funsies</span></div>
+        </a>
       </div>
 
       <!-- Right column — staggered lower -->
@@ -322,10 +345,6 @@
           <img class="work-img" src="img/tshq_assorted_projects_thumbnail.png" alt="DICK'S TSHQ assorted project work including sport cutouts and marketing materials" loading="lazy">
           <div class="work-card__label" style="background: #2E1F4A; color: #F0E6FF;"><span class="work-card__label-client">DICK'S TSHQ</span>Selected works from DICK's Team Sports Headquarters</div>
         </a>
-        <a href="shoe-rotation.html" class="work-card">
-          <img class="work-img rotation-thumb" src="img/shoes/treeline/treeline-01.png" alt="Nike Air Max 1 SH Treeline spinning in 360 degrees" loading="lazy" data-rotation-prefix="img/shoes/treeline/treeline-" data-rotation-total="36">
-          <div class="work-card__label" style="background: #b8e4f0; color: #0F3D4A;"><span class="work-card__label-client">Just for funsies</span>A 360° look at some of my favorite sneakers</div>
-        </a>
       </div>
     </section>
 
@@ -334,8 +353,8 @@
       <div class="capabilities-inner" id="capabilities-trigger" role="button" aria-expanded="false" tabindex="0">
         <h2 class="capabilities-heading">Capabilities</h2>
         <!-- Caret icon -->
-        <svg class="capabilities-caret" viewBox="3 6 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M4 7L10 13L16 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <svg class="capabilities-caret" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M16 28L40 52L64 28" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
 
