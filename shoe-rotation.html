@@ -36,7 +36,7 @@
       align-items: center;
       justify-content: center;
       min-height: 25vh;
-      padding: 4rem 0;
+      padding: 1.5rem 0;
       width: 100%;
       flex-shrink: 0;
     }
@@ -80,6 +80,11 @@
       -webkit-user-drag: none;
     }
 
+    /* Clip stray baseline pixel on Reebok Kamikaze frames */
+    #stage-reebok .frame {
+      clip-path: inset(0 0 6% 0);
+    }
+
     /* ── Loading overlay ── */
     .loader {
       position: absolute;
@@ -95,6 +100,7 @@
     .loader.hidden {
       opacity: 0;
       pointer-events: none;
+      display: none;
     }
 
     .loader-bar {
@@ -117,7 +123,7 @@
 
     /* ── Meta ── */
     .meta {
-      margin-top: 1.6rem;
+      margin-top: 0.6rem;
       text-align: center;
       flex-shrink: 0;
     }
@@ -137,42 +143,13 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
     }
-
-    /* ── Drag indicator arrows ── */
-    .drag-arrows {
-      display: flex;
-      align-items: center;
-      gap: 1.2rem;
-      margin-top: 1.4rem;
-      opacity: 0;
-      transition: opacity 1s ease;
-    }
-
-    .drag-arrows.visible { opacity: 1; }
-
-    .drag-arrows svg {
-      width: 20px;
-      height: 20px;
-      fill: none;
-      stroke: var(--muted);
-      stroke-width: 1.5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .drag-arrows span {
-      font-size: 0.58rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
   </style>
 </head>
 <body>
 
   <!-- ═══ Reebok Kamikaze II ═══ -->
   <div class="shoe-section">
-    <div class="stage has-bg" id="stage-reebok">
+    <div class="stage" id="stage-reebok">
       <div class="loader" id="loader-reebok">
         <div class="loader-bar">
           <div class="loader-fill" id="loader-fill-reebok"></div>
@@ -182,11 +159,6 @@
     <div class="meta">
       <h1>Reebok Kamikaze II</h1>
       <p>OG Black &middot; White &middot; Dark Green &middot; 2020</p>
-      <div class="drag-arrows" id="drag-arrows-reebok">
-        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-        <span>Drag to rotate</span>
-        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-      </div>
     </div>
   </div>
 
@@ -202,11 +174,6 @@
     <div class="meta">
       <h1>New Balance 992</h1>
       <p>MiUSA Grey &middot; Silver Metallic</p>
-      <div class="drag-arrows" id="drag-arrows-nb992">
-        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-        <span>Drag to rotate</span>
-        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-      </div>
     </div>
   </div>
 
@@ -222,11 +189,6 @@
     <div class="meta">
       <h1>Nike Air Max 1 SH</h1>
       <p>Treeline &middot; Khaki &middot; Pink Rise</p>
-      <div class="drag-arrows" id="drag-arrows-treeline">
-        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-        <span>Drag to rotate</span>
-        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-      </div>
     </div>
   </div>
 
@@ -242,31 +204,6 @@
     <div class="meta">
       <h1>Nike Air Max 1 '86 OG</h1>
       <p>Big Bubble &middot; Sport Red</p>
-      <div class="drag-arrows" id="drag-arrows-bigbubble">
-        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-        <span>Drag to rotate</span>
-        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-      </div>
-    </div>
-  </div>
-
-  <!-- ═══ Nike Air Max 1 Easter ═══ -->
-  <div class="shoe-section">
-    <div class="stage" id="stage-easter">
-      <div class="loader" id="loader-easter">
-        <div class="loader-bar">
-          <div class="loader-fill" id="loader-fill-easter"></div>
-        </div>
-      </div>
-    </div>
-    <div class="meta">
-      <h1>Nike Air Max 1 PRM</h1>
-      <p>Easter &middot; Multi-Color</p>
-      <div class="drag-arrows" id="drag-arrows-easter">
-        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-        <span>Drag to rotate</span>
-        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-      </div>
     </div>
   </div>
 
@@ -282,11 +219,6 @@
     <div class="meta">
       <h1>Air Jordan 1 Low</h1>
       <p>Black &middot; White &middot; Gorge Green</p>
-      <div class="drag-arrows" id="drag-arrows-aj1">
-        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-        <span>Drag to rotate</span>
-        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-      </div>
     </div>
   </div>
 
@@ -302,11 +234,21 @@
     <div class="meta">
       <h1>Reebok The Answer DMX</h1>
       <p>Black &middot; Gold &middot; Iverson</p>
-      <div class="drag-arrows" id="drag-arrows-answer">
-        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-        <span>Drag to rotate</span>
-        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+    </div>
+  </div>
+
+  <!-- ═══ Nike Air Max 1 Easter ═══ -->
+  <div class="shoe-section">
+    <div class="stage" id="stage-easter">
+      <div class="loader" id="loader-easter">
+        <div class="loader-bar">
+          <div class="loader-fill" id="loader-fill-easter"></div>
+        </div>
       </div>
+    </div>
+    <div class="meta">
+      <h1>Nike Air Max 1 PRM</h1>
+      <p>Easter &middot; Multi-Color</p>
     </div>
   </div>
 
@@ -322,22 +264,16 @@
     <div class="meta">
       <h1>Birkenstock Arizona</h1>
       <p>Taupe Suede &middot; Soft Footbed</p>
-      <div class="drag-arrows" id="drag-arrows-birkenstock">
-        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-        <span>Drag to rotate</span>
-        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-      </div>
     </div>
   </div>
 
   <script>
     function createRotation(config) {
-      const { stageId, loaderId, loaderFillId, dragArrowsId, frames } = config;
+      const { stageId, loaderId, loaderFillId, frames } = config;
       const TOTAL = frames.length;
       const stage = document.getElementById(stageId);
       const loader = document.getElementById(loaderId);
       const loaderFill = document.getElementById(loaderFillId);
-      const dragArrows = document.getElementById(dragArrowsId);
 
       let currentFrame = 0;
       let spinInterval = null;
@@ -368,7 +304,8 @@
 
       function startSpin() {
         if (spinInterval) return;
-        spinInterval = setInterval(() => showFrame(currentFrame + 1), 75);
+        const FULL_ROTATION_MS = 3375;
+        spinInterval = setInterval(() => showFrame(currentFrame + 1), FULL_ROTATION_MS / TOTAL);
       }
 
       function stopSpin() {
@@ -387,7 +324,6 @@
             setTimeout(() => {
               loader.classList.add('hidden');
               startSpin();
-              setTimeout(() => dragArrows.classList.add('visible'), 1200);
             }, 300);
           }
         };
@@ -461,7 +397,6 @@
       stageId: 'stage-reebok',
       loaderId: 'loader-reebok',
       loaderFillId: 'loader-fill-reebok',
-      dragArrowsId: 'drag-arrows-reebok',
       frames: Array.from({length: 36}, (_, i) =>
         `img/shoes/shoe-${String(i + 1).padStart(2, '0')}.png`
       )
@@ -472,7 +407,6 @@
       stageId: 'stage-nb992',
       loaderId: 'loader-nb992',
       loaderFillId: 'loader-fill-nb992',
-      dragArrowsId: 'drag-arrows-nb992',
       frames: Array.from({length: 36}, (_, i) =>
         `img/shoes/nb992/nb992-${String(i + 1).padStart(2, '0')}.png`
       )
@@ -483,7 +417,6 @@
       stageId: 'stage-treeline',
       loaderId: 'loader-treeline',
       loaderFillId: 'loader-fill-treeline',
-      dragArrowsId: 'drag-arrows-treeline',
       frames: Array.from({length: 36}, (_, i) =>
         `img/shoes/treeline/treeline-${String(i + 1).padStart(2, '0')}.png`
       )
@@ -494,7 +427,6 @@
       stageId: 'stage-bigbubble',
       loaderId: 'loader-bigbubble',
       loaderFillId: 'loader-fill-bigbubble',
-      dragArrowsId: 'drag-arrows-bigbubble',
       frames: Array.from({length: 36}, (_, i) =>
         `img/shoes/am1-bigbubble/am1-bigbubble-${String(i + 1).padStart(2, '0')}.png`
       )
@@ -505,7 +437,6 @@
       stageId: 'stage-easter',
       loaderId: 'loader-easter',
       loaderFillId: 'loader-fill-easter',
-      dragArrowsId: 'drag-arrows-easter',
       frames: Array.from({length: 35}, (_, i) =>
         `img/shoes/am1-easter/am1-easter-${String(i + 1).padStart(2, '0')}.png`
       )
@@ -516,7 +447,6 @@
       stageId: 'stage-aj1',
       loaderId: 'loader-aj1',
       loaderFillId: 'loader-fill-aj1',
-      dragArrowsId: 'drag-arrows-aj1',
       frames: Array.from({length: 36}, (_, i) =>
         `img/shoes/aj1/aj1-${String(i + 1).padStart(2, '0')}.png`
       )
@@ -527,7 +457,6 @@
       stageId: 'stage-answer',
       loaderId: 'loader-answer',
       loaderFillId: 'loader-fill-answer',
-      dragArrowsId: 'drag-arrows-answer',
       frames: Array.from({length: 36}, (_, i) =>
         `img/shoes/reebok-answer/reebok-answer-${String(i + 1).padStart(2, '0')}.png`
       )
@@ -538,7 +467,6 @@
       stageId: 'stage-birkenstock',
       loaderId: 'loader-birkenstock',
       loaderFillId: 'loader-fill-birkenstock',
-      dragArrowsId: 'drag-arrows-birkenstock',
       frames: Array.from({length: 35}, (_, i) =>
         `img/shoes/birkenstock/birkenstock-${String(i + 1).padStart(2, '0')}.png`
       )
