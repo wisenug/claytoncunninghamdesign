@@ -6,7 +6,7 @@
   <title>Shoe Collection — 360°</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;800&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -26,25 +26,128 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: 'DM Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
       user-select: none;
       -webkit-user-select: none;
       touch-action: none;
     }
 
+    /* ── Navigation ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 max(5vw, calc((100vw - 1200px) / 2));
+      height: 100px;
+      background: #b8e4f0;
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    nav.nav--hidden {
+      transform: translateY(-100%);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      transition: filter 0.2s ease;
+    }
+
+    .nav-logo:hover { filter: brightness(0.8); }
+    .nav-logo:active { filter: brightness(0.6); }
+
+    .nav-logo-icon {
+      display: block;
+      flex-shrink: 0;
+      width: 56px;
+      height: 56px;
+      color: #201515;
+      background-color: currentColor;
+      mask-image: url('img/clayton-cunningham-design-logo.svg');
+      -webkit-mask-image: url('img/clayton-cunningham-design-logo.svg');
+      mask-size: contain;
+      -webkit-mask-size: contain;
+      mask-repeat: no-repeat;
+      -webkit-mask-repeat: no-repeat;
+      mask-position: center;
+      -webkit-mask-position: center;
+    }
+
+    .nav-logo-name {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: #201515;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: 0.005em;
+      color: #201515;
+      text-decoration: none;
+      opacity: 0.65;
+      border-radius: 6px;
+      padding: 5px 10px;
+      transition: background 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+      background: rgba(0, 0, 0, 0.07);
+    }
+
+    .nav-links a[aria-current="page"] {
+      opacity: 1;
+      font-weight: 600;
+      background: rgba(0, 0, 0, 0.17);
+    }
+
+    @media (max-width: 800px) {
+      .nav-logo-name { display: none; }
+    }
+
+    @media (max-width: 640px) {
+      nav {
+        height: 80px;
+        padding-right: calc(max(5vw, calc((100vw - 1200px) / 2)) + 8px);
+      }
+    }
+
     /* ── Page heading ── */
     .page-heading {
-      font-family: 'Kaushan Script', cursive;
-      font-weight: 400;
-      font-size: clamp(3rem, 9vw, 6rem);
+      font-family: 'DM Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-weight: 800;
+      font-size: clamp(56px, 8.3vw + 15px, 144px);
       color: #111;
-      text-align: center;
-      line-height: 0.95;
-      letter-spacing: -0.01em;
-      margin: 3.5rem 0 1rem;
-      transform: rotate(-3deg);
-      text-shadow: 2px 3px 0 rgba(255, 255, 255, 0.55);
-      padding: 0 1.5rem;
+      text-align: left;
+      line-height: 0.97;
+      letter-spacing: -0.035em;
+      width: 100%;
+      padding: 170px max(5vw, calc((100vw - 1200px) / 2)) 40px;
+    }
+
+    @media (max-width: 640px) {
+      .page-heading {
+        padding-top: 140px;
+      }
     }
 
     /* ── Section ── */
@@ -165,7 +268,7 @@
     /* ── Motion toggle ── */
     .motion-toggle {
       position: fixed;
-      top: 1.25rem;
+      top: 120px;
       right: 1.25rem;
       width: 64px;
       height: 64px;
@@ -210,9 +313,24 @@
     .motion-toggle .icon-play { display: none; }
     .motion-toggle.paused .icon-pause { display: none; }
     .motion-toggle.paused .icon-play { display: block; }
+    @media (max-width: 640px) {
+      .motion-toggle { top: 96px; }
+    }
   </style>
 </head>
 <body>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-icon" aria-hidden="true"></span>
+      <span class="nav-logo-name">Clayton Cunningham Design</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Work</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
 
   <h1 class="page-heading">Coolest Shoes I&rsquo;ve Owned</h1>
 
@@ -345,6 +463,23 @@
       <p>Taupe Suede &middot; Soft Footbed</p>
     </div>
   </div>
+
+  <script>
+    // Hide nav on scroll down, reveal on scroll up
+    (function() {
+      var nav = document.querySelector('nav');
+      var lastY = 0;
+      window.addEventListener('scroll', function() {
+        var y = window.scrollY;
+        if (y > lastY && y > 80) {
+          nav.classList.add('nav--hidden');
+        } else {
+          nav.classList.remove('nav--hidden');
+        }
+        lastY = y;
+      }, { passive: true });
+    })();
+  </script>
 
   <script>
     const rotations = [];

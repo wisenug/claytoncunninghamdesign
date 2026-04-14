@@ -235,6 +235,7 @@
       a[href="tshq-fanwear-redesign.html"].work-card            { order: 10; }
       a[href="tshq-assorted-projects.html"].work-card           { order: 11; }
       a[href="logos.html"].work-card                            { order: 12; }
+      a[href="shoe-rotation.html"].work-card                    { order: 13; }
 
 
       .capabilities-section {
@@ -320,6 +321,10 @@
         <a href="tshq-assorted-projects.html" class="work-card">
           <img class="work-img" src="img/tshq_assorted_projects_thumbnail.png" alt="DICK'S TSHQ assorted project work including sport cutouts and marketing materials" loading="lazy">
           <div class="work-card__label" style="background: #2E1F4A; color: #F0E6FF;"><span class="work-card__label-client">DICK'S TSHQ</span>Selected works from DICK's Team Sports Headquarters</div>
+        </a>
+        <a href="shoe-rotation.html" class="work-card">
+          <img class="work-img rotation-thumb" src="img/shoes/treeline/treeline-01.png" alt="Nike Air Max 1 SH Treeline spinning in 360 degrees" loading="lazy" data-rotation-prefix="img/shoes/treeline/treeline-" data-rotation-total="36">
+          <div class="work-card__label" style="background: #b8e4f0; color: #0F3D4A;"><span class="work-card__label-client">Just for funsies</span>A 360° look at some of my favorite sneakers</div>
         </a>
       </div>
     </section>
@@ -451,7 +456,8 @@
       'coca-cola-campus-messaging.html':    '#DE4138',
       'coca-cola-assorted-projects.html':   '#ffffff',
       'tshq-assorted-projects.html':        '#2E1F4A',
-      'logos.html':                         '#FFF8D5'
+      'logos.html':                         '#FFF8D5',
+      'shoe-rotation.html':                 '#b8e4f0'
     };
     var PAGE_FG  = {
       'autotrader-illustration-system.html': '#0F2960',
@@ -465,7 +471,8 @@
       'coca-cola-campus-messaging.html':    '#270604',
       'coca-cola-assorted-projects.html':   '#F02D2D',
       'tshq-assorted-projects.html':        '#F0E6FF',
-      'logos.html':                         '#553B06'
+      'logos.html':                         '#553B06',
+      'shoe-rotation.html':                 '#0F3D4A'
     };
     document.querySelectorAll('.work-card').forEach(function(card) {
       var href = card.getAttribute('href');
@@ -484,6 +491,25 @@
         inkEl.style.viewTransitionName = 'ink-bg';
         card.querySelector('.work-card__label').style.viewTransitionName = 'page-title';
       });
+    });
+
+    // Rotating shoe thumbnail for "Just for funsies" card
+    document.querySelectorAll('.rotation-thumb').forEach(function(img) {
+      var prefix = img.dataset.rotationPrefix;
+      var total  = parseInt(img.dataset.rotationTotal, 10);
+      if (!prefix || !total) return;
+      var pad = function(n) { return String(n).padStart(2, '0'); };
+      var preloaded = [];
+      for (var i = 1; i <= total; i++) {
+        var pre = new Image();
+        pre.src = prefix + pad(i) + '.png';
+        preloaded.push(pre);
+      }
+      var idx = 1;
+      setInterval(function() {
+        idx = (idx % total) + 1;
+        img.src = prefix + pad(idx) + '.png';
+      }, 3375 / total);
     });
 
     // Skip view transition on back/forward navigation
