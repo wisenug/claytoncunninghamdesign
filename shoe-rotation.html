@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shoe Collection — 360°</title>
+  <title>Just For Funsies — Clayton Cunningham</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;800&display=swap" rel="stylesheet">
@@ -27,9 +27,6 @@
       flex-direction: column;
       align-items: center;
       font-family: 'DM Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      user-select: none;
-      -webkit-user-select: none;
-      touch-action: none;
     }
 
     /* ── Navigation ── */
@@ -167,18 +164,16 @@
       position: relative;
       width: min(101.2vw, 644px);
       aspect-ratio: 1 / 0.85;
-      cursor: grab;
       flex-shrink: 0;
       border-radius: 16px;
       overflow: hidden;
+      pointer-events: none;
     }
 
     .stage.has-bg {
       background: #fff;
       box-shadow: 0 2px 24px rgba(0,0,0,0.06);
     }
-
-    .stage:active { cursor: grabbing; }
 
     .frame {
       position: absolute;
@@ -203,7 +198,7 @@
 
     /* Clip stray baseline pixel on Reebok Kamikaze frames */
     #stage-reebok .frame {
-      clip-path: inset(0 0 6% 0);
+      clip-path: inset(0 0 11% 0);
     }
 
     /* ── Loading overlay ── */
@@ -332,7 +327,7 @@
     </ul>
   </nav>
 
-  <h1 class="page-heading">Coolest Shoes I&rsquo;ve Owned</h1>
+  <h1 class="page-heading">Just For Funsies</h1>
 
   <button class="motion-toggle" id="motion-toggle" aria-label="Pause animations" aria-pressed="false">
     <svg class="icon-pause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -494,9 +489,6 @@
 
       let currentFrame = 0;
       let spinInterval = null;
-      let isDragging = false;
-      let dragStartX = 0;
-      let dragStartFrame = 0;
       let loadedCount = 0;
       let ready = false;
 
@@ -549,50 +541,6 @@
         img.src = src;
       });
 
-      // Mouse drag
-      stage.addEventListener('mousedown', e => {
-        if (!ready) return;
-        stopSpin();
-        isDragging = true;
-        dragStartX = e.clientX;
-        dragStartFrame = currentFrame;
-        e.preventDefault();
-      });
-
-      window.addEventListener('mousemove', e => {
-        if (!isDragging) return;
-        const delta = e.clientX - dragStartX;
-        const sensitivity = stage.offsetWidth / TOTAL;
-        showFrame(dragStartFrame + Math.round(delta / sensitivity));
-      });
-
-      window.addEventListener('mouseup', () => {
-        if (!isDragging) return;
-        isDragging = false;
-        startSpin();
-      });
-
-      // Touch drag
-      stage.addEventListener('touchstart', e => {
-        if (!ready) return;
-        stopSpin();
-        isDragging = true;
-        dragStartX = e.touches[0].clientX;
-        dragStartFrame = currentFrame;
-      }, { passive: true });
-
-      window.addEventListener('touchmove', e => {
-        if (!isDragging) return;
-        const delta = e.touches[0].clientX - dragStartX;
-        const sensitivity = stage.offsetWidth / TOTAL;
-        showFrame(dragStartFrame + Math.round(delta / sensitivity));
-      }, { passive: true });
-
-      window.addEventListener('touchend', () => {
-        if (!isDragging) return;
-        isDragging = false;
-        startSpin();
-      });
     }
 
     // ── Motion toggle ──
