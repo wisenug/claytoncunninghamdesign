@@ -225,6 +225,11 @@
         <img src="img/autotrader_icons_marketplace.png" alt="Private Seller Marketplace interface — spot icons for listing management and seller tools" loading="lazy">
       </div>
 
+      <!-- PSX Spot Icons Lottie -->
+      <div class="full-image" role="img" aria-label="Animated Private Seller Exchange spot icons">
+        <div id="lottie-psx-spot-icons" style="width: 100%; aspect-ratio: 2000/1115; height: auto; border-radius: var(--radius-img); overflow: hidden;"></div>
+      </div>
+
       <div class="full-image">
         <img src="img/autotrader_icons_battery-health.png" alt="Battery health chart on Vehicle Detail Page — electric vehicle battery status with spot icon indicators" loading="lazy">
       </div>
@@ -284,6 +289,13 @@
       loop: true,
       autoplay: true,
       path: 'animations/at-icon-labels.json'
+    });
+    lottie.loadAnimation({
+      container: document.getElementById('lottie-psx-spot-icons'),
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      path: 'animations/psx-spot-icons.json'
     });
   </script>
 
