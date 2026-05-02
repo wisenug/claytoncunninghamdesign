@@ -88,17 +88,6 @@
       display: block;
       border-radius: var(--radius-img);
     }
-
-    /* ── Scroll reveal ── */
-    .scroll-reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.65s ease, transform 0.65s ease;
-    }
-    .scroll-reveal.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
   </style>
 </head>
 <body>
@@ -271,20 +260,20 @@
   </footer>
 
   <script>
-    lottie.loadAnimation({
-      container: document.getElementById('lottie-spot-icons'),
-      renderer: 'svg',
-      loop: true,
-      autoplay: true,
-      path: 'animations/kbb-spot-icons.json'
-    });
-    lottie.loadAnimation({
-      container: document.getElementById('lottie-cars'),
-      renderer: 'svg',
-      loop: true,
-      autoplay: true,
-      path: 'animations/kbb-car-heart.json'
-    });
+    function loadLottie(id, file) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      lottie.loadAnimation({
+        container: el,
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        path: 'animations/' + file
+      });
+    }
+
+    loadLottie('lottie-spot-icons', 'kbb-spot-icons.json');
+    loadLottie('lottie-cars',       'kbb-car-heart.json');
   </script>
   <script>
     // Scroll reveal

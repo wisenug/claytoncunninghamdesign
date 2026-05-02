@@ -591,85 +591,36 @@
     window.addEventListener('scroll', updateGradient, { passive: true });
     updateGradient();
 
-    // ── Reebok Kamikaze II ──
-    createRotation({
-      stageId: 'stage-reebok',
-      loaderId: 'loader-reebok',
-      loaderFillId: 'loader-fill-reebok',
-      frames: Array.from({length: 36}, (_, i) =>
-        `img/shoes/shoe-${String(i + 1).padStart(2, '0')}.webp`
-      )
-    });
+    function pad(n) { return String(n).padStart(2, '0'); }
 
-    // ── New Balance 992 ──
-    createRotation({
-      stageId: 'stage-nb992',
-      loaderId: 'loader-nb992',
-      loaderFillId: 'loader-fill-nb992',
-      frames: Array.from({length: 36}, (_, i) =>
-        `img/shoes/nb992/nb992-${String(i + 1).padStart(2, '0')}.webp`
-      )
-    });
+    function buildFrames(prefix, count, skip) {
+      var nums = [];
+      for (var i = 1; i <= count; i++) {
+        if (!skip || skip.indexOf(i) === -1) nums.push(i);
+      }
+      return nums.map(function(n) { return prefix + pad(n) + '.webp'; });
+    }
 
-    // ── Nike Air Max 1 SH Treeline ──
-    createRotation({
-      stageId: 'stage-treeline',
-      loaderId: 'loader-treeline',
-      loaderFillId: 'loader-fill-treeline',
-      frames: Array.from({length: 36}, (_, i) =>
-        `img/shoes/treeline/treeline-${String(i + 1).padStart(2, '0')}.webp`
-      )
-    });
+    // Frame counts/prefixes per shoe. Easter skips frames 14 and 32 —
+    // out-of-sequence duplicates that cause visible skips.
+    var SHOES = [
+      { key: 'reebok',      prefix: 'img/shoes/shoe-',                         count: 36 },
+      { key: 'nb992',       prefix: 'img/shoes/nb992/nb992-',                  count: 36 },
+      { key: 'treeline',    prefix: 'img/shoes/treeline/treeline-',            count: 36 },
+      { key: 'bigbubble',   prefix: 'img/shoes/am1-bigbubble/am1-bigbubble-',  count: 36 },
+      { key: 'easter',      prefix: 'img/shoes/am1-easter/am1-easter-',        count: 35, skip: [14, 32] },
+      { key: 'aj1',         prefix: 'img/shoes/aj1/aj1-',                      count: 36 },
+      { key: 'answer',      prefix: 'img/shoes/reebok-answer/reebok-answer-',  count: 36 },
+      { key: 'birkenstock', prefix: 'img/shoes/birkenstock/birkenstock-',      count: 35 }
+    ];
 
-    // ── Nike Air Max 1 Big Bubble ──
-    createRotation({
-      stageId: 'stage-bigbubble',
-      loaderId: 'loader-bigbubble',
-      loaderFillId: 'loader-fill-bigbubble',
-      frames: Array.from({length: 36}, (_, i) =>
-        `img/shoes/am1-bigbubble/am1-bigbubble-${String(i + 1).padStart(2, '0')}.webp`
-      )
-    });
-
-    // ── Nike Air Max 1 Easter ──
-    // Frames 14 and 32 are out-of-sequence duplicates that cause visible skips
-    createRotation({
-      stageId: 'stage-easter',
-      loaderId: 'loader-easter',
-      loaderFillId: 'loader-fill-easter',
-      frames: Array.from({length: 35}, (_, i) => i + 1)
-        .filter(n => n !== 14 && n !== 32)
-        .map(n => `img/shoes/am1-easter/am1-easter-${String(n).padStart(2, '0')}.webp`)
-    });
-
-    // ── Air Jordan 1 Low ──
-    createRotation({
-      stageId: 'stage-aj1',
-      loaderId: 'loader-aj1',
-      loaderFillId: 'loader-fill-aj1',
-      frames: Array.from({length: 36}, (_, i) =>
-        `img/shoes/aj1/aj1-${String(i + 1).padStart(2, '0')}.webp`
-      )
-    });
-
-    // ── Reebok The Answer DMX ──
-    createRotation({
-      stageId: 'stage-answer',
-      loaderId: 'loader-answer',
-      loaderFillId: 'loader-fill-answer',
-      frames: Array.from({length: 36}, (_, i) =>
-        `img/shoes/reebok-answer/reebok-answer-${String(i + 1).padStart(2, '0')}.webp`
-      )
-    });
-
-    // ── Birkenstock Arizona ──
-    createRotation({
-      stageId: 'stage-birkenstock',
-      loaderId: 'loader-birkenstock',
-      loaderFillId: 'loader-fill-birkenstock',
-      frames: Array.from({length: 35}, (_, i) =>
-        `img/shoes/birkenstock/birkenstock-${String(i + 1).padStart(2, '0')}.webp`
-      )
+    SHOES.forEach(function(s) {
+      createRotation({
+        stageId: 'stage-' + s.key,
+        loaderId: 'loader-' + s.key,
+        loaderFillId: 'loader-fill-' + s.key,
+        frames: buildFrames(s.prefix, s.count, s.skip)
+      });
     });
   </script>
 

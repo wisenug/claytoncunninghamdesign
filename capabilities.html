@@ -98,7 +98,6 @@
     .project-card__image {
       width: 100%;
       display: block;
-      border-radius: 0;
       object-fit: contain;
       transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
@@ -174,14 +173,6 @@
       .project-grid {
         grid-template-columns: 1fr;
         gap: 4rem;
-      }
-
-      .cap-header {
-        padding-top: 7rem;
-      }
-
-      .cap-filter-bar {
-        top: 10rem;
       }
     }
   </style>
@@ -493,7 +484,7 @@
         card.addEventListener('click', function() {
           inkEl.style.opacity = '1';
           inkEl.style.viewTransitionName = 'ink-bg';
-          card.querySelector('.project-card__label').style.viewTransitionName = 'page-title';
+          labelEl.style.viewTransitionName = 'page-title';
         });
       }
 

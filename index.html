@@ -67,10 +67,6 @@
       gap: 1.6rem;
     }
 
-    .work-col--right {
-      padding-top: 0;
-    }
-
     /* ── Project card with hover label ── */
     .work-card {
       position: relative;
@@ -96,7 +92,6 @@
     .work-img {
       width: 100%;
       display: block;
-      border-radius: 0;
       object-fit: contain;
       transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
@@ -373,79 +368,22 @@
 
       <!-- Accordion list -->
       <div class="capabilities-list-wrap" id="capabilities-list-wrap">
+        <!-- Shared arrow icon used by every capability link -->
+        <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+          <symbol id="cap-arrow" viewBox="0 0 20 20" fill="none">
+            <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </symbol>
+        </svg>
         <ul class="capabilities-list">
-          <li>
-            <a href="capabilities.html">
-              <span class="cap-link-text">All Capabilities</span>
-              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-          </li>
-          <li>
-            <a href="capabilities.html?tag=UI%2FUX+Design">
-              <span class="cap-link-text">UI/UX Design</span>
-              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-          </li>
-          <li>
-            <a href="capabilities.html?tag=Illustration">
-              <span class="cap-link-text">Illustration</span>
-              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-          </li>
-          <li>
-            <a href="capabilities.html?tag=Iconography">
-              <span class="cap-link-text">Iconography</span>
-              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-          </li>
-          <li>
-            <a href="capabilities.html?tag=Design+System">
-              <span class="cap-link-text">Design System</span>
-              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-          </li>
-          <li>
-            <a href="capabilities.html?tag=Motion+Design">
-              <span class="cap-link-text">Motion Design</span>
-              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-          </li>
-          <li>
-            <a href="capabilities.html?tag=Visual+Identity">
-              <span class="cap-link-text">Visual Identity</span>
-              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-          </li>
-          <li>
-            <a href="capabilities.html?tag=Research">
-              <span class="cap-link-text">Research</span>
-              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-          </li>
-          <li>
-            <a href="capabilities.html?tag=Case+Study">
-              <span class="cap-link-text">Case Study</span>
-              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-          </li>
+          <li><a href="capabilities.html"><span class="cap-link-text">All Capabilities</span><svg><use href="#cap-arrow"/></svg></a></li>
+          <li><a href="capabilities.html?tag=UI%2FUX+Design"><span class="cap-link-text">UI/UX Design</span><svg><use href="#cap-arrow"/></svg></a></li>
+          <li><a href="capabilities.html?tag=Illustration"><span class="cap-link-text">Illustration</span><svg><use href="#cap-arrow"/></svg></a></li>
+          <li><a href="capabilities.html?tag=Iconography"><span class="cap-link-text">Iconography</span><svg><use href="#cap-arrow"/></svg></a></li>
+          <li><a href="capabilities.html?tag=Design+System"><span class="cap-link-text">Design System</span><svg><use href="#cap-arrow"/></svg></a></li>
+          <li><a href="capabilities.html?tag=Motion+Design"><span class="cap-link-text">Motion Design</span><svg><use href="#cap-arrow"/></svg></a></li>
+          <li><a href="capabilities.html?tag=Visual+Identity"><span class="cap-link-text">Visual Identity</span><svg><use href="#cap-arrow"/></svg></a></li>
+          <li><a href="capabilities.html?tag=Research"><span class="cap-link-text">Research</span><svg><use href="#cap-arrow"/></svg></a></li>
+          <li><a href="capabilities.html?tag=Case+Study"><span class="cap-link-text">Case Study</span><svg><use href="#cap-arrow"/></svg></a></li>
         </ul>
       </div>
     </section>
@@ -475,41 +413,26 @@
     document.getElementById('footer-year').textContent = new Date().getFullYear();
 
     // View transition: ink-spill from card into project page.
-    // To add a new project, add its href here with the page's --color-bg and --color-black values.
-    var PAGE_BG  = {
-      'autotrader-illustration-system.html': '#E3F2FF',
-      'kbb-icons-illustrations.html':        '#FFBF00',
-      'autotrader-icons.html':               '#FF8806',
-      'sketches-illustrations-doodles.html': '#4D93FC',
-      'paradesmith.html':                    '#07465A',
-      'tshq-fanwear-redesign.html':          '#FF5F1F',
-      'tshq-mobile-app.html':               '#006554',
-      'tshq-registration.html':             '#f0f0f0',
-      'coca-cola-campus-messaging.html':    '#DE4138',
-      'coca-cola-assorted-projects.html':   '#ffffff',
-      'tshq-assorted-projects.html':        '#2E1F4A',
-      'logos.html':                         '#FFF8D5',
-      'shoe-rotation.html':                 '#b8e4f0'
-    };
-    var PAGE_FG  = {
-      'autotrader-illustration-system.html': '#0F2960',
-      'kbb-icons-illustrations.html':        '#002B5C',
-      'autotrader-icons.html':               '#001F6E',
-      'sketches-illustrations-doodles.html': '#19133A',
-      'paradesmith.html':                    '#1BBFCA',
-      'tshq-fanwear-redesign.html':          '#0D0D1A',
-      'tshq-mobile-app.html':               '#E0FAE0',
-      'tshq-registration.html':             '#1B561A',
-      'coca-cola-campus-messaging.html':    '#270604',
-      'coca-cola-assorted-projects.html':   '#F02D2D',
-      'tshq-assorted-projects.html':        '#F0E6FF',
-      'logos.html':                         '#553B06',
-      'shoe-rotation.html':                 '#0F3D4A'
+    // To add a new project, add its href here with the page's [bg, fg] colors.
+    var PAGE_COLORS = {
+      'autotrader-illustration-system.html': ['#E3F2FF', '#0F2960'],
+      'kbb-icons-illustrations.html':        ['#FFBF00', '#002B5C'],
+      'autotrader-icons.html':               ['#FF8806', '#001F6E'],
+      'sketches-illustrations-doodles.html': ['#4D93FC', '#19133A'],
+      'paradesmith.html':                    ['#07465A', '#1BBFCA'],
+      'tshq-fanwear-redesign.html':          ['#FF5F1F', '#0D0D1A'],
+      'tshq-mobile-app.html':                ['#006554', '#E0FAE0'],
+      'tshq-registration.html':              ['#f0f0f0', '#1B561A'],
+      'coca-cola-campus-messaging.html':     ['#DE4138', '#270604'],
+      'coca-cola-assorted-projects.html':    ['#ffffff', '#F02D2D'],
+      'tshq-assorted-projects.html':         ['#2E1F4A', '#F0E6FF'],
+      'logos.html':                          ['#FFF8D5', '#553B06'],
+      'shoe-rotation.html':                  ['#b8e4f0', '#0F3D4A']
     };
     document.querySelectorAll('.work-card').forEach(function(card) {
-      var href = card.getAttribute('href');
-      var bg = PAGE_BG[href];
-      if (!bg) return;
+      var colors = PAGE_COLORS[card.getAttribute('href')];
+      if (!colors) return;
+      var bg = colors[0], fg = colors[1];
       var inkEl = document.createElement('div');
       inkEl.className = 'work-card__ink-bg';
       inkEl.setAttribute('aria-hidden', 'true');
@@ -517,11 +440,11 @@
       card.insertBefore(inkEl, card.firstChild);
       var labelEl = card.querySelector('.work-card__label');
       labelEl.style.background = bg;
-      if (PAGE_FG[href]) labelEl.style.color = PAGE_FG[href];
+      labelEl.style.color = fg;
       card.addEventListener('click', function() {
         inkEl.style.opacity = '1';
         inkEl.style.viewTransitionName = 'ink-bg';
-        card.querySelector('.work-card__label').style.viewTransitionName = 'page-title';
+        labelEl.style.viewTransitionName = 'page-title';
       });
     });
 
@@ -555,12 +478,10 @@
     (function() {
       var section = document.getElementById('capabilities-section');
       var trigger = document.getElementById('capabilities-trigger');
-      var wrap    = document.getElementById('capabilities-list-wrap');
 
       function toggle() {
         var open = section.classList.toggle('is-open');
         trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
-
         if (open) {
           // Wait a tick for max-height transition to start, then scroll section into view
           requestAnimationFrame(function() {
@@ -601,8 +522,8 @@
         if (!e.target.closest('.work-card')) clearAll(null);
       });
     })();
-  </script>
-  <script>
+
+    // Autotrader icons thumbnail Lottie animation
     lottie.loadAnimation({
       container: document.getElementById('lottie-at-icons-thumb'),
       renderer: 'svg',

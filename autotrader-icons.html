@@ -81,17 +81,6 @@
       border-radius: var(--radius-img);
       overflow: hidden;
     }
-
-    /* ── Scroll reveal ── */
-    .scroll-reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.65s ease, transform 0.65s ease;
-    }
-    .scroll-reveal.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
   </style>
 </head>
 <body>
@@ -270,48 +259,24 @@
   </footer>
 
   <script>
-    lottie.loadAnimation({
-      container: document.getElementById('lottie-icon-details'),
-      renderer: 'svg',
-      loop: true,
-      autoplay: true,
-      path: 'animations/at-icon-details.json'
-    });
-    lottie.loadAnimation({
-      container: document.getElementById('lottie-at-grid'),
-      renderer: 'svg',
-      loop: true,
-      autoplay: true,
-      path: 'animations/at-icon-grid.json'
-    });
-    lottie.loadAnimation({
-      container: document.getElementById('lottie-spot-icons'),
-      renderer: 'svg',
-      loop: true,
-      autoplay: true,
-      path: 'animations/spot_icons.json'
-    });
-    lottie.loadAnimation({
-      container: document.getElementById('lottie-spot-icon-hp'),
-      renderer: 'svg',
-      loop: true,
-      autoplay: true,
-      path: 'animations/AT-SPOT-ICON-HP.json'
-    });
-    lottie.loadAnimation({
-      container: document.getElementById('lottie-icon-labels'),
-      renderer: 'svg',
-      loop: true,
-      autoplay: true,
-      path: 'animations/at-icon-labels.json'
-    });
-    lottie.loadAnimation({
-      container: document.getElementById('lottie-psx-spot-icons'),
-      renderer: 'svg',
-      loop: true,
-      autoplay: true,
-      path: 'animations/psx-spot-icons.json'
-    });
+    function loadLottie(id, file) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      lottie.loadAnimation({
+        container: el,
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        path: 'animations/' + file
+      });
+    }
+
+    loadLottie('lottie-icon-details',   'at-icon-details.json');
+    loadLottie('lottie-at-grid',        'at-icon-grid.json');
+    loadLottie('lottie-spot-icons',     'spot_icons.json');
+    loadLottie('lottie-spot-icon-hp',   'AT-SPOT-ICON-HP.json');
+    loadLottie('lottie-icon-labels',    'at-icon-labels.json');
+    loadLottie('lottie-psx-spot-icons', 'psx-spot-icons.json');
   </script>
 
   <script>

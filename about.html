@@ -104,6 +104,10 @@
       grid-column: 1;
       grid-row: 1 / 3;
       align-self: center;
+      position: relative;
+      flex-shrink: 0;
+      perspective: 700px;
+      perspective-origin: center center;
     }
 
     .about-intro {
@@ -117,14 +121,6 @@
       grid-column: 2;
       grid-row: 2;
       align-self: start;
-    }
-
-    .about-photo-wrap {
-      position: relative;
-      flex-shrink: 0;
-      perspective: 700px;
-      perspective-origin: center center;
-      /* desktop grid placement handled above */
     }
 
     .about-photo-inner {
@@ -189,8 +185,6 @@
       background: #091f3a;
       padding: 6rem var(--page-margin) 8rem;
     }
-
-    /* Services section background */
 
     .services-label {
       font-size: clamp(2.4rem, 2.5vw, 3.4rem);
@@ -562,16 +556,21 @@
         </svg>
       </div>
       <div class="about-cap-list-wrap" id="about-cap-list-wrap">
+        <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+          <symbol id="cap-arrow" viewBox="0 0 20 20" fill="none">
+            <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </symbol>
+        </svg>
         <ul class="about-cap-list">
-          <li><a href="capabilities.html"><span class="cap-link-text">All Capabilities</span><svg viewBox="0 0 20 20" fill="none"><path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
-          <li><a href="capabilities.html?tag=UI%2FUX+Design"><span class="cap-link-text">UI/UX Design</span><svg viewBox="0 0 20 20" fill="none"><path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
-          <li><a href="capabilities.html?tag=Illustration"><span class="cap-link-text">Illustration</span><svg viewBox="0 0 20 20" fill="none"><path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
-          <li><a href="capabilities.html?tag=Iconography"><span class="cap-link-text">Iconography</span><svg viewBox="0 0 20 20" fill="none"><path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
-          <li><a href="capabilities.html?tag=Design+System"><span class="cap-link-text">Design System</span><svg viewBox="0 0 20 20" fill="none"><path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
-          <li><a href="capabilities.html?tag=Motion+Design"><span class="cap-link-text">Motion Design</span><svg viewBox="0 0 20 20" fill="none"><path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
-          <li><a href="capabilities.html?tag=Visual+Identity"><span class="cap-link-text">Visual Identity</span><svg viewBox="0 0 20 20" fill="none"><path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
-          <li><a href="capabilities.html?tag=Research"><span class="cap-link-text">Research</span><svg viewBox="0 0 20 20" fill="none"><path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
-          <li><a href="capabilities.html?tag=Case+Study"><span class="cap-link-text">Case Study</span><svg viewBox="0 0 20 20" fill="none"><path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+          <li><a href="capabilities.html"><span class="cap-link-text">All Capabilities</span><svg><use href="#cap-arrow"/></svg></a></li>
+          <li><a href="capabilities.html?tag=UI%2FUX+Design"><span class="cap-link-text">UI/UX Design</span><svg><use href="#cap-arrow"/></svg></a></li>
+          <li><a href="capabilities.html?tag=Illustration"><span class="cap-link-text">Illustration</span><svg><use href="#cap-arrow"/></svg></a></li>
+          <li><a href="capabilities.html?tag=Iconography"><span class="cap-link-text">Iconography</span><svg><use href="#cap-arrow"/></svg></a></li>
+          <li><a href="capabilities.html?tag=Design+System"><span class="cap-link-text">Design System</span><svg><use href="#cap-arrow"/></svg></a></li>
+          <li><a href="capabilities.html?tag=Motion+Design"><span class="cap-link-text">Motion Design</span><svg><use href="#cap-arrow"/></svg></a></li>
+          <li><a href="capabilities.html?tag=Visual+Identity"><span class="cap-link-text">Visual Identity</span><svg><use href="#cap-arrow"/></svg></a></li>
+          <li><a href="capabilities.html?tag=Research"><span class="cap-link-text">Research</span><svg><use href="#cap-arrow"/></svg></a></li>
+          <li><a href="capabilities.html?tag=Case+Study"><span class="cap-link-text">Case Study</span><svg><use href="#cap-arrow"/></svg></a></li>
         </ul>
       </div>
     </div>

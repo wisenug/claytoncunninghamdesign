@@ -138,17 +138,6 @@
       margin-top: 8rem;
     }
 
-    /* ── Scroll reveal ── */
-    .scroll-reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.65s ease, transform 0.65s ease;
-    }
-    .scroll-reveal.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
     /* ── Inverted tag hover ── */
     .tag {
       border-color: rgba(255, 255, 255, 0.45);
@@ -402,8 +391,7 @@
 
   <script>
     document.getElementById('footer-year').textContent = new Date().getFullYear();
-  </script>
-  <script>
+
     // Scroll reveal
     (function() {
       var els = document.querySelectorAll('.text-section, .intro-text, .assumption, .pain-points, .image-note, .update-notice');
@@ -440,9 +428,8 @@
         lastY = y;
       }, { passive: true });
     })();
-  </script>
 
-  <script>
+    // Hero parallax: shrink padding + radius on scroll
     (function () {
       var hero = document.querySelector('.hero-image');
       var heroImg = hero && hero.querySelector('img, video');
