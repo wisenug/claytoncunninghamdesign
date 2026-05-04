@@ -274,6 +274,27 @@
         padding: 2rem 0;
       }
     }
+
+    /* ── Home headline ── */
+    .home-headline-wrap {
+      padding: 8rem var(--page-margin) 4rem;
+      text-align: center;
+    }
+
+    .home-headline {
+      font-size: clamp(2.4rem, 3.6vw, 4rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: #B8D9F5;
+      margin: 0;
+    }
+
+    .home-headline em {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      font-weight: 400;
+    }
   </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie.min.js" integrity="sha384-vfy4Ln1gWZnGF5PKMEkqQ+kS3n2GAauccVbfcEDS59jQl6EbNsVVCHzSP0OtTpRC" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
@@ -292,6 +313,11 @@
   </nav>
 
   <main>
+
+    <!-- Home headline -->
+    <header class="home-headline-wrap">
+      <h1 class="home-headline">Clayton Cunningham &mdash; <em>Designer &amp; Illustrator</em></h1>
+    </header>
 
     <!-- Staggered two-column image grid -->
     <section class="work-grid">
