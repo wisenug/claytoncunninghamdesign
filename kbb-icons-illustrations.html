@@ -78,6 +78,10 @@
 
     .project-title { view-transition-name: page-title; }
 
+    /* View transition — outgoing (to next project); names assigned via JS on click */
+    .next-project-title { position: relative; }
+    .next-label         { position: relative; }
+
     .lottie-block {
       width: 100%;
       border-radius: var(--radius-img);
@@ -245,7 +249,8 @@
     </div>
 
     <!-- Next project -->
-    <section class="next-project" style="background-color: #FF8806;" aria-label="Navigate to next project">
+    <section class="next-project" aria-label="Navigate to next project">
+      <div class="next-project-bg" aria-hidden="true" style="background-color: #FF8806;"></div>
       <span class="next-label" style="color: rgba(0, 31, 110, 0.5);" aria-hidden="true">Next Project</span>
       <a href="autotrader-icons.html" class="next-project-title" style="color: #001F6E;">
         Autotrader<br>Iconography
@@ -297,6 +302,20 @@
         e.viewTransition.skipTransition();
       }
     });
+
+    // On Next Project click: swap ink-bg/page-title from incoming elements to outgoing elements
+    var nextLink = document.querySelector('.next-project-title');
+    if (nextLink && nextLink.getAttribute('href') !== '#') {
+      nextLink.addEventListener('click', function() {
+        var vtBg = document.querySelector('.vt-bg');
+        var nextBg = document.querySelector('.next-project-bg');
+        var projTitle = document.querySelector('.project-title');
+        if (vtBg)      vtBg.style.viewTransitionName = '';
+        if (nextBg)    nextBg.style.viewTransitionName = 'ink-bg';
+        if (projTitle) projTitle.style.viewTransitionName = '';
+        nextLink.style.viewTransitionName = 'page-title';
+      });
+    }
 
     // Hide nav on scroll down, reveal on scroll up
     (function() {

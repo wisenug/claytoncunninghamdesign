@@ -192,6 +192,10 @@
 
     .project-title { view-transition-name: page-title; }
 
+    /* View transition — outgoing (to next project); names assigned via JS on click */
+    .next-project-title { position: relative; }
+    .next-label         { position: relative; }
+
     /* ── Mobile ── */
     @media (max-width: 640px) {
       .more-work__grid {
@@ -376,7 +380,8 @@
     </div>
 
     <!-- Next project -->
-    <section class="next-project next-project-wrap" style="background-color: #f0f0f0; margin-top: 8rem;">
+    <section class="next-project next-project-wrap" style="margin-top: 8rem;" aria-label="Navigate to next project">
+      <div class="next-project-bg" aria-hidden="true" style="background-color: #f0f0f0;"></div>
       <span class="next-label" style="color: rgba(27, 86, 26, 0.5);">Next Project</span>
       <a href="tshq-registration.html" class="next-project-title" style="color: rgba(27, 86, 26, 0.75);">
         DICK'S TSHQ<br>Registration
@@ -413,6 +418,20 @@
         e.viewTransition.skipTransition();
       }
     });
+
+    // On Next Project click: swap ink-bg/page-title from incoming elements to outgoing elements
+    var nextLink = document.querySelector('.next-project-title');
+    if (nextLink && nextLink.getAttribute('href') !== '#') {
+      nextLink.addEventListener('click', function() {
+        var vtBg = document.querySelector('.vt-bg');
+        var nextBg = document.querySelector('.next-project-bg');
+        var projTitle = document.querySelector('.project-title');
+        if (vtBg)      vtBg.style.viewTransitionName = '';
+        if (nextBg)    nextBg.style.viewTransitionName = 'ink-bg';
+        if (projTitle) projTitle.style.viewTransitionName = '';
+        nextLink.style.viewTransitionName = 'page-title';
+      });
+    }
 
     // Hide nav on scroll down, reveal on scroll up
     (function() {
