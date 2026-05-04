@@ -17,7 +17,7 @@ const SKIP_LINE_MARKERS = [
 
 // Match img/...(/...).{png,jpg,jpeg} — base path uses safe chars only,
 // so it skips JS template-literal fragments like img/shoes/shoe-${i}.png.
-const IMG_RE = /(img\/[A-Za-z0-9_./-]+?)\.(png|jpg|jpeg)/gi;
+const IMG_RE = /((?:img|unused)\/[A-Za-z0-9_./-]+?)\.(png|jpg|jpeg)/gi;
 
 let totalSwapped = 0;
 const filesChanged = [];

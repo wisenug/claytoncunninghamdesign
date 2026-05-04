@@ -2,7 +2,7 @@ import fs from 'fs/promises';
 import path from 'path';
 import sharp from 'sharp';
 
-const ROOT = path.resolve('img');
+const ROOTS = [path.resolve('img'), path.resolve('unused')];
 const SKIP_DIRS = new Set(['shawn_kemp_reebok']);
 const PNG_QUALITY = 82;
 const JPG_QUALITY = 80;
@@ -10,7 +10,8 @@ const JPG_QUALITY = 80;
 let converted = 0, skipped = 0, bytesIn = 0, bytesOut = 0;
 
 async function walk(dir) {
-  const entries = await fs.readdir(dir, { withFileTypes: true });
+  let entries;
+  try { entries = await fs.readdir(dir, { withFileTypes: true }); } catch { return; }
   for (const e of entries) {
     const full = path.join(dir, e.name);
     if (e.isDirectory()) {
@@ -48,7 +49,7 @@ async function maybeConvert(file) {
 }
 
 const t0 = Date.now();
-await walk(ROOT);
+for (const root of ROOTS) await walk(root);
 const dt = ((Date.now() - t0) / 1000).toFixed(1);
 const mb = (n) => (n / 1024 / 1024).toFixed(1);
 const pct = ((1 - bytesOut / bytesIn) * 100).toFixed(1);
