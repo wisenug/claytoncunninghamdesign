@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Core pages -->
   <url>
     <loc>https://www.claytoncunninghamdesign.com/</loc>
     <lastmod>2026-05-07</lastmod>
@@ -10,10 +12,18 @@
     <loc>https://www.claytoncunninghamdesign.com/about.html</loc>
     <lastmod>2026-05-07</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.claytoncunninghamdesign.com/capabilities.html</loc>
+    <lastmod>2026-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Autotrader case studies -->
+  <url>
+    <loc>https://www.claytoncunninghamdesign.com/autotrader-illustration-system.html</loc>
     <lastmod>2026-05-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -24,18 +34,16 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
-    <loc>https://www.claytoncunninghamdesign.com/autotrader-illustration-system.html</loc>
-    <lastmod>2026-05-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+
+  <!-- Kelley Blue Book -->
   <url>
     <loc>https://www.claytoncunninghamdesign.com/kbb-icons-illustrations.html</loc>
     <lastmod>2026-05-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- DICK'S TSHQ case studies -->
   <url>
     <loc>https://www.claytoncunninghamdesign.com/tshq-mobile-app.html</loc>
     <lastmod>2026-05-07</lastmod>
@@ -58,8 +66,10 @@
     <loc>https://www.claytoncunninghamdesign.com/tshq-assorted-projects.html</loc>
     <lastmod>2026-05-07</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
+
+  <!-- Coca-Cola -->
   <url>
     <loc>https://www.claytoncunninghamdesign.com/coca-cola-campus-messaging.html</loc>
     <lastmod>2026-05-07</lastmod>
@@ -70,8 +80,10 @@
     <loc>https://www.claytoncunninghamdesign.com/coca-cola-assorted-projects.html</loc>
     <lastmod>2026-05-07</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
+
+  <!-- Other work -->
   <url>
     <loc>https://www.claytoncunninghamdesign.com/paradesmith.html</loc>
     <lastmod>2026-05-07</lastmod>
@@ -82,18 +94,19 @@
     <loc>https://www.claytoncunninghamdesign.com/logos.html</loc>
     <lastmod>2026-05-07</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.claytoncunninghamdesign.com/sketches-illustrations-doodles.html</loc>
     <lastmod>2026-05-07</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.claytoncunninghamdesign.com/shoe-rotation.html</loc>
     <lastmod>2026-05-07</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.6</priority>
   </url>
+
 </urlset>
