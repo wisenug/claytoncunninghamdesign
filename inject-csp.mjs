@@ -26,7 +26,7 @@ for (const file of HTML_FILES) {
   const src = await fs.readFile(file, 'utf8');
   if (src.includes(MARKER)) continue;
   // Insert directly after <meta charset="UTF-8">
-  const re = /(<meta charset="UTF-8">\n)/;
+  const re = /(<meta charset="UTF-8">\r?\n)/;
   if (!re.test(src)) {
     console.log(`  SKIP (no charset anchor): ${file}`);
     continue;

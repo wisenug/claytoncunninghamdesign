@@ -218,7 +218,7 @@
     // Hide nav on scroll down, reveal on scroll up
     (function() {
       var nav = document.querySelector('nav');
-      var lastY = 0;
+      var lastY = window.scrollY;
       window.addEventListener('scroll', function() {
         var y = window.scrollY;
         if (y > lastY && y > 80) {
@@ -415,9 +415,12 @@
 
     // ── Render ────────────────────────────────────────────────────────────────
     var params = new URLSearchParams(window.location.search);
-    var activeTag = params.get('tag') || '';
+    var rawTag = params.get('tag') || '';
+    // Drop unknown tags so the page doesn't render "All Capabilities" with an
+    // empty grid (e.g. someone shares /capabilities.html?tag=Bogus).
+    var activeTag = TAG_META[rawTag] ? rawTag : '';
 
-    var meta = activeTag && TAG_META[activeTag]
+    var meta = activeTag
       ? TAG_META[activeTag]
       : { title: 'All Capabilities', description: 'Selected projects across product design, illustration, design systems, and brand expression.' };
 
@@ -514,7 +517,7 @@
       function clearAll(except) {
         getCards().forEach(function (c) { if (c !== except) c.classList.remove('is-active'); });
       }
-      function bindCard(card) {
+      getCards().forEach(function (card) {
         card.addEventListener('touchend', function (e) {
           var isActive = card.classList.contains('is-active');
           clearAll(card);
@@ -525,16 +528,7 @@
             card.classList.add('is-active');
           }
         }, { passive: false });
-      }
-      // Bind existing cards and any dynamically added ones via MutationObserver
-      getCards().forEach(bindCard);
-      new MutationObserver(function (mutations) {
-        mutations.forEach(function (m) {
-          m.addedNodes.forEach(function (n) {
-            if (n.classList && n.classList.contains('project-card')) bindCard(n);
-          });
-        });
-      }).observe(document.body, { childList: true, subtree: true });
+      });
       document.addEventListener('touchend', function (e) {
         if (!e.target.closest('.project-card')) clearAll(null);
       });

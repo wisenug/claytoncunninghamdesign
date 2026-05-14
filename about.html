@@ -584,7 +584,7 @@
   <script>
     (function() {
       var nav = document.querySelector('nav');
-      var lastY = 0;
+      var lastY = window.scrollY;
       window.addEventListener('scroll', function() {
         var y = window.scrollY;
         if (y > lastY && y > 80) {
@@ -627,6 +627,7 @@
       if (!el) return;
 
       setInterval(function() {
+        if (document.hidden) return;
         idx = (idx + 1) % emojis.length;
         el.classList.remove('swapping');
         // Force reflow so the animation re-triggers
@@ -643,6 +644,7 @@
       var inner = document.getElementById('photo-inner');
       var img   = document.getElementById('about-photo');
       if (!wrap || !inner) return;
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
       var cx = 0, cy = 0;           // current tilt (degrees)
       var tx = 0, ty = 0;           // target tilt

@@ -482,7 +482,7 @@
     // Hide nav on scroll down, reveal on scroll up
     (function() {
       var nav = document.querySelector('nav');
-      var lastY = 0;
+      var lastY = window.scrollY;
       window.addEventListener('scroll', function() {
         var y = window.scrollY;
         if (y > lastY && y > 80) {
@@ -497,6 +497,7 @@
 
   <script>
     const rotations = [];
+    const controllerBySection = new WeakMap();
     let motionPaused = false;
 
     function createRotation(config) {
@@ -510,28 +511,34 @@
       let spinInterval = null;
       let loadedCount = 0;
       let ready = false;
+      let visible = false;
+      let loadStarted = false;
 
-      const frameEls = frames.map((src, i) => {
+      // Build frame DOM but defer actual image loading until the section
+      // approaches the viewport (see startLoad below). The src lives on
+      // data-src until then so the browser doesn't fetch 36 images per shoe
+      // (8 shoes × ~36 frames = 288 requests) on initial page load.
+      const frameImgs = frames.map((src, i) => {
         const div = document.createElement('div');
         div.className = 'frame' + (i === 0 ? ' active' : '');
         const img = document.createElement('img');
-        img.src = src;
+        img.dataset.src = src;
         img.draggable = false;
         img.alt = '';
         div.appendChild(img);
         stage.appendChild(div);
-        return div;
+        return img;
       });
 
       function showFrame(n) {
         const next = ((n % TOTAL) + TOTAL) % TOTAL;
-        frameEls[currentFrame].classList.remove('active');
-        frameEls[next].classList.add('active');
+        frameImgs[currentFrame].parentElement.classList.remove('active');
+        frameImgs[next].parentElement.classList.add('active');
         currentFrame = next;
       }
 
       function startSpin() {
-        if (spinInterval || motionPaused) return;
+        if (spinInterval || motionPaused || !visible || !ready) return;
         const FULL_ROTATION_MS = 3375;
         spinInterval = setInterval(() => showFrame(currentFrame + 1), FULL_ROTATION_MS / TOTAL);
       }
@@ -541,25 +548,34 @@
         spinInterval = null;
       }
 
-      rotations.push({ startSpin, stopSpin, isReady: () => ready });
+      function startLoad() {
+        if (loadStarted) return;
+        loadStarted = true;
+        frameImgs.forEach((img) => {
+          img.onload = img.onerror = () => {
+            loadedCount++;
+            loaderFill.style.width = (loadedCount / TOTAL) * 100 + '%';
+            if (loadedCount === TOTAL && !ready) {
+              ready = true;
+              setTimeout(() => {
+                loader.classList.add('hidden');
+                startSpin();
+              }, 300);
+            }
+          };
+          img.src = img.dataset.src;
+        });
+      }
 
-      // Preload
-      frames.forEach((src) => {
-        const img = new Image();
-        img.onload = img.onerror = () => {
-          loadedCount++;
-          loaderFill.style.width = (loadedCount / TOTAL) * 100 + '%';
-          if (loadedCount === TOTAL && !ready) {
-            ready = true;
-            setTimeout(() => {
-              loader.classList.add('hidden');
-              startSpin();
-            }, 300);
-          }
-        };
-        img.src = src;
-      });
+      function setVisible(v) {
+        visible = v;
+        if (v) { startLoad(); startSpin(); } else { stopSpin(); }
+      }
 
+      const controller = { startSpin, stopSpin, setVisible, isReady: () => ready };
+      rotations.push(controller);
+
+      return controller;
     }
 
     // ── Motion toggle ──
@@ -588,7 +604,16 @@
       document.body.style.background = `rgb(${r},${g},${b})`;
     }
 
-    window.addEventListener('scroll', updateGradient, { passive: true });
+    // Coalesce scroll events into one paint frame so we don't restyle the
+    // body 60-120×/s on fast scroll.
+    let gradientRaf = 0;
+    window.addEventListener('scroll', () => {
+      if (gradientRaf) return;
+      gradientRaf = requestAnimationFrame(() => {
+        gradientRaf = 0;
+        updateGradient();
+      });
+    }, { passive: true });
     updateGradient();
 
     function pad(n) { return String(n).padStart(2, '0'); }
@@ -615,12 +640,34 @@
     ];
 
     SHOES.forEach(function(s) {
-      createRotation({
+      var section = document.getElementById('stage-' + s.key).closest('.shoe-section');
+      var controller = createRotation({
         stageId: 'stage-' + s.key,
         loaderId: 'loader-' + s.key,
         loaderFillId: 'loader-fill-' + s.key,
         frames: buildFrames(s.prefix, s.count, s.skip)
       });
+      if (section) controllerBySection.set(section, controller);
+    });
+
+    // Only spin shoes that are on-screen — avoids 8 timers churning all the time.
+    var sectionObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        var c = controllerBySection.get(e.target);
+        if (c) c.setVisible(e.isIntersecting);
+      });
+    }, { rootMargin: '100px' });
+    document.querySelectorAll('.shoe-section').forEach(function(s) {
+      sectionObserver.observe(s);
+    });
+
+    // Pause everything when the tab is hidden.
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden) {
+        rotations.forEach(function(r) { r.stopSpin(); });
+      } else if (!motionPaused) {
+        rotations.forEach(function(r) { r.startSpin(); });
+      }
     });
   </script>
 

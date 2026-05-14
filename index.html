@@ -429,7 +429,7 @@
     // Hide nav on scroll down, reveal on scroll up
     (function() {
       var nav = document.querySelector('nav');
-      var lastY = 0;
+      var lastY = window.scrollY;
       window.addEventListener('scroll', function() {
         var y = window.scrollY;
         if (y > lastY && y > 80) {
@@ -479,23 +479,42 @@
       });
     });
 
-    // Rotating shoe thumbnail for "Just for funsies" card
+    // Rotating shoe thumbnail for "Just for funsies" card.
+    // Defers the 36-frame preload + spin until the card nears the viewport,
+    // so the home page doesn't fetch 36 webps that may never be seen.
     document.querySelectorAll('.rotation-thumb').forEach(function(img) {
       var prefix = img.dataset.rotationPrefix;
       var total  = parseInt(img.dataset.rotationTotal, 10);
       if (!prefix || !total) return;
       var pad = function(n) { return String(n).padStart(2, '0'); };
-      var preloaded = [];
-      for (var i = 1; i <= total; i++) {
-        var pre = new Image();
-        pre.src = prefix + pad(i) + '.webp';
-        preloaded.push(pre);
-      }
       var idx = 1;
-      setInterval(function() {
+      var interval = null;
+      var preloaded = false;
+      var visible = false;
+      function preload() {
+        if (preloaded) return;
+        preloaded = true;
+        for (var i = 1; i <= total; i++) {
+          var pre = new Image();
+          pre.src = prefix + pad(i) + '.webp';
+        }
+      }
+      function step() {
+        if (document.hidden) return;
         idx = (idx % total) + 1;
         img.src = prefix + pad(idx) + '.webp';
-      }, 3375 / total);
+      }
+      function start() { if (!interval && visible) interval = setInterval(step, 3375 / total); }
+      function stop()  { if (interval) { clearInterval(interval); interval = null; } }
+      new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          visible = e.isIntersecting;
+          if (visible) { preload(); start(); } else { stop(); }
+        });
+      }, { rootMargin: '200px' }).observe(img);
+      document.addEventListener('visibilitychange', function() {
+        if (document.hidden) stop(); else start();
+      });
     });
 
     // Skip view transition on back/forward navigation

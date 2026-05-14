@@ -232,7 +232,9 @@
     // On Next Project click: swap ink-bg/page-title from incoming elements to outgoing elements
     var nextLink = document.querySelector('.next-project-title');
     if (nextLink && nextLink.getAttribute('href') !== '#') {
-      nextLink.addEventListener('click', function() {
+      nextLink.addEventListener('click', function(e) {
+        // Skip view-transition setup for new-tab opens (middle/cmd/ctrl-click).
+        if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
         var vtBg = document.querySelector('.vt-bg');
         var nextBg = document.querySelector('.next-project-bg');
         var projTitle = document.querySelector('.project-title');
@@ -245,7 +247,7 @@
 
     (function() {
       var nav = document.querySelector('nav');
-      var lastY = 0;
+      var lastY = window.scrollY;
       window.addEventListener('scroll', function() {
         var y = window.scrollY;
         if (y > lastY && y > 80) { nav.classList.add('nav--hidden'); }
@@ -261,7 +263,9 @@
       var heroImg = hero && hero.querySelector('img, video');
       if (!hero) return;
       var basePad = parseFloat(getComputedStyle(hero).paddingLeft);
+      var raf = 0;
       function updateHero() {
+        raf = 0;
         var p = Math.min(1, Math.max(0, window.scrollY / 400));
         var pad = (basePad * (1 - p)).toFixed(3);
         var rad = (0.8 * (1 - p)).toFixed(3);
@@ -269,7 +273,15 @@
         hero.style.paddingRight = pad + 'px';
         heroImg.style.borderRadius = rad + 'rem';
       }
-      window.addEventListener('scroll', updateHero, { passive: true });
+      function schedule() { if (!raf) raf = requestAnimationFrame(updateHero); }
+      window.addEventListener('scroll', schedule, { passive: true });
+      // Re-capture basePad on resize — --page-margin changes with viewport width.
+      window.addEventListener('resize', function() {
+        hero.style.paddingLeft = '';
+        hero.style.paddingRight = '';
+        basePad = parseFloat(getComputedStyle(hero).paddingLeft);
+        schedule();
+      }, { passive: true });
       updateHero();
     })();
   </script>

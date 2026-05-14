@@ -11,17 +11,7 @@
 /* Variables */
 :root {
   --color-black: #201515;
-  --color-white: #fff;
-  --color-orange: #fe5000;
-  --color-grass: #00c142;
-  --color-aqua: #04abe0;
-  --color-bus: #ffc700;
-  --color-merlot: #630331;
-  --color-concrete: #e0e0e0;
-  --color-smoke: #9e9e9e;
-  --color-cream: #fff3e6;
   --color-bg: #F5B990;
-  --color-asphalt: #3c4043;
 
   --page-margin: max(5vw, calc((100vw - 1200px) / 2));
 
@@ -688,10 +678,6 @@ footer {
 /* ============================================================
    View Transitions — Ink Spill Navigation
    ============================================================ */
-
-@view-transition {
-  navigation: auto;
-}
 
 /* Ink background: geometric morph only — no opacity fade */
 ::view-transition-group(ink-bg) {
