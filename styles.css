@@ -35,6 +35,17 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Keyboard focus — visible across light and dark page backgrounds */
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
 body {
   background-color: var(--color-bg);
   color: var(--color-black);

@@ -141,6 +141,7 @@
     .dialog-heading {
       font-family: 'Press Start 2P', monospace;
       font-size: clamp(1.6rem, 2.8vw, 2.6rem);
+      font-weight: normal;
       color: #181818;
       line-height: 1.6;
       margin-bottom: 2.4rem;
@@ -209,24 +210,26 @@
     </ul>
   </nav>
 
-  <div class="lost-wrap">
-    <div class="dialog">
-      <span class="dialog-corner dialog-corner--tl"></span>
-      <span class="dialog-corner dialog-corner--tr"></span>
-      <span class="dialog-corner dialog-corner--bl"></span>
-      <span class="dialog-corner dialog-corner--br"></span>
-      <p class="dialog-exclaim">! 404</p>
-      <p class="dialog-heading">Are you lost?</p>
-      <p class="dialog-body">
-        This page wandered into tall<br>
-        grass and never came back.
-      </p>
-      <a href="index.html" class="dialog-cta">
-        <span>▶</span> Return Home
-      </a>
-      <span class="dialog-cursor">▼</span>
+  <main>
+    <div class="lost-wrap">
+      <div class="dialog">
+        <span class="dialog-corner dialog-corner--tl"></span>
+        <span class="dialog-corner dialog-corner--tr"></span>
+        <span class="dialog-corner dialog-corner--bl"></span>
+        <span class="dialog-corner dialog-corner--br"></span>
+        <p class="dialog-exclaim">! 404</p>
+        <h1 class="dialog-heading">Are you lost?</h1>
+        <p class="dialog-body">
+          This page wandered into tall<br>
+          grass and never came back.
+        </p>
+        <a href="index.html" class="dialog-cta">
+          <span>▶</span> Return Home
+        </a>
+        <span class="dialog-cursor">▼</span>
+      </div>
     </div>
-  </div>
+  </main>
 
   <!-- Cloudflare Web Analytics -->
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "965f2ad8267d4463890153ababb0dd33"}'></script>

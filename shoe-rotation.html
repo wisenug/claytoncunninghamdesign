@@ -263,7 +263,7 @@
       flex-shrink: 0;
     }
 
-    .meta h1 {
+    .meta h2 {
       font-size: clamp(0.8rem, 2vw, 1rem);
       font-weight: 500;
       letter-spacing: 0.2em;
@@ -368,7 +368,7 @@
       </div>
     </div>
     <div class="meta">
-      <h1>Nike Air Max 1 SH</h1>
+      <h2>Nike Air Max 1 SH</h2>
       <p>Treeline &middot; Khaki &middot; Pink Rise</p>
     </div>
   </div>
@@ -383,7 +383,7 @@
       </div>
     </div>
     <div class="meta">
-      <h1>New Balance 992</h1>
+      <h2>New Balance 992</h2>
       <p>MiUSA Grey &middot; Silver Metallic</p>
     </div>
   </div>
@@ -398,7 +398,7 @@
       </div>
     </div>
     <div class="meta">
-      <h1>Reebok Kamikaze II</h1>
+      <h2>Reebok Kamikaze II</h2>
       <p>OG Black &middot; White &middot; Dark Green &middot; 2020</p>
     </div>
   </div>
@@ -413,7 +413,7 @@
       </div>
     </div>
     <div class="meta">
-      <h1>Nike Air Max 1 '86 OG</h1>
+      <h2>Nike Air Max 1 '86 OG</h2>
       <p>Big Bubble &middot; Sport Red</p>
     </div>
   </div>
@@ -428,7 +428,7 @@
       </div>
     </div>
     <div class="meta">
-      <h1>Air Jordan 1 Low</h1>
+      <h2>Air Jordan 1 Low</h2>
       <p>Black &middot; White &middot; Gorge Green</p>
     </div>
   </div>
@@ -443,7 +443,7 @@
       </div>
     </div>
     <div class="meta">
-      <h1>Reebok The Answer DMX</h1>
+      <h2>Reebok The Answer DMX</h2>
       <p>Black &middot; Gold &middot; Iverson</p>
     </div>
   </div>
@@ -458,7 +458,7 @@
       </div>
     </div>
     <div class="meta">
-      <h1>Nike Air Max 1 PRM</h1>
+      <h2>Nike Air Max 1 PRM</h2>
       <p>Easter &middot; Multi-Color</p>
     </div>
   </div>
@@ -473,7 +473,7 @@
       </div>
     </div>
     <div class="meta">
-      <h1>Birkenstock Arizona</h1>
+      <h2>Birkenstock Arizona</h2>
       <p>Taupe Suede &middot; Soft Footbed</p>
     </div>
   </div>
@@ -498,7 +498,7 @@
   <script>
     const rotations = [];
     const controllerBySection = new WeakMap();
-    let motionPaused = false;
+    let motionPaused = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     function createRotation(config) {
       const { stageId, loaderId, loaderFillId, frames } = config;
@@ -580,11 +580,16 @@
 
     // ── Motion toggle ──
     const motionToggle = document.getElementById('motion-toggle');
-    motionToggle.addEventListener('click', () => {
-      motionPaused = !motionPaused;
+    function syncMotionToggle() {
       motionToggle.classList.toggle('paused', motionPaused);
       motionToggle.setAttribute('aria-pressed', String(motionPaused));
       motionToggle.setAttribute('aria-label', motionPaused ? 'Play animations' : 'Pause animations');
+    }
+    // Reflect initial state if user prefers reduced motion
+    syncMotionToggle();
+    motionToggle.addEventListener('click', () => {
+      motionPaused = !motionPaused;
+      syncMotionToggle();
       rotations.forEach(r => {
         if (motionPaused) r.stopSpin();
         else if (r.isReady()) r.startSpin();

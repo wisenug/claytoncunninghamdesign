@@ -140,6 +140,11 @@
       user-select: none;
     }
 
+    .capabilities-inner:focus-visible {
+      outline: 2px solid var(--color-bg);
+      outline-offset: 6px;
+    }
+
     .capabilities-heading {
       font-size: clamp(6.4rem, 9vw, 11.2rem);
       font-weight: 800;
@@ -482,40 +487,43 @@
     // Rotating shoe thumbnail for "Just for funsies" card.
     // Defers the 36-frame preload + spin until the card nears the viewport,
     // so the home page doesn't fetch 36 webps that may never be seen.
-    document.querySelectorAll('.rotation-thumb').forEach(function(img) {
-      var prefix = img.dataset.rotationPrefix;
-      var total  = parseInt(img.dataset.rotationTotal, 10);
-      if (!prefix || !total) return;
-      var pad = function(n) { return String(n).padStart(2, '0'); };
-      var idx = 1;
-      var interval = null;
-      var preloaded = false;
-      var visible = false;
-      function preload() {
-        if (preloaded) return;
-        preloaded = true;
-        for (var i = 1; i <= total; i++) {
-          var pre = new Image();
-          pre.src = prefix + pad(i) + '.webp';
+    // Skip auto-spinning rotation thumbnails when the user prefers reduced motion
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelectorAll('.rotation-thumb').forEach(function(img) {
+        var prefix = img.dataset.rotationPrefix;
+        var total  = parseInt(img.dataset.rotationTotal, 10);
+        if (!prefix || !total) return;
+        var pad = function(n) { return String(n).padStart(2, '0'); };
+        var idx = 1;
+        var interval = null;
+        var preloaded = false;
+        var visible = false;
+        function preload() {
+          if (preloaded) return;
+          preloaded = true;
+          for (var i = 1; i <= total; i++) {
+            var pre = new Image();
+            pre.src = prefix + pad(i) + '.webp';
+          }
         }
-      }
-      function step() {
-        if (document.hidden) return;
-        idx = (idx % total) + 1;
-        img.src = prefix + pad(idx) + '.webp';
-      }
-      function start() { if (!interval && visible) interval = setInterval(step, 3375 / total); }
-      function stop()  { if (interval) { clearInterval(interval); interval = null; } }
-      new IntersectionObserver(function(entries) {
-        entries.forEach(function(e) {
-          visible = e.isIntersecting;
-          if (visible) { preload(); start(); } else { stop(); }
+        function step() {
+          if (document.hidden) return;
+          idx = (idx % total) + 1;
+          img.src = prefix + pad(idx) + '.webp';
+        }
+        function start() { if (!interval && visible) interval = setInterval(step, 3375 / total); }
+        function stop()  { if (interval) { clearInterval(interval); interval = null; } }
+        new IntersectionObserver(function(entries) {
+          entries.forEach(function(e) {
+            visible = e.isIntersecting;
+            if (visible) { preload(); start(); } else { stop(); }
+          });
+        }, { rootMargin: '200px' }).observe(img);
+        document.addEventListener('visibilitychange', function() {
+          if (document.hidden) stop(); else start();
         });
-      }, { rootMargin: '200px' }).observe(img);
-      document.addEventListener('visibilitychange', function() {
-        if (document.hidden) stop(); else start();
       });
-    });
+    }
 
     // Skip view transition on back/forward navigation
     window.addEventListener('pagereveal', function(e) {
@@ -573,12 +581,13 @@
       });
     })();
 
-    // Autotrader icons thumbnail Lottie animation
+    // Autotrader icons thumbnail Lottie animation — honor reduced-motion preference
+    var prefersReducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
     lottie.loadAnimation({
       container: document.getElementById('lottie-at-icons-thumb'),
       renderer: 'svg',
-      loop: true,
-      autoplay: true,
+      loop: !prefersReducedMotion,
+      autoplay: !prefersReducedMotion,
       path: 'animations/spot_icons.json'
     });
   </script>
