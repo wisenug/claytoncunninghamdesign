@@ -21,10 +21,7 @@ const nextNum = nums.length > 0 ? Math.max(...nums) + 1 : 1;
 const filename = label ? `screenshot-${nextNum}-${label}.png` : `screenshot-${nextNum}.png`;
 const outputPath = path.join(screenshotDir, filename);
 
-const browser = await puppeteer.launch({
-  headless: true,
-  args: ['--no-sandbox', '--disable-setuid-sandbox'],
-});
+const browser = await puppeteer.launch({ headless: true });
 
 const page = await browser.newPage();
 await page.setViewport({ width: 1440, height: 900, deviceScaleFactor: 2 });

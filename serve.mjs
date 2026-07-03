@@ -36,7 +36,9 @@ const server = http.createServer((req, res) => {
   if (urlPath === '/') urlPath = '/index.html';
 
   const filePath = path.normalize(path.join(__dirname, urlPath));
-  if (!filePath.startsWith(__dirname + path.sep) && filePath !== __dirname) {
+  const insideRoot = filePath.startsWith(__dirname + path.sep) || filePath === __dirname;
+  const hasDotSegment = path.relative(__dirname, filePath).split(path.sep).some(s => s.startsWith('.'));
+  if (!insideRoot || hasDotSegment) {
     res.writeHead(403, { 'Content-Type': 'text/plain' });
     res.end('403 Forbidden');
     return;
@@ -67,6 +69,6 @@ const server = http.createServer((req, res) => {
   });
 });
 
-server.listen(PORT, () => {
+server.listen(PORT, '127.0.0.1', () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
