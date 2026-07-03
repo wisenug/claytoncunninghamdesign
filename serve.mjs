@@ -22,6 +22,11 @@ const mimeTypes = {
   '.ttf': 'font/ttf',
   '.ico': 'image/x-icon',
   '.json': 'application/json',
+  '.webmanifest': 'application/manifest+json',
+  '.mp4': 'video/mp4',
+  '.mov': 'video/quicktime',
+  '.xml': 'application/xml',
+  '.txt': 'text/plain',
 };
 
 const server = http.createServer((req, res) => {

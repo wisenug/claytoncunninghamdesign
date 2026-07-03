@@ -4,3 +4,5 @@ temporary screenshots/
 .claude/settings.local.json
 .claude/projects/
 lawn/
+animations/ask-at-*.json
+animations/ask-autotrader-*.json

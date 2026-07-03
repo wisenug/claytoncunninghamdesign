@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://cloudflareinsights.com https://static.cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://cloudflareinsights.com https://static.cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <link rel="icon" type="image/svg+xml" href="img/clayton-cunningham-design-logo.svg">
   <link rel="icon" type="image/png" href="img/logo.png">
@@ -554,7 +554,7 @@
 
     <!-- Capabilities accordion -->
     <div class="about-capabilities" id="about-capabilities">
-      <div class="about-cap-inner" id="about-cap-trigger" role="button" aria-expanded="false" tabindex="0">
+      <div class="about-cap-inner" id="about-cap-trigger" data-accordion="about-capabilities" role="button" aria-expanded="false" tabindex="0">
         <h2 class="about-cap-heading">Capabilities</h2>
         <svg class="about-cap-caret" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M16 28L40 52L64 28" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
@@ -586,135 +586,9 @@
     <p class="footer-copy">&copy; <span id="footer-year"></span> Clayton Cunningham Design.</p>
   </footer>
 
-  <script>
-    (function() {
-      var nav = document.querySelector('nav');
-      var lastY = window.scrollY;
-      window.addEventListener('scroll', function() {
-        var y = window.scrollY;
-        if (y > lastY && y > 80) {
-          nav.classList.add('nav--hidden');
-        } else {
-          nav.classList.remove('nav--hidden');
-        }
-        lastY = y;
-      }, { passive: true });
-    })();
 
-    document.getElementById('footer-year').textContent = new Date().getFullYear();
-
-    // Capabilities accordion
-    (function() {
-      var section = document.getElementById('about-capabilities');
-      var trigger = document.getElementById('about-cap-trigger');
-
-      function toggle() {
-        var open = section.classList.toggle('is-open');
-        trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
-        if (open) {
-          requestAnimationFrame(function() {
-            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          });
-        }
-      }
-
-      trigger.addEventListener('click', toggle);
-      trigger.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
-      });
-    })();
-
-    // Emoji cycle — starts after initial rise animation
-    (function() {
-      var emojis = ['🍑', '🏄‍♂️', '🌼', '🤠', '⚾', '🔥', '🪻', '🤙', '🎨', '🏖️', '🍔', '🪐', '🇺🇸', '🗿', '🌷', '🌞', '🦩'];
-      var idx = 0;
-      var el = document.querySelector('.peach');
-      if (!el) return;
-
-      setInterval(function() {
-        if (document.hidden) return;
-        idx = (idx + 1) % emojis.length;
-        el.classList.remove('swapping');
-        // Force reflow so the animation re-triggers
-        void el.offsetWidth;
-        el.textContent = emojis[idx];
-        el.classList.add('swapping');
-      }, 2000);
-    })();
-  </script>
-
-  <script>
-    (function () {
-      var wrap  = document.getElementById('photo-wrap');
-      var inner = document.getElementById('photo-inner');
-      var img   = document.getElementById('about-photo');
-      if (!wrap || !inner) return;
-      if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-      var cx = 0, cy = 0;           // current tilt (degrees)
-      var tx = 0, ty = 0;           // target tilt
-      var px = 0, py = 0;           // current parallax (%)
-      var ptx = 0, pty = 0;         // target parallax
-      var raf = null;
-      var active = false;
-
-      var MAX_TILT      = 14;       // max rotation degrees
-      var MAX_PARALLAX  = 3;        // max image translate %
-      var LERP          = 0.10;     // smoothing factor
-
-      function lerp(a, b, t) { return a + (b - a) * t; }
-
-      function tick() {
-        cx = lerp(cx, tx, LERP);
-        cy = lerp(cy, ty, LERP);
-        px = lerp(px, ptx, LERP);
-        py = lerp(py, pty, LERP);
-
-        inner.style.transform =
-          'rotateX(' + (-cy).toFixed(3) + 'deg) rotateY(' + cx.toFixed(3) + 'deg)';
-        img.style.transform =
-          'translate(' + px.toFixed(3) + '%, ' + py.toFixed(3) + '%)';
-
-        // Shadow shifts opposite to tilt direction, depth grows with tilt intensity
-        var tiltMag = Math.sqrt(cx * cx + cy * cy);
-        var shadowX = (-cx * 0.9).toFixed(2);
-        var shadowY = (cy  * 0.9 + 8).toFixed(2);
-        var shadowBlur = (20 + tiltMag * 1.4).toFixed(1);
-        var shadowAlpha = (0.35 + tiltMag * 0.018).toFixed(3);
-        inner.style.filter =
-          'drop-shadow(' + shadowX + 'px ' + shadowY + 'px ' + shadowBlur + 'px rgba(0,0,0,' + shadowAlpha + '))';
-
-        // Keep running until values have settled
-        if (Math.abs(cx - tx) > 0.01 || Math.abs(cy - ty) > 0.01 ||
-            Math.abs(px - ptx) > 0.01 || Math.abs(py - pty) > 0.01) {
-          raf = requestAnimationFrame(tick);
-        } else {
-          raf = null;
-        }
-      }
-
-      function startTick() {
-        if (!raf) raf = requestAnimationFrame(tick);
-      }
-
-      document.addEventListener('mousemove', function (e) {
-        var rect = wrap.getBoundingClientRect();
-        var relX = (e.clientX - rect.left)  / rect.width  - 0.5;  // -0.5 → 0.5
-        var relY = (e.clientY - rect.top)   / rect.height - 0.5;
-
-        tx  =  relX * MAX_TILT;
-        ty  =  relY * MAX_TILT;
-        ptx = -relX * MAX_PARALLAX;
-        pty = -relY * MAX_PARALLAX;
-        startTick();
-      });
-
-      document.addEventListener('mouseleave', function () {
-        tx = ty = ptx = pty = 0;
-        startTick();
-      });
-    })();
-  </script>
+  <script src="js/site.js"></script>
+  <script src="js/about.js"></script>
   <!-- Cloudflare Web Analytics -->
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "965f2ad8267d4463890153ababb0dd33"}'></script>
   <!-- End Cloudflare Web Analytics -->
