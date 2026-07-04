@@ -32,7 +32,7 @@ window.CCD_PROJECTS = [
     href: 'tshq-registration.html',
     bgColor: '#f0f0f0',
     fgColor: '#1B561A',
-    image: 'img/tshq_reg_thumbnail.gif',
+    image: 'img/tshq_reg_thumbnail.webp',
     alt: 'DICK\'S TSHQ Registration Redesign',
     client: 'DICK\'S TSHQ',
     title: 'Registration Redesign',
