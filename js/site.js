@@ -23,11 +23,24 @@ CCD.loadLottie = function (el, path, opts) {
 };
 
 // Declarative lotties: <div data-lottie="animations/foo.json" data-lottie-slice>
-document.querySelectorAll('[data-lottie]').forEach(function (el) {
-  CCD.loadLottie(el, el.getAttribute('data-lottie'), {
-    slice: el.hasAttribute('data-lottie-slice')
-  });
-});
+// Deferred until the container nears the viewport so a page with several
+// animations doesn't parse them all at load (elements already in view
+// initialize immediately).
+(function () {
+  var els = document.querySelectorAll('[data-lottie]');
+  if (!els.length) return;
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      var el = entry.target;
+      observer.unobserve(el);
+      CCD.loadLottie(el, el.getAttribute('data-lottie'), {
+        slice: el.hasAttribute('data-lottie-slice')
+      });
+    });
+  }, { rootMargin: '300px' });
+  els.forEach(function (el) { observer.observe(el); });
+})();
 
 // Hide nav on scroll down, reveal on scroll up
 (function () {
@@ -199,6 +212,20 @@ window.addEventListener('pagereveal', function (e) {
     });
   });
 })();
+
+// Ink view-transition for statically rendered project cards (generated tag
+// pages). Dynamically built cards on capabilities.html attach their own
+// handlers in capabilities.js.
+document.querySelectorAll('.project-card[data-static-ink]').forEach(function (card) {
+  var inkEl = card.querySelector('.project-card__ink-bg');
+  var labelEl = card.querySelector('.project-card__label');
+  if (!inkEl || !labelEl) return;
+  card.addEventListener('click', function () {
+    inkEl.style.opacity = '1';
+    inkEl.style.viewTransitionName = 'ink-bg';
+    labelEl.style.viewTransitionName = 'page-title';
+  });
+});
 
 // Card overlay: tap-to-reveal on touch devices.
 // Delegated so it also covers cards rendered after load (capabilities grid).

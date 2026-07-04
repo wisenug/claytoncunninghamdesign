@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://cloudflareinsights.com https://static.cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="icon" type="image/svg+xml" href="img/clayton-cunningham-design-logo.svg">
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <link rel="apple-touch-icon" href="img/logo.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#0B2D52">
+  <link rel="canonical" href="https://www.claytoncunninghamdesign.com/capabilities-uiux-design.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Clayton Cunningham Design">
+  <meta property="og:url" content="https://www.claytoncunninghamdesign.com/capabilities-uiux-design.html">
+  <meta property="og:title" content="UI/UX Design — Clayton Cunningham Design">
+  <meta property="og:description" content="End-to-end product design across automotive, enterprise, and consumer platforms — from early research through shipped product.">
+  <meta property="og:image" content="https://www.claytoncunninghamdesign.com/img/claytoncunningham-og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="UI/UX Design — Clayton Cunningham Design">
+  <meta name="twitter:description" content="End-to-end product design across automotive, enterprise, and consumer platforms — from early research through shipped product.">
+  <meta name="twitter:image" content="https://www.claytoncunninghamdesign.com/img/claytoncunningham-og.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="End-to-end product design across automotive, enterprise, and consumer platforms — from early research through shipped product.">
+  <title>UI/UX Design — Clayton Cunningham Design</title>
+  <link rel="preload" href="fonts/dm-sans-04.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    :root {
+      --color-bg: #ffffff;
+      --color-black: #000000;
+    }
+
+    /* ── Capabilities page ── */
+    .cap-header {
+      padding: 7rem var(--page-margin) 4rem;
+    }
+
+    .cap-label {
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.5;
+      margin-bottom: 1.6rem;
+    }
+
+    .cap-title {
+      font-size: clamp(5.6rem, 8.3vw + 1.5rem, 14.4rem);
+      font-weight: 800;
+      line-height: 0.97;
+      letter-spacing: -0.035em;
+      max-width: 14ch;
+    }
+
+    .cap-description {
+      font-size: 2.2rem;
+      font-weight: 400;
+      line-height: 1.6;
+      max-width: 52ch;
+      margin-top: 3.2rem;
+      opacity: 0.75;
+    }
+
+    /* ── 2-up project grid ── */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.6rem;
+      padding: 6rem var(--page-margin) 12rem;
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .project-card__ink-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0;
+      border-radius: var(--radius-img);
+    }
+
+    .project-card__img-wrap {
+      overflow: hidden;
+      border-radius: var(--radius-img) var(--radius-img) 0 0;
+      line-height: 0;
+    }
+
+    .project-card__image {
+      width: 100%;
+      display: block;
+      object-fit: contain;
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .project-card:hover .project-card__image {
+      transform: scale(1.04);
+    }
+
+    .project-card__label-client {
+      display: block;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 0.3rem;
+    }
+
+    .project-card__label {
+      padding: 2rem 2.4rem 2.4rem;
+      background: #E3F2FF;
+      color: #001F6E;
+      font-size: 1.6rem;
+      font-weight: 400;
+      letter-spacing: 0;
+      line-height: 1.5;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      box-sizing: border-box;
+      border-radius: 0 0 var(--radius-img) var(--radius-img);
+    }
+
+
+    /* ── Divider ── */
+    .cap-divider {
+      height: 1px;
+      background: rgba(0, 0, 0, 0.15);
+      margin: 0 var(--page-margin) 8rem;
+    }
+
+    /* ── Sticky filter bar ── */
+    .cap-filter-bar {
+      position: sticky;
+      top: 10rem;
+      z-index: 90;
+      background-color: var(--color-bg);
+      padding: 1.4rem var(--page-margin);
+      border-bottom: none;
+      transition: top 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .cap-filter-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      align-items: center;
+    }
+
+    /* Reset chip */
+    .tag--reset {
+      opacity: 0.55;
+    }
+
+    .tag--reset:hover {
+      opacity: 1;
+      background: var(--color-black);
+      color: var(--color-bg);
+      border-color: var(--color-black);
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 640px) {
+      .project-grid {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+      }
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie.min.js" integrity="sha384-vfy4Ln1gWZnGF5PKMEkqQ+kS3n2GAauccVbfcEDS59jQl6EbNsVVCHzSP0OtTpRC" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://www.claytoncunninghamdesign.com/#clayton","name":"Clayton Cunningham","jobTitle":"Product Designer & Illustrator","url":"https://www.claytoncunninghamdesign.com/about.html","image":"https://www.claytoncunninghamdesign.com/img/claytoncunningham-og.jpg","knowsAbout":["Product Design","UI/UX Design","Illustration Systems","Iconography","Design Systems","Brand Identity","Motion Design","User Research"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.claytoncunninghamdesign.com/"},{"@type":"ListItem","position":2,"name":"UI/UX Design","item":"https://www.claytoncunninghamdesign.com/capabilities-uiux-design.html"}]}]}</script>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-icon" aria-hidden="true"></span>
+      <span class="nav-logo-name">Clayton Cunningham Design</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Work</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <!-- Header -->
+    <header class="cap-header fade-up fade-up-1">
+      <h2 class="cap-label">Capabilities</h2>
+      <h1 class="cap-title" id="cap-title">UI/UX Design</h1>
+    </header>
+
+    <!-- Sticky filter bar -->
+    <div class="cap-filter-bar" id="cap-filter-bar">
+      <div class="cap-filter-chips" id="cap-filter-chips">
+      <a href="capabilities.html" class="tag tag--reset">See All</a>
+      <a href="capabilities-uiux-design.html" class="tag tag--active">UI/UX Design</a>
+      <a href="capabilities-iconography.html" class="tag">Iconography</a>
+      <a href="capabilities-illustration.html" class="tag">Illustration</a>
+      <a href="capabilities-design-system.html" class="tag">Design System</a>
+      <a href="capabilities-motion-design.html" class="tag">Motion Design</a>
+      <a href="capabilities-visual-identity.html" class="tag">Visual Identity</a>
+      <a href="capabilities-research.html" class="tag">Research</a>
+      <a href="capabilities-case-study.html" class="tag">Case Study</a>
+    </div>
+    </div>
+
+    <!-- Project grid — statically generated by generate-tag-pages.mjs -->
+    <div class="project-grid" id="project-grid">
+      <a href="tshq-mobile-app.html" class="project-card fade-up fade-up-2" data-static-ink>
+        <div class="project-card__ink-bg" aria-hidden="true" style="background:#006554;"></div>
+        <div class="project-card__img-wrap"><img class="project-card__image" width="1920" height="1920" src="img/tshq_app_thumbnail.webp" alt="DICK'S TSHQ mobile app" loading="lazy"></div>
+        <div class="project-card__label" style="background:#006554;color:#E0FAE0;"><span class="project-card__label-client">DICK'S TSHQ</span>Designing mobile app features that ease the pain of youth sports management</div>
+      </a>
+      <a href="tshq-registration.html" class="project-card fade-up fade-up-3" data-static-ink>
+        <div class="project-card__ink-bg" aria-hidden="true" style="background:#f0f0f0;"></div>
+        <div class="project-card__img-wrap"><img class="project-card__image" width="1500" height="1500" src="img/tshq_reg_thumbnail.webp" alt="DICK'S TSHQ Registration Redesign" loading="lazy"></div>
+        <div class="project-card__label" style="background:#f0f0f0;color:#1B561A;"><span class="project-card__label-client">DICK'S TSHQ</span>Redesigning youth sports registration for over 3 million players and 10,000 teams</div>
+      </a>
+      <a href="tshq-fanwear-redesign.html" class="project-card fade-up fade-up-2" data-static-ink>
+        <div class="project-card__ink-bg" aria-hidden="true" style="background:#FF5F1F;"></div>
+        <div class="project-card__img-wrap"><img class="project-card__image" width="1920" height="1920" src="img/tshq_fanwear_thumbnail.webp" alt="DICK'S TSHQ Fan Wear Redesign" loading="lazy"></div>
+        <div class="project-card__label" style="background:#FF5F1F;color:#0D0D1A;"><span class="project-card__label-client">DICK'S TSHQ</span>Designing a standalone fan wear store that turned team spirit into club revenue</div>
+      </a>
+      <a href="paradesmith.html" class="project-card fade-up fade-up-3" data-static-ink>
+        <div class="project-card__ink-bg" aria-hidden="true" style="background:#07465A;"></div>
+        <div class="project-card__img-wrap"><img class="project-card__image" width="1920" height="1919" src="img/paradesmith_thumbnail.webp" alt="Paradesmith" loading="lazy"></div>
+        <div class="project-card__label" style="background:#07465A;color:#1BBFCA;"><span class="project-card__label-client">Paradesmith</span>Building an MVP to transform scattered online content into curated community experiences</div>
+      </a>
+      <a href="autotrader-illustration-system.html" class="project-card fade-up fade-up-2" data-static-ink>
+        <div class="project-card__ink-bg" aria-hidden="true" style="background:#E3F2FF;"></div>
+        <div class="project-card__img-wrap"><img class="project-card__image" width="2000" height="1553" src="img/at_illustration_style_2.webp" alt="Autotrader illustration system" loading="lazy"></div>
+        <div class="project-card__label" style="background:#E3F2FF;color:#0F2960;"><span class="project-card__label-client">Autotrader</span>Designing a scalable illustration system across web, mobile apps, and marketing</div>
+      </a>
+      <a href="kbb-icons-illustrations.html" class="project-card fade-up fade-up-3" data-static-ink>
+        <div class="project-card__ink-bg" aria-hidden="true" style="background:#FFBF00;"></div>
+        <div class="project-card__img-wrap"><img class="project-card__image" width="2000" height="2000" src="img/Kbb_thumbnail.webp" alt="KBB icons and illustrations" loading="lazy"></div>
+        <div class="project-card__label" style="background:#FFBF00;color:#002B5C;"><span class="project-card__label-client">Kelley Blue Book</span>Growing a renowned leader's visual library</div>
+      </a>
+      <a href="autotrader-icons.html" class="project-card fade-up fade-up-2" data-static-ink>
+        <div class="project-card__ink-bg" aria-hidden="true" style="background:#FF8806;"></div>
+        <div class="project-card__img-wrap"><div class="project-card__image" style="aspect-ratio:2000/1409;" data-lottie="animations/spot_icons.json"></div></div>
+        <div class="project-card__label" style="background:#FF8806;color:#001F6E;"><span class="project-card__label-client">Autotrader</span>Unifying a fragmented icon language</div>
+      </a>
+    </div>
+
+  </main>
+
+  <footer>
+    <p class="footer-copy">&copy; <span id="footer-year"></span> Clayton Cunningham Design.</p>
+  </footer>
+
+
+  <script src="js/projects.js"></script>
+  <script src="js/site.js"></script>
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "965f2ad8267d4463890153ababb0dd33"}'></script>
+  <!-- End Cloudflare Web Analytics -->
+</body>
+</html>
