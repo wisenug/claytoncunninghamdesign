@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://cloudflareinsights.com https://static.cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="icon" type="image/svg+xml" href="img/clayton-cunningham-design-logo.svg">
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <link rel="apple-touch-icon" href="img/logo.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#0B2D52">
+  <link rel="canonical" href="https://www.claytoncunninghamdesign.com/how-to-build-a-scalable-illustration-system.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Clayton Cunningham Design">
+  <meta property="og:url" content="https://www.claytoncunninghamdesign.com/how-to-build-a-scalable-illustration-system.html">
+  <meta property="og:title" content="How to Build a Scalable Illustration System — Clayton Cunningham Design">
+  <meta property="og:description" content="Lessons from building Autotrader's illustration system: core element libraries, a defensible style point of view, spot distillation, and the governance that keeps a system coherent as it grows.">
+  <meta property="og:image" content="https://www.claytoncunninghamdesign.com/img/og/og-autotrader-illustration-system.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How to Build a Scalable Illustration System — Clayton Cunningham Design">
+  <meta name="twitter:description" content="Lessons from building Autotrader's illustration system: core element libraries, a defensible style point of view, spot distillation, and the governance that keeps a system coherent as it grows.">
+  <meta name="twitter:image" content="https://www.claytoncunninghamdesign.com/img/og/og-autotrader-illustration-system.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Lessons from building Autotrader's illustration system: core element libraries, a defensible style point of view, spot distillation, and the governance that keeps a system coherent as it grows.">
+  <title>How to Build a Scalable Illustration System — Clayton Cunningham Design</title>
+  <link rel="preload" href="fonts/dm-sans-04.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    :root {
+      --color-bg: #E3F2FF;
+      --color-black: #0F2960;
+    }
+    .article-header { padding: 7rem var(--page-margin) 2rem; max-width: 88rem; }
+    .article-kicker {
+      font-size: 1.4rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; opacity: 0.5; margin-bottom: 1.6rem;
+    }
+    .article-title {
+      font-size: clamp(3.6rem, 5.2vw + 1rem, 7.2rem); font-weight: 800;
+      line-height: 1.02; letter-spacing: -0.03em;
+    }
+    .article-meta { margin-top: 2rem; font-size: 1.5rem; opacity: 0.6; }
+    .text-section { max-width: 88rem; }
+    .article-cta {
+      margin: 2rem var(--page-margin) 10rem; max-width: 88rem;
+      padding: 3rem; border-radius: var(--radius-img);
+      background: var(--color-black); color: var(--color-bg);
+    }
+    .article-cta p { font-size: 1.7rem; line-height: 1.7; margin: 0; }
+    .article-cta a { color: inherit; font-weight: 700; }
+  </style>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://www.claytoncunninghamdesign.com/#clayton","name":"Clayton Cunningham","jobTitle":"Product Designer & Illustrator","url":"https://www.claytoncunninghamdesign.com/about.html","image":"https://www.claytoncunninghamdesign.com/img/claytoncunningham-og.jpg","knowsAbout":["Product Design","UI/UX Design","Illustration Systems","Iconography","Design Systems","Brand Identity","Motion Design","User Research"],"sameAs":["https://www.linkedin.com/in/clayton-cunningham-4057aa29","https://dribbble.com/ClaytonCunningham"]},{"@type":"Article","url":"https://www.claytoncunninghamdesign.com/how-to-build-a-scalable-illustration-system.html","headline":"How to Build a Scalable Illustration System","description":"Lessons from building Autotrader's illustration system: core element libraries, a defensible style point of view, spot distillation, and the governance that keeps a system coherent as it grows.","image":"https://www.claytoncunninghamdesign.com/img/og/og-autotrader-illustration-system.jpg","datePublished":"2026-07-04","author":{"@id":"https://www.claytoncunninghamdesign.com/#clayton"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.claytoncunninghamdesign.com/"},{"@type":"ListItem","position":2,"name":"How to Build a Scalable Illustration System","item":"https://www.claytoncunninghamdesign.com/how-to-build-a-scalable-illustration-system.html"}]}]}</script>
+</head>
+<body>
+  <div class="vt-bg" aria-hidden="true"></div>
+
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-icon" aria-hidden="true"></span>
+      <span class="nav-logo-name">Clayton Cunningham Design</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Work</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <header class="article-header">
+      <h2 class="article-kicker">Process Notes</h2>
+      <h1 class="article-title fade-up fade-up-1">How to build a scalable illustration system</h1>
+      <p class="article-meta fade-up fade-up-2">Clayton Cunningham · Lessons from the <a href="autotrader-illustration-system.html">Autotrader illustration system</a></p>
+    </header>
+
+    <div class="intro-text">
+      <p>An illustration style is a vibe. An illustration system is a set of decisions that lets a whole organization reproduce that look consistently, across product UI, marketing, and social. Building Autotrader's system taught me that the difference comes down to four things: a small library of core elements, a defensible point of view, a distilled version for tight spaces, and written rules for everything else.</p>
+    </div>
+
+    <div class="text-section">
+      <h2 class="section-heading">Start with a small set of core elements</h2>
+      <p class="body-text">Every scene the system needs is broken down into three element libraries: vehicles, people, and environments. That constraint is the scalability. When illustrations are compositions of shared parts rather than one-off drawings, any designer can assemble a new scene that looks like it belongs, and every new element added to a library multiplies what the whole system can express. Resist the urge to catalog everything up front; build the elements the first real use cases demand, and let the libraries grow from actual need.</p>
+    </div>
+
+    <div class="text-section">
+      <h2 class="section-heading">Pick a style you can defend</h2>
+      <p class="body-text">Autotrader's system uses a semi-realistic style - deliberately distinct from anything else in the automotive space at the time. The reasoning matters more than the aesthetic: the style had to feel at home next to the brand's photography without competing with it, and it had to be ownable, so that an illustration reads as Autotrader before a logo ever appears. When choosing a style, ask what it needs to live alongside. A photography-forward product wants illustration that complements rather than imitates.</p>
+    </div>
+
+    <div class="full-image">
+      <img srcset="img/at_illustration_style_10-w800.webp 800w, img/at_illustration_style_10-w1600.webp 1600w, img/at_illustration_style_10.webp 2000w" sizes="92vw" width="2000" height="2297" src="img/at_illustration_style_10.webp" alt="Diverse group of illustrated character designs for the Autotrader people library" loading="lazy">
+    </div>
+
+    <div class="full-image">
+      <img srcset="img/at_illustration_style_guidelines-9-w800.webp 800w, img/at_illustration_style_guidelines-9.webp 1300w" sizes="92vw" width="1300" height="1080" src="img/at_illustration_style_guidelines-9.webp" alt="Style guide page showing vehicle construction from mixed reference models and retro/modern style blending" loading="lazy">
+    </div>
+
+    <div class="text-section">
+      <h2 class="section-heading">Characters: avoid the cartoon extremes</h2>
+      <p class="body-text">People are the hardest element to systematize. Too cartoonish and the product feels unserious; too realistic and every proportion error reads as uncanny. The Autotrader characters live in the middle, grounded enough to feel real, yet stylized enough to belong with the vehicles and environments around them. Whatever direction you pick, define it precisely: proportions, facial detail level, and skin-tone and body-type ranges, so the cast stays coherent as the library grows.</p>
+    </div>
+
+    <div class="text-section">
+      <h2 class="section-heading">Environments earn the scene</h2>
+      <p class="body-text">Backgrounds are where systems drift into generic. The fix is anchoring environments in moments the audience actually recognizes. For Autotrader, a dealership lot, a city street, an open road. Context makes a scene feel authentic rather than decorative, and a short list of settings keeps ten different designers from inventing ten different worlds.</p>
+    </div>
+
+    <div class="full-image">
+      <img srcset="img/at_illustration_style_11-w800.webp 800w, img/at_illustration_style_11.webp 2000w" sizes="92vw" width="2000" height="499" src="img/at_illustration_style_11.webp" alt="Interior, exterior, and environment element swatches from the Autotrader illustration library" loading="lazy">
+    </div>
+
+    <div class="text-section">
+      <h2 class="section-heading">The space defines the level of detail</h2>
+      <p class="body-text">Full scenes don't fit in empty states, entry points, or sub-navigation. The system needs a second tier: simplified, concept-driven spot illustrations. No people, no backgrounds, just the idea distilled. Designing spot illustrations as a deliberate reduction of the full style (same palette, same shape language, less detail for everything) is what keeps a 48-pixel empty-state graphic recognizably part of the same family as a marketing hero.</p>
+    </div>
+
+    <div class="full-image">
+      <img srcset="img/at_illustration_style_empty_states-w800.webp 800w, img/at_illustration_style_empty_states-w1600.webp 1600w, img/at_illustration_style_empty_states.webp 2000w" sizes="92vw" width="2000" height="1110" src="img/at_illustration_style_empty_states.webp" alt="Empty state screens in Autotrader mobile app with spot icons" loading="lazy">
+    </div>
+
+    <div class="text-section">
+      <h2 class="section-heading">Write down the rules, including what not to do</h2>
+      <p class="body-text">The system isn't finished when the assets are drawn. It's finished when someone who has never met you can extend it correctly. That means a style guide documenting usage rules, definitions, and instructions for extending the system — establishing what to do and, just as important, what not to. The anti-patterns section is the part people actually consult: it's much easier to recognize "this is wrong" than to internalize every rule.</p>
+    </div>
+
+    <div class="text-section">
+      <h2 class="section-heading">Put the library where the work happens</h2>
+      <p class="body-text">Autotrader's library lives in Figma, the same tool where product designers already work. This gives teams a shared source to compose and extend illustrations without exporting, asking, or waiting. Distribution is an unglamorous decision that determines whether the system gets used or routed around. A beautiful system in a folder nobody opens is a portfolio piece, not an illustration system.</p>
+    </div>
+
+    <div class="article-cta">
+      <p>See the full system — vehicles, characters, environments, spot tier, and the style guide — in the <a href="autotrader-illustration-system.html">Autotrader Illustration System case study</a>, or the companion piece on <a href="icon-grids-and-optical-corrections.html">icon grids and optical corrections</a>.</p>
+    </div>
+  </main>
+
+  <footer>
+    <p class="footer-copy">&copy; <span id="footer-year"></span> Clayton Cunningham Design.</p>
+  </footer>
+
+  <script src="js/site.js"></script>
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "965f2ad8267d4463890153ababb0dd33"}'></script>
+  <!-- End Cloudflare Web Analytics -->
+</body>
+</html>
