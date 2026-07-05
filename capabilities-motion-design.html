@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://cloudflareinsights.com https://static.cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://cloudflareinsights.com https://static.cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <link rel="icon" type="image/svg+xml" href="img/clayton-cunningham-design-logo.svg">
   <link rel="icon" type="image/png" href="img/logo.png">
@@ -15,11 +15,11 @@
   <meta property="og:url" content="https://www.claytoncunninghamdesign.com/capabilities-motion-design.html">
   <meta property="og:title" content="Motion Design — Clayton Cunningham Design">
   <meta property="og:description" content="Motion and animation work spanning UI micro-interactions, Lottie animations, and marketing assets.">
-  <meta property="og:image" content="https://www.claytoncunninghamdesign.com/img/og/og-capabilities-motion-design.jpg">
+  <meta property="og:image" content="https://www.claytoncunninghamdesign.com/img/claytoncunningham-og.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Motion Design — Clayton Cunningham Design">
   <meta name="twitter:description" content="Motion and animation work spanning UI micro-interactions, Lottie animations, and marketing assets.">
-  <meta name="twitter:image" content="https://www.claytoncunninghamdesign.com/img/og/og-capabilities-motion-design.jpg">
+  <meta name="twitter:image" content="https://www.claytoncunninghamdesign.com/img/claytoncunningham-og.jpg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Motion and animation work spanning UI micro-interactions, Lottie animations, and marketing assets.">
   <title>Motion Design — Clayton Cunningham Design</title>
@@ -41,7 +41,7 @@
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      opacity: 0.5;
+      opacity: 0.66;
       margin-bottom: 1.6rem;
     }
 
@@ -174,14 +174,14 @@
       }
     }
   </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie.min.js" integrity="sha384-vfy4Ln1gWZnGF5PKMEkqQ+kS3n2GAauccVbfcEDS59jQl6EbNsVVCHzSP0OtTpRC" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="js/vendor/lottie.min.js"></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://www.claytoncunninghamdesign.com/#clayton","name":"Clayton Cunningham","jobTitle":"Product Designer & Illustrator","url":"https://www.claytoncunninghamdesign.com/about.html","image":"https://www.claytoncunninghamdesign.com/img/claytoncunningham-og.jpg","knowsAbout":["Product Design","UI/UX Design","Illustration Systems","Iconography","Design Systems","Brand Identity","Motion Design","User Research"],"sameAs":["https://www.linkedin.com/in/clayton-cunningham-4057aa29","https://dribbble.com/ClaytonCunningham"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.claytoncunninghamdesign.com/"},{"@type":"ListItem","position":2,"name":"Motion Design","item":"https://www.claytoncunninghamdesign.com/capabilities-motion-design.html"}]}]}</script>
 </head>
 <body>
 
   <!-- Navigation -->
   <nav>
-    <a href="index.html" class="nav-logo">
+    <a href="index.html" class="nav-logo" aria-label="Clayton Cunningham Design — Home">
       <span class="nav-logo-icon" aria-hidden="true"></span>
       <span class="nav-logo-name">Clayton Cunningham Design</span>
     </a>
@@ -195,7 +195,7 @@
 
     <!-- Header -->
     <header class="cap-header fade-up fade-up-1">
-      <h2 class="cap-label">Capabilities</h2>
+      <p class="cap-label">Capabilities</p>
       <h1 class="cap-title" id="cap-title">Motion Design</h1>
     </header>
 
@@ -218,7 +218,7 @@
     <div class="project-grid" id="project-grid">
       <a href="autotrader-illustration-system.html" class="project-card fade-up fade-up-2" data-static-ink>
         <div class="project-card__ink-bg" aria-hidden="true" style="background:#E3F2FF;"></div>
-        <div class="project-card__img-wrap"><img srcset="img/at_illustration_style_2-w800.webp 800w, img/at_illustration_style_2-w1600.webp 1600w, img/at_illustration_style_2.webp 2000w" sizes="(max-width: 640px) 92vw, 46vw" class="project-card__image" width="2000" height="1553" src="img/at_illustration_style_2.webp" alt="Autotrader illustration system" loading="lazy"></div>
+        <div class="project-card__img-wrap"><img class="project-card__image" width="2000" height="1553" src="img/at_illustration_style_2.webp" alt="Autotrader illustration system" loading="lazy"></div>
         <div class="project-card__label" style="background:#E3F2FF;color:#0F2960;"><span class="project-card__label-client">Autotrader</span>Designing a scalable illustration system across web, mobile apps, and marketing</div>
       </a>
       <a href="autotrader-icons.html" class="project-card fade-up fade-up-3" data-static-ink>

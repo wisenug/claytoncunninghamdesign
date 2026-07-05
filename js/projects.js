@@ -117,7 +117,7 @@ window.CCD_PROJECTS = [
   {
     href: 'coca-cola-assorted-projects.html',
     bgColor: '#ffffff',
-    fgColor: '#F02D2D',
+    fgColor: '#D42020',
     image: 'img/coca-cola_assorted_thumbnail.webp',
     alt: 'Illustrated Coca-Cola vending machine with bottles on a night sky background',
     client: 'Coca-Cola',
@@ -128,7 +128,7 @@ window.CCD_PROJECTS = [
   {
     href: 'coca-cola-campus-messaging.html',
     bgColor: '#DE4138',
-    fgColor: '#270604',
+    fgColor: '#000000',
     image: 'img/cm_thumbnail.webp',
     alt: 'Coca-Cola Campus Messaging',
     client: 'Coca-Cola',

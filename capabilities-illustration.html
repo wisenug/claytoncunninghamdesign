@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://cloudflareinsights.com https://static.cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://cloudflareinsights.com https://static.cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <link rel="icon" type="image/svg+xml" href="img/clayton-cunningham-design-logo.svg">
   <link rel="icon" type="image/png" href="img/logo.png">
@@ -15,11 +15,11 @@
   <meta property="og:url" content="https://www.claytoncunninghamdesign.com/capabilities-illustration.html">
   <meta property="og:title" content="Illustration — Clayton Cunningham Design">
   <meta property="og:description" content="Custom illustration systems built to scale across product, marketing, and brand — with rules for how to extend them.">
-  <meta property="og:image" content="https://www.claytoncunninghamdesign.com/img/og/og-capabilities-illustration.jpg">
+  <meta property="og:image" content="https://www.claytoncunninghamdesign.com/img/claytoncunningham-og.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Illustration — Clayton Cunningham Design">
   <meta name="twitter:description" content="Custom illustration systems built to scale across product, marketing, and brand — with rules for how to extend them.">
-  <meta name="twitter:image" content="https://www.claytoncunninghamdesign.com/img/og/og-capabilities-illustration.jpg">
+  <meta name="twitter:image" content="https://www.claytoncunninghamdesign.com/img/claytoncunningham-og.jpg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Custom illustration systems built to scale across product, marketing, and brand — with rules for how to extend them.">
   <title>Illustration — Clayton Cunningham Design</title>
@@ -41,7 +41,7 @@
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      opacity: 0.5;
+      opacity: 0.66;
       margin-bottom: 1.6rem;
     }
 
@@ -174,14 +174,14 @@
       }
     }
   </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie.min.js" integrity="sha384-vfy4Ln1gWZnGF5PKMEkqQ+kS3n2GAauccVbfcEDS59jQl6EbNsVVCHzSP0OtTpRC" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="js/vendor/lottie.min.js"></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://www.claytoncunninghamdesign.com/#clayton","name":"Clayton Cunningham","jobTitle":"Product Designer & Illustrator","url":"https://www.claytoncunninghamdesign.com/about.html","image":"https://www.claytoncunninghamdesign.com/img/claytoncunningham-og.jpg","knowsAbout":["Product Design","UI/UX Design","Illustration Systems","Iconography","Design Systems","Brand Identity","Motion Design","User Research"],"sameAs":["https://www.linkedin.com/in/clayton-cunningham-4057aa29","https://dribbble.com/ClaytonCunningham"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.claytoncunninghamdesign.com/"},{"@type":"ListItem","position":2,"name":"Illustration","item":"https://www.claytoncunninghamdesign.com/capabilities-illustration.html"}]}]}</script>
 </head>
 <body>
 
   <!-- Navigation -->
   <nav>
-    <a href="index.html" class="nav-logo">
+    <a href="index.html" class="nav-logo" aria-label="Clayton Cunningham Design — Home">
       <span class="nav-logo-icon" aria-hidden="true"></span>
       <span class="nav-logo-name">Clayton Cunningham Design</span>
     </a>
@@ -195,7 +195,7 @@
 
     <!-- Header -->
     <header class="cap-header fade-up fade-up-1">
-      <h2 class="cap-label">Capabilities</h2>
+      <p class="cap-label">Capabilities</p>
       <h1 class="cap-title" id="cap-title">Illustration</h1>
     </header>
 
@@ -223,7 +223,7 @@
       </a>
       <a href="tshq-mobile-app.html" class="project-card fade-up fade-up-3" data-static-ink>
         <div class="project-card__ink-bg" aria-hidden="true" style="background:#006554;"></div>
-        <div class="project-card__img-wrap"><img srcset="img/tshq_app_thumbnail-w800.webp 800w, img/tshq_app_thumbnail-w1600.webp 1600w, img/tshq_app_thumbnail.webp 1920w" sizes="(max-width: 640px) 92vw, 46vw" class="project-card__image" width="1920" height="1920" src="img/tshq_app_thumbnail.webp" alt="DICK'S TSHQ mobile app" loading="lazy"></div>
+        <div class="project-card__img-wrap"><img class="project-card__image" width="1920" height="1920" src="img/tshq_app_thumbnail.webp" alt="DICK'S TSHQ mobile app" loading="lazy"></div>
         <div class="project-card__label" style="background:#006554;color:#E0FAE0;"><span class="project-card__label-client">DICK'S TSHQ</span>Designing mobile app features that ease the pain of youth sports management</div>
       </a>
       <a href="tshq-registration.html" class="project-card fade-up fade-up-2" data-static-ink>
@@ -233,22 +233,22 @@
       </a>
       <a href="tshq-assorted-projects.html" class="project-card fade-up fade-up-3" data-static-ink>
         <div class="project-card__ink-bg" aria-hidden="true" style="background:#2E1F4A;"></div>
-        <div class="project-card__img-wrap"><img srcset="img/tshq_assorted_projects_thumbnail-w800.webp 800w, img/tshq_assorted_projects_thumbnail-w1600.webp 1600w, img/tshq_assorted_projects_thumbnail.webp 1918w" sizes="(max-width: 640px) 92vw, 46vw" class="project-card__image" width="1918" height="1920" src="img/tshq_assorted_projects_thumbnail.webp" alt="DICK'S TSHQ Assorted Projects" loading="lazy"></div>
+        <div class="project-card__img-wrap"><img class="project-card__image" width="1918" height="1920" src="img/tshq_assorted_projects_thumbnail.webp" alt="DICK'S TSHQ Assorted Projects" loading="lazy"></div>
         <div class="project-card__label" style="background:#2E1F4A;color:#F0E6FF;"><span class="project-card__label-client">DICK'S TSHQ</span>Selected works from DICK's Team Sports Headquarters</div>
       </a>
       <a href="coca-cola-campus-messaging.html" class="project-card fade-up fade-up-2" data-static-ink>
         <div class="project-card__ink-bg" aria-hidden="true" style="background:#DE4138;"></div>
         <div class="project-card__img-wrap"><img class="project-card__image" width="1000" height="1000" src="img/cm_thumbnail.webp" alt="Coca-Cola Campus Messaging" loading="lazy"></div>
-        <div class="project-card__label" style="background:#DE4138;color:#270604;"><span class="project-card__label-client">Coca-Cola</span>Unified campus communication experiences across Coca-Cola's world headquarters</div>
+        <div class="project-card__label" style="background:#DE4138;color:#000000;"><span class="project-card__label-client">Coca-Cola</span>Unified campus communication experiences across Coca-Cola's world headquarters</div>
       </a>
       <a href="autotrader-illustration-system.html" class="project-card fade-up fade-up-3" data-static-ink>
         <div class="project-card__ink-bg" aria-hidden="true" style="background:#E3F2FF;"></div>
-        <div class="project-card__img-wrap"><img srcset="img/at_illustration_style_2-w800.webp 800w, img/at_illustration_style_2-w1600.webp 1600w, img/at_illustration_style_2.webp 2000w" sizes="(max-width: 640px) 92vw, 46vw" class="project-card__image" width="2000" height="1553" src="img/at_illustration_style_2.webp" alt="Autotrader illustration system" loading="lazy"></div>
+        <div class="project-card__img-wrap"><img class="project-card__image" width="2000" height="1553" src="img/at_illustration_style_2.webp" alt="Autotrader illustration system" loading="lazy"></div>
         <div class="project-card__label" style="background:#E3F2FF;color:#0F2960;"><span class="project-card__label-client">Autotrader</span>Designing a scalable illustration system across web, mobile apps, and marketing</div>
       </a>
       <a href="kbb-icons-illustrations.html" class="project-card fade-up fade-up-2" data-static-ink>
         <div class="project-card__ink-bg" aria-hidden="true" style="background:#FFBF00;"></div>
-        <div class="project-card__img-wrap"><img srcset="img/Kbb_thumbnail-w800.webp 800w, img/Kbb_thumbnail-w1600.webp 1600w, img/Kbb_thumbnail.webp 2000w" sizes="(max-width: 640px) 92vw, 46vw" class="project-card__image" width="2000" height="2000" src="img/Kbb_thumbnail.webp" alt="KBB icons and illustrations" loading="lazy"></div>
+        <div class="project-card__img-wrap"><img class="project-card__image" width="2000" height="2000" src="img/Kbb_thumbnail.webp" alt="KBB icons and illustrations" loading="lazy"></div>
         <div class="project-card__label" style="background:#FFBF00;color:#002B5C;"><span class="project-card__label-client">Kelley Blue Book</span>Growing a renowned leader's visual library</div>
       </a>
     </div>

@@ -14,12 +14,14 @@ const URLS = [
 
 const browser = await puppeteer.launch({ headless: 'new' });
 let totalViolations = 0;
+let cspViolations = 0; // strict: fails the run (page errors / blocked resources are reported but tolerated — the analytics beacon always CORS-fails against localhost)
 
 for (const url of URLS) {
   const page = await browser.newPage();
   const violations = [];
   page.on('console', msg => {
     const text = msg.text();
+    if (/Content Security Policy|refused to/i.test(text)) cspViolations++;
     if (msg.type() === 'error' || /Content Security Policy|CSP|refused to/i.test(text)) {
       violations.push(`[${msg.type()}] ${text}`);
     }
@@ -41,4 +43,5 @@ for (const url of URLS) {
 }
 
 await browser.close();
-console.log(`\n${totalViolations === 0 ? 'All clean.' : 'Total issues: ' + totalViolations}`);
+console.log(`\n${totalViolations === 0 ? 'All clean.' : 'Total issues: ' + totalViolations} (CSP violations: ${cspViolations})`);
+if (cspViolations > 0) process.exit(1);

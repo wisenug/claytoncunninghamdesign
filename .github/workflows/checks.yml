@@ -1,0 +1,41 @@
+name: Site checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # generators derive lastmod/dateModified from git history
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate links, JSON-LD, sitemap, llms.txt
+        run: node checks/validate-site.mjs
+
+      - name: Generator idempotency (tag pages, schema, sitemap)
+        run: |
+          node generate-tag-pages.mjs
+          node inject-schema.mjs
+          node generate-sitemap.mjs
+          # lastmod lines shift when the generating commit differs from the
+          # committed sitemap's vantage point; everything else must be stable
+          git diff --exit-code -I '<lastmod>'
+
+      - name: CSP and console-error check (headless Chrome)
+        run: |
+          node serve.mjs &
+          sleep 2
+          node check-csp.mjs

@@ -42,7 +42,8 @@ const server = http.createServer((req, res) => {
 
   const filePath = path.normalize(path.join(__dirname, urlPath));
   const insideRoot = filePath.startsWith(__dirname + path.sep) || filePath === __dirname;
-  const hasDotSegment = path.relative(__dirname, filePath).split(path.sep).some(s => s.startsWith('.'));
+  const hasDotSegment = path.relative(__dirname, filePath).split(path.sep)
+    .some(s => s.startsWith('.') && s !== '.well-known');
   if (!insideRoot || hasDotSegment) {
     res.writeHead(403, { 'Content-Type': 'text/plain' });
     res.end('403 Forbidden');

@@ -7,8 +7,15 @@
    Re-run after adding a page. Data is read from each page's existing
    <title>, meta description, canonical, and og:image tags. */
 import fs from 'fs/promises';
+import { execFileSync } from 'child_process';
 
 const SITE = 'https://www.claytoncunninghamdesign.com';
+
+function gitLastModified(file) {
+  try {
+    return execFileSync('git', ['log', '-1', '--format=%cs', '--', file], { encoding: 'utf8' }).trim() || null;
+  } catch { return null; }
+}
 
 const PERSON = {
   '@type': 'Person',
@@ -89,6 +96,7 @@ for (const file of files) {
       description,
       image: ogImage,
       datePublished: ARTICLES[file],
+      dateModified: gitLastModified(file) || ARTICLES[file],
       author: { '@id': `${SITE}/#clayton` },
     });
   }

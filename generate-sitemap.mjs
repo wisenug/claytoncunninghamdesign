@@ -3,9 +3,20 @@
    point at their replacements) and it isn't the 404 page.
    Run after generate-tag-pages.mjs. */
 import fs from 'fs/promises';
+import { execFileSync } from 'child_process';
 
 const SITE = 'https://www.claytoncunninghamdesign.com';
 const today = new Date().toISOString().slice(0, 10);
+
+// Real last-modified date from git history; uncommitted/new files fall back
+// to today. Stamping today's date on every URL each run would dilute the
+// freshness signal for pages that haven't changed.
+function lastmod(file) {
+  try {
+    const out = execFileSync('git', ['log', '-1', '--format=%cs', '--', file], { encoding: 'utf8' }).trim();
+    return out || today;
+  } catch { return today; }
+}
 
 // Content images per page for Google Images discovery. Skips srcset variants
 // (Google reads the canonical src), icons/logos, and duplicate refs.
@@ -32,7 +43,7 @@ for (const f of (await fs.readdir('.')).filter(f => f.endsWith('.html'))) {
   if (canonical !== own) continue;
   const images = pageImages(src);
   imageCount += images.length;
-  entries.push({ loc: own, images });
+  entries.push({ loc: own, images, lastmod: lastmod(f) });
 }
 entries.sort((a, b) => (a.loc === `${SITE}/` ? -1 : b.loc === `${SITE}/` ? 1 : a.loc.localeCompare(b.loc)));
 
@@ -41,7 +52,7 @@ const xml = `<?xml version="1.0" encoding="UTF-8"?>
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 ${entries.map(e => `  <url>
     <loc>${e.loc}</loc>
-    <lastmod>${today}</lastmod>
+    <lastmod>${e.lastmod}</lastmod>
 ${e.images.map(i => `    <image:image><image:loc>${SITE}/${encodeURI(i)}</image:loc></image:image>`).join('\n')}
   </url>`).join('\n')}
 </urlset>

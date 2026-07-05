@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://cloudflareinsights.com https://static.cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://cloudflareinsights.com https://static.cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <link rel="icon" type="image/svg+xml" href="img/clayton-cunningham-design-logo.svg">
   <link rel="icon" type="image/png" href="img/logo.png">
@@ -33,7 +33,7 @@
     .article-header { padding: 7rem var(--page-margin) 2rem; max-width: 88rem; }
     .article-kicker {
       font-size: 1.4rem; font-weight: 600; letter-spacing: 0.12em;
-      text-transform: uppercase; opacity: 0.5; margin-bottom: 1.6rem;
+      text-transform: uppercase; opacity: 0.66; margin-bottom: 1.6rem;
     }
     .article-title {
       font-size: clamp(3.6rem, 5.2vw + 1rem, 7.2rem); font-weight: 800;
@@ -55,7 +55,7 @@
   <div class="vt-bg" aria-hidden="true"></div>
 
   <nav>
-    <a href="index.html" class="nav-logo">
+    <a href="index.html" class="nav-logo" aria-label="Clayton Cunningham Design — Home">
       <span class="nav-logo-icon" aria-hidden="true"></span>
       <span class="nav-logo-name">Clayton Cunningham Design</span>
     </a>
@@ -67,7 +67,7 @@
 
   <main>
     <header class="article-header">
-      <h2 class="article-kicker">Process Notes</h2>
+      <p class="article-kicker">Process Notes</p>
       <h1 class="article-title fade-up fade-up-1">How to build a scalable illustration system</h1>
       <p class="article-meta fade-up fade-up-2">Clayton Cunningham · Lessons from the <a href="autotrader-illustration-system.html">Autotrader illustration system</a></p>
     </header>
