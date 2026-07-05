@@ -37,6 +37,12 @@ const projectByHref = Object.fromEntries(
 
 const grab = (src, re) => src.match(re)?.[1] ?? '';
 
+// Process write-ups get Article schema (file → datePublished)
+const ARTICLES = {
+  'how-to-build-a-scalable-illustration-system.html': '2026-07-04',
+  'icon-grids-and-optical-corrections.html': '2026-07-04',
+};
+
 const files = (await fs.readdir('.')).filter(f => f.endsWith('.html'));
 let injected = 0;
 
@@ -72,6 +78,18 @@ for (const file of files) {
       name: title,
       description,
       mainEntity: { '@id': `${SITE}/#clayton` },
+    });
+  }
+
+  if (ARTICLES[file]) {
+    graph.push({
+      '@type': 'Article',
+      url: canonical,
+      headline: title.replace(/ [—–-] Clayton Cunningham.*$/, ''),
+      description,
+      image: ogImage,
+      datePublished: ARTICLES[file],
+      author: { '@id': `${SITE}/#clayton` },
     });
   }
 

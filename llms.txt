@@ -21,6 +21,11 @@
 - [Visual Identity](https://www.claytoncunninghamdesign.com/capabilities-visual-identity.html)
 - [Motion Design](https://www.claytoncunninghamdesign.com/capabilities-motion-design.html)
 
+## Process write-ups
+
+- [How to build a scalable illustration system](https://www.claytoncunninghamdesign.com/how-to-build-a-scalable-illustration-system.html): Core element libraries, style point of view, spot distillation, and system governance
+- [Icon grids and optical corrections](https://www.claytoncunninghamdesign.com/icon-grids-and-optical-corrections.html): Reverse-engineering icon grids, keyshapes, and why optical balance beats mathematical alignment
+
 ## About
 
 - [About Clayton](https://www.claytoncunninghamdesign.com/about.html): Background, approach, and contact
