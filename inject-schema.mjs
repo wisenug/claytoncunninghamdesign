@@ -21,7 +21,10 @@ const PERSON = {
     'Product Design', 'UI/UX Design', 'Illustration Systems', 'Iconography',
     'Design Systems', 'Brand Identity', 'Motion Design', 'User Research'
   ],
-  // sameAs: []  ← add LinkedIn/Dribbble/Behance profile URLs when available
+  sameAs: [
+    'https://www.linkedin.com/in/clayton-cunningham-4057aa29',
+    'https://dribbble.com/ClaytonCunningham',
+  ],
 };
 
 // Load the project manifest (browser global style) for client names.
