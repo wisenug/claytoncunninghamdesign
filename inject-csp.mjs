@@ -4,7 +4,7 @@ const HTML_FILES = (await fs.readdir('.')).filter(f => f.endsWith('.html'));
 
 const CSP = [
   "default-src 'self'",
-  "script-src 'self' https://cdnjs.cloudflare.com https://static.cloudflareinsights.com",
+  "script-src 'self' https://static.cloudflareinsights.com",
   "style-src 'self' 'unsafe-inline'",
   "font-src 'self'",
   "img-src 'self' data:",
