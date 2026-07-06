@@ -47,6 +47,13 @@ window.CCD_TAG_HREF = function (tag) {
   return 'capabilities-' + tag.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') + '.html';
 };
 
+// Process write-ups (file → original publish date). Consumed by
+// inject-schema.mjs (Article datePublished) and generate-rss.mjs (feed).
+window.CCD_ARTICLES = {
+  'how-to-build-a-scalable-illustration-system.html': '2026-07-04',
+  'icon-grids-and-optical-corrections.html': '2026-07-04',
+};
+
 window.CCD_PROJECTS = [
   {
     href: 'sketches-illustrations-doodles.html',

@@ -34,21 +34,16 @@ const PERSON = {
   ],
 };
 
-// Load the project manifest (browser global style) for client names.
+// Load the project manifest (browser global style) for client names + article dates.
 const manifestSrc = await fs.readFile('js/projects.js', 'utf8');
 const windowShim = {};
 new Function('window', manifestSrc)(windowShim);
 const projectByHref = Object.fromEntries(
   windowShim.CCD_PROJECTS.filter(p => !p.homeOnly).map(p => [p.href, p])
 );
+const ARTICLES = windowShim.CCD_ARTICLES;
 
 const grab = (src, re) => src.match(re)?.[1] ?? '';
-
-// Process write-ups get Article schema (file → datePublished)
-const ARTICLES = {
-  'how-to-build-a-scalable-illustration-system.html': '2026-07-04',
-  'icon-grids-and-optical-corrections.html': '2026-07-04',
-};
 
 const files = (await fs.readdir('.')).filter(f => f.endsWith('.html'));
 let injected = 0;

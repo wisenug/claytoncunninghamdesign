@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Clayton Cunningham Design — Process Notes</title>
+    <link>https://www.claytoncunninghamdesign.com/</link>
+    <atom:link href="https://www.claytoncunninghamdesign.com/feed.xml" rel="self" type="application/rss+xml" />
+    <description>Process write-ups on illustration systems, iconography, and product design from Clayton Cunningham.</description>
+    <language>en-us</language>
+    <item>
+      <title>How to Build a Scalable Illustration System</title>
+      <link>https://www.claytoncunninghamdesign.com/how-to-build-a-scalable-illustration-system.html</link>
+      <guid isPermaLink="true">https://www.claytoncunninghamdesign.com/how-to-build-a-scalable-illustration-system.html</guid>
+      <description>Lessons from building Autotrader's illustration system: core element libraries, a defensible style point of view, spot distillation, and the governance that keeps a system coherent as it grows.</description>
+      <pubDate>Sat, 04 Jul 2026 12:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Icon Grids and Optical Corrections</title>
+      <link>https://www.claytoncunninghamdesign.com/icon-grids-and-optical-corrections.html</link>
+      <guid isPermaLink="true">https://www.claytoncunninghamdesign.com/icon-grids-and-optical-corrections.html</guid>
+      <description>How to reverse-engineer an icon grid, when to trust keyshapes over pixels, and why optical balance beats mathematical alignment — from the Autotrader and Kelley Blue Book icon systems.</description>
+      <pubDate>Sat, 04 Jul 2026 12:00:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>

@@ -3,7 +3,8 @@
    1. Every local href/src/srcset target in every root HTML file exists on disk
    2. Every JSON-LD block parses
    3. Every sitemap URL maps to a real file whose canonical matches
-   4. Every local link in llms.txt resolves
+   4. Every site URL mentioned in llms.txt resolves to a real file
+   5. feed.xml is well-formed and every item link resolves
    Used by CI (.github/workflows/checks.yml) and runnable locally. */
 import fs from 'fs/promises';
 import { existsSync } from 'fs';
@@ -49,10 +50,22 @@ for (const m of sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)) {
   if (canonical !== url) errors.push(`sitemap: canonical mismatch for ${rel} (${canonical} ≠ ${url})`);
 }
 
-// 4. llms.txt links
+// 4. every site URL mentioned in llms.txt (markdown links or bare URLs)
 const llms = await fs.readFile('llms.txt', 'utf8');
-for (const m of llms.matchAll(/\((https:\/\/www\.claytoncunninghamdesign\.com\/([^)]*))\)/g)) {
-  if (m[2] && !existsSync(m[2])) errors.push(`llms.txt: missing file for ${m[1]}`);
+for (const m of llms.matchAll(/https:\/\/www\.claytoncunninghamdesign\.com\/([^\s)]*)/g)) {
+  if (m[1] && !existsSync(m[1])) errors.push(`llms.txt: missing file for ${m[0]}`);
+}
+
+// 5. feed.xml — well-formed and every item link resolves
+if (existsSync('feed.xml')) {
+  const feed = await fs.readFile('feed.xml', 'utf8');
+  if (!feed.includes('<rss') || (feed.match(/<item>/g) || []).length === 0) {
+    errors.push('feed.xml: no <item> entries found');
+  }
+  for (const m of feed.matchAll(/<link>([^<]+)<\/link>/g)) {
+    const rel = m[1].startsWith(SITE) ? m[1].slice(SITE.length + 1) || 'index.html' : null;
+    if (rel && !existsSync(rel)) errors.push(`feed.xml: missing file for ${m[1]}`);
+  }
 }
 
 if (errors.length) {
