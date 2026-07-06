@@ -12,7 +12,12 @@ const URLS = [
   'http://localhost:3000/404.html',
 ];
 
-const browser = await puppeteer.launch({ headless: 'new' });
+// GitHub Actions runners lack a usable Chromium sandbox; --no-sandbox is
+// safe there (ephemeral, isolated VM) but stays off for local runs.
+const browser = await puppeteer.launch({
+  headless: 'new',
+  args: process.env.CI ? ['--no-sandbox', '--disable-setuid-sandbox'] : [],
+});
 let totalViolations = 0;
 let cspViolations = 0; // strict: fails the run (page errors / blocked resources are reported but tolerated — the analytics beacon always CORS-fails against localhost)
 
