@@ -84,6 +84,16 @@
       border-radius: var(--radius-img);
       overflow: hidden;
     }
+
+    /* Write-up link sits on the navy Spot Icons band, keep it legible */
+    .spot-icons-bg .body-text a {
+      color: #FFFFFF;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .spot-icons-bg .body-text a:hover {
+      text-decoration-thickness: 2px;
+    }
   </style>
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://www.claytoncunninghamdesign.com/#clayton","name":"Clayton Cunningham","jobTitle":"Product Designer & Illustrator","url":"https://www.claytoncunninghamdesign.com/about.html","image":"https://www.claytoncunninghamdesign.com/img/claytoncunningham-og.jpg","knowsAbout":["Product Design","UI/UX Design","Illustration Systems","Iconography","Design Systems","Brand Identity","Motion Design","User Research"],"sameAs":["https://www.linkedin.com/in/clayton-cunningham-4057aa29","https://dribbble.com/ClaytonCunningham"]},{"@type":"CreativeWork","url":"https://www.claytoncunninghamdesign.com/autotrader-icons.html","name":"Autotrader Iconography — Clayton Cunningham Design","headline":"Unifying a fragmented icon language","description":"Spot icon style created for Autotrader. Iconography system spanning the AT website and mobile apps.","image":"https://www.claytoncunninghamdesign.com/img/og/og-autotrader-icons.jpg","creator":{"@id":"https://www.claytoncunninghamdesign.com/#clayton"},"sourceOrganization":{"@type":"Organization","name":"Autotrader"},"genre":["UI/UX Design","Iconography","Motion Design"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.claytoncunninghamdesign.com/"},{"@type":"ListItem","position":2,"name":"Autotrader Iconography","item":"https://www.claytoncunninghamdesign.com/autotrader-icons.html"}]}]}</script>
 </head>
@@ -119,13 +129,12 @@
 
     <!-- Hero image -->
     <section class="hero-image fade-up fade-up-3">
-      <img srcset="img/autotrader_icons_hero-w800.webp 800w, img/autotrader_icons_hero-w1600.webp 1600w, img/autotrader_icons_hero.webp 2000w" sizes="100vw" fetchpriority="high" width="2000" height="864" src="img/autotrader_icons_hero.webp" alt="Autotrader icon system — hero overview of the full spot iconography library">
+      <img srcset="img/autotrader_icons_hero-w800.webp 800w, img/autotrader_icons_hero-w1600.webp 1600w, img/autotrader_icons_hero.webp 2000w" sizes="100vw" fetchpriority="high" width="2000" height="864" src="img/autotrader_icons_hero.webp" alt="Autotrader icon system, hero overview of the full spot iconography library">
     </section>
 
     <!-- Intro text -->
     <div class="intro-text">
       <p>Autotrader was missing a consistent icon style across the product. I pitched a unified iconography system, got buy-in, and built out a spot icon library and a functional/UI icon library for use across the AT website and mobile apps.</p>
-      <p>Process write-up: <a href="icon-grids-and-optical-corrections.html">Icon grids and optical corrections</a></p>
     </div>
 
     <!-- Icon Details Lottie -->
@@ -136,23 +145,23 @@
     <!-- Icon Construction System -->
     <div class="text-section">
       <h2 class="section-heading">Functional Icons</h2>
-      <p class="body-text">I started with <a href="https://heroicons.com/" target="_blank" rel="noopener noreferrer">Heroicons</a> as a base for the Autotrader functional icon library. The set had a good mix of legibility and visual distinction, and it already covered a lot of the core UI needs — think chevrons for accordion arrows, a gear for settings, or an X for closing a modal. From there I designed the remaining 40+ icons our library needed that weren't in the Heroicons set.</p>
+      <p class="body-text">I started with <a href="https://heroicons.com/" target="_blank" rel="noopener noreferrer">Heroicons</a> as a base for the Autotrader functional icon library. The set had a good mix of legibility and visual distinction, and it already covered a lot of the core UI needs. Think chevrons for accordion arrows, a gear for settings, or an X for closing a modal. From there I designed the remaining 40+ icons our library needed that weren't in the Heroicons set.</p>
     </div>
 
     <!-- Grid + Orthogonals 2-up -->
     <div class="image-grid-2">
-      <img width="1000" height="1000" src="img/autotrader_icons_grid.svg" alt="Icon design grid — 1px grid with 1.5px trim area" loading="lazy" style="object-fit: contain; aspect-ratio: auto; height: auto;">
-      <img width="1000" height="1000" src="img/autotrader_icons_orthogonals.svg" alt="Icon orthogonal keylines — guides at 90°, 45°, and 15° intersecting the center point" loading="lazy" style="object-fit: contain; aspect-ratio: auto; height: auto;">
+      <img width="1000" height="1000" src="img/autotrader_icons_grid.svg" alt="Icon design grid, 1px grid with 1.5px trim area" loading="lazy" style="object-fit: contain; aspect-ratio: auto; height: auto;">
+      <img width="1000" height="1000" src="img/autotrader_icons_orthogonals.svg" alt="Icon orthogonal keylines, guides at 90°, 45°, and 15° intersecting the center point" loading="lazy" style="object-fit: contain; aspect-ratio: auto; height: auto;">
     </div>
 
     <!-- Grid construction explainer -->
     <div class="text-section">
-      <p class="body-text">I reverse engineered an icon grid based on the overall style of the set. The grid keeps every icon optically balanced and aligned — a 1px grid with a 1.5px trim area. Orthogonals sit at 90°, 45°, and 15°. Keyshapes round it out, representing the four most common overall shapes in the set that most icons fall under.</p>
+      <p class="body-text">I reverse engineered an icon grid based on the overall style of the set. The grid keeps every icon optically balanced and aligned, a 1px grid with a 1.5px trim area. Orthogonals sit at 90°, 45°, and 15°. Keyshapes round it out, representing the four most common overall shapes in the set that most icons fall under.</p>
     </div>
 
     <!-- Keyshapes -->
     <div class="full-image">
-      <img width="2000" height="1510" src="img/autotrader_icons_keyshapes.svg" alt="Icon key shapes — circles, squares, and rectangles for consistent sizing" loading="lazy" style="object-fit: contain; aspect-ratio: auto; height: auto;">
+      <img width="2000" height="1510" src="img/autotrader_icons_keyshapes.svg" alt="Icon key shapes, circles, squares, and rectangles for consistent sizing" loading="lazy" style="object-fit: contain; aspect-ratio: auto; height: auto;">
     </div>
 
     <!-- 3 icons on grid -->
@@ -167,7 +176,7 @@
 
     <!-- Nav Icons A + B — 2-up -->
     <div class="image-grid-2">
-      <img srcset="img/autotrader_icons_nav-A-w800.webp 800w, img/autotrader_icons_nav-A-w1600.webp 1600w, img/autotrader_icons_nav-A.webp 2000w" sizes="(max-width: 640px) 92vw, 46vw" width="2000" height="2000" src="img/autotrader_icons_nav-A.webp" alt="Autotrader global navigation icons — menu, search, notifications, and user account" loading="lazy">
+      <img srcset="img/autotrader_icons_nav-A-w800.webp 800w, img/autotrader_icons_nav-A-w1600.webp 1600w, img/autotrader_icons_nav-A.webp 2000w" sizes="(max-width: 640px) 92vw, 46vw" width="2000" height="2000" src="img/autotrader_icons_nav-A.webp" alt="Autotrader global navigation icons, menu, search, notifications, and user account" loading="lazy">
       <img srcset="img/autotrader_icons_nav-B-w800.webp 800w, img/autotrader_icons_nav-B-w1600.webp 1600w, img/autotrader_icons_nav-B.webp 2000w" sizes="(max-width: 640px) 92vw, 46vw" width="2000" height="2000" src="img/autotrader_icons_nav-B.webp" alt="Autotrader secondary navigation and UI icons" loading="lazy">
     </div>
 
@@ -183,11 +192,11 @@
 
     <!-- VDP icons -->
     <div class="full-image">
-      <img width="1000" height="1000" src="img/autotrader_icons_vdp-ui-icons.webp" alt="Autotrader Vehicle Detail Page — icon specs applied in desktop listing context" loading="lazy">
+      <img width="1000" height="1000" src="img/autotrader_icons_vdp-ui-icons.webp" alt="Autotrader Vehicle Detail Page, icon specs applied in desktop listing context" loading="lazy">
     </div>
 
     <div class="full-image">
-      <img srcset="img/autotrader_icons_wallet-w800.webp 800w, img/autotrader_icons_wallet-w1600.webp 1600w, img/autotrader_icons_wallet.webp 2000w" sizes="92vw" width="2000" height="1149" src="img/autotrader_icons_wallet.webp" alt="Autotrader My Wallet by Kelley Blue Book — mobile and desktop UI showing vehicle valuation and sync features" loading="lazy">
+      <img srcset="img/autotrader_icons_wallet-w800.webp 800w, img/autotrader_icons_wallet-w1600.webp 1600w, img/autotrader_icons_wallet.webp 2000w" sizes="92vw" width="2000" height="1149" src="img/autotrader_icons_wallet.webp" alt="Autotrader My Wallet by Kelley Blue Book, mobile and desktop UI showing vehicle valuation and sync features" loading="lazy">
     </div>
 
     <div class="section-color-break" aria-hidden="true"></div>
@@ -202,7 +211,7 @@
 
       <!-- Full icon library -->
       <div class="full-image">
-        <img srcset="img/autotrader_icons_library-w800.webp 800w, img/autotrader_icons_library-w1600.webp 1600w, img/autotrader_icons_library.webp 2000w" sizes="92vw" width="2000" height="1661" src="img/autotrader_icons_library.webp" alt="Autotrader spot icon library — complete collection spanning vehicle specs, features, and UI elements" loading="lazy">
+        <img srcset="img/autotrader_icons_library-w800.webp 800w, img/autotrader_icons_library-w1600.webp 1600w, img/autotrader_icons_library.webp 2000w" sizes="92vw" width="2000" height="1661" src="img/autotrader_icons_library.webp" alt="Autotrader spot icon library, complete collection spanning vehicle specs, features, and UI elements" loading="lazy">
       </div>
 
       <!-- Spot Icons Lottie — full library animation -->
@@ -212,12 +221,12 @@
 
       <!-- VDP in-context UI -->
       <div class="full-image">
-        <img srcset="img/autotrader_icons_vdp-w800.webp 800w, img/autotrader_icons_vdp-w1600.webp 1600w, img/autotrader_icons_vdp.webp 2000w" sizes="92vw" width="2000" height="1408" src="img/autotrader_icons_vdp.webp" alt="Autotrader Vehicle Detail Page — icons for mileage, transmission, fuel economy, drivetrain, and price indicators applied in context" loading="lazy">
+        <img srcset="img/autotrader_icons_vdp-w800.webp 800w, img/autotrader_icons_vdp-w1600.webp 1600w, img/autotrader_icons_vdp.webp 2000w" sizes="92vw" width="2000" height="1408" src="img/autotrader_icons_vdp.webp" alt="Autotrader Vehicle Detail Page, icons for mileage, transmission, fuel economy, drivetrain, and price indicators applied in context" loading="lazy">
       </div>
 
       <!-- Spec sheet -->
       <div class="full-image">
-        <img srcset="img/autotrader_icons_11-w800.webp 800w, img/autotrader_icons_11-w1600.webp 1600w, img/autotrader_icons_11.webp 2000w" sizes="92vw" width="2000" height="2437" src="img/autotrader_icons_11.webp" alt="Spot icon technical specifications — stroke weight, corner radius, color palette, and sizing guidelines" loading="lazy">
+        <img srcset="img/autotrader_icons_11-w800.webp 800w, img/autotrader_icons_11-w1600.webp 1600w, img/autotrader_icons_11.webp 2000w" sizes="92vw" width="2000" height="2437" src="img/autotrader_icons_11.webp" alt="Spot icon technical specifications, stroke weight, corner radius, color palette, and sizing guidelines" loading="lazy">
       </div>
 
       <!-- Spot Icon HP Lottie -->
@@ -227,11 +236,11 @@
 
       <!-- Wallet / SRP icons -->
       <div class="full-image">
-        <img srcset="img/autotrader_icons_wallet_srp-w800.webp 800w, img/autotrader_icons_wallet_srp-w1600.webp 1600w, img/autotrader_icons_wallet_srp.webp 2000w" sizes="92vw" width="2000" height="1192" src="img/autotrader_icons_wallet_srp.webp" alt="Autotrader MyWallet and Search Results Page icons — payment, financing, and transaction indicators" loading="lazy">
+        <img srcset="img/autotrader_icons_wallet_srp-w800.webp 800w, img/autotrader_icons_wallet_srp-w1600.webp 1600w, img/autotrader_icons_wallet_srp.webp 2000w" sizes="92vw" width="2000" height="1192" src="img/autotrader_icons_wallet_srp.webp" alt="Autotrader MyWallet and Search Results Page icons, payment, financing, and transaction indicators" loading="lazy">
       </div>
 
       <div class="full-image">
-        <img srcset="img/autotrader_icons_marketplace-w800.webp 800w, img/autotrader_icons_marketplace.webp 1593w" sizes="92vw" width="1593" height="394" src="img/autotrader_icons_marketplace.webp" alt="Private Seller Marketplace interface — spot icons for listing management and seller tools" loading="lazy">
+        <img srcset="img/autotrader_icons_marketplace-w800.webp 800w, img/autotrader_icons_marketplace.webp 1593w" sizes="92vw" width="1593" height="394" src="img/autotrader_icons_marketplace.webp" alt="Private Seller Marketplace interface, spot icons for listing management and seller tools" loading="lazy">
       </div>
 
       <!-- PSX Spot Icons Lottie -->
@@ -240,11 +249,11 @@
       </div>
 
       <div class="full-image">
-        <img width="940" height="848" src="img/autotrader_icons_battery-health.webp" alt="Battery health chart on Vehicle Detail Page — electric vehicle battery status with spot icon indicators" loading="lazy">
+        <img width="940" height="848" src="img/autotrader_icons_battery-health.webp" alt="Battery health chart on Vehicle Detail Page, electric vehicle battery status with spot icon indicators" loading="lazy">
       </div>
 
       <div class="full-image">
-        <img srcset="img/autotrader_icons_cars_by_type-w800.webp 800w, img/autotrader_icons_cars_by_type-w1600.webp 1600w, img/autotrader_icons_cars_by_type.webp 2000w" sizes="92vw" width="2000" height="500" src="img/autotrader_icons_cars_by_type.webp" alt="Vehicle type badges — spot icons for Off-road, Hybrid, and Electric vehicle categories" loading="lazy">
+        <img srcset="img/autotrader_icons_cars_by_type-w800.webp 800w, img/autotrader_icons_cars_by_type-w1600.webp 1600w, img/autotrader_icons_cars_by_type.webp 2000w" sizes="92vw" width="2000" height="500" src="img/autotrader_icons_cars_by_type.webp" alt="Vehicle type badges, spot icons for Off-road, Hybrid, and Electric vehicle categories" loading="lazy">
       </div>
 
       <!-- Next project — Autotrader Illustration System -->
@@ -255,6 +264,11 @@
           DICK'S TSHQ<br>Mobile App
         </a>
       </section>
+
+      <!-- Process write-up link -->
+      <div class="text-section">
+        <p class="body-text">Process write-up: <a href="icon-grids-and-optical-corrections.html">Icon grids and optical corrections</a></p>
+      </div>
 
     </div><!-- /.spot-icons-bg -->
 
