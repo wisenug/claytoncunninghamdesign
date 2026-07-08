@@ -87,7 +87,7 @@ for (const file of files) {
     graph.push({
       '@type': 'Article',
       url: canonical,
-      headline: title.replace(/ [—–-] Clayton Cunningham.*$/, ''),
+      headline: title.replace(/ [—–•-] Clayton Cunningham.*$/, ''),
       description,
       image: ogImage,
       datePublished: ARTICLES[file],
@@ -115,7 +115,7 @@ for (const file of files) {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE}/` },
-        { '@type': 'ListItem', position: 2, name: title.replace(/ [—–-] Clayton Cunningham.*$/, ''), item: canonical },
+        { '@type': 'ListItem', position: 2, name: title.replace(/ [—–•-] Clayton Cunningham.*$/, ''), item: canonical },
       ],
     });
   }
