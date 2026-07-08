@@ -32,14 +32,20 @@ function pageImages(src) {
   return [...seen];
 }
 
+// Standalone pages that live as directory indexes (served at /<dir>/).
+const DIR_INDEX_PAGES = ['reba/index.html'];
+
 const entries = [];
 let imageCount = 0;
-for (const f of (await fs.readdir('.')).filter(f => f.endsWith('.html'))) {
+const pages = [...(await fs.readdir('.')).filter(f => f.endsWith('.html')), ...DIR_INDEX_PAGES];
+for (const f of pages) {
   if (f === '404.html') continue;
   const src = await fs.readFile(f, 'utf8');
   if (src.includes('http-equiv="refresh"')) continue;
   const canonical = src.match(/rel="canonical" href="([^"]*)"/)?.[1];
-  const own = f === 'index.html' ? `${SITE}/` : `${SITE}/${f}`;
+  const own = f === 'index.html' ? `${SITE}/`
+    : f.endsWith('/index.html') ? `${SITE}/${f.slice(0, -'index.html'.length)}`
+    : `${SITE}/${f}`;
   if (canonical !== own) continue;
   const images = pageImages(src);
   imageCount += images.length;
