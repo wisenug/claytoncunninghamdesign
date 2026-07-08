@@ -50,39 +50,62 @@
       color: #0F3D4A;
     }
 
-    /* Extra breathing room between projects */
-    .text-section {
-      padding-top: 14.4rem;
+    /* ── Two-column card grid, same treatment as the home page ── */
+    .funsies-grid {
+      padding: 4rem var(--page-margin) 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.6rem;
+      align-items: start;
     }
 
-    .text-section:first-of-type {
-      padding-top: 4.8rem;
-    }
-
-    /* Section headings link out to each one-off project */
-    .section-heading a {
-      color: inherit;
+    .work-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
       text-decoration: none;
-      transition: opacity 0.2s ease;
     }
 
-    .section-heading a:hover  { opacity: 0.7; }
-    .section-heading a:active { opacity: 0.5; }
-
-    /* Clickable project images */
-    .funsies-link {
-      display: block;
+    .work-card__img-wrap {
       overflow: hidden;
-      border-radius: var(--radius-img);
+      border-radius: var(--radius-img) var(--radius-img) 0 0;
+      line-height: 0;
     }
 
-    .funsies-link img {
-      border-radius: 0;
+    .work-img {
+      width: 100%;
+      display: block;
+      object-fit: contain;
       transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
-    .funsies-link:hover img  { transform: scale(1.03); }
-    .funsies-link:active img { transform: scale(1.01); }
+    .work-card:hover .work-img  { transform: scale(1.04); }
+    .work-card:active .work-img { transform: scale(1.02); }
+
+    .work-card__label-client {
+      display: block;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .work-card__label {
+      padding: 2rem 2.4rem 2.4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      box-sizing: border-box;
+      border-radius: 0 0 var(--radius-img) var(--radius-img);
+    }
+
+    @media (max-width: 640px) {
+      .funsies-grid {
+        grid-template-columns: 1fr;
+        padding-top: 2.4rem;
+        gap: 2.4rem;
+      }
+    }
   </style>
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://www.claytoncunninghamdesign.com/#clayton","name":"Clayton Cunningham","jobTitle":"Product Designer & Illustrator","url":"https://www.claytoncunninghamdesign.com/about.html","image":"https://www.claytoncunninghamdesign.com/img/claytoncunningham-og.jpg","knowsAbout":["Product Design","UI/UX Design","Illustration Systems","Iconography","Design Systems","Brand Identity","Motion Design","User Research"],"sameAs":["https://www.linkedin.com/in/clayton-cunningham-4057aa29","https://dribbble.com/ClaytonCunningham"]},{"@type":"CollectionPage","url":"https://www.claytoncunninghamdesign.com/just-for-funsies.html","name":"Just for Funsies — Clayton Cunningham Design","description":"A collection of random one-off side projects — spinning sneakers, a retro dog platformer, and whatever comes next.","creator":{"@id":"https://www.claytoncunninghamdesign.com/#clayton"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.claytoncunninghamdesign.com/"},{"@type":"ListItem","position":2,"name":"Just for Funsies","item":"https://www.claytoncunninghamdesign.com/just-for-funsies.html"}]}]}</script>
 </head>
@@ -113,29 +136,17 @@
       <p>Random one-off projects made for no client, no brief, and no reason beyond the fun of making them.</p>
     </div>
 
-    <!-- ── Coolest Shoes I've Owned ── -->
-    <div class="text-section">
-      <h2 class="section-heading"><a href="shoe-rotation.html">Coolest Shoes I&rsquo;ve Owned (So Far)</a></h2>
-      <p class="body-text">Interactive 360&deg; views of the best sneakers to pass through my rotation — photographed frame by frame and spun in the browser.</p>
-    </div>
-
-    <div class="full-image">
-      <a href="shoe-rotation.html" class="funsies-link" style="background: #ffffff;" aria-label="Coolest Shoes I've Owned (So Far) — interactive 360-degree sneaker views">
-        <img width="1035" height="542" class="rotation-thumb" src="img/shoes/treeline/treeline-01.webp" alt="Nike Air Max 1 SH Treeline spinning in 360 degrees" data-rotation-prefix="img/shoes/treeline/treeline-" data-rotation-total="36">
+    <!-- Project cards -->
+    <section class="funsies-grid">
+      <a href="shoe-rotation.html" class="work-card">
+        <div class="work-card__img-wrap" style="background: #ffffff;"><img width="1035" height="542" class="work-img rotation-thumb" src="img/shoes/treeline/treeline-01.webp" alt="Nike Air Max 1 SH Treeline spinning in 360 degrees" data-rotation-prefix="img/shoes/treeline/treeline-" data-rotation-total="36"></div>
+        <div class="work-card__label" style="background: #0F3D4A; color: #b8e4f0;"><span class="work-card__label-client">Coolest Shoes I&rsquo;ve Owned (So Far)</span></div>
       </a>
-    </div>
-
-    <!-- ── Reba and the Great Bed Heist ── -->
-    <div class="text-section">
-      <h2 class="section-heading"><a href="reba/">Reba and the Great Bed Heist</a></h2>
-      <p class="body-text">A retro platformer starring Reba the redbone coonhound, on a mission through the piney woods to rescue her beloved bed from a no-good raccoon. Playable right in the browser.</p>
-    </div>
-
-    <div class="full-image">
-      <a href="reba/" class="funsies-link" aria-label="Play Reba and the Great Bed Heist">
-        <img width="1200" height="630" src="img/reba-og.webp" alt="Reba and the Great Bed Heist — pixel-art title screen with Reba the hound and her stolen bed" loading="lazy">
+      <a href="reba/" class="work-card">
+        <div class="work-card__img-wrap"><img width="1200" height="630" class="work-img" src="img/reba-og.webp" alt="Reba and the Great Bed Heist — pixel-art title screen with Reba the hound and her stolen bed" loading="lazy"></div>
+        <div class="work-card__label" style="background: #14231a; color: #f2a3b8;"><span class="work-card__label-client">Reba and the Great Bed Heist</span></div>
       </a>
-    </div>
+    </section>
 
     <!-- Next project -->
     <section class="next-project next-project-wrap" style="margin-top: 8rem;" aria-label="Navigate to next project">
