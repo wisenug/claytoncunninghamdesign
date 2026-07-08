@@ -14,27 +14,27 @@
   <meta property="og:site_name" content="Clayton Cunningham Design">
   <meta property="og:url" content="https://www.claytoncunninghamdesign.com/just-for-funsies.html">
   <meta property="og:title" content="Just For Funsies — Clayton Cunningham Design">
-  <meta property="og:description" content="Side projects made purely for the joy of it — spinning sneakers, a platformer starring my dog, and a dinosaur shooter.">
+  <meta property="og:description" content="Side projects made purely for the joy of it — spinning sneakers and a platformer starring my dog.">
   <meta property="og:image" content="https://www.claytoncunninghamdesign.com/img/og-shoe-rotation.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Just For Funsies — Clayton Cunningham Design">
-  <meta name="twitter:description" content="Side projects made purely for the joy of it — spinning sneakers, a platformer starring my dog, and a dinosaur shooter.">
+  <meta name="twitter:description" content="Side projects made purely for the joy of it — spinning sneakers and a platformer starring my dog.">
   <meta name="twitter:image" content="https://www.claytoncunninghamdesign.com/img/og-shoe-rotation.jpg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Just For Funsies — Clayton Cunningham Design</title>
-  <meta name="description" content="Side projects made purely for the joy of it — spinning sneakers, a platformer starring my dog, and a dinosaur shooter.">
+  <meta name="description" content="Side projects made purely for the joy of it — spinning sneakers and a platformer starring my dog.">
   <link rel="preload" href="fonts/dm-sans-04.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css">
   <style>
     :root {
-      --color-bg: #b8e4f0;
+      --color-bg: #ffffff;
       --color-black: #0F3D4A;
     }
 
     .vt-bg {
       position: fixed;
       inset: 0;
-      background-color: #b8e4f0;
+      background-color: #ffffff;
       z-index: -1;
       pointer-events: none;
       view-transition-name: ink-bg;
@@ -46,15 +46,21 @@
       color: #0F3D4A;
     }
 
+    /* Intro sits inside the header, spaced off the title exactly like the
+       capability chips on project pages (title margin supplies the gap). */
+    .project-header .intro-text {
+      padding: 0;
+    }
+
     /* ── Fun grid ── */
     .fun-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 4rem;
+      gap: 4.8rem;
       width: 100%;
       max-width: 1200px;
-      margin: 4.8rem auto 0;
-      padding: 0 var(--page-margin, 5vw) 4rem;
+      margin: 0 auto;
+      padding: 0 var(--page-margin, 5vw) 6rem;
     }
 
     .fun-card {
@@ -118,20 +124,11 @@
     }
 
     /* per-card palettes */
-    .fun-card--shoes .fun-card__img-wrap { background: #ffffff; }
+    .fun-card--shoes .fun-card__img-wrap { background: #f5f5f2; }
     .fun-card--shoes .fun-card__label { background: #0F3D4A; color: #b8e4f0; }
 
     .fun-card--reba .fun-card__label { background: #14231a; color: #f7ecd9; }
     .fun-card--reba .fun-card__label-title { color: #f2a3b8; }
-
-    .fun-card--dino .fun-card__label { background: #120b09; color: #efe3c8; }
-    .fun-card--dino .fun-card__label-title { color: #ff7a2f; }
-
-    @media (min-width: 900px) {
-      .fun-grid { gap: 4.8rem; }
-      .fun-card--shoes { grid-column: 1 / -1; }
-      .fun-grid { grid-template-columns: 1fr 1fr; }
-    }
   </style>
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://www.claytoncunninghamdesign.com/#clayton","name":"Clayton Cunningham","jobTitle":"Product Designer & Illustrator","url":"https://www.claytoncunninghamdesign.com/about.html","image":"https://www.claytoncunninghamdesign.com/img/claytoncunningham-og.jpg","knowsAbout":["Product Design","UI/UX Design","Illustration Systems","Iconography","Design Systems","Brand Identity","Motion Design","User Research"],"sameAs":["https://www.linkedin.com/in/clayton-cunningham-4057aa29","https://dribbble.com/ClaytonCunningham"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.claytoncunninghamdesign.com/"},{"@type":"ListItem","position":2,"name":"Just For Funsies","item":"https://www.claytoncunninghamdesign.com/just-for-funsies.html"}]}]}</script>
 </head>
@@ -156,11 +153,10 @@
       <h1 class="project-title fade-up fade-up-1">
         Just For Funsies
       </h1>
+      <div class="intro-text fade-up fade-up-2">
+        <p>Side projects made purely for the joy of it. No client, no brief, no deadline, just things I wanted to exist.</p>
+      </div>
     </header>
-
-    <div class="intro-text fade-up fade-up-2" style="grid-template-columns: 1fr; text-align: center;">
-      <p>Side projects made purely for the joy of it. No client, no brief, no deadline — just things I wanted to exist.</p>
-    </div>
 
     <div class="fun-grid fade-up fade-up-3">
 
@@ -170,30 +166,19 @@
         </div>
         <div class="fun-card__label">
           <span class="fun-card__label-title">Coolest Shoes I&rsquo;ve Owned (So Far)</span>
-          Interactive 360&deg; spins of the sneaker rotation, photographed one frame at a time.
+          360&deg; views of my all time favorite shoes
           <span class="fun-card__label-hint">Take a spin &rarr;</span>
         </div>
       </a>
 
       <a href="reba/" class="fun-card fun-card--reba">
         <div class="fun-card__img-wrap">
-          <img width="1200" height="630" src="img/reba-card.webp" alt="Reba and the Great Bed Heist — pixel art platformer title card" loading="lazy">
+          <img width="1600" height="900" src="img/reba-card.webp" alt="Reba and the Great Bed Heist — pixel art platformer title screen" loading="lazy">
         </div>
         <div class="fun-card__label">
           <span class="fun-card__label-title">Reba and the Great Bed Heist</span>
           A retro platformer starring my redbone coonhound, on a mission to rescue her beloved bed from a no-good raccoon.
           <span class="fun-card__label-hint">Play the game &rarr;</span>
-        </div>
-      </a>
-
-      <a href="dino/" class="fun-card fun-card--dino">
-        <div class="fun-card__img-wrap">
-          <img width="1600" height="900" src="img/dino-card.webp" alt="Dino Doom — first-person view of raptor claws facing a T-Rex" loading="lazy">
-        </div>
-        <div class="fun-card__label">
-          <span class="fun-card__label-title">Dino Doom</span>
-          A DOOM-style shooter where everyone is a dinosaur. No guns — just claws, fireball breath, and a T-Rex with a grudge.
-          <span class="fun-card__label-hint">Rip &amp; roar &rarr;</span>
         </div>
       </a>
 
