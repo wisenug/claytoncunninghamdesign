@@ -191,7 +191,7 @@ window.CCD_PROJECTS = [
     tags: ['UI/UX Design', 'Iconography', 'Motion Design']
   },
   {
-    href: 'shoe-rotation.html',
+    href: 'just-for-funsies.html',
     bgColor: '#b8e4f0',
     fgColor: '#0F3D4A',
     homeOnly: true

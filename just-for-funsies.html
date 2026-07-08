@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://cloudflareinsights.com https://static.cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="icon" type="image/svg+xml" href="img/clayton-cunningham-design-logo.svg">
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <link rel="apple-touch-icon" href="img/logo.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#0B2D52">
+  <link rel="canonical" href="https://www.claytoncunninghamdesign.com/just-for-funsies.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Clayton Cunningham Design">
+  <meta property="og:url" content="https://www.claytoncunninghamdesign.com/just-for-funsies.html">
+  <meta property="og:title" content="Just for Funsies — Clayton Cunningham Design">
+  <meta property="og:description" content="A collection of random one-off side projects — spinning sneakers, a retro dog platformer, and whatever comes next.">
+  <meta property="og:image" content="https://www.claytoncunninghamdesign.com/img/og-shoe-rotation.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Just for Funsies — Clayton Cunningham Design">
+  <meta name="twitter:description" content="A collection of random one-off side projects — spinning sneakers, a retro dog platformer, and whatever comes next.">
+  <meta name="twitter:image" content="https://www.claytoncunninghamdesign.com/img/og-shoe-rotation.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Just for Funsies — Clayton Cunningham Design</title>
+  <meta name="description" content="A collection of random one-off side projects — spinning sneakers, a retro dog platformer, and whatever comes next.">
+  <link rel="preload" href="fonts/dm-sans-04.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    :root {
+      --color-bg: #b8e4f0;
+      --color-black: #0F3D4A;
+    }
+
+    .vt-bg {
+      position: fixed;
+      inset: 0;
+      background-color: #b8e4f0;
+      z-index: -1;
+      pointer-events: none;
+      view-transition-name: ink-bg;
+    }
+
+    .project-title { view-transition-name: page-title; }
+
+    /* View transition — outgoing (to next project); names assigned via JS on click */
+    .next-project-title { position: relative; }
+    .next-label         { position: relative; }
+
+    .footer-copy {
+      color: #0F3D4A;
+    }
+
+    /* Extra breathing room between projects */
+    .text-section {
+      padding-top: 14.4rem;
+    }
+
+    .text-section:first-of-type {
+      padding-top: 4.8rem;
+    }
+
+    /* Section headings link out to each one-off project */
+    .section-heading a {
+      color: inherit;
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .section-heading a:hover  { opacity: 0.7; }
+    .section-heading a:active { opacity: 0.5; }
+
+    /* Clickable project images */
+    .funsies-link {
+      display: block;
+      overflow: hidden;
+      border-radius: var(--radius-img);
+    }
+
+    .funsies-link img {
+      border-radius: 0;
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .funsies-link:hover img  { transform: scale(1.03); }
+    .funsies-link:active img { transform: scale(1.01); }
+  </style>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://www.claytoncunninghamdesign.com/#clayton","name":"Clayton Cunningham","jobTitle":"Product Designer & Illustrator","url":"https://www.claytoncunninghamdesign.com/about.html","image":"https://www.claytoncunninghamdesign.com/img/claytoncunningham-og.jpg","knowsAbout":["Product Design","UI/UX Design","Illustration Systems","Iconography","Design Systems","Brand Identity","Motion Design","User Research"],"sameAs":["https://www.linkedin.com/in/clayton-cunningham-4057aa29","https://dribbble.com/ClaytonCunningham"]},{"@type":"CollectionPage","url":"https://www.claytoncunninghamdesign.com/just-for-funsies.html","name":"Just for Funsies — Clayton Cunningham Design","description":"A collection of random one-off side projects — spinning sneakers, a retro dog platformer, and whatever comes next.","creator":{"@id":"https://www.claytoncunninghamdesign.com/#clayton"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.claytoncunninghamdesign.com/"},{"@type":"ListItem","position":2,"name":"Just for Funsies","item":"https://www.claytoncunninghamdesign.com/just-for-funsies.html"}]}]}</script>
+</head>
+<body>
+
+  <div class="vt-bg" aria-hidden="true"></div>
+
+  <nav>
+    <a href="index.html" class="nav-logo" aria-label="Clayton Cunningham Design — Home">
+      <span class="nav-logo-icon" aria-hidden="true"></span>
+      <span class="nav-logo-name">Clayton Cunningham Design</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Work</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <header class="project-header">
+      <h1 class="project-title fade-up fade-up-1">
+        Just for Funsies
+      </h1>
+    </header>
+
+    <div class="intro-text" style="padding-top: 0; grid-template-columns: 1fr; text-align: center;">
+      <p>Random one-off projects made for no client, no brief, and no reason beyond the fun of making them.</p>
+    </div>
+
+    <!-- ── Coolest Shoes I've Owned ── -->
+    <div class="text-section">
+      <h2 class="section-heading"><a href="shoe-rotation.html">Coolest Shoes I&rsquo;ve Owned (So Far)</a></h2>
+      <p class="body-text">Interactive 360&deg; views of the best sneakers to pass through my rotation — photographed frame by frame and spun in the browser.</p>
+    </div>
+
+    <div class="full-image">
+      <a href="shoe-rotation.html" class="funsies-link" style="background: #ffffff;" aria-label="Coolest Shoes I've Owned (So Far) — interactive 360-degree sneaker views">
+        <img width="1035" height="542" class="rotation-thumb" src="img/shoes/treeline/treeline-01.webp" alt="Nike Air Max 1 SH Treeline spinning in 360 degrees" data-rotation-prefix="img/shoes/treeline/treeline-" data-rotation-total="36">
+      </a>
+    </div>
+
+    <!-- ── Reba and the Great Bed Heist ── -->
+    <div class="text-section">
+      <h2 class="section-heading"><a href="reba/">Reba and the Great Bed Heist</a></h2>
+      <p class="body-text">A retro platformer starring Reba the redbone coonhound, on a mission through the piney woods to rescue her beloved bed from a no-good raccoon. Playable right in the browser.</p>
+    </div>
+
+    <div class="full-image">
+      <a href="reba/" class="funsies-link" aria-label="Play Reba and the Great Bed Heist">
+        <img width="1200" height="630" src="img/reba-og.webp" alt="Reba and the Great Bed Heist — pixel-art title screen with Reba the hound and her stolen bed" loading="lazy">
+      </a>
+    </div>
+
+    <!-- Next project -->
+    <section class="next-project next-project-wrap" style="margin-top: 8rem;" aria-label="Navigate to next project">
+      <div class="next-project-bg" aria-hidden="true" style="background-color: #FFF8D5;"></div>
+      <span class="next-label" style="color: rgba(85, 59, 6, 0.85);">Next Project</span>
+      <a href="logos.html" class="next-project-title" style="color: rgba(85, 59, 6, 0.8);">
+        Logos
+      </a>
+    </section>
+
+  </main>
+
+  <footer>
+    <p class="footer-copy">&copy; <span id="footer-year"></span> Clayton Cunningham Design.</p>
+  </footer>
+
+  <script src="js/site.js"></script>
+  <script src="js/index.js"></script>
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "965f2ad8267d4463890153ababb0dd33"}'></script>
+  <!-- End Cloudflare Web Analytics -->
+</body>
+</html>
