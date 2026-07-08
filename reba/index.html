@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'unsafe-inline'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>REBA — and the Great Bed Heist</title>
+<meta name="description" content="A retro platformer starring Reba the redbone coonhound, on a mission through the piney woods to rescue her beloved bed from a no-good raccoon.">
+<link rel="icon" type="image/svg+xml" href="/img/clayton-cunningham-design-logo.svg">
+<link rel="icon" type="image/png" href="/img/logo.png">
+<link rel="apple-touch-icon" href="/img/logo.png">
+<meta name="theme-color" content="#14231a">
+<link rel="canonical" href="https://www.claytoncunninghamdesign.com/reba/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Clayton Cunningham Design">
+<meta property="og:url" content="https://www.claytoncunninghamdesign.com/reba/">
+<meta property="og:title" content="REBA — and the Great Bed Heist">
+<meta property="og:description" content="A retro platformer starring Reba the redbone coonhound, on a mission to rescue her beloved bed from a no-good raccoon.">
+<meta property="og:image" content="https://www.claytoncunninghamdesign.com/img/reba-og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="REBA — and the Great Bed Heist">
+<meta name="twitter:description" content="A retro platformer starring Reba the redbone coonhound, on a mission to rescue her beloved bed from a no-good raccoon.">
+<meta name="twitter:image" content="https://www.claytoncunninghamdesign.com/img/reba-og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --clay:#a34a1d; --pine:#1d3a24; --cream:#f7ecd9; --pink:#f2a3b8;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    background:
+      radial-gradient(1200px 600px at 50% -10%, rgba(242,163,184,.10), transparent 60%),
+      radial-gradient(900px 700px at 85% 110%, rgba(163,74,29,.22), transparent 55%),
+      #14231a;
+    background-color:#14231a;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    min-height:100%; font-family:"Press Start 2P", monospace; color:var(--cream);
+    padding:16px; gap:14px; overflow:hidden;
+    touch-action:none; -webkit-user-select:none; user-select:none;
+  }
+  .frame{
+    position:relative;
+    width:min(1024px, 100%, calc((100vh - 120px) * 16 / 9));
+    filter:drop-shadow(0 24px 48px rgba(0,0,0,.55)) drop-shadow(0 4px 12px rgba(163,74,29,.35));
+  }
+  canvas{
+    display:block; width:100%; aspect-ratio:16/9;
+    image-rendering:pixelated; image-rendering:crisp-edges;
+    border-radius:8px;
+    border:4px solid #0c1810;
+    outline:2px solid rgba(247,236,217,.14);
+  }
+  .marquee{
+    font-size:10px; letter-spacing:2px; color:rgba(247,236,217,.55);
+    text-transform:uppercase; text-align:center; line-height:1.9;
+  }
+  .marquee b{color:var(--pink); font-weight:normal;}
+  .keys{
+    display:flex; gap:18px; flex-wrap:wrap; justify-content:center;
+    font-size:8px; color:rgba(247,236,217,.45); letter-spacing:1px; line-height:2;
+  }
+  .keys span{white-space:nowrap;}
+  .keys kbd{
+    display:inline-block; padding:3px 6px; margin-right:5px;
+    border:1px solid rgba(247,236,217,.3); border-bottom-width:3px; border-radius:4px;
+    font-family:inherit; font-size:8px; color:var(--cream); background:rgba(255,255,255,.05);
+  }
+  /* touch controls */
+  .touch{position:absolute; inset:0; display:none; pointer-events:none;}
+  .touch button{
+    position:absolute; bottom:6%; pointer-events:auto;
+    width:15%; aspect-ratio:1; border-radius:50%;
+    border:2px solid rgba(247,236,217,.35); background:rgba(20,35,26,.35);
+    color:rgba(247,236,217,.8); font-family:inherit; font-size:16px;
+  }
+  .touch button:active{background:rgba(242,163,184,.35);}
+  #tL{left:4%;} #tR{left:22%;} #tJ{right:5%; width:19%;}
+  @media (hover:none) and (pointer:coarse){ .touch{display:block;} .keys{display:none;} }
+</style>
+</head>
+<body>
+  <div class="marquee">Reba<b> ★ </b>and the Great Bed Heist</div>
+  <div class="frame">
+    <canvas id="cv" width="512" height="288"></canvas>
+    <div class="touch">
+      <button id="tL" aria-label="left">&#9664;</button>
+      <button id="tR" aria-label="right">&#9654;</button>
+      <button id="tJ" aria-label="jump">JUMP</button>
+    </div>
+  </div>
+  <div class="keys">
+    <span><kbd>&#9664;</kbd><kbd>&#9654;</kbd>mosey</span>
+    <span><kbd>space</kbd>jump</span>
+    <span><kbd>R</kbd>retry</span>
+    <span><kbd>M</kbd>sound</span>
+  </div>
+
+<script>
+'use strict';
+/* ============================================================
+   REBA and the GREAT BED HEIST
+   A southern-fried platformer. One hound. One stolen bed.
+   ============================================================ */
+const cv = document.getElementById('cv');
+const g = cv.getContext('2d');
+g.imageSmoothingEnabled = false;
+
+const VW = 512, VH = 288, TILE = 16, ROWS = 18;
+
+/* ---------- palette ---------- */
+const C = {
+  coat:'#b25419', coatL:'#cf7228', coatD:'#8a3c10', ear:'#63290b', out:'#38190a',
+  nose:'#181011', pink:'#f2a3b8', pinkD:'#d97c96', tongue:'#e87a90',
+  coon:'#8b8b98', coonD:'#4b4b57', coonL:'#c9c9d4', mask:'#23232b', white:'#f3f0e8',
+  bedA:'#2e4a8f', bedB:'#7f9fe0', bedC:'#c3d3f2',
+  bone:'#f3ecd8', boneD:'#cbbf9e',
+  dillo:'#b09a92', dilloD:'#7d675f', dilloB:'#8f7168',
+  frog:'#5f9e3a', frogD:'#3c6b22', frogL:'#9ec957',
+};
+
+/* ---------- input ---------- */
+const key = {};
+let anyPress = false;
+addEventListener('keydown', e => {
+  if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Space'].includes(e.code)) e.preventDefault();
+  if(!e.repeat){ key[e.code] = true; anyPress = true; }
+  if(e.code==='KeyM' && !e.repeat) toggleMute();
+});
+addEventListener('keyup', e => key[e.code] = false);
+const left  = () => key.ArrowLeft || key.KeyA || touchL;
+const right = () => key.ArrowRight || key.KeyD || touchR;
+const jumpKey = () => key.Space || key.ArrowUp || key.KeyW || touchJ;
+
+let touchL=false, touchR=false, touchJ=false;
+function bindTouch(id, set){
+  const el = document.getElementById(id);
+  const on  = e => { e.preventDefault(); set(true); anyPress = true; };
+  const off = e => { e.preventDefault(); set(false); };
+  el.addEventListener('pointerdown', on);
+  el.addEventListener('pointerup', off);
+  el.addEventListener('pointercancel', off);
+  el.addEventListener('pointerleave', off);
+}
+bindTouch('tL', v=>touchL=v); bindTouch('tR', v=>touchR=v); bindTouch('tJ', v=>touchJ=v);
+cv.addEventListener('pointerdown', ()=>{ anyPress = true; });
+
+/* ---------- audio: tiny porch synth ---------- */
+let AC=null, muted=false;
+function ac(){ if(!AC) AC = new (window.AudioContext||window.webkitAudioContext)(); if(AC.state==='suspended') AC.resume(); return AC; }
+function toggleMute(){ muted = !muted; }
+function blip(freq0, freq1, dur, type='square', vol=0.16){
+  if(muted) return;
+  try{
+    const a = ac(), o = a.createOscillator(), v = a.createGain(), t = a.currentTime;
+    o.type = type; o.frequency.setValueAtTime(freq0, t);
+    o.frequency.exponentialRampToValueAtTime(Math.max(30,freq1), t+dur);
+    v.gain.setValueAtTime(vol, t); v.gain.exponentialRampToValueAtTime(0.001, t+dur);
+    o.connect(v).connect(a.destination); o.start(t); o.stop(t+dur+.02);
+  }catch(e){}
+}
+const sfx = {
+  jump : ()=> blip(300, 620, .16, 'square', .12),
+  bone : ()=> { blip(760, 760, .07, 'square', .10); setTimeout(()=>blip(1140,1140,.12,'square',.10), 70); },
+  stomp: ()=> blip(340, 120, .14, 'triangle', .2),
+  die  : ()=> { blip(400, 60, .5, 'sawtooth', .14); },
+  clear: ()=> { [523,659,784,1047].forEach((f,i)=>setTimeout(()=>blip(f,f,.14,'square',.11), i*110)); },
+  coon : ()=> { blip(900, 500, .1, 'sawtooth', .06); setTimeout(()=>blip(900,500,.1,'sawtooth',.06), 120); },
+  howl : ()=> { blip(500, 900, .5, 'sine', .16); setTimeout(()=>blip(880, 340, 1.1, 'sine', .16), 480); },
+};
+
+/* ============================================================
+   SPRITES — chunky fillRect pixel art, drawn at 1:1 game px
+   ============================================================ */
+function px(x,y,w,h,col){ g.fillRect(x|0, y|0, w, h); }
+function R(col,x,y,w,h){ g.fillStyle = col; g.fillRect(x|0,y|0,w,h); }
+
+/* Reba: origin = top-left of a 32x22 box, facing right */
+function drawReba(x, y, face, pose, t){
+  g.save();
+  g.translate(x|0, y|0);
+  if(face<0){ g.translate(32,0); g.scale(-1,1); }
+  const run = pose==='run', jump = pose==='jump', sleep = pose==='sleep';
+  const bob = run ? Math.round(Math.sin(t*.35)*1) : (pose==='idle' ? Math.round(Math.sin(t*.08))*1 : 0);
+
+  if(sleep){ drawRebaSleep(t); g.restore(); return; }
+
+  /* legs: two pairs. run cycle swings them */
+  const ph = t*.35;
+  const s1 = Math.round(Math.sin(ph)*3), s2 = Math.round(Math.sin(ph+Math.PI)*3);
+  const l1 = Math.max(0, Math.round(Math.sin(ph)*2));
+  const l2 = Math.max(0, Math.round(Math.sin(ph+Math.PI)*2));
+  function leg(bx, sw, lift){
+    R(C.coatD, bx+sw, 15+bob, 3, 7-lift);
+    R(C.out,   bx+sw, 21-lift+bob, 3, 1);
+  }
+  if(jump){
+    leg(6, -2, -1); leg(11, -3, 0); leg(17, 3, 0); leg(21, 4, -1);
+  }else if(run){
+    leg(6, s1, l1); leg(11, s2, l2); leg(17, s2, l2); leg(21, s1, l1);
+  }else{
+    leg(6, 0, 0); leg(11, 0, 0); leg(17, 0, 0); leg(21, 0, 0);
+  }
+
+  /* tail — happy flag, wags */
+  const wag = Math.round(Math.sin(t*.3)*1);
+  R(C.coat, 3, 7+bob, 3, 3);
+  R(C.coat, 1, 4+bob+wag, 3, 4);
+  R(C.coatD, 1, 3+bob+wag, 2, 2);
+
+  /* body */
+  R(C.out, 4, 7+bob, 20, 1);
+  R(C.coat, 4, 8+bob, 21, 8);
+  R(C.coatD, 4, 14+bob, 21, 2);
+  R(C.coatL, 6, 9+bob, 16, 2);
+  R(C.out, 4, 16+bob, 20, 1);
+
+  /* neck + head (raised, proud hound) */
+  R(C.coat, 19, 3+bob, 7, 7);
+  R(C.out, 19, 2+bob, 7, 1);
+  /* snout */
+  R(C.coat, 25, 4+bob, 5, 3);
+  R(C.coatD, 25, 6+bob, 5, 2);
+  R(C.nose, 29, 4+bob, 2, 2);
+  R(C.out, 25, 8+bob, 5, 1);
+  /* jowl droop — hound cheeks */
+  R(C.coatD, 24, 8+bob, 2, 2);
+  /* eye */
+  R(C.nose, 24, 4+bob, 1, 2);
+  /* long floppy ear, swings when running */
+  const esw = run ? Math.round(Math.sin(t*.35+1)*1) : 0;
+  R(C.out, 18, 2+bob, 4, 1);
+  R(C.ear, 18+esw, 3+bob, 4, 8);
+  R(C.ear, 19+esw, 11+bob, 3, 2);
+  R('#4a1e07', 18+esw, 3+bob, 1, 8);
+  /* pink collar */
+  R(C.pink, 19, 9+bob, 6, 2);
+  R(C.pinkD, 19, 10+bob, 6, 1);
+  R('#e8c84a', 21, 11+bob, 2, 2); /* tag */
+
+  g.restore();
+}
+/* curled up on the bed, snoozing */
+function drawRebaSleep(t){
+  const br = Math.round(Math.sin(t*.05)); /* slow breath */
+  R(C.coat, 4, 10-br, 24, 9+br);
+  R(C.coatD, 4, 16, 24, 3);
+  R(C.coatL, 7, 11-br, 18, 2);
+  /* tail wrapped around front */
+  R(C.coatD, 3, 15, 8, 3);
+  /* head resting, ear draped */
+  R(C.coat, 20, 6-br, 9, 8);
+  R(C.coatD, 26, 10-br, 4, 3);
+  R(C.nose, 29, 10-br, 2, 2);
+  R(C.ear, 20, 7-br, 4, 7);
+  /* closed eye: one restful line */
+  R(C.out, 25, 8-br, 3, 1);
+  R(C.pink, 19, 12-br, 3, 6);
+}
+
+/* Raccoon (16 wide + tail), origin top-left 26x18, facing right. bed=carrying */
+function drawRaccoon(x, y, face, t, bed){
+  g.save(); g.translate(x|0, y|0);
+  if(face<0){ g.translate(26,0); g.scale(-1,1); }
+  const bob = Math.round(Math.sin(t*.5)*1);
+  /* ringed tail */
+  for(let i=0;i<4;i++) R(i%2? C.coonD : C.coon, i*3-4, 8+bob+ (i%2), 3, 4);
+  /* body */
+  R(C.coon, 6, 7+bob, 12, 8);
+  R(C.coonD, 6, 13+bob, 12, 2);
+  /* legs scurry */
+  const s = Math.round(Math.sin(t*.6)*2);
+  R(C.coonD, 8+s, 15+bob, 3, 3); R(C.coonD, 14-s, 15+bob, 3, 3);
+  /* head */
+  R(C.coon, 13, 1+bob, 9, 7);
+  R(C.coon, 12, 0+bob, 3, 3); R(C.coon, 19, 0+bob, 3, 3); /* ears */
+  /* bandit mask */
+  R(C.mask, 13, 3+bob, 9, 3);
+  R(C.white, 15, 4+bob, 2, 1); R(C.white, 19, 4+bob, 2, 1); /* shifty eyes */
+  /* snout */
+  R(C.coonL, 20, 5+bob, 3, 3); R(C.nose, 22, 5+bob, 2, 2);
+  /* stolen bed hoisted overhead */
+  if(bed){
+    R('#6b4a2f', 14, -9+bob, 2, 5); R('#6b4a2f', 20, -9+bob, 2, 5); /* lil arms up */
+    drawBed(4, -17+bob, 26, 10);
+  }
+  g.restore();
+}
+
+/* the beloved bed */
+function drawBed(x, y, w, h){
+  R('#233a70', x, y+h-3, w, 3);
+  R(C.bedA, x, y+2, w, h-4);
+  R(C.bedB, x+3, y+4, w-6, h-7);
+  R(C.bedC, x+3, y+4, w-6, 2);
+  R(C.bedA, x, y+2, w, 1);
+  /* pillow */
+  R(C.white, x+2, y, 9, 4);
+  R('#d8d4c6', x+2, y+3, 9, 1);
+}
+
+/* armadillo — the goomba of the south. 18x11 */
+function drawDillo(x, y, face, t){
+  g.save(); g.translate(x|0,y|0);
+  if(face>0){ g.translate(18,0); g.scale(-1,1); }
+  const s = Math.round(Math.sin(t*.4)*1);
+  /* shell dome */
+  R(C.dilloD, 2, 0, 12, 2);
+  R(C.dillo, 1, 2, 14, 6);
+  /* bands */
+  R(C.dilloD, 5, 2, 1, 6); R(C.dilloD, 8, 2, 1, 6); R(C.dilloD, 11, 2, 1, 6);
+  /* head + snoot */
+  R(C.dilloB, 13, 4, 4, 4);
+  R(C.nose, 17, 5, 1, 2);
+  R(C.nose, 14, 5, 1, 1);
+  R(C.dilloB, 13, 2, 2, 2); /* lil ear */
+  /* feet + tail */
+  R(C.dilloB, 3+s, 8, 2, 3); R(C.dilloB, 10-s, 8, 2, 3);
+  R(C.dilloB, -3, 5, 4, 2);
+  g.restore();
+}
+
+/* bullfrog 15x12 */
+function drawFrog(x, y, face, t, airborne){
+  g.save(); g.translate(x|0,y|0);
+  if(face>0){ g.translate(15,0); g.scale(-1,1); }
+  const squat = airborne ? -2 : Math.round(Math.sin(t*.1)*1);
+  R(C.frog, 1, 4+squat, 13, 7-squat);
+  R(C.frogL, 3, 8, 9, 3);
+  /* eyes on top */
+  R(C.frog, 2, 1+squat, 4, 4); R(C.frog, 8, 1+squat, 4, 4);
+  R(C.white, 3, 2+squat, 2, 2); R(C.white, 9, 2+squat, 2, 2);
+  R(C.nose, 3, 3+squat, 1, 1); R(C.nose, 9, 3+squat, 1, 1);
+  /* legs */
+  if(airborne){ R(C.frogD, 0, 9, 4, 3); R(C.frogD, 12, 9, 3, 3); }
+  else { R(C.frogD, 0, 9, 5, 2); R(C.frogD, 11, 9, 4, 2); }
+  g.restore();
+}
+
+/* bone 12x7 */
+function drawBone(x, y, t){
+  const fl = Math.round(Math.sin(t*.12 + x*.05)*2);
+  g.save(); g.translate(x|0, (y+fl)|0);
+  R(C.bone, 2, 2, 8, 3);
+  R(C.bone, 0, 0, 3, 3); R(C.bone, 0, 4, 3, 3);
+  R(C.bone, 9, 0, 3, 3); R(C.bone, 9, 4, 3, 3);
+  R(C.boneD, 2, 4, 8, 1);
+  g.restore();
+}
+
+/* doghouse goal 36x34 */
+function drawDoghouse(x, y){
+  g.save(); g.translate(x|0,y|0);
+  R('#7a2d1a', 0, 12, 36, 22);
+  R('#93381f', 2, 14, 32, 18);
+  /* roof */
+  R('#3f2313', -2, 8, 40, 5);
+  R('#57301a', 2, 4, 32, 5);
+  R('#3f2313', 8, 0, 20, 5);
+  /* door arch */
+  R('#241009', 12, 18, 12, 16);
+  R('#241009', 10, 22, 16, 12);
+  /* bone sign */
+  R(C.bone, 14, 14, 8, 2);
+  g.restore();
+}
+
+/* ============================================================
+   LEVELS — built with a tiny porch-DSL
+   char map: # dirt, = plank(one-way), | stump, ^ briar
+   ============================================================ */
+function makeLevel(w){
+  const grid = Array.from({length:ROWS}, ()=> new Array(w).fill('.'));
+  const L = {
+    w, grid, bones:[], enemies:[], cameos:[], water:[], spawn:{x:32,y:180}, goal:null, bed:null,
+    ground(x0,x1,top=14){ for(let x=x0;x<=x1;x++) for(let y=top;y<ROWS;y++) grid[y][x]='#'; },
+    plat(x,y,len){ for(let i=0;i<len;i++) grid[y][x+i]='='; },
+    block(x,y,len=1,h=1){ for(let i=0;i<len;i++) for(let j=0;j<h;j++) grid[y+j][x+i]='#'; },
+    stump(x,top){ for(let y=top;y<14;y++) grid[y][x]='|'; this.ground(x,x); },
+    briar(x,len=1){ for(let i=0;i<len;i++) grid[13][x+i]='^'; },
+    bone(x,y){ this.bones.push({x:x*TILE+2, y:y*TILE+4, got:false}); },
+    boneRow(x0,x1,y){ for(let x=x0;x<=x1;x+=2) this.bone(x,y); },
+    boneArc(x,y){ this.bone(x,y); this.bone(x+2,y-2); this.bone(x+4,y-3); this.bone(x+6,y-2); this.bone(x+8,y); },
+    dillo(x,y=13){ this.enemies.push({kind:'dillo', x:x*TILE, y:y*TILE+5, vx:-.4, w:16, h:11, dead:0, vy:0}); },
+    frog(x,y=13){ this.enemies.push({kind:'frog', x:x*TILE, y:y*TILE+4, vx:0, vy:0, w:14, h:12, dead:0, hopT:60+Math.random()*60}); },
+    cameo(x, px, py){ this.cameos.push({trig:x*TILE, x:px*TILE, y:py*TILE-18, state:0, t:0, said:0}); },
+    pond(x0,x1){ this.water.push({x0:x0*TILE, x1:(x1+1)*TILE}); },
+    house(x,y){ this.goal = {x:x*TILE, y:y*TILE-34}; },
+    bedGoal(x,y){ this.bed = {x:x*TILE, y:y*TILE-10, free:false}; },
+  };
+  return L;
+}
+
+function level1(){
+  const L = makeLevel(230);
+  L.name = 'PINEY WOODS'; L.theme = 'pine'; L.sub = 'that varmint went thataway';
+  L.spawn = {x:40, y:160};
+  L.ground(0, 34);
+  L.boneRow(12, 18, 12);
+  L.dillo(26);
+  /* first pit */
+  L.ground(38, 58);
+  L.plat(41, 10, 4); L.boneRow(41, 44, 8);
+  L.cameo(20, 52, 14); /* raccoon taunt on the ridge ahead */
+  L.dillo(50);
+  L.ground(62, 78, 12); /* ridge */
+  L.boneRow(64, 70, 10);
+  L.dillo(68, 11);
+  L.ground(79, 96);
+  L.stump(84, 11); L.stump(85, 11);
+  L.bone(84, 9); L.bone(85, 9);
+  L.dillo(92);
+  /* stair-step stumps over a wide pit */
+  L.ground(100, 104, 13);
+  L.plat(107, 11, 3); L.plat(112, 9, 3); L.plat(117, 11, 3);
+  L.bone(108, 9); L.bone(113, 7); L.bone(118, 9);
+  L.ground(121, 140);
+  L.cameo(105, 132, 14);
+  L.dillo(128); L.dillo(133);
+  L.boneArc(124, 12);
+  /* briar gauntlet */
+  L.ground(143, 168);
+  L.briar(148, 2); L.briar(155, 3); L.briar(162, 2);
+  L.plat(147, 10, 4); L.plat(154, 9, 5); L.plat(161, 10, 4);
+  L.boneRow(147, 164, 7);
+  /* home stretch */
+  L.ground(171, 229);
+  L.plat(176, 11, 3); L.bone(177, 9);
+  L.dillo(184); L.dillo(196);
+  L.boneRow(188, 200, 12);
+  L.stump(205, 12);
+  L.house(212, 14);
+  return L;
+}
+
+function level2(){
+  const L = makeLevel(240);
+  L.name = 'CYPRESS SWAMP'; L.theme = 'swamp'; L.sub = 'don’t trust the water';
+  L.spawn = {x:40, y:160};
+  L.ground(0, 24);
+  L.frog(18);
+  L.boneRow(10, 16, 12);
+  /* swamp crossing 1: planks over water */
+  L.pond(25, 42);
+  L.plat(27, 13, 3); L.plat(32, 12, 3); L.plat(37, 13, 3);
+  L.bone(28, 11); L.bone(33, 10); L.bone(38, 11);
+  L.ground(43, 58);
+  L.cameo(30, 52, 14);
+  L.dillo(50); L.frog(55);
+  /* cypress stump hop */
+  L.pond(59, 78);
+  L.stump(62, 11); L.stump(67, 9); L.stump(72, 11); L.stump(76, 12);
+  L.bone(62, 9); L.bone(67, 7); L.bone(72, 9);
+  L.ground(79, 100);
+  L.boneArc(84, 12);
+  L.frog(92); L.dillo(96);
+  /* long rickety boardwalk */
+  L.pond(101, 126);
+  L.plat(103, 12, 4); L.plat(109, 10, 3); L.plat(114, 12, 3); L.plat(119, 9, 3); L.plat(124, 12, 3);
+  L.boneRow(103, 125, 8);
+  L.frog(110, 9);
+  L.ground(127, 146);
+  L.cameo(115, 138, 14);
+  L.dillo(136); L.frog(141);
+  /* briar + water combo */
+  L.ground(149, 170);
+  L.briar(153, 2); L.briar(160, 2); L.briar(166, 2);
+  L.plat(152, 10, 4); L.plat(159, 9, 4); L.plat(165, 10, 4);
+  L.boneRow(152, 168, 7);
+  L.pond(171, 186);
+  L.plat(173, 13, 3); L.plat(178, 11, 3); L.plat(183, 13, 3);
+  L.bone(179, 9);
+  /* home stretch */
+  L.ground(187, 239);
+  L.frog(196); L.dillo(204); L.frog(210);
+  L.boneRow(192, 206, 12);
+  L.house(222, 14);
+  return L;
+}
+
+function level3(){
+  const L = makeLevel(250);
+  L.name = 'RACCOON HOLLOW'; L.theme = 'dusk'; L.sub = 'git yer bed back, girl';
+  L.spawn = {x:40, y:160};
+  L.ground(0, 28);
+  L.dillo(20);
+  L.boneRow(12, 20, 12);
+  /* big stump staircase */
+  L.ground(32, 52, 14);
+  L.stump(36, 12); L.stump(40, 10); L.stump(44, 8);
+  L.plat(48, 7, 4);
+  L.boneRow(48, 51, 5);
+  L.cameo(26, 46, 14);
+  L.ground(56, 74);
+  L.briar(60, 2); L.briar(66, 3);
+  L.plat(59, 10, 4); L.plat(65, 9, 5);
+  L.dillo(71);
+  /* pit + plank weave */
+  L.plat(77, 12, 3); L.plat(82, 10, 3); L.plat(87, 12, 3); L.plat(92, 9, 3);
+  L.bone(78, 10); L.bone(83, 8); L.bone(88, 10); L.bone(93, 7);
+  L.ground(96, 118);
+  L.frog(104); L.dillo(110); L.frog(114);
+  L.boneArc(100, 12);
+  L.cameo(98, 112, 14);
+  /* briar field under moss */
+  L.ground(121, 148);
+  L.briar(125, 3); L.briar(132, 2); L.briar(138, 3); L.briar(144, 2);
+  L.plat(124, 10, 4); L.plat(130, 9, 4); L.plat(136, 10, 4); L.plat(142, 9, 4);
+  L.boneRow(124, 145, 7);
+  /* last crossing */
+  L.pond(149, 166);
+  L.stump(152, 11); L.stump(157, 9); L.stump(162, 11);
+  L.bone(152, 9); L.bone(157, 7); L.bone(162, 9);
+  L.ground(167, 190);
+  L.dillo(174); L.frog(180); L.dillo(185);
+  /* the hollow: raccoon's lair */
+  L.ground(193, 249);
+  L.stump(200, 12); L.stump(201, 12);
+  L.boneRow(196, 208, 12);
+  L.bedGoal(220, 14);
+  return L;
+}
+
+const LEVELS = [level1, level2, level3];
+
+/* ============================================================
+   GAME STATE
+   ============================================================ */
+let state = 'title';   /* title | story | card | play | clear | win */
+let stateT = 0;
+let lvIndex = 0, lv = null;
+let cam = 0, tick = 0, bones = 0, totalBones = 0, wipeouts = 0;
+let toast = null; /* {text, t} */
+
+const P = {
+  x:0, y:0, vx:0, vy:0, w:18, h:15, face:1, onGround:false,
+  coyote:0, jbuf:0, jumping:false, dead:0, deadVy:0,
+};
+let particles = [];
+
+function loadLevel(i){
+  lvIndex = i;
+  lv = LEVELS[i]();
+  P.x = lv.spawn.x; P.y = lv.spawn.y; P.vx = 0; P.vy = 0; P.dead = 0; P.face = 1;
+  bones = 0; cam = 0; particles = []; toast = null;
+  /* final level: the raccoon waits at the bed */
+  if(lv.bed) lv.bedCoon = {x:lv.bed.x+30, y:lv.bed.y-8, state:0, t:0};
+}
+
+function setState(s){ state = s; stateT = 0; }
+
+/* URL params for quick testing: ?level=2 */
+{
+  const q = new URLSearchParams(location.search);
+  if(q.has('level')){
+    loadLevel(Math.min(LEVELS.length-1, Math.max(0, (+q.get('level')||1)-1)));
+    if(q.has('x')) P.x = +q.get('x') || P.x;
+    setState('play');
+  }
+}
+
+/* ---------- tile helpers ---------- */
+function tileAt(tx, ty){
+  if(tx<0 || tx>=lv.w) return '#';
+  if(ty<0) return '.';
+  if(ty>=ROWS) return '.';
+  return lv.grid[ty][tx];
+}
+const solid = ch => ch==='#' || ch==='|';
+
+function collideX(e){
+  const dir = Math.sign(e.vx); if(!dir) return;
+  const nx = e.x + e.vx;
+  const x = dir>0 ? nx + e.w : nx;
+  const tx = Math.floor(x/TILE);
+  for(let ty=Math.floor(e.y/TILE); ty<=Math.floor((e.y+e.h-1)/TILE); ty++){
+    if(solid(tileAt(tx,ty))){
+      e.x = dir>0 ? tx*TILE - e.w - 0.01 : (tx+1)*TILE + 0.01;
+      e.vx = 0; return true;
+    }
+  }
+  e.x = nx; return false;
+}
+function collideY(e){
+  const dir = Math.sign(e.vy);
+  const ny = e.y + e.vy;
+  e.onGround = false;
+  if(dir>=0){
+    const y = ny + e.h;
+    const ty = Math.floor(y/TILE);
+    for(let tx=Math.floor((e.x+1)/TILE); tx<=Math.floor((e.x+e.w-1)/TILE); tx++){
+      const ch = tileAt(tx,ty);
+      const oneWay = ch==='=' && (e.y+e.h) <= ty*TILE+4 && e.vy>=0;
+      if(solid(ch) || oneWay){
+        e.y = ty*TILE - e.h; e.vy = 0; e.onGround = true; return true;
+      }
+    }
+  } else {
+    const ty = Math.floor(ny/TILE);
+    for(let tx=Math.floor((e.x+1)/TILE); tx<=Math.floor((e.x+e.w-1)/TILE); tx++){
+      if(solid(tileAt(tx,ty))){ e.y = (ty+1)*TILE + 0.01; e.vy = 0; return true; }
+    }
+  }
+  e.y = ny; return false;
+}
+
+/* ---------- player ---------- */
+function killPlayer(){
+  if(P.dead) return;
+  P.dead = 1; P.deadVy = -5;
+  wipeouts++;
+  sfx.die();
+}
+function updatePlayer(){
+  if(P.dead){
+    P.dead++;
+    P.deadVy += .3;
+    P.y += P.deadVy;
+    if(P.dead > 90){ loadLevel(lvIndex); setState('card'); }
+    return;
+  }
+  const ACC = .22, MAX = 2.3, FRIC = .78;
+  if(left())  { P.vx -= ACC; P.face = -1; }
+  if(right()) { P.vx += ACC; P.face = 1; }
+  if(!left() && !right()) P.vx *= P.onGround ? FRIC : .96;
+  P.vx = Math.max(-MAX, Math.min(MAX, P.vx));
+  if(Math.abs(P.vx) < .05) P.vx = 0;
+
+  /* jump: buffer + coyote */
+  P.jbuf = jumpKey() && !P.jumping ? (P.jbuf||8) : (jumpKey()? P.jbuf : 0);
+  if(jumpKey() && !P.jumpHeld){ P.jbuf = 8; }
+  P.jumpHeld = jumpKey();
+  if(P.jbuf > 0) P.jbuf--;
+  P.coyote = P.onGround ? 7 : Math.max(0, P.coyote-1);
+  if(P.jbuf > 0 && P.coyote > 0){
+    P.vy = -6.4; P.coyote = 0; P.jbuf = 0; P.jumping = true;
+    sfx.jump();
+    for(let i=0;i<5;i++) particles.push({x:P.x+9, y:P.y+P.h, vx:(Math.random()-.5)*1.4, vy:-Math.random()*.6, t:14, col:'#c9a184'});
+  }
+  if(!jumpKey() && P.vy < -2) P.vy = -2; /* variable jump */
+  P.vy = Math.min(7, P.vy + .32);
+  if(P.onGround) P.jumping = false;
+
+  const wasAir = !P.onGround;
+  collideX(P); collideY(P);
+  if(wasAir && P.onGround){
+    for(let i=0;i<4;i++) particles.push({x:P.x+9, y:P.y+P.h, vx:(Math.random()-.5)*1.6, vy:-Math.random()*.5, t:12, col:'#c9a184'});
+  }
+  P.x = Math.max(0, Math.min(lv.w*TILE - P.w, P.x));
+
+  /* hazards */
+  if(P.y > VH + 30) return killPlayer();
+  /* briars */
+  const cx0 = Math.floor((P.x+2)/TILE), cx1 = Math.floor((P.x+P.w-2)/TILE);
+  const cy = Math.floor((P.y+P.h-2)/TILE);
+  for(let tx=cx0;tx<=cx1;tx++){
+    for(let ty=Math.floor(P.y/TILE); ty<=cy+0; ty++){
+      if(tileAt(tx,ty)==='^') return killPlayer();
+    }
+    if(tileAt(tx, Math.floor((P.y+P.h+1)/TILE))==='^') return killPlayer();
+  }
+  /* water */
+  for(const w of lv.water){
+    if(P.x+P.w > w.x0 && P.x < w.x1 && P.y+P.h > 15*TILE+6){
+      for(let i=0;i<10;i++) particles.push({x:P.x+9, y:15*TILE+6, vx:(Math.random()-.5)*2, vy:-Math.random()*2.4, t:24, col:'#7fb8a5'});
+      return killPlayer();
+    }
+  }
+
+  /* bones */
+  for(const b of lv.bones){
+    if(!b.got && Math.abs(P.x+9-(b.x+6))<12 && Math.abs(P.y+8-(b.y+3))<12){
+      b.got = true; bones++; totalBones++;
+      sfx.bone();
+      for(let i=0;i<6;i++) particles.push({x:b.x+6, y:b.y+3, vx:(Math.random()-.5)*2, vy:-Math.random()*1.5-.4, t:18, col:C.bone});
+    }
+  }
+
+  /* goal */
+  if(lv.goal && P.x + P.w > lv.goal.x + 6 && P.x < lv.goal.x + 30 && P.y + P.h > lv.goal.y + 10){
+    sfx.clear(); setState('clear');
+  }
+  /* final bed */
+  if(lv.bed){
+    const bc = lv.bedCoon;
+    if(bc.state===0 && Math.abs(P.x - lv.bed.x) < 90){ bc.state=1; bc.t=0; sfx.coon(); toast={text:'YIKES!! FINE, TAKE IT!', t:120, x:bc.x, y:bc.y-26}; }
+    if(lv.bed.free && P.x + P.w > lv.bed.x && P.x < lv.bed.x + 30 && P.y + P.h > lv.bed.y - 4){
+      sfx.howl(); setState('win');
+    }
+  }
+}
+
+/* ---------- enemies & cameos ---------- */
+function updateEnemies(){
+  for(const e of lv.enemies){
+    if(e.dead){ e.dead++; continue; }
+    const offscr = e.x < cam - 80 || e.x > cam + VW + 80;
+    if(offscr) continue;
+    if(e.kind==='dillo'){
+      e.vy = Math.min(6, (e.vy||0) + .32);
+      const oldvx = e.vx;
+      collideX(e); collideY(e);
+      if(e.vx===0) e.vx = -oldvx; /* bounce off walls */
+      /* turn at ledges */
+      if(e.onGround){
+        const aheadX = e.vx<0 ? e.x-2 : e.x+e.w+2;
+        if(!solid(tileAt(Math.floor(aheadX/TILE), Math.floor((e.y+e.h+4)/TILE)))) e.vx = -e.vx;
+      }
+    } else if(e.kind==='frog'){
+      e.vy = Math.min(6, e.vy + .3);
+      if(e.onGround){
+        e.vx = 0;
+        e.hopT--;
+        if(e.hopT<=0){
+          const dir = P.x > e.x ? 1 : -1;
+          e.vx = dir*1.3; e.vy = -4.6; e.hopT = 70 + Math.random()*50;
+        }
+      }
+      collideX(e); collideY(e);
+    }
+    /* player contact */
+    if(!P.dead && P.x < e.x+e.w-2 && P.x+P.w > e.x+2 && P.y < e.y+e.h && P.y+P.h > e.y+2){
+      if(P.vy > .5 && P.y+P.h < e.y + e.h*.7){
+        e.dead = 1; P.vy = -4.4; sfx.stomp();
+        for(let i=0;i<8;i++) particles.push({x:e.x+e.w/2, y:e.y+e.h/2, vx:(Math.random()-.5)*2.4, vy:-Math.random()*2, t:20, col:C.dilloD});
+      } else killPlayer();
+    }
+  }
+  /* raccoon drive-bys: peeks ahead, then skedaddles */
+  for(const c of lv.cameos){
+    if(c.state===0 && P.x > c.trig){ c.state = 1; c.t = 0; sfx.coon(); toast = {text:'HEH HEH! TOO SLOW, DAWG!', t:110, x:c.x, y:c.y-24}; }
+    if(c.state===1){
+      c.t++;
+      if(c.t > 50) { c.x += 3.4; } /* bolt right, faster than Reba */
+      if(c.x > cam + VW + 60) c.state = 2;
+    }
+  }
+  /* final-level raccoon at the bed */
+  if(lv.bedCoon && lv.bedCoon.state===1){
+    const bc = lv.bedCoon;
+    bc.t++;
+    if(bc.t > 40){ bc.x += 3.6; lv.bed.free = true; }
+  }
+}
+
+function updateParticles(){
+  particles = particles.filter(p => (p.t--, p.x+=p.vx, p.y+=p.vy, p.vy+=.08, p.t>0));
+}
+
+/* ============================================================
+   BACKGROUNDS — southern parallax
+   ============================================================ */
+function skyFor(theme){
+  const grd = g.createLinearGradient(0,0,0,VH);
+  if(theme==='pine'){ grd.addColorStop(0,'#63a5ff'); grd.addColorStop(.75,'#8fc4ff'); grd.addColorStop(1,'#c8e4ff'); }
+  else if(theme==='swamp'){ grd.addColorStop(0,'#7fb8a5'); grd.addColorStop(.7,'#a8d4bb'); grd.addColorStop(1,'#d2e8c8'); }
+  else { grd.addColorStop(0,'#2b1a4d'); grd.addColorStop(.55,'#7a3c63'); grd.addColorStop(.85,'#e8734a'); grd.addColorStop(1,'#f2a35c'); }
+  return grd;
+}
+
+/* seeded pseudo-random for stable decoration */
+function srand(n){ const x = Math.sin(n*127.1)*43758.5453; return x - Math.floor(x); }
+
+function drawClouds(theme, off){
+  const col = theme==='dusk' ? 'rgba(242,163,184,.5)' : 'rgba(255,255,255,.85)';
+  for(let i=0;i<8;i++){
+    const w = 520;
+    let x = ((i*167 + 40 - off*.25) % (w*2));
+    if(x < -80) x += w*2;
+    const y = 24 + srand(i)*70;
+    g.fillStyle = col;
+    g.fillRect(x, y, 34, 8); g.fillRect(x+6, y-5, 20, 5); g.fillRect(x+10, y+8, 16, 4);
+  }
+}
+
+function drawPineFar(off, theme){
+  /* rolling kudzu hills */
+  const base = theme==='dusk' ? '#3a2350' : theme==='swamp' ? '#7aa88e' : '#7fbf6a';
+  g.fillStyle = base;
+  for(let i=-1;i<9;i++){
+    const w = 180;
+    let x = (i*w - (off*.3) % w);
+    const h = 40 + srand(i+40)*26;
+    g.beginPath();
+    g.ellipse(x+90, VH-30, 130, h, 0, Math.PI, 0);
+    g.fill();
+  }
+  g.fillStyle = 'rgba(0,0,0,.06)';
+  g.fillRect(0, VH-46, VW, 46);
+}
+
+function drawTreesMid(off, theme){
+  /* loblolly pines / cypress / moss oaks silhouettes */
+  const n = 26;
+  for(let i=0;i<n;i++){
+    const span = 260;
+    let x = i*span*.5 - (off*.6) % (span*n*.5/ n) * 1;
+  }
+  /* simpler: fixed world-positions scrolled at .6 */
+  const width = 3200;
+  let sx = (off*.6) % width;
+  for(let rep=-1; rep<=1; rep++){
+    for(let i=0;i<14;i++){
+      const wx = i*230 + srand(i)*120 + rep*width - sx;
+      if(wx < -80 || wx > VW+80) continue;
+      if(theme==='pine') pineTree(wx, VH-40, 1+srand(i+9)*.5, '#2e6b3f', '#1d4a2b');
+      else if(theme==='swamp') cypress(wx, VH-36, 1+srand(i+9)*.4);
+      else mossOak(wx, VH-38, 1+srand(i+9)*.4, true);
+      if(theme==='pine' && srand(i+30)>.62) mossOak(wx+120, VH-38, .9, false);
+    }
+  }
+}
+function pineTree(x, y, s, colA, colB){
+  g.fillStyle = '#5a3a22';
+  g.fillRect(x-2*s, y-92*s, 4*s, 92*s);
+  g.fillStyle = colB;
+  for(let j=0;j<4;j++){
+    const w = (34-j*7)*s, ty = y-92*s + j*16*s;
+    g.fillRect(x-w/2, ty, w, 9*s);
+  }
+  g.fillStyle = colA;
+  g.fillRect(x-10*s, y-100*s, 20*s, 10*s);
+}
+function cypress(x, y, s){
+  /* flared trunk, moss drapes */
+  g.fillStyle = '#4f4436';
+  g.fillRect(x-3*s, y-80*s, 6*s, 80*s);
+  g.fillRect(x-7*s, y-12*s, 14*s, 12*s);
+  g.fillStyle = '#5e7d53';
+  g.fillRect(x-26*s, y-92*s, 52*s, 16*s);
+  g.fillRect(x-16*s, y-102*s, 32*s, 12*s);
+  g.fillStyle = '#93a884';
+  for(let j=0;j<4;j++){
+    const mx = x - 20*s + j*12*s;
+    g.fillRect(mx, y-80*s, 2*s, (16+srand(x+j)*18)*s);
+  }
+}
+function mossOak(x, y, s, dark){
+  g.fillStyle = dark ? '#3c2a18' : '#5a3a22';
+  g.fillRect(x-3*s, y-60*s, 6*s, 60*s);
+  g.fillRect(x-16*s, y-52*s, 14*s, 4*s);
+  g.fillRect(x+3*s, y-46*s, 15*s, 4*s);
+  g.fillStyle = dark ? '#2c4a30' : '#3f7a4a';
+  g.fillRect(x-24*s, y-78*s, 48*s, 22*s);
+  g.fillRect(x-14*s, y-88*s, 28*s, 12*s);
+  /* spanish moss */
+  g.fillStyle = dark ? '#7d8f77' : '#9db392';
+  for(let j=0;j<5;j++){
+    const mx = x - 20*s + j*10*s;
+    g.fillRect(mx, y-58*s, 2*s, (10+srand(x*2+j)*14)*s);
+  }
+}
+
+let fireflies = [];
+function drawFireflies(){
+  if(fireflies.length===0)
+    for(let i=0;i<26;i++) fireflies.push({x:Math.random()*VW, y:60+Math.random()*180, p:Math.random()*7});
+  for(const f of fireflies){
+    f.p += .05; f.x += Math.sin(f.p*.7)*.3; f.y += Math.cos(f.p*.5)*.2;
+    const a = (Math.sin(f.p)*.5+.5)*.9;
+    g.fillStyle = `rgba(240,230,120,${a.toFixed(2)})`;
+    g.fillRect(f.x, f.y, 2, 2);
+  }
+}
+
+/* ---------- tiles ---------- */
+function drawTiles(){
+  const x0 = Math.floor(cam/TILE), x1 = Math.min(lv.w-1, x0 + VW/TILE + 1);
+  for(let tx=x0; tx<=x1; tx++){
+    for(let ty=0; ty<ROWS; ty++){
+      const ch = lv.grid[ty][tx];
+      if(ch==='.') continue;
+      const x = tx*TILE - cam, y = ty*TILE;
+      if(ch==='#'){
+        const grassTop = tileAt(tx, ty-1) !== '#';
+        if(lv.theme==='swamp'){
+          R('#5c4632', x, y, TILE, TILE);
+          R('#4a3826', x+2, y+5, 5, 4); R('#4a3826', x+9, y+11, 5, 3);
+          if(grassTop){ R('#6d9648', x, y, TILE, 4); R('#8fb85e', x, y, TILE, 2); }
+        } else if(lv.theme==='dusk'){
+          R('#5f3a28', x, y, TILE, TILE);
+          R('#4c2d1e', x+2, y+6, 6, 4); R('#4c2d1e', x+10, y+11, 4, 3);
+          if(grassTop){ R('#456b38', x, y, TILE, 4); R('#5d8a48', x, y, TILE, 2); }
+        } else {
+          /* georgia red clay */
+          R('#a04a26', x, y, TILE, TILE);
+          R('#8a3c1c', x+2, y+6, 6, 4); R('#8a3c1c', x+10, y+11, 4, 3); R('#b45a30', x+9, y+3, 4, 2);
+          if(grassTop){ R('#57a83c', x, y, TILE, 4); R('#7cc455', x, y, TILE, 2); }
+        }
+      } else if(ch==='='){
+        R('#8a6238', x, y, TILE, 5);
+        R('#a87c48', x, y, TILE, 2);
+        R('#6b4a28', x, y+5, TILE, 1);
+        if(tileAt(tx-1,ty)!=='=' ) R('#6b4a28', x, y, 1, 6);
+        if(tileAt(tx+1,ty)!=='=' ) R('#6b4a28', x+TILE-1, y, 1, 6);
+      } else if(ch==='|'){
+        R('#6e4a2c', x+2, y, 12, TILE);
+        R('#8a6238', x+4, y, 3, TILE);
+        R('#54371f', x+11, y, 2, TILE);
+        if(tileAt(tx,ty-1)!=='|'){ R('#a87c48', x+1, y, 14, 3); R('#c49a5e', x+3, y+1, 10, 1); }
+      } else if(ch==='^'){
+        /* briar patch */
+        R('#2c4025', x, y+8, TILE, 8);
+        g.fillStyle = '#1d2e18';
+        for(let k=0;k<4;k++){
+          const bx = x + 1 + k*4;
+          g.fillRect(bx, y+3+((k%2)*3), 2, 11-((k%2)*3));
+        }
+        g.fillStyle = '#4a6b3a';
+        g.fillRect(x+2, y+7, 2, 2); g.fillRect(x+9, y+5, 2, 2); g.fillRect(x+13, y+9, 2, 2);
+      }
+    }
+  }
+}
+
+function drawWater(){
+  for(const w of lv.water){
+    const x0 = Math.max(w.x0 - cam, -20), x1 = Math.min(w.x1 - cam, VW+20);
+    if(x1 < 0 || x0 > VW) continue;
+    const y = 15*TILE + 4;
+    const col = lv.theme==='dusk' ? 'rgba(58,42,90,.92)' : 'rgba(62,111,95,.92)';
+    g.fillStyle = col;
+    g.fillRect(x0, y, x1-x0, VH-y);
+    g.fillStyle = lv.theme==='dusk' ? '#8a6ba8' : '#8fc9b2';
+    for(let x=x0; x<x1; x+=12){
+      const dy = Math.sin((x+tick*1.4)*.08)*1.5;
+      g.fillRect(x, y+dy, 7, 2);
+    }
+  }
+}
+
+/* ---------- HUD & text ---------- */
+function text(str, x, y, size=8, col='#fff', align='left'){
+  g.font = `${size}px "Press Start 2P", monospace`;
+  g.textAlign = align; g.textBaseline = 'top';
+  g.fillStyle = 'rgba(0,0,0,.45)';
+  g.fillText(str, x+1, y+1);
+  g.fillStyle = col;
+  g.fillText(str, x, y);
+}
+
+function drawHUD(){
+  drawBone(8, 8, 0);
+  text('x '+bones, 26, 9, 8, '#fff');
+  text(lv.name, VW/2, 9, 8, '#fff', 'center');
+  text('SNOOZE '+(lvIndex+1)+'/3', VW-8, 9, 8, '#fff', 'right');
+}
+
+/* ============================================================
+   RENDER SCENES
+   ============================================================ */
+function renderPlay(){
+  g.fillStyle = skyFor(lv.theme); g.fillRect(0,0,VW,VH);
+  drawClouds(lv.theme, cam);
+  drawPineFar(cam, lv.theme);
+  drawTreesMid(cam, lv.theme);
+  if(lv.theme==='dusk') drawFireflies();
+
+  drawTiles();
+
+  /* goal doghouse */
+  if(lv.goal) drawDoghouse(lv.goal.x - cam, lv.goal.y);
+  /* final bed + boss raccoon */
+  if(lv.bed){
+    if(lv.bedCoon && lv.bedCoon.state<2 && lv.bedCoon.x < cam+VW+80){
+      if(!lv.bed.free) drawRaccoon(lv.bedCoon.x-cam, lv.bedCoon.y, lv.bedCoon.state===1?1:-1, tick, true);
+      else if(lv.bedCoon.x < cam+VW+60) drawRaccoon(lv.bedCoon.x-cam, lv.bedCoon.y, 1, tick, false);
+    }
+    if(lv.bed.free) drawBed(lv.bed.x-cam, lv.bed.y, 30, 12);
+  }
+
+  for(const b of lv.bones) if(!b.got) drawBone(b.x-cam, b.y, tick);
+  for(const e of lv.enemies){
+    if(e.dead && e.dead<18){
+      /* squished */
+      if(e.kind==='dillo'){ g.save(); g.translate(e.x-cam, e.y+e.h-4); R(C.dillo, 0,0,18,4); R(C.dilloD,0,0,18,1); g.restore(); }
+      else { g.save(); g.translate(e.x-cam, e.y+e.h-4); R(C.frog, 0,0,15,4); g.restore(); }
+    } else if(!e.dead){
+      if(e.kind==='dillo') drawDillo(e.x-cam, e.y, Math.sign(e.vx)||1, tick);
+      else drawFrog(e.x-cam, e.y, P.x>e.x?1:-1, tick, !e.onGround);
+    }
+  }
+  /* cameo raccoons */
+  for(const c of lv.cameos){
+    if(c.state===1 && c.x < cam+VW+60) drawRaccoon(c.x-cam, c.y, 1, tick, true);
+  }
+
+  /* Reba */
+  if(P.dead){
+    /* belly-up tumble */
+    g.save();
+    g.translate(P.x-cam+9, P.y+8);
+    g.rotate(Math.PI);
+    drawReba(-16, -11, 1, 'idle', 0);
+    g.restore();
+  } else {
+    const pose = !P.onGround ? 'jump' : (Math.abs(P.vx) > .3 ? 'run' : 'idle');
+    drawReba(P.x - cam - 7, P.y - 7, P.face, pose, tick);
+  }
+
+  drawWater();
+  for(const p of particles){ g.fillStyle = p.col; g.fillRect(p.x-cam, p.y, 2, 2); }
+
+  /* speech toast from the raccoon */
+  if(toast && toast.t > 0){
+    const tx = Math.min(Math.max(toast.x - cam, 70), VW-70);
+    const ty = Math.max(toast.y, 30);
+    g.fillStyle = 'rgba(247,236,217,.96)';
+    const w = toast.text.length*6.4 + 14;
+    g.fillRect(tx-w/2, ty-6, w, 16);
+    g.fillStyle = '#38190a';
+    g.font = '6px "Press Start 2P", monospace'; g.textAlign='center'; g.textBaseline='top';
+    g.fillText(toast.text, tx, ty-1);
+  }
+
+  drawHUD();
+}
+
+function vignette(){
+  const grd = g.createRadialGradient(VW/2,VH/2, VH*.4, VW/2,VH/2, VH);
+  grd.addColorStop(0,'rgba(0,0,0,0)'); grd.addColorStop(1,'rgba(0,0,0,.55)');
+  g.fillStyle = grd; g.fillRect(0,0,VW,VH);
+}
+
+function renderTitle(){
+  /* dusky porch scene */
+  g.fillStyle = skyFor('dusk'); g.fillRect(0,0,VW,VH);
+  drawClouds('dusk', stateT*.3);
+  drawPineFar(stateT*.3, 'dusk');
+  drawTreesMid(stateT*.3, 'dusk');
+  drawFireflies();
+  g.fillStyle = '#2c1810'; g.fillRect(0, VH-40, VW, 40);
+  g.fillStyle = '#456b38'; g.fillRect(0, VH-40, VW, 5);
+
+  /* big Reba, snoozing until you press start */
+  g.save(); g.translate(52, VH-118); g.scale(3,3);
+  drawReba(0, 0, 1, 'idle', stateT);
+  g.restore();
+  /* raccoon sneaking off with bed, looping across */
+  const rx = (stateT*1.6) % (VW+300) - 150;
+  drawRaccoon(rx, VH-58, 1, stateT, true);
+
+  text('REBA', VW/2, 46, 40, '#f7ecd9', 'center');
+  text('and the GREAT BED HEIST', VW/2, 96, 10, C.pink, 'center');
+  if(Math.floor(stateT/30)%2===0) text('PRESS SPACE OR TAP TO START', VW/2, 200, 9, '#fff', 'center');
+  text('a platformer starring a very sleepy coonhound', VW/2, 258, 6, 'rgba(247,236,217,.6)', 'center');
+  vignette();
+}
+
+function renderStory(){
+  g.fillStyle = '#0c1810'; g.fillRect(0,0,VW,VH);
+  const lines = [
+    'Reba the redbone coonhound loves',
+    'exactly one thing: SLEEP.',
+    '',
+    'But while she napped on the porch,',
+    'a no-good raccoon swiped her bed',
+    'and lit out for the hollow.',
+    '',
+    'A hound’s gotta do',
+    'what a hound’s gotta do.',
+  ];
+  lines.forEach((ln,i)=> text(ln, VW/2, 52+i*17, 8, i<2 ? '#f7ecd9' : '#cfc4ae', 'center'));
+  /* raccoon dragging bed across the bottom */
+  const rx = VW - (stateT*1.2) % (VW+200);
+  drawRaccoon(rx, VH-62, -1, stateT, true);
+  drawReba(40, VH-58, 1, 'idle', stateT);
+  text('!', 62, VH-74, 10, C.pink);
+  if(stateT>60 && Math.floor(stateT/30)%2===0) text('SPACE TO CONTINUE', VW/2, VH-24, 7, 'rgba(247,236,217,.7)', 'center');
+}
+
+function renderCard(){
+  g.fillStyle = '#0c1810'; g.fillRect(0,0,VW,VH);
+  text('SNOOZE '+(lvIndex+1), VW/2, 92, 10, 'rgba(247,236,217,.55)', 'center');
+  text(lv.name, VW/2, 118, 16, '#f7ecd9', 'center');
+  text(lv.sub, VW/2, 148, 7, C.pink, 'center');
+  drawReba(VW/2-16, 176, 1, 'run', stateT);
+  if(wipeouts>0) text('wipeouts so far: '+wipeouts, VW/2, 236, 6, 'rgba(247,236,217,.4)', 'center');
+}
+
+function renderClear(){
+  renderPlay();
+  g.fillStyle = 'rgba(12,24,16,.72)'; g.fillRect(0, 88, VW, 110);
+  text('TRACKED HIM DOWN!', VW/2, 108, 14, '#f7ecd9', 'center');
+  text('...but that raccoon slipped away again', VW/2, 136, 7, C.pink, 'center');
+  text('bones dug up: '+bones, VW/2, 158, 8, '#fff', 'center');
+  if(stateT>50 && Math.floor(stateT/30)%2===0) text('SPACE TO KEEP TRACKIN’', VW/2, 178, 7, '#fff', 'center');
+}
+
+function renderWin(){
+  g.fillStyle = skyFor('dusk'); g.fillRect(0,0,VW,VH);
+  drawPineFar(0,'dusk'); drawTreesMid(0,'dusk');
+  drawFireflies();
+  g.fillStyle = '#2c1810'; g.fillRect(0, VH-52, VW, 52);
+  g.fillStyle = '#456b38'; g.fillRect(0, VH-52, VW, 5);
+
+  /* bed + sleeping reba, big */
+  g.save(); g.translate(VW/2-64, VH-140); g.scale(2.6,2.6);
+  drawBed(0, 16, 34, 13);
+  drawRebaSleep(stateT);
+  g.restore();
+  /* rising Z's */
+  for(let i=0;i<3;i++){
+    const zt = (stateT*.5 + i*40) % 120;
+    text('Z', VW/2+40+ i*14 + Math.sin(zt*.1)*6, VH-120-zt*.8, 8+i*2, `rgba(247,236,217,${(1-zt/120).toFixed(2)})`);
+  }
+  text('BED: RESCUED', VW/2, 42, 16, '#f7ecd9', 'center');
+  text('sweet dreams, reba', VW/2, 74, 9, C.pink, 'center');
+  text('bones dug up: '+totalBones+'    wipeouts: '+wipeouts, VW/2, 100, 7, 'rgba(247,236,217,.7)', 'center');
+  if(stateT>90 && Math.floor(stateT/30)%2===0) text('SPACE TO PLAY AGAIN', VW/2, 210, 7, '#fff', 'center');
+  vignette();
+}
+
+/* ============================================================
+   MAIN LOOP
+   ============================================================ */
+function update(){
+  tick++; stateT++;
+  if(toast && toast.t > 0) toast.t--;
+
+  if(state==='title'){
+    if(anyPress && stateT>20){ setState('story'); ac(); }
+  } else if(state==='story'){
+    if(anyPress && stateT>40){ totalBones=0; wipeouts=0; loadLevel(0); setState('card'); }
+  } else if(state==='card'){
+    if(stateT > 110) setState('play');
+  } else if(state==='play'){
+    if(key.KeyR && !P.dead){ key.KeyR = false; killPlayer(); }
+    updatePlayer();
+    updateEnemies();
+    updateParticles();
+    const target = P.x + P.w/2 - VW*.42;
+    cam += (Math.max(0, Math.min(lv.w*TILE - VW, target)) - cam) * .12;
+    if(Math.abs(cam - Math.round(cam)) < .02) cam = Math.round(cam);
+  } else if(state==='clear'){
+    updateParticles();
+    if(anyPress && stateT>60){
+      if(lvIndex+1 < LEVELS.length){ loadLevel(lvIndex+1); setState('card'); }
+    }
+  } else if(state==='win'){
+    if(anyPress && stateT>120){ setState('title'); }
+  }
+  anyPress = false;
+}
+
+function render(){
+  if(state==='title') renderTitle();
+  else if(state==='story') renderStory();
+  else if(state==='card') renderCard();
+  else if(state==='play') renderPlay();
+  else if(state==='clear') renderClear();
+  else if(state==='win') renderWin();
+}
+
+/* fixed 60Hz timestep so speed is identical on 30fps laptops and 120Hz phones */
+const STEP = 1000/60;
+let last = performance.now(), acc = 0;
+function frame(now){
+  acc += Math.min(now - last, 100);
+  last = now;
+  while(acc >= STEP){ update(); acc -= STEP; }
+  render();
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>
