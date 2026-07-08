@@ -43,7 +43,8 @@ const sitemap = await fs.readFile('sitemap.xml', 'utf8');
 for (const m of sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)) {
   const url = m[1];
   if (url.includes('/img/') || !url.startsWith(SITE)) continue; // image entries checked via refs above
-  const rel = url.slice(SITE.length + 1) || 'index.html';
+  let rel = url.slice(SITE.length + 1) || 'index.html';
+  if (rel.endsWith('/')) rel += 'index.html'; // directory-index pages (e.g. /reba/)
   if (!existsSync(rel)) { errors.push(`sitemap: missing file for ${url}`); continue; }
   const page = await fs.readFile(rel, 'utf8');
   const canonical = page.match(/rel="canonical" href="([^"]*)"/)?.[1];
