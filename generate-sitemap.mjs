@@ -33,7 +33,7 @@ function pageImages(src) {
 }
 
 // Standalone pages that live as directory indexes (served at /<dir>/).
-const DIR_INDEX_PAGES = ['reba/index.html'];
+const DIR_INDEX_PAGES = ['reba/index.html', 'dino/index.html'];
 
 const entries = [];
 let imageCount = 0;
