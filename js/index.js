@@ -156,3 +156,41 @@ if (!CCD.prefersReducedMotion) {
     markActive(q);
   }
 })();
+
+// ── Chips bar mirrors the nav: hide on scroll down, return on scroll up ──
+// html/body overflow-x:hidden breaks position:sticky, so past its natural
+// spot the bar swaps to position:fixed (a spacer preserves layout) and
+// slides in/out with scroll direction, like the nav.
+(function () {
+  var bar = document.querySelector('.cap-chips');
+  var nav = document.querySelector('nav');
+  if (!bar || !nav) return;
+  var spacer = null;
+  var lastY = window.scrollY;
+  function fix() {
+    if (spacer) return;
+    spacer = document.createElement('div');
+    spacer.style.height = bar.offsetHeight + 'px';
+    bar.parentNode.insertBefore(spacer, bar);
+    bar.classList.add('cap-chips--fixed');
+  }
+  function unfix() {
+    if (!spacer) return;
+    bar.classList.remove('cap-chips--fixed', 'cap-chips--shown');
+    spacer.parentNode.removeChild(spacer);
+    spacer = null;
+  }
+  window.addEventListener('scroll', function () {
+    var y = window.scrollY;
+    var down = y > lastY;
+    lastY = y;
+    var homeEl = spacer || bar;
+    var homeTop = homeEl.getBoundingClientRect().top + y;
+    if (y > homeTop - nav.offsetHeight + 8) {
+      fix();
+      bar.classList.toggle('cap-chips--shown', !down);
+    } else {
+      unfix();
+    }
+  }, { passive: true });
+})();
