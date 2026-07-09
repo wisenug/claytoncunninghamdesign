@@ -20,7 +20,15 @@
     var labelEl = card.querySelector('.work-card__label');
     labelEl.style.background = bg;
     labelEl.style.color = fg;
-    card.addEventListener('click', function () {
+    card.addEventListener('click', function (e) {
+      // New-tab opens: leave the page's static names in place.
+      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      // The static ink-bg/page-title move from the page to the card so the
+      // ink spills out of the card (names must be unique per snapshot).
+      var vtBg = document.querySelector('.vt-bg');
+      var headline = document.querySelector('.home-headline');
+      if (vtBg) vtBg.style.viewTransitionName = 'none';
+      if (headline) headline.style.viewTransitionName = 'none';
       inkEl.style.opacity = '1';
       inkEl.style.viewTransitionName = 'ink-bg';
       labelEl.style.viewTransitionName = 'page-title';
@@ -110,17 +118,31 @@ if (!CCD.prefersReducedMotion) {
   }
 
   function markActive(cap) {
+    var activeChip = null;
     chips.forEach(function (ch) {
       var on = ch.getAttribute('data-cap') === cap;
       ch.classList.toggle('is-active', on);
-      if (on) ch.setAttribute('aria-current', 'true');
+      if (on) { ch.setAttribute('aria-current', 'true'); activeChip = ch; }
       else ch.removeAttribute('aria-current');
     });
+    return activeChip;
+  }
+
+  // Keep the active chip visible in the scrollable row
+  function revealChip(chip, instant) {
+    if (!chip) return;
+    var left = chip.offsetLeft - (chipRow.clientWidth - chip.offsetWidth) / 2;
+    left = Math.max(0, left);
+    try {
+      chipRow.scrollTo({ left: left, behavior: (instant || reduce) ? 'auto' : 'smooth' });
+    } catch (err) {
+      chipRow.scrollLeft = left;
+    }
   }
 
   function setFilter(cap) {
     if (busy) return;
-    markActive(cap);
+    revealChip(markActive(cap));
     var url = cap === 'all' ? location.pathname : location.pathname + '?cap=' + cap;
     history.replaceState(null, '', url);
     if (reduce) { apply(cap); return; }
@@ -153,7 +175,7 @@ if (!CCD.prefersReducedMotion) {
   var q = new URLSearchParams(location.search).get('cap');
   if (q && q !== 'all' && chips.some(function (c) { return c.getAttribute('data-cap') === q; })) {
     apply(q);
-    markActive(q);
+    revealChip(markActive(q), true);
   }
 })();
 

@@ -32,6 +32,15 @@
       --color-black: #ffffff;
     }
 
+    .vt-bg {
+      position: fixed;
+      inset: 0;
+      background-color: #0B2D52;
+      z-index: -1;
+      pointer-events: none;
+      view-transition-name: ink-bg;
+    }
+
     .nav-logo-icon,
     .nav-logo-name,
     .nav-links a {
@@ -182,6 +191,7 @@
     }
 
     .home-headline {
+      view-transition-name: page-title;
       font-size: clamp(5.6rem, 8.3vw + 1.5rem, 14.4rem);
       font-weight: 800;
       line-height: 1.05;
@@ -287,6 +297,8 @@
 </head>
 <body>
 
+  <div class="vt-bg" aria-hidden="true"></div>
+
   <!-- Navigation -->
   <nav>
     <a href="index.html" class="nav-logo" aria-label="Clayton Cunningham Design — Home">
@@ -391,7 +403,7 @@
 
   <script src="js/projects.js"></script>
   <script src="js/site.js"></script>
-  <script src="js/index.js?v=filter-2"></script>
+  <script src="js/index.js?v=filter-3"></script>
   <!-- Cloudflare Web Analytics -->
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "965f2ad8267d4463890153ababb0dd33"}'></script>
   <!-- End Cloudflare Web Analytics -->
