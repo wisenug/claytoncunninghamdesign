@@ -74,6 +74,17 @@
       text-decoration: none;
     }
 
+    .work-card {
+      transition: opacity 0.28s ease, transform 0.34s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .work-card[hidden] { display: none; }
+
+    .work-grid.is-filtering .work-card {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+
     .work-card__ink-bg {
       position: absolute;
       inset: 0;
@@ -123,118 +134,6 @@
       border-radius: 0 0 var(--radius-img) var(--radius-img);
     }
 
-    /* ── Capabilities section ── */
-    .capabilities-section {
-      margin: 10rem 0 0;
-      padding: 8rem var(--page-margin) 8rem;
-      background-color: var(--color-black);
-      position: relative;
-    }
-
-    .capabilities-inner {
-      display: flex;
-      align-items: center;
-      gap: 2.4rem;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .capabilities-inner:focus-visible {
-      outline: 2px solid var(--color-bg);
-      outline-offset: 6px;
-    }
-
-    .capabilities-heading {
-      font-size: clamp(6.4rem, 9vw, 11.2rem);
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      line-height: 0.95;
-      color: var(--color-bg);
-      flex: 1;
-    }
-
-    .capabilities-caret {
-      flex-shrink: 0;
-      margin-top: 0.6rem;
-      width: clamp(5rem, 7vw, 8rem);
-      height: clamp(5rem, 7vw, 8rem);
-      color: var(--color-bg);
-      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-                  opacity 0.2s ease;
-    }
-
-    .capabilities-caret:hover {
-      opacity: 0.7;
-    }
-
-    .capabilities-section.is-open .capabilities-caret {
-      transform: rotate(180deg);
-    }
-
-    /* ── Accordion list ── */
-    .capabilities-list-wrap {
-      overflow: hidden;
-      max-height: 0;
-      transition: max-height 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    .capabilities-section.is-open .capabilities-list-wrap {
-      max-height: 80rem;
-    }
-
-    .capabilities-list {
-      list-style: none;
-      padding: 4rem 0 0;
-      margin-top: 4rem;
-    }
-
-    .capabilities-list li {
-      border-bottom: 1px solid rgba(146, 200, 33, 0.15);
-    }
-
-    .capabilities-list li:last-child {
-      border-bottom: none;
-    }
-
-    .capabilities-list a {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 2.4rem 0;
-      font-size: clamp(2.2rem, 3vw, 3.2rem);
-      font-weight: 600;
-      letter-spacing: -0.015em;
-      color: var(--color-bg);
-      text-decoration: none;
-      opacity: 0.75;
-      transition: opacity 0.2s ease;
-    }
-
-    .capabilities-list a:hover {
-      opacity: 1;
-    }
-
-    .capabilities-list a .cap-link-text {
-      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    .capabilities-list a:hover .cap-link-text {
-      transform: translateX(8px);
-    }
-
-    .capabilities-list a svg {
-      width: 2rem;
-      height: 2rem;
-      flex-shrink: 0;
-      opacity: 0.5;
-      transition: opacity 0.2s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    .capabilities-list a:hover svg {
-      opacity: 1;
-      transform: translateX(4px);
-    }
-
     /* ── Bottom image strip ── */
     .work-grid-bottom {
       padding: 0 var(--page-margin) 10rem;
@@ -269,14 +168,6 @@
       a[href="just-for-funsies.html"].work-card                 { order: 13; }
 
 
-      .capabilities-section {
-        margin-top: 6rem;
-        padding: 6rem var(--page-margin);
-      }
-
-      .capabilities-list a {
-        padding: 2rem 0;
-      }
     }
 
     /* ── Hide logo text on home (headline has the name) ── */
@@ -304,6 +195,74 @@
       font-style: italic;
       font-weight: 400;
     }
+
+    /* ── Capability chips ── */
+    .cap-chips {
+      display: flex;
+      gap: 1.2rem;
+      padding: 0 var(--page-margin) 0.8rem;
+      margin-bottom: 1.6rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .cap-chips::-webkit-scrollbar { display: none; }
+
+    .chip {
+      flex-shrink: 0;
+      white-space: nowrap;
+      padding: 1.1rem 2rem;
+      border-radius: 999px;
+      font-size: 1.5rem;
+      font-weight: 500;
+      letter-spacing: 0.005em;
+      text-decoration: none;
+      color: #B8D9F5;
+      background: rgba(184, 217, 245, 0.1);
+      border: 1px solid rgba(184, 217, 245, 0.18);
+      animation: chip-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .chip:hover {
+      background: rgba(184, 217, 245, 0.22);
+      transform: translateY(-2px);
+    }
+
+    .chip:active { transform: translateY(0); }
+
+    .chip:focus-visible {
+      outline: 2px solid #B8D9F5;
+      outline-offset: 3px;
+    }
+
+    .chip.is-active {
+      background: #B8D9F5;
+      color: #0F2E57;
+      border-color: #B8D9F5;
+    }
+
+    .chip.is-active:hover { background: #d3e8fa; transform: none; }
+
+    @keyframes chip-in {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .chip:nth-child(1) { animation-delay: 0.45s; }
+    .chip:nth-child(2) { animation-delay: 0.53s; }
+    .chip:nth-child(3) { animation-delay: 0.61s; }
+    .chip:nth-child(4) { animation-delay: 0.69s; }
+    .chip:nth-child(5) { animation-delay: 0.77s; }
+    .chip:nth-child(6) { animation-delay: 0.85s; }
+    .chip:nth-child(7) { animation-delay: 0.93s; }
+    .chip:nth-child(8) { animation-delay: 1.01s; }
+    .chip:nth-child(9) { animation-delay: 1.09s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .chip { animation: none; }
+    }
   </style>
   <script src="js/vendor/lottie.min.js"></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://www.claytoncunninghamdesign.com/#clayton","name":"Clayton Cunningham","jobTitle":"Product Designer & Illustrator","url":"https://www.claytoncunninghamdesign.com/about.html","image":"https://www.claytoncunninghamdesign.com/img/claytoncunningham-og.jpg","knowsAbout":["Product Design","UI/UX Design","Illustration Systems","Iconography","Design Systems","Brand Identity","Motion Design","User Research"],"sameAs":["https://www.linkedin.com/in/clayton-cunningham-4057aa29","https://dribbble.com/ClaytonCunningham"]},{"@type":"WebSite","@id":"https://www.claytoncunninghamdesign.com/#website","url":"https://www.claytoncunninghamdesign.com/","name":"Clayton Cunningham Design","description":"Clayton Cunningham Design — product design, illustration systems, UX, and brand work.","publisher":{"@id":"https://www.claytoncunninghamdesign.com/#clayton"}}]}</script>
@@ -329,35 +288,48 @@
       <h1 class="home-headline">Clayton Cunningham<br><em>Designer &amp; Illustrator</em></h1>
     </header>
 
+    <!-- Capability chips -->
+    <div class="cap-chips" role="navigation" aria-label="Filter work by capability">
+      <a class="chip is-active" data-cap="all" href="index.html" aria-current="true">All Capabilities</a>
+      <a class="chip" data-cap="uiux-design" href="index.html?cap=uiux-design">UI/UX Design</a>
+      <a class="chip" data-cap="illustration" href="index.html?cap=illustration">Illustration</a>
+      <a class="chip" data-cap="iconography" href="index.html?cap=iconography">Iconography</a>
+      <a class="chip" data-cap="design-system" href="index.html?cap=design-system">Design System</a>
+      <a class="chip" data-cap="motion-design" href="index.html?cap=motion-design">Motion Design</a>
+      <a class="chip" data-cap="visual-identity" href="index.html?cap=visual-identity">Visual Identity</a>
+      <a class="chip" data-cap="research" href="index.html?cap=research">Research</a>
+      <a class="chip" data-cap="case-study" href="index.html?cap=case-study">Case Study</a>
+    </div>
+
     <!-- Staggered two-column image grid -->
     <section class="work-grid">
       <!-- Left column — starts at baseline -->
       <div class="work-col work-col--left">
-        <a href="autotrader-illustration-system.html" class="work-card">
+        <a href="autotrader-illustration-system.html" class="work-card" data-caps="uiux-design illustration motion-design">
           <div class="work-card__img-wrap"><img srcset="img/at_illustration_style_10-w800.webp 800w, img/at_illustration_style_10-w1600.webp 1600w, img/at_illustration_style_10.webp 2000w" sizes="(max-width: 640px) 92vw, 46vw" width="2000" height="2297" class="work-img" src="img/at_illustration_style_10.webp" alt="Diverse group of illustrated character designs for the Autotrader people library" loading="eager"></div>
           <div class="work-card__label"><span class="work-card__label-client">Autotrader</span>Designing a scalable illustration system across web, mobile apps, and marketing</div>
         </a>
-        <a href="autotrader-icons.html" class="work-card">
+        <a href="autotrader-icons.html" class="work-card" data-caps="uiux-design iconography motion-design">
           <div class="work-card__img-wrap"><div id="lottie-at-icons-thumb" data-lottie="animations/spot_icons.json" style="width:100%;display:block;aspect-ratio:2000/1409;"></div></div>
           <div class="work-card__label" style="background:#FF8806;color:#001F6E;"><span class="work-card__label-client">Autotrader</span>Unifying a fragmented icon language</div>
         </a>
-        <a href="sketches-illustrations-doodles.html" class="work-card">
+        <a href="sketches-illustrations-doodles.html" class="work-card" data-caps="illustration">
           <div class="work-card__img-wrap"><img width="500" height="500" class="work-img" src="img/sketch_thumbnail.webp" alt="Collection of hand-drawn and digital sketches, illustrations, and doodles" loading="lazy"></div>
           <div class="work-card__label" style="background: #4D93FC; color: #19133A;"><span class="work-card__label-client">Sketches, Illustrations and Doodles</span>A collection of drawn things</div>
         </a>
-        <a href="paradesmith.html" class="work-card">
+        <a href="paradesmith.html" class="work-card" data-caps="uiux-design visual-identity">
           <div class="work-card__img-wrap"><img srcset="img/paradesmith_thumbnail-w800.webp 800w, img/paradesmith_thumbnail-w1600.webp 1600w, img/paradesmith_thumbnail.webp 1920w" sizes="(max-width: 640px) 92vw, 46vw" width="1920" height="1919" class="work-img" src="img/paradesmith_thumbnail.webp" alt="Paradesmith app screens on teal background showing content curation UI" loading="lazy"></div>
           <div class="work-card__label" style="background: #1BBFCA; color: #07465A;"><span class="work-card__label-client">Paradesmith</span>Transforming scattered online content into curated experiences</div>
         </a>
-        <a href="tshq-fanwear-redesign.html" class="work-card">
+        <a href="tshq-fanwear-redesign.html" class="work-card" data-caps="uiux-design research case-study">
           <div class="work-card__img-wrap"><img srcset="img/tshq_fanwear_thumbnail-w800.webp 800w, img/tshq_fanwear_thumbnail-w1600.webp 1600w, img/tshq_fanwear_thumbnail.webp 1920w" sizes="(max-width: 640px) 92vw, 46vw" width="1920" height="1920" class="work-img" src="img/tshq_fanwear_thumbnail.webp" alt="DICK'S TSHQ Fan Wear Redesign" loading="lazy"></div>
           <div class="work-card__label" style="background: #FF5F1F; color: #0D0D1A;"><span class="work-card__label-client">DICK'S TSHQ</span>Designing a fan wear store to turn team spirit into club revenue</div>
         </a>
-        <a href="logos.html" class="work-card">
+        <a href="logos.html" class="work-card" data-caps="visual-identity">
           <div class="work-card__img-wrap"><img srcset="img/lotuslion_thumbnail-w800.webp 800w, img/lotuslion_thumbnail-w1600.webp 1600w, img/lotuslion_thumbnail.webp 1920w" sizes="(max-width: 640px) 92vw, 46vw" width="1920" height="1920" class="work-img" src="img/lotuslion_thumbnail.webp" alt="Logos and brand identity work" loading="lazy"></div>
           <div class="work-card__label" style="background: #FFF8D5; color: #553B06;"><span class="work-card__label-client">Logos</span>Collection of logo and brand identity work</div>
         </a>
-        <a href="just-for-funsies.html" class="work-card">
+        <a href="just-for-funsies.html" class="work-card" data-caps="">
           <div class="work-card__img-wrap" style="background: #ffffff;"><img width="1035" height="542" class="work-img rotation-thumb" src="img/shoes/treeline/treeline-01.webp" alt="Nike Air Max 1 SH Treeline spinning in 360 degrees" loading="lazy" data-rotation-prefix="img/shoes/treeline/treeline-" data-rotation-total="36"></div>
           <div class="work-card__label" style="background: #b8e4f0; color: #0F3D4A;"><span class="work-card__label-client">Just for Funsies</span></div>
         </a>
@@ -365,64 +337,33 @@
 
       <!-- Right column — staggered lower -->
       <div class="work-col work-col--right">
-        <a href="kbb-icons-illustrations.html" class="work-card">
+        <a href="kbb-icons-illustrations.html" class="work-card" data-caps="uiux-design iconography illustration">
           <div class="work-card__img-wrap"><img srcset="img/Kbb_thumbnail-w800.webp 800w, img/Kbb_thumbnail-w1600.webp 1600w, img/Kbb_thumbnail.webp 2000w" sizes="(max-width: 640px) 92vw, 46vw" width="2000" height="2000" class="work-img" src="img/Kbb_thumbnail.webp" alt="Kelley Blue Book icon and illustration system overview" loading="eager"></div>
           <div class="work-card__label"><span class="work-card__label-client">Kelley Blue Book</span>Growing a renowned leader's visual library</div>
         </a>
-        <a href="tshq-mobile-app.html" class="work-card">
+        <a href="tshq-mobile-app.html" class="work-card" data-caps="uiux-design research illustration case-study">
           <div class="work-card__img-wrap"><img srcset="img/tshq_app_thumbnail-w800.webp 800w, img/tshq_app_thumbnail-w1600.webp 1600w, img/tshq_app_thumbnail.webp 1920w" sizes="92vw" width="1920" height="1920" class="work-img" src="img/tshq_app_thumbnail.webp" alt="DICK'S TSHQ mobile app" loading="lazy"></div>
           <div class="work-card__label" style="background: #006554; color: #E0FAE0;"><span class="work-card__label-client">DICK'S TSHQ</span>Designing mobile app features that ease the pain of youth sports management</div>
         </a>
-        <a href="tshq-registration.html" class="work-card">
+        <a href="tshq-registration.html" class="work-card" data-caps="uiux-design design-system research illustration case-study">
           <div class="work-card__img-wrap"><img width="1500" height="1500" class="work-img" src="img/tshq_reg_thumbnail.webp" alt="DICK'S TSHQ Registration Redesign" loading="lazy"></div>
           <div class="work-card__label" style="background: #f0f0f0; color: #1B561A;"><span class="work-card__label-client">DICK'S TSHQ</span>Redesigning youth sports registration for over 3 million players and 10,000 teams</div>
         </a>
-        <a href="coca-cola-campus-messaging.html" class="work-card">
+        <a href="coca-cola-campus-messaging.html" class="work-card" data-caps="visual-identity illustration">
           <div class="work-card__img-wrap"><img width="1000" height="1000" class="work-img" src="img/cm_thumbnail.webp" alt="Coca-Cola campus digital display screens and signage system" loading="lazy"></div>
           <div class="work-card__label" style="background: #000000; color: #ffffff;"><span class="work-card__label-client">Coca-Cola</span>Unified campus communication</div>
         </a>
-        <a href="coca-cola-assorted-projects.html" class="work-card">
+        <a href="coca-cola-assorted-projects.html" class="work-card" data-caps="visual-identity">
           <div class="work-card__img-wrap"><img srcset="img/coca-cola_assorted_thumbnail-w800.webp 800w, img/coca-cola_assorted_thumbnail.webp 1200w" sizes="92vw" width="1200" height="1200" class="work-img" src="img/coca-cola_assorted_thumbnail.webp" alt="Illustrated Coca-Cola vending machine with bottles on a night sky background" loading="lazy"></div>
           <div class="work-card__label" style="background: #ffffff; color: #D42020;"><span class="work-card__label-client">Coca-Cola</span>Designing for one of the world's most iconic brands</div>
         </a>
-        <a href="tshq-assorted-projects.html" class="work-card">
+        <a href="tshq-assorted-projects.html" class="work-card" data-caps="illustration iconography">
           <div class="work-card__img-wrap"><img srcset="img/tshq_assorted_projects_thumbnail-w800.webp 800w, img/tshq_assorted_projects_thumbnail-w1600.webp 1600w, img/tshq_assorted_projects_thumbnail.webp 1918w" sizes="92vw" width="1918" height="1920" class="work-img" src="img/tshq_assorted_projects_thumbnail.webp" alt="DICK'S TSHQ assorted project work including sport cutouts and marketing materials" loading="lazy"></div>
           <div class="work-card__label" style="background: #2E1F4A; color: #F0E6FF;"><span class="work-card__label-client">DICK'S TSHQ</span>Selected works from DICK's Team Sports Headquarters</div>
         </a>
       </div>
     </section>
 
-    <!-- Capabilities section -->
-    <section class="capabilities-section" id="capabilities-section">
-      <div class="capabilities-inner" id="capabilities-trigger" data-accordion="capabilities-section" role="button" aria-expanded="false" tabindex="0">
-        <h2 class="capabilities-heading">Capabilities</h2>
-        <!-- Caret icon -->
-        <svg class="capabilities-caret" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M16 28L40 52L64 28" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-
-      <!-- Accordion list -->
-      <div class="capabilities-list-wrap" id="capabilities-list-wrap">
-        <!-- Shared arrow icon used by every capability link -->
-        <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-          <symbol id="cap-arrow" viewBox="0 0 20 20" fill="none">
-            <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-          </symbol>
-        </svg>
-        <ul class="capabilities-list">
-          <li><a href="capabilities.html"><span class="cap-link-text">All Capabilities</span><svg><use href="#cap-arrow"/></svg></a></li>
-          <li><a href="capabilities-uiux-design.html"><span class="cap-link-text">UI/UX Design</span><svg><use href="#cap-arrow"/></svg></a></li>
-          <li><a href="capabilities-illustration.html"><span class="cap-link-text">Illustration</span><svg><use href="#cap-arrow"/></svg></a></li>
-          <li><a href="capabilities-iconography.html"><span class="cap-link-text">Iconography</span><svg><use href="#cap-arrow"/></svg></a></li>
-          <li><a href="capabilities-design-system.html"><span class="cap-link-text">Design System</span><svg><use href="#cap-arrow"/></svg></a></li>
-          <li><a href="capabilities-motion-design.html"><span class="cap-link-text">Motion Design</span><svg><use href="#cap-arrow"/></svg></a></li>
-          <li><a href="capabilities-visual-identity.html"><span class="cap-link-text">Visual Identity</span><svg><use href="#cap-arrow"/></svg></a></li>
-          <li><a href="capabilities-research.html"><span class="cap-link-text">Research</span><svg><use href="#cap-arrow"/></svg></a></li>
-          <li><a href="capabilities-case-study.html"><span class="cap-link-text">Case Study</span><svg><use href="#cap-arrow"/></svg></a></li>
-        </ul>
-      </div>
-    </section>
 
   </main>
 

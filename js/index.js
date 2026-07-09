@@ -70,3 +70,89 @@ if (!CCD.prefersReducedMotion) {
     });
   });
 }
+
+// ── Capability filter for the home work grid ─────────────────────────────
+// Chips filter the cards in place. Filtered cards are redistributed
+// between the two columns (alternating by their narrative order) so the
+// grid stays balanced. ?cap=<slug> deep-links a filter.
+(function () {
+  var chipRow = document.querySelector('.cap-chips');
+  var grid = document.querySelector('.work-grid');
+  if (!chipRow || !grid) return;
+  var chips = Array.prototype.slice.call(chipRow.querySelectorAll('.chip'));
+  var colL = grid.querySelector('.work-col--left');
+  var colR = grid.querySelector('.work-col--right');
+  if (!colL || !colR || !chips.length) return;
+
+  var cards = Array.prototype.slice.call(grid.querySelectorAll('.work-card'));
+  var home = cards.map(function (el) {
+    return { el: el, parent: el.parentNode, order: parseFloat(getComputedStyle(el).order) || 0 };
+  });
+  var reduce = CCD.prefersReducedMotion;
+  var busy = false;
+
+  function matches(h, cap) {
+    return (h.el.getAttribute('data-caps') || '').split(' ').indexOf(cap) !== -1;
+  }
+
+  function apply(cap) {
+    if (cap === 'all') {
+      home.forEach(function (h) { h.el.hidden = false; h.parent.appendChild(h.el); });
+      return;
+    }
+    var vis = home.filter(function (h) { return matches(h, cap); });
+    vis.sort(function (a, b) { return a.order - b.order; });
+    vis.forEach(function (h, i) {
+      h.el.hidden = false;
+      (i % 2 === 0 ? colL : colR).appendChild(h.el);
+    });
+    home.forEach(function (h) { if (vis.indexOf(h) === -1) h.el.hidden = true; });
+  }
+
+  function markActive(cap) {
+    chips.forEach(function (ch) {
+      var on = ch.getAttribute('data-cap') === cap;
+      ch.classList.toggle('is-active', on);
+      if (on) ch.setAttribute('aria-current', 'true');
+      else ch.removeAttribute('aria-current');
+    });
+  }
+
+  function setFilter(cap) {
+    if (busy) return;
+    markActive(cap);
+    var url = cap === 'all' ? location.pathname : location.pathname + '?cap=' + cap;
+    history.replaceState(null, '', url);
+    if (reduce) { apply(cap); return; }
+    busy = true;
+    grid.classList.add('is-filtering');
+    setTimeout(function () {
+      apply(cap);
+      var shown = cards.filter(function (c) { return !c.hidden; });
+      shown.forEach(function (c, i) { c.style.transitionDelay = Math.min(i * 45, 360) + 'ms'; });
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          grid.classList.remove('is-filtering');
+          setTimeout(function () {
+            shown.forEach(function (c) { c.style.transitionDelay = ''; });
+            busy = false;
+          }, 750);
+        });
+      });
+    }, 230);
+  }
+
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function (e) {
+      e.preventDefault();
+      setFilter(chip.getAttribute('data-cap') || 'all');
+    });
+  });
+
+  // Deep link: /?cap=illustration (applied instantly, no exit animation)
+  var q = new URLSearchParams(location.search).get('cap');
+  if (q && q !== 'all' && chips.some(function (c) { return c.getAttribute('data-cap') === q; })) {
+    apply(q);
+    markActive(q);
+  }
+})();
