@@ -155,6 +155,17 @@ window.CCD_PROJECTS = [
     tags: ['UI/UX Design', 'Visual Identity']
   },
   {
+    href: 'design-systems.html',
+    bgColor: '#0F2960',
+    fgColor: '#DCEBFF',
+    image: 'img/autotrader_icons_library.webp',
+    alt: 'Design systems work across Autotrader and DICK\'S TSHQ',
+    client: 'Various',
+    title: 'Design Systems',
+    label: 'Turning fragmented UI into foundations, rules, and libraries teams can build on',
+    tags: ['Design System', 'Iconography', 'UI/UX Design']
+  },
+  {
     href: 'autotrader-illustration-system.html',
     bgColor: '#E3F2FF',
     fgColor: '#0F2960',
