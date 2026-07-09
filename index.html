@@ -62,7 +62,7 @@
 
     /* ── Staggered two-column image grid ── */
     .work-grid {
-      padding: 4rem var(--page-margin) 0;
+      padding: 4rem var(--page-margin) 10rem;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 1.6rem;
@@ -143,12 +143,6 @@
       border-radius: 0 0 var(--radius-img) var(--radius-img);
     }
 
-    /* ── Bottom image strip ── */
-    .work-grid-bottom {
-      padding: 0 var(--page-margin) 10rem;
-      margin-top: 1.6rem;
-    }
-
     /* ── Mobile ── */
     @media (max-width: 640px) {
       .work-grid {
@@ -192,6 +186,8 @@
 
     .home-headline {
       view-transition-name: page-title;
+      /* Mobile keeps the project-title scale; desktop takes a step down so
+         the top of the work grid peeks above the fold (no false bottom). */
       font-size: clamp(5.6rem, 8.3vw + 1.5rem, 14.4rem);
       font-weight: 800;
       line-height: 1.05;
@@ -204,6 +200,10 @@
       font-family: 'Playfair Display', Georgia, serif;
       font-style: italic;
       font-weight: 400;
+    }
+
+    @media (min-width: 641px) {
+      .home-headline { font-size: min(9vw, 12rem); }
     }
 
     /* ── Capability chips ── */
