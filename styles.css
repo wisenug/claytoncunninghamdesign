@@ -348,7 +348,7 @@ main {
    ============================================================ */
 
 .project-header {
-  padding: 7rem var(--page-margin) 4rem;
+  padding: 4rem var(--page-margin) 4rem;
 }
 
 .project-title {
