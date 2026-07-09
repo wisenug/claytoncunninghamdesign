@@ -184,7 +184,7 @@ if (!CCD.prefersReducedMotion) {
 // spot the bar swaps to position:fixed (a spacer preserves layout) and
 // slides in/out with scroll direction, like the nav.
 (function () {
-  var bar = document.querySelector('.cap-chips');
+  var bar = document.querySelector('.cap-chips-bar');
   var nav = document.querySelector('nav');
   if (!bar || !nav) return;
   var spacer = null;
@@ -194,11 +194,11 @@ if (!CCD.prefersReducedMotion) {
     spacer = document.createElement('div');
     spacer.style.height = bar.offsetHeight + 'px';
     bar.parentNode.insertBefore(spacer, bar);
-    bar.classList.add('cap-chips--fixed');
+    bar.classList.add('cap-chips-bar--fixed');
   }
   function unfix() {
     if (!spacer) return;
-    bar.classList.remove('cap-chips--fixed', 'cap-chips--shown');
+    bar.classList.remove('cap-chips-bar--fixed', 'cap-chips-bar--shown');
     spacer.parentNode.removeChild(spacer);
     spacer = null;
   }
@@ -210,7 +210,7 @@ if (!CCD.prefersReducedMotion) {
     var homeTop = homeEl.getBoundingClientRect().top + y;
     if (y > homeTop - nav.offsetHeight + 8) {
       fix();
-      bar.classList.toggle('cap-chips--shown', !down);
+      bar.classList.toggle('cap-chips-bar--shown', !down);
     } else {
       unfix();
     }

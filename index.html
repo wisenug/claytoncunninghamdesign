@@ -207,23 +207,19 @@
     }
 
     /* ── Capability chips ── */
-    /* In flow under the headline; past that point it pins below the nav
-       and mirrors its hide-on-scroll-down, return-on-scroll-up behavior
-       (classes toggled in index.js — html/body overflow-x breaks sticky). */
-    .cap-chips {
+    /* Bar sits in flow under the headline; past that point it pins below
+       the nav and mirrors its hide-on-scroll-down, return-on-scroll-up
+       behavior (classes toggled in index.js — html/body overflow-x breaks
+       sticky). The inner row scrolls; a mask clips it at the right page
+       margin with a fade into the bar's background to signal more chips. */
+    .cap-chips-bar {
       position: relative;
       z-index: 90;
       background: var(--color-bg);
-      display: flex;
-      gap: 1.2rem;
-      padding: 1.2rem var(--page-margin);
       margin-bottom: 0.8rem;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
     }
 
-    .cap-chips--fixed {
+    .cap-chips-bar--fixed {
       position: fixed;
       top: 10rem;
       left: 0;
@@ -232,13 +228,30 @@
       transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    .cap-chips--fixed.cap-chips--shown {
+    .cap-chips-bar--fixed.cap-chips-bar--shown {
       transform: translateY(0);
     }
 
     @media (max-width: 640px) {
-      .cap-chips--fixed { top: 8rem; transform: translateY(calc(-100% - 8rem)); }
-      .cap-chips--fixed.cap-chips--shown { transform: translateY(0); }
+      .cap-chips-bar--fixed { top: 8rem; transform: translateY(calc(-100% - 8rem)); }
+      .cap-chips-bar--fixed.cap-chips-bar--shown { transform: translateY(0); }
+    }
+
+    .cap-chips {
+      display: flex;
+      gap: 1.2rem;
+      padding: 1.2rem var(--page-margin);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -webkit-mask-image: linear-gradient(to right,
+        #000 0,
+        #000 calc(100% - var(--page-margin) - 8rem),
+        transparent calc(100% - var(--page-margin)));
+      mask-image: linear-gradient(to right,
+        #000 0,
+        #000 calc(100% - var(--page-margin) - 8rem),
+        transparent calc(100% - var(--page-margin)));
     }
 
     .cap-chips::-webkit-scrollbar { display: none; }
@@ -319,6 +332,7 @@
     </header>
 
     <!-- Capability chips -->
+    <div class="cap-chips-bar">
     <div class="cap-chips" role="navigation" aria-label="Filter work by capability">
       <a class="chip is-active" data-cap="all" href="index.html" aria-current="true">All Capabilities</a>
       <a class="chip" data-cap="uiux-design" href="index.html?cap=uiux-design">UI/UX Design</a>
@@ -329,6 +343,7 @@
       <a class="chip" data-cap="visual-identity" href="index.html?cap=visual-identity">Visual Identity</a>
       <a class="chip" data-cap="research" href="index.html?cap=research">Research</a>
       <a class="chip" data-cap="case-study" href="index.html?cap=case-study">Case Study</a>
+    </div>
     </div>
 
     <!-- Staggered two-column image grid -->
@@ -403,7 +418,7 @@
 
   <script src="js/projects.js"></script>
   <script src="js/site.js"></script>
-  <script src="js/index.js?v=filter-3"></script>
+  <script src="js/index.js?v=filter-4"></script>
   <!-- Cloudflare Web Analytics -->
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "965f2ad8267d4463890153ababb0dd33"}'></script>
   <!-- End Cloudflare Web Analytics -->
