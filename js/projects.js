@@ -155,15 +155,15 @@ window.CCD_PROJECTS = [
     tags: ['UI/UX Design', 'Visual Identity']
   },
   {
-    href: 'design-systems.html',
-    bgColor: '#0F2960',
-    fgColor: '#DCEBFF',
-    image: 'img/autotrader_icons_library.webp',
-    alt: 'Design systems work across Autotrader and DICK\'S TSHQ',
-    client: 'Various',
-    title: 'Design Systems',
-    label: 'Turning fragmented UI into foundations, rules, and libraries teams can build on',
-    tags: ['Design System', 'Iconography', 'UI/UX Design']
+    href: 'iris-design-system.html',
+    bgColor: '#ffffff',
+    fgColor: '#0B2D52',
+    image: 'img/iris_brand_themes.webp',
+    alt: 'Iris Design System, five brand themes side by side',
+    client: 'Cox Automotive',
+    title: 'Iris Design System',
+    label: 'Building the multi-brand design system behind Autotrader, KBB, and OEM dealer sites',
+    tags: ['Design System', 'UI/UX Design', 'Case Study']
   },
   {
     href: 'autotrader-illustration-system.html',

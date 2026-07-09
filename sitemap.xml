@@ -92,18 +92,18 @@
     <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/tshq_app_thumbnail.webp</image:loc></image:image>
     <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/tshq_reg_thumbnail.webp</image:loc></image:image>
     <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/tshq_fanwear_thumbnail.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/iris_brand_themes.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.claytoncunninghamdesign.com/capabilities-design-system.html</loc>
-    <lastmod>2026-07-05</lastmod>
+    <lastmod>2026-07-09</lastmod>
     <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/tshq_reg_thumbnail.webp</image:loc></image:image>
-    <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/autotrader_icons_library.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/iris_brand_themes.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.claytoncunninghamdesign.com/capabilities-iconography.html</loc>
-    <lastmod>2026-07-05</lastmod>
+    <lastmod>2026-07-09</lastmod>
     <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/tshq_assorted_projects_thumbnail.webp</image:loc></image:image>
-    <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/autotrader_icons_library.webp</image:loc></image:image>
     <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/Kbb_thumbnail.webp</image:loc></image:image>
   </url>
   <url>
@@ -131,12 +131,12 @@
   </url>
   <url>
     <loc>https://www.claytoncunninghamdesign.com/capabilities-uiux-design.html</loc>
-    <lastmod>2026-07-05</lastmod>
+    <lastmod>2026-07-09</lastmod>
     <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/tshq_app_thumbnail.webp</image:loc></image:image>
     <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/tshq_reg_thumbnail.webp</image:loc></image:image>
     <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/tshq_fanwear_thumbnail.webp</image:loc></image:image>
     <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/paradesmith_thumbnail.webp</image:loc></image:image>
-    <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/autotrader_icons_library.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/iris_brand_themes.webp</image:loc></image:image>
     <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/at_illustration_style_2.webp</image:loc></image:image>
     <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/Kbb_thumbnail.webp</image:loc></image:image>
   </url>
@@ -215,21 +215,6 @@
     <image:image><image:loc>https://www.claytoncunninghamdesign.com/unused/dining_14_wireframes_2.webp</image:loc></image:image>
   </url>
   <url>
-    <loc>https://www.claytoncunninghamdesign.com/design-systems.html</loc>
-    <lastmod>2026-07-09</lastmod>
-    <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/autotrader_icons_library.webp</image:loc></image:image>
-    <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/tshq_reg_legacy_ui.webp</image:loc></image:image>
-    <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/autotrader_icons_11.webp</image:loc></image:image>
-    <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/autotrader_icons_nav-A.webp</image:loc></image:image>
-    <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/autotrader_icons_nav-B.webp</image:loc></image:image>
-    <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/at_illustration_style_guidelines-1.webp</image:loc></image:image>
-    <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/at_illustration_style_guidelines-4.webp</image:loc></image:image>
-    <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/tshq_reg_design_system.webp</image:loc></image:image>
-    <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/tshq_reg_style_guide.webp</image:loc></image:image>
-    <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/autotrader_icons_wallet_srp.webp</image:loc></image:image>
-    <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/autotrader_icons_vdp.webp</image:loc></image:image>
-  </url>
-  <url>
     <loc>https://www.claytoncunninghamdesign.com/dino/</loc>
     <lastmod>2026-07-08</lastmod>
 
@@ -248,6 +233,18 @@
     <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/autotrader_icons_library.webp</image:loc></image:image>
     <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/autotrader_icons_11.webp</image:loc></image:image>
     <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/kbb_1.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.claytoncunninghamdesign.com/iris-design-system.html</loc>
+    <lastmod>2026-07-09</lastmod>
+    <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/iris_rollout_timeline.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/iris_foundations.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/iris_what_are_tokens.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/iris_token_table.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/iris_brand_themes.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/iris_governance_process.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/iris_q2_faster_quality.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/iris_q2_adoption.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.claytoncunninghamdesign.com/just-for-funsies.html</loc>
