@@ -209,41 +209,35 @@
 
     .cap-chips::-webkit-scrollbar { display: none; }
 
+    /* Same metrics as .tag on project pages, in the home page's ink */
     .chip {
       flex-shrink: 0;
       white-space: nowrap;
-      padding: 1.1rem 2rem;
-      border-radius: 999px;
-      font-size: 1.5rem;
+      font-size: 1.7rem;
       font-weight: 500;
-      letter-spacing: 0.005em;
-      text-decoration: none;
+      letter-spacing: 0.01em;
       color: #B8D9F5;
-      background: rgba(184, 217, 245, 0.1);
-      border: 1px solid rgba(184, 217, 245, 0.18);
+      border: 2px solid #B8D9F5;
+      border-radius: 10rem;
+      padding: 0.8rem 2rem;
+      background: transparent;
+      text-decoration: none;
+      cursor: pointer;
       animation: chip-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) backwards;
-      transition: background 0.2s ease, color 0.2s ease, transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
     }
 
-    .chip:hover {
-      background: rgba(184, 217, 245, 0.22);
-      transform: translateY(-2px);
+    .chip:hover,
+    .chip.is-active {
+      background: #B8D9F5;
+      color: #0B2D52;
+      border-color: #B8D9F5;
     }
-
-    .chip:active { transform: translateY(0); }
 
     .chip:focus-visible {
       outline: 2px solid #B8D9F5;
       outline-offset: 3px;
     }
-
-    .chip.is-active {
-      background: #B8D9F5;
-      color: #0F2E57;
-      border-color: #B8D9F5;
-    }
-
-    .chip.is-active:hover { background: #d3e8fa; transform: none; }
 
     @keyframes chip-in {
       from { opacity: 0; transform: translateY(10px); }
