@@ -4,26 +4,26 @@
   <meta charset="UTF-8">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://cloudflareinsights.com https://static.cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <link rel="icon" type="image/svg+xml" href="img/clayton-cunningham-design-logo.svg">
-  <link rel="icon" type="image/png" href="img/logo.png">
-  <link rel="apple-touch-icon" href="img/logo.png">
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+  <link rel="icon" type="image/png" sizes="192x192" href="img/icon-192.png">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#0B2D52">
   <link rel="canonical" href="https://www.claytoncunninghamdesign.com/icon-grids-and-optical-corrections.html">
-  <link rel="alternate" type="application/rss+xml" title="Clayton Cunningham Design — Process Notes" href="feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="Clayton Cunningham Design • Process Notes" href="feed.xml">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Clayton Cunningham Design">
   <meta property="og:url" content="https://www.claytoncunninghamdesign.com/icon-grids-and-optical-corrections.html">
-  <meta property="og:title" content="Icon Grids and Optical Corrections — Clayton Cunningham Design">
-  <meta property="og:description" content="How to reverse-engineer an icon grid, when to trust keyshapes over pixels, and why optical balance beats mathematical alignment — from the Autotrader and Kelley Blue Book icon systems.">
+  <meta property="og:title" content="Icon Grids and Optical Corrections • Clayton Cunningham Design">
+  <meta property="og:description" content="How to reverse-engineer an icon grid, when to trust keyshapes over pixels, and why optical balance beats mathematical alignment, drawn from the Autotrader and Kelley Blue Book icon systems.">
   <meta property="og:image" content="https://www.claytoncunninghamdesign.com/img/og/og-autotrader-icons.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Icon Grids and Optical Corrections — Clayton Cunningham Design">
-  <meta name="twitter:description" content="How to reverse-engineer an icon grid, when to trust keyshapes over pixels, and why optical balance beats mathematical alignment — from the Autotrader and Kelley Blue Book icon systems.">
+  <meta name="twitter:title" content="Icon Grids and Optical Corrections • Clayton Cunningham Design">
+  <meta name="twitter:description" content="How to reverse-engineer an icon grid, when to trust keyshapes over pixels, and why optical balance beats mathematical alignment, drawn from the Autotrader and Kelley Blue Book icon systems.">
   <meta name="twitter:image" content="https://www.claytoncunninghamdesign.com/img/og/og-autotrader-icons.jpg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="How to reverse-engineer an icon grid, when to trust keyshapes over pixels, and why optical balance beats mathematical alignment — from the Autotrader and Kelley Blue Book icon systems.">
-  <title>Icon Grids and Optical Corrections — Clayton Cunningham Design</title>
+  <meta name="description" content="How to reverse-engineer an icon grid, when to trust keyshapes over pixels, and why optical balance beats mathematical alignment, drawn from the Autotrader and Kelley Blue Book icon systems.">
+  <title>Icon Grids and Optical Corrections • Clayton Cunningham Design</title>
   <link rel="preload" href="fonts/dm-sans-04.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css">
   <style>
@@ -31,7 +31,10 @@
       --color-bg: #FF8806;
       --color-black: #001F6E;
     }
-    .article-header { padding: 7rem var(--page-margin) 2rem; max-width: 88rem; }
+    /* max-widths add the page margins back in: the global border-box reset
+       counts padding against max-width, which starved the text column on
+       wide viewports where --page-margin grows large */
+    .article-header { padding: 7rem var(--page-margin) 2rem; max-width: calc(88rem + 2 * var(--page-margin)); }
     .article-kicker {
       font-size: 1.4rem; font-weight: 600; letter-spacing: 0.12em;
       text-transform: uppercase; opacity: 0.66; margin-bottom: 1.6rem;
@@ -41,7 +44,7 @@
       line-height: 1.02; letter-spacing: -0.03em;
     }
     .article-meta { margin-top: 2rem; font-size: 1.5rem; opacity: 0.6; }
-    .text-section { max-width: 88rem; }
+    .text-section { max-width: calc(88rem + 2 * var(--page-margin)); }
     .article-cta {
       margin: 2rem var(--page-margin) 10rem; max-width: 88rem;
       padding: 3rem; border-radius: var(--radius-img);
@@ -50,13 +53,13 @@
     .article-cta p { font-size: 1.7rem; line-height: 1.7; margin: 0; }
     .article-cta a { color: inherit; font-weight: 700; }
   </style>
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://www.claytoncunninghamdesign.com/#clayton","name":"Clayton Cunningham","jobTitle":"Product Designer & Illustrator","url":"https://www.claytoncunninghamdesign.com/about.html","image":"https://www.claytoncunninghamdesign.com/img/claytoncunningham-og.jpg","knowsAbout":["Product Design","UI/UX Design","Illustration Systems","Iconography","Design Systems","Brand Identity","Motion Design","User Research"],"sameAs":["https://www.linkedin.com/in/clayton-cunningham-4057aa29","https://dribbble.com/ClaytonCunningham"]},{"@type":"Article","url":"https://www.claytoncunninghamdesign.com/icon-grids-and-optical-corrections.html","headline":"Icon Grids and Optical Corrections","description":"How to reverse-engineer an icon grid, when to trust keyshapes over pixels, and why optical balance beats mathematical alignment — from the Autotrader and Kelley Blue Book icon systems.","image":"https://www.claytoncunninghamdesign.com/img/og/og-autotrader-icons.jpg","datePublished":"2026-07-04","author":{"@id":"https://www.claytoncunninghamdesign.com/#clayton"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.claytoncunninghamdesign.com/"},{"@type":"ListItem","position":2,"name":"Icon Grids and Optical Corrections","item":"https://www.claytoncunninghamdesign.com/icon-grids-and-optical-corrections.html"}]}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://www.claytoncunninghamdesign.com/#clayton","name":"Clayton Cunningham","jobTitle":"Product Designer & Illustrator","url":"https://www.claytoncunninghamdesign.com/about.html","image":"https://www.claytoncunninghamdesign.com/img/claytoncunningham-og.jpg","knowsAbout":["Product Design","UI/UX Design","Illustration Systems","Iconography","Design Systems","Brand Identity","Motion Design","User Research"],"sameAs":["https://www.linkedin.com/in/clayton-cunningham-4057aa29","https://dribbble.com/ClaytonCunningham"]},{"@type":"Article","url":"https://www.claytoncunninghamdesign.com/icon-grids-and-optical-corrections.html","headline":"Icon Grids and Optical Corrections","description":"How to reverse-engineer an icon grid, when to trust keyshapes over pixels, and why optical balance beats mathematical alignment, drawn from the Autotrader and Kelley Blue Book icon systems.","image":"https://www.claytoncunninghamdesign.com/img/og/og-autotrader-icons.jpg","datePublished":"2026-07-04","author":{"@id":"https://www.claytoncunninghamdesign.com/#clayton"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.claytoncunninghamdesign.com/"},{"@type":"ListItem","position":2,"name":"Icon Grids and Optical Corrections","item":"https://www.claytoncunninghamdesign.com/icon-grids-and-optical-corrections.html"}]}]}</script>
 </head>
 <body>
   <div class="vt-bg" aria-hidden="true"></div>
 
   <nav>
-    <a href="index.html" class="nav-logo" aria-label="Clayton Cunningham Design — Home">
+    <a href="index.html" class="nav-logo" aria-label="Clayton Cunningham Design, Home">
       <span class="nav-logo-icon" aria-hidden="true"></span>
       <span class="nav-logo-name">Clayton Cunningham Design</span>
     </a>
@@ -69,7 +72,7 @@
   <main>
     <header class="article-header">
       <p class="article-kicker">Process Notes</p>
-      <h1 class="article-title fade-up fade-up-1">Icon grids and optical corrections</h1>
+      <h1 class="article-title">Icon grids and optical corrections</h1>
       <p class="article-meta fade-up fade-up-2">Clayton Cunningham · Lessons from the <a href="autotrader-icons.html">Autotrader</a> and <a href="kbb-icons-illustrations.html">Kelley Blue Book</a> icon systems</p>
     </header>
 
@@ -88,7 +91,7 @@
     </div>
 
     <div class="full-image">
-      <img srcset="img/autotrader_icons_library-w800.webp 800w, img/autotrader_icons_library-w1600.webp 1600w, img/autotrader_icons_library.webp 2000w" sizes="92vw" width="2000" height="1661" src="img/autotrader_icons_library.webp" alt="Autotrader spot icon library — complete collection spanning vehicle specs, features, and UI elements" loading="lazy">
+      <img srcset="img/autotrader_icons_library-w800.webp 800w, img/autotrader_icons_library-w1600.webp 1600w, img/autotrader_icons_library.webp 2000w" sizes="92vw" width="2000" height="1661" src="img/autotrader_icons_library.webp" alt="Autotrader spot icon library, the complete collection spanning vehicle specs, features, and UI elements" loading="lazy">
     </div>
 
     <div class="full-image">
@@ -102,7 +105,7 @@
 
     <div class="text-section">
       <h2 class="section-heading">Consistent weight is the real unifier</h2>
-      <p class="body-text">On the Kelley Blue Book set, the brief was clarity at every size across web, app, and editorial. What holds a set like that together isn't the shapes — it's consistent visual weight: the ratio of ink to empty space staying steady from the simplest icon to the busiest one. When an icon starts feeling heavier than its neighbors, the fix is almost never "make it smaller." It's removing interior detail until the weight matches.</p>
+      <p class="body-text">On the Kelley Blue Book set, the brief was clarity at every size across web, app, and editorial. What holds a set like that together isn't the shapes. It's consistent visual weight: the ratio of ink to empty space staying steady from the simplest icon to the busiest one. When an icon starts feeling heavier than its neighbors, the fix is almost never "make it smaller." It's removing interior detail until the weight matches.</p>
     </div>
 
     <div class="full-image">
@@ -111,7 +114,7 @@
 
     <div class="text-section">
       <h2 class="section-heading">Spot icons are a different instrument</h2>
-      <p class="body-text">Functional icons and spot icons share a family resemblance but follow different rules. Functional icons live within the UI and are often used on actual components in the design system, at a smaller size (16-32px). Autotrader's spot tier uses a duotone style — orange fills with gray strokes, rounded terminals, and generous negative space, because spot icons live larger, carry more personality, and can afford detail that would turn to mud at 16px. Define the two tiers separately and document where each is allowed to appear; most icon-system drift starts with a spot icon getting shrunk into a toolbar.</p>
+      <p class="body-text">Functional icons and spot icons share a family resemblance but follow different rules. Functional icons live within the UI and are often used on actual components in the design system, at a smaller size (16-32px). Autotrader's spot tier uses a duotone style of orange fills with gray strokes, rounded terminals, and generous negative space, because spot icons live larger, carry more personality, and can afford detail that would turn to mud at 16px. Define the two tiers separately and document where each is allowed to appear; most icon-system drift starts with a spot icon getting shrunk into a toolbar.</p>
     </div>
 
     <div class="article-cta">

@@ -214,8 +214,7 @@ window.addEventListener('pagereveal', function (e) {
 })();
 
 // Ink view-transition for statically rendered project cards (generated tag
-// pages). Dynamically built cards on capabilities.html attach their own
-// handlers in capabilities.js.
+// pages).
 document.querySelectorAll('.project-card[data-static-ink]').forEach(function (card) {
   var inkEl = card.querySelector('.project-card__ink-bg');
   var labelEl = card.querySelector('.project-card__label');

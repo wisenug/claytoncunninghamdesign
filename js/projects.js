@@ -10,15 +10,15 @@
 window.CCD_TAG_META = {
   'UI/UX Design': {
     title: 'UI/UX Design',
-    description: 'End-to-end product design across automotive, enterprise, and consumer platforms — from early research through shipped product.'
+    description: 'End-to-end product design across automotive, enterprise, and consumer platforms, from early research through shipped product.'
   },
   'Iconography': {
     title: 'Iconography',
-    description: 'Unified icon systems built on precise grids, optical corrections, and systematic rules — spanning UI, spot, and navigation icons.'
+    description: 'Unified icon systems built on precise grids, optical corrections, and systematic rules, spanning UI, spot, and navigation icons.'
   },
   'Illustration': {
     title: 'Illustration',
-    description: 'Custom illustration systems built to scale across product, marketing, and brand — with rules for how to extend them.'
+    description: 'Custom illustration systems built to scale across product, marketing, and brand, with rules for how to extend them.'
   },
   'Design System': {
     title: 'Design System',
@@ -191,7 +191,7 @@ window.CCD_PROJECTS = [
     tags: ['UI/UX Design', 'Iconography', 'Motion Design']
   },
   {
-    href: 'shoe-rotation.html',
+    href: 'just-for-funsies.html',
     bgColor: '#b8e4f0',
     fgColor: '#0F3D4A',
     homeOnly: true

@@ -171,6 +171,14 @@ if (!CCD.prefersReducedMotion) {
     });
   });
 
+  // Mouse wheel scrolls the chip row horizontally (touch scrolls natively)
+  chipRow.addEventListener('wheel', function (e) {
+    if (Math.abs(e.deltaX) >= Math.abs(e.deltaY)) return;
+    if (chipRow.scrollWidth <= chipRow.clientWidth) return;
+    e.preventDefault();
+    chipRow.scrollLeft += e.deltaY;
+  }, { passive: false });
+
   // Deep link: /?cap=illustration (applied instantly, no exit animation)
   var q = new URLSearchParams(location.search).get('cap');
   if (q && q !== 'all' && chips.some(function (c) { return c.getAttribute('data-cap') === q; })) {

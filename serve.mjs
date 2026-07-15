@@ -38,7 +38,8 @@ const server = http.createServer((req, res) => {
     res.end('400 Bad Request');
     return;
   }
-  if (urlPath === '/') urlPath = '/index.html';
+  // Directory URLs serve their index.html, matching GitHub Pages (/, /reba/, /dino/)
+  if (urlPath.endsWith('/')) urlPath += 'index.html';
 
   const filePath = path.normalize(path.join(__dirname, urlPath));
   const insideRoot = filePath.startsWith(__dirname + path.sep) || filePath === __dirname;

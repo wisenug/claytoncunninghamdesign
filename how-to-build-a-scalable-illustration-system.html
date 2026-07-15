@@ -4,26 +4,26 @@
   <meta charset="UTF-8">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://cloudflareinsights.com https://static.cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <link rel="icon" type="image/svg+xml" href="img/clayton-cunningham-design-logo.svg">
-  <link rel="icon" type="image/png" href="img/logo.png">
-  <link rel="apple-touch-icon" href="img/logo.png">
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+  <link rel="icon" type="image/png" sizes="192x192" href="img/icon-192.png">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#0B2D52">
   <link rel="canonical" href="https://www.claytoncunninghamdesign.com/how-to-build-a-scalable-illustration-system.html">
-  <link rel="alternate" type="application/rss+xml" title="Clayton Cunningham Design — Process Notes" href="feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="Clayton Cunningham Design • Process Notes" href="feed.xml">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Clayton Cunningham Design">
   <meta property="og:url" content="https://www.claytoncunninghamdesign.com/how-to-build-a-scalable-illustration-system.html">
-  <meta property="og:title" content="How to Build a Scalable Illustration System — Clayton Cunningham Design">
+  <meta property="og:title" content="How to Build a Scalable Illustration System • Clayton Cunningham Design">
   <meta property="og:description" content="Lessons from building Autotrader's illustration system: core element libraries, a defensible style point of view, spot distillation, and the governance that keeps a system coherent as it grows.">
   <meta property="og:image" content="https://www.claytoncunninghamdesign.com/img/og/og-autotrader-illustration-system.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="How to Build a Scalable Illustration System — Clayton Cunningham Design">
+  <meta name="twitter:title" content="How to Build a Scalable Illustration System • Clayton Cunningham Design">
   <meta name="twitter:description" content="Lessons from building Autotrader's illustration system: core element libraries, a defensible style point of view, spot distillation, and the governance that keeps a system coherent as it grows.">
   <meta name="twitter:image" content="https://www.claytoncunninghamdesign.com/img/og/og-autotrader-illustration-system.jpg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Lessons from building Autotrader's illustration system: core element libraries, a defensible style point of view, spot distillation, and the governance that keeps a system coherent as it grows.">
-  <title>How to Build a Scalable Illustration System — Clayton Cunningham Design</title>
+  <title>How to Build a Scalable Illustration System • Clayton Cunningham Design</title>
   <link rel="preload" href="fonts/dm-sans-04.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css">
   <style>
@@ -31,7 +31,10 @@
       --color-bg: #E3F2FF;
       --color-black: #0F2960;
     }
-    .article-header { padding: 7rem var(--page-margin) 2rem; max-width: 88rem; }
+    /* max-widths add the page margins back in: the global border-box reset
+       counts padding against max-width, which starved the text column on
+       wide viewports where --page-margin grows large */
+    .article-header { padding: 7rem var(--page-margin) 2rem; max-width: calc(88rem + 2 * var(--page-margin)); }
     .article-kicker {
       font-size: 1.4rem; font-weight: 600; letter-spacing: 0.12em;
       text-transform: uppercase; opacity: 0.66; margin-bottom: 1.6rem;
@@ -41,7 +44,7 @@
       line-height: 1.02; letter-spacing: -0.03em;
     }
     .article-meta { margin-top: 2rem; font-size: 1.5rem; opacity: 0.6; }
-    .text-section { max-width: 88rem; }
+    .text-section { max-width: calc(88rem + 2 * var(--page-margin)); }
     .article-cta {
       margin: 2rem var(--page-margin) 10rem; max-width: 88rem;
       padding: 3rem; border-radius: var(--radius-img);
@@ -56,7 +59,7 @@
   <div class="vt-bg" aria-hidden="true"></div>
 
   <nav>
-    <a href="index.html" class="nav-logo" aria-label="Clayton Cunningham Design — Home">
+    <a href="index.html" class="nav-logo" aria-label="Clayton Cunningham Design, Home">
       <span class="nav-logo-icon" aria-hidden="true"></span>
       <span class="nav-logo-name">Clayton Cunningham Design</span>
     </a>
@@ -69,7 +72,7 @@
   <main>
     <header class="article-header">
       <p class="article-kicker">Process Notes</p>
-      <h1 class="article-title fade-up fade-up-1">How to build a scalable illustration system</h1>
+      <h1 class="article-title">How to build a scalable illustration system</h1>
       <p class="article-meta fade-up fade-up-2">Clayton Cunningham · Lessons from the <a href="autotrader-illustration-system.html">Autotrader illustration system</a></p>
     </header>
 
@@ -120,7 +123,7 @@
 
     <div class="text-section">
       <h2 class="section-heading">Write down the rules, including what not to do</h2>
-      <p class="body-text">The system isn't finished when the assets are drawn. It's finished when someone who has never met you can extend it correctly. That means a style guide documenting usage rules, definitions, and instructions for extending the system — establishing what to do and, just as important, what not to. The anti-patterns section is the part people actually consult: it's much easier to recognize "this is wrong" than to internalize every rule.</p>
+      <p class="body-text">The system isn't finished when the assets are drawn. It's finished when someone who has never met you can extend it correctly. That means a style guide documenting usage rules, definitions, and instructions for extending the system, establishing what to do and, just as important, what not to. The anti-patterns section is the part people actually consult: it's much easier to recognize "this is wrong" than to internalize every rule.</p>
     </div>
 
     <div class="text-section">
@@ -129,7 +132,7 @@
     </div>
 
     <div class="article-cta">
-      <p>See the full system — vehicles, characters, environments, spot tier, and the style guide — in the <a href="autotrader-illustration-system.html">Autotrader Illustration System case study</a>, or the companion piece on <a href="icon-grids-and-optical-corrections.html">icon grids and optical corrections</a>.</p>
+      <p>See the full system (vehicles, characters, environments, spot tier, and the style guide) in the <a href="autotrader-illustration-system.html">Autotrader Illustration System case study</a>, or the companion piece on <a href="icon-grids-and-optical-corrections.html">icon grids and optical corrections</a>.</p>
     </div>
   </main>
 

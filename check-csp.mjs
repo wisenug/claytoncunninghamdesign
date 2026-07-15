@@ -2,7 +2,6 @@ import puppeteer from 'puppeteer';
 
 const URLS = [
   'http://localhost:3000/',
-  'http://localhost:3000/capabilities.html',
   'http://localhost:3000/autotrader-illustration-system.html',
   'http://localhost:3000/autotrader-icons.html',
   'http://localhost:3000/kbb-icons-illustrations.html',

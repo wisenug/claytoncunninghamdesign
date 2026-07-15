@@ -4,37 +4,37 @@
   <meta charset="UTF-8">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://cloudflareinsights.com https://static.cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <link rel="icon" type="image/svg+xml" href="img/clayton-cunningham-design-logo.svg">
-  <link rel="icon" type="image/png" href="img/logo.png">
-  <link rel="apple-touch-icon" href="img/logo.png">
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+  <link rel="icon" type="image/png" sizes="192x192" href="img/icon-192.png">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#0B2D52">
   <link rel="canonical" href="https://www.claytoncunninghamdesign.com/just-for-funsies.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Clayton Cunningham Design">
   <meta property="og:url" content="https://www.claytoncunninghamdesign.com/just-for-funsies.html">
-  <meta property="og:title" content="Just For Funsies — Clayton Cunningham Design">
-  <meta property="og:description" content="Side projects made purely for the joy of it — spinning sneakers and a platformer starring my dog.">
+  <meta property="og:title" content="Just For Funsies • Clayton Cunningham Design">
+  <meta property="og:description" content="Side projects made purely for the love of the game: spinning sneakers and a platformer starring my dog.">
   <meta property="og:image" content="https://www.claytoncunninghamdesign.com/img/og-shoe-rotation.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Just For Funsies — Clayton Cunningham Design">
-  <meta name="twitter:description" content="Side projects made purely for the joy of it — spinning sneakers and a platformer starring my dog.">
+  <meta name="twitter:title" content="Just For Funsies • Clayton Cunningham Design">
+  <meta name="twitter:description" content="Side projects made purely for the love of the game: spinning sneakers and a platformer starring my dog.">
   <meta name="twitter:image" content="https://www.claytoncunninghamdesign.com/img/og-shoe-rotation.jpg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Just For Funsies — Clayton Cunningham Design</title>
-  <meta name="description" content="Side projects made purely for the joy of it — spinning sneakers and a platformer starring my dog.">
+  <title>Just For Funsies • Clayton Cunningham Design</title>
+  <meta name="description" content="Side projects made purely for the love of the game: spinning sneakers and a platformer starring my dog.">
   <link rel="preload" href="fonts/dm-sans-04.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css">
   <style>
     :root {
-      --color-bg: #ffffff;
+      --color-bg: #b8e4f0;
       --color-black: #0F3D4A;
     }
 
     .vt-bg {
       position: fixed;
       inset: 0;
-      background-color: #ffffff;
+      background-color: #b8e4f0;
       z-index: -1;
       pointer-events: none;
       view-transition-name: ink-bg;
@@ -58,9 +58,17 @@
       grid-template-columns: 1fr;
       gap: 4.8rem;
       width: 100%;
-      max-width: 1200px;
+      max-width: calc(110rem + 2 * var(--page-margin, 5vw));
       margin: 0 auto;
       padding: 0 var(--page-margin, 5vw) 6rem;
+    }
+
+    /* Tablet and up: cards sit side by side */
+    @media (min-width: 768px) {
+      .fun-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3.2rem;
+      }
     }
 
     .fun-card {
@@ -124,8 +132,8 @@
     }
 
     /* per-card palettes */
-    .fun-card--shoes .fun-card__img-wrap { background: #f5f5f2; }
-    .fun-card--shoes .fun-card__label { background: #0F3D4A; color: #b8e4f0; }
+    .fun-card--shoes .fun-card__img-wrap { background: #b8e4f0; }
+    .fun-card--shoes .fun-card__label { background: #b8e4f0; color: #0F3D4A; }
 
     .fun-card--reba .fun-card__label { background: #14231a; color: #f7ecd9; }
     .fun-card--reba .fun-card__label-title { color: #f2a3b8; }
@@ -137,7 +145,7 @@
   <div class="vt-bg" aria-hidden="true"></div>
 
   <nav>
-    <a href="index.html" class="nav-logo" aria-label="Clayton Cunningham Design — Home">
+    <a href="index.html" class="nav-logo" aria-label="Clayton Cunningham Design, Home">
       <span class="nav-logo-icon" aria-hidden="true"></span>
       <span class="nav-logo-name">Clayton Cunningham Design</span>
     </a>
@@ -150,11 +158,11 @@
   <main>
 
     <header class="project-header">
-      <h1 class="project-title fade-up fade-up-1">
+      <h1 class="project-title">
         Just For Funsies
       </h1>
-      <div class="intro-text fade-up fade-up-2">
-        <p>Side projects made purely for the joy of it. No client, no brief, no deadline, just things I wanted to exist.</p>
+      <div class="intro-text">
+        <p>Side projects made purely for the love of the game.</p>
       </div>
     </header>
 
@@ -173,7 +181,7 @@
 
       <a href="reba/" class="fun-card fun-card--reba">
         <div class="fun-card__img-wrap">
-          <img width="1600" height="900" src="img/reba-card.webp" alt="Reba and the Great Bed Heist — pixel art platformer title screen" loading="lazy">
+          <img width="1984" height="1107" src="img/reba-game.webp" alt="Reba the dog collecting bones in the Piney Woods level of a pixel-art platformer" loading="lazy">
         </div>
         <div class="fun-card__label">
           <span class="fun-card__label-title">Reba and the Great Bed Heist</span>

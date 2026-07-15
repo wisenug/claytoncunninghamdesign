@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://cloudflareinsights.com https://static.cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <link rel="icon" type="image/svg+xml" href="img/clayton-cunningham-design-logo.svg">
-  <link rel="icon" type="image/png" href="img/logo.png">
-  <link rel="apple-touch-icon" href="img/logo.png">
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+  <link rel="icon" type="image/png" sizes="192x192" href="img/icon-192.png">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#0B2D52">
   <link rel="canonical" href="https://www.claytoncunninghamdesign.com/">
@@ -14,14 +14,14 @@
   <meta property="og:site_name" content="Clayton Cunningham Design">
   <meta property="og:url" content="https://www.claytoncunninghamdesign.com/">
   <meta property="og:title" content="Clayton Cunningham Design">
-  <meta property="og:description" content="Clayton Cunningham Design — product design, illustration systems, UX, and brand work.">
+  <meta property="og:description" content="Clayton Cunningham Design: product design, illustration systems, UX, and brand work.">
   <meta property="og:image" content="https://www.claytoncunninghamdesign.com/img/at_illustration_style_10.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Clayton Cunningham Design">
-  <meta name="twitter:description" content="Clayton Cunningham Design — product design, illustration systems, UX, and brand work.">
+  <meta name="twitter:description" content="Clayton Cunningham Design: product design, illustration systems, UX, and brand work.">
   <meta name="twitter:image" content="https://www.claytoncunninghamdesign.com/img/at_illustration_style_10.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Clayton Cunningham Design — product design, illustration systems, UX, and brand work.">
+  <meta name="description" content="Clayton Cunningham Design: product design, illustration systems, UX, and brand work.">
   <title>Clayton Cunningham Design</title>
   <link rel="preload" href="fonts/dm-sans-04.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/playfair-display-08.woff2" as="font" type="font/woff2" crossorigin>
@@ -180,7 +180,9 @@
 
     /* ── Home headline ── */
     .home-headline-wrap {
-      padding: 4rem var(--page-margin) 4rem;
+      /* Bottom padding = half the 4.8rem gap between the chips and the
+         first work card (chips-bar margin 0.8rem + grid padding 4rem) */
+      padding: 4rem var(--page-margin) 2.4rem;
       text-align: left;
     }
 
@@ -306,7 +308,7 @@
     }
   </style>
   <script src="js/vendor/lottie.min.js"></script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://www.claytoncunninghamdesign.com/#clayton","name":"Clayton Cunningham","jobTitle":"Product Designer & Illustrator","url":"https://www.claytoncunninghamdesign.com/about.html","image":"https://www.claytoncunninghamdesign.com/img/claytoncunningham-og.jpg","knowsAbout":["Product Design","UI/UX Design","Illustration Systems","Iconography","Design Systems","Brand Identity","Motion Design","User Research"],"sameAs":["https://www.linkedin.com/in/clayton-cunningham-4057aa29","https://dribbble.com/ClaytonCunningham"]},{"@type":"WebSite","@id":"https://www.claytoncunninghamdesign.com/#website","url":"https://www.claytoncunninghamdesign.com/","name":"Clayton Cunningham Design","description":"Clayton Cunningham Design — product design, illustration systems, UX, and brand work.","publisher":{"@id":"https://www.claytoncunninghamdesign.com/#clayton"}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://www.claytoncunninghamdesign.com/#clayton","name":"Clayton Cunningham","jobTitle":"Product Designer & Illustrator","url":"https://www.claytoncunninghamdesign.com/about.html","image":"https://www.claytoncunninghamdesign.com/img/claytoncunningham-og.jpg","knowsAbout":["Product Design","UI/UX Design","Illustration Systems","Iconography","Design Systems","Brand Identity","Motion Design","User Research"],"sameAs":["https://www.linkedin.com/in/clayton-cunningham-4057aa29","https://dribbble.com/ClaytonCunningham"]},{"@type":"WebSite","@id":"https://www.claytoncunninghamdesign.com/#website","url":"https://www.claytoncunninghamdesign.com/","name":"Clayton Cunningham Design","description":"Clayton Cunningham Design: product design, illustration systems, UX, and brand work.","publisher":{"@id":"https://www.claytoncunninghamdesign.com/#clayton"}}]}</script>
 </head>
 <body>
 
@@ -314,7 +316,7 @@
 
   <!-- Navigation -->
   <nav>
-    <a href="index.html" class="nav-logo" aria-label="Clayton Cunningham Design — Home">
+    <a href="index.html" class="nav-logo" aria-label="Clayton Cunningham Design, Home">
       <span class="nav-logo-icon" aria-hidden="true"></span>
       <span class="nav-logo-name">Clayton Cunningham Design</span>
     </a>
@@ -334,7 +336,7 @@
     <!-- Capability chips -->
     <div class="cap-chips-bar">
     <div class="cap-chips" role="navigation" aria-label="Filter work by capability">
-      <a class="chip is-active" data-cap="all" href="index.html" aria-current="true">All Capabilities</a>
+      <a class="chip is-active" data-cap="all" href="index.html" aria-current="true">All</a>
       <a class="chip" data-cap="uiux-design" href="index.html?cap=uiux-design">UI/UX Design</a>
       <a class="chip" data-cap="illustration" href="index.html?cap=illustration">Illustration</a>
       <a class="chip" data-cap="iconography" href="index.html?cap=iconography">Iconography</a>

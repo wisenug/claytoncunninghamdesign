@@ -17,7 +17,7 @@ const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(
 const items = [];
 for (const [file, pubDate] of Object.entries(CCD_ARTICLES)) {
   const src = await fs.readFile(file, 'utf8');
-  const title = grab(src, /<title>([^<]*)<\/title>/).replace(/ [—–-] Clayton Cunningham.*$/, '');
+  const title = grab(src, /<title>([^<]*)<\/title>/).replace(/ [—–•-] Clayton Cunningham.*$/, '');
   const description = grab(src, /name="description" content="([^"]*)"/);
   const canonical = grab(src, /rel="canonical" href="([^"]*)"/);
   items.push({ title, description, url: canonical, pubDate: new Date(pubDate + 'T12:00:00Z').toUTCString() });
@@ -28,7 +28,7 @@ items.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
 const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Clayton Cunningham Design — Process Notes</title>
+    <title>Clayton Cunningham Design • Process Notes</title>
     <link>${SITE}/</link>
     <atom:link href="${SITE}/feed.xml" rel="self" type="application/rss+xml" />
     <description>Process write-ups on illustration systems, iconography, and product design from Clayton Cunningham.</description>

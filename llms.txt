@@ -31,4 +31,3 @@ RSS feed of process write-ups: https://www.claytoncunninghamdesign.com/feed.xml
 ## About
 
 - [About Clayton](https://www.claytoncunninghamdesign.com/about.html): Background, approach, and contact
-- [All capabilities](https://www.claytoncunninghamdesign.com/capabilities.html): Filterable index of all project work
