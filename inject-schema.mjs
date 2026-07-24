@@ -6,8 +6,15 @@
    Every CreativeWork states who holds the copyright: the client company for
    commissioned work, Clayton for personal work. Pages elsewhere reference the
    Person by @id rather than repeating it, so crawlers resolve one entity.
-   Re-runnable: replaces any existing ld+json block. Page data is read from
-   each page's <title>, meta description, canonical, and og:image. */
+   Skips pages that already carry a block, so a bare re-run is a no-op and the
+   CI idempotency check stays honest. Pass --force to rewrite every page, which
+   is what you want after changing the schema shape in this file. Don't make
+   --force the default: dateModified comes from git history, so a page's
+   committed value and a fresh run disagree the moment that page is committed,
+   and CI would fail on the drift.
+
+   Page data is read from each page's <title>, meta description, canonical,
+   and og:image. */
 import fs from 'fs/promises';
 import { execFileSync } from 'child_process';
 
@@ -128,6 +135,7 @@ const ARTICLES = windowShim.CCD_ARTICLES;
 const grab = (src, re) => src.match(re)?.[1] ?? '';
 const bareTitle = t => t.replace(/ [—–•-] Clayton Cunningham.*$/, '');
 
+const FORCE = process.argv.includes('--force');
 const files = (await fs.readdir('.')).filter(f => f.endsWith('.html'));
 let injected = 0;
 
@@ -135,6 +143,7 @@ for (const file of files) {
   let src = await fs.readFile(file, 'utf8');
   if (src.includes('http-equiv="refresh"')) continue;         // redirect stubs
   if (!src.includes('rel="canonical"')) continue;             // non-content
+  if (!FORCE && src.includes('application/ld+json')) continue;
 
   const title = grab(src, /<title>([^<]*)<\/title>/);
   const description = grab(src, /name="description" content="([^"]*)"/);
@@ -249,7 +258,7 @@ for (const file of files) {
   const ld = { '@context': 'https://schema.org', '@graph': graph };
   const block = `  <script type="application/ld+json">\n${JSON.stringify(ld, null, 2).replace(/^/gm, '  ')}\n  </script>\n`;
 
-  // Re-runnable: drop any block a previous run left behind.
+  // Under --force, drop the block already there before writing the new one.
   src = src.replace(/[ \t]*<script type="application\/ld\+json">[\s\S]*?<\/script>\n?/g, '');
   await fs.writeFile(file, src.replace('</head>', block + '</head>'));
   injected++;

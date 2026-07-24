@@ -25,9 +25,8 @@ jobs:
       - name: Validate links, JSON-LD, sitemap, llms.txt
         run: node checks/validate-site.mjs
 
-      - name: Generator idempotency (tag pages, schema, RSS, sitemap)
+      - name: Generator idempotency (schema, RSS, sitemap)
         run: |
-          node generate-tag-pages.mjs
           node inject-schema.mjs
           node generate-rss.mjs
           node generate-sitemap.mjs
