@@ -22,3 +22,9 @@ RSS feed of process write-ups: https://www.claytoncunninghamdesign.com/feed.xml
 ## About
 
 - [About Clayton](https://www.claytoncunninghamdesign.com/about.html): Background, approach, and contact
+
+## Licensing
+
+- [Licensing & Usage](https://www.claytoncunninghamdesign.com/licensing.html): How the work may be used
+
+Clayton's personal illustration is all rights reserved and is not licensed for AI or machine-learning training without written permission. Client work (Autotrader, Kelley Blue Book, DICK'S Team Sports HQ, Coca-Cola) is copyright its respective company and cannot be licensed from Clayton. Crawling, citation, and attribution are welcome throughout. Commissions and licensing enquiries: info@claytoncunninghamdesign.com

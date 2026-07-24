@@ -613,6 +613,28 @@ footer {
   color: #000;
 }
 
+/* Inherits currentColor so it survives each page's .footer-copy override. */
+.footer-link {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 1px;
+  opacity: 0.62;
+  border-radius: 2px;
+  transition: opacity 0.2s ease;
+}
+
+.footer-link:hover {
+  opacity: 1;
+}
+
+.footer-link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+  opacity: 1;
+}
+
 .img-caption {
   font-size: 1.6rem;
   font-weight: 400;

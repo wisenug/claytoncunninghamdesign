@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://cloudflareinsights.com https://static.cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+  <link rel="icon" type="image/png" sizes="192x192" href="img/icon-192.png">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#FFFFFF">
+  <link rel="canonical" href="https://www.claytoncunninghamdesign.com/licensing.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Clayton Cunningham Design">
+  <meta property="og:url" content="https://www.claytoncunninghamdesign.com/licensing.html">
+  <meta property="og:title" content="Licensing &amp; Usage • Clayton Cunningham Design">
+  <meta property="og:description" content="How the work on this site may be used: personal illustration is all rights reserved, client work is owned by its companies, and commissions are open.">
+  <meta property="og:image" content="https://www.claytoncunninghamdesign.com/img/claytoncunningham-og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Licensing &amp; Usage • Clayton Cunningham Design">
+  <meta name="twitter:description" content="How the work on this site may be used: personal illustration is all rights reserved, client work is owned by its companies, and commissions are open.">
+  <meta name="twitter:image" content="https://www.claytoncunninghamdesign.com/img/claytoncunningham-og.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="How the work on this site may be used: personal illustration is all rights reserved, client work is owned by its companies, and commissions are open.">
+  <title>Licensing &amp; Usage • Clayton Cunningham Design</title>
+  <link rel="preload" href="fonts/dm-sans-04.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/playfair-display-08.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    :root {
+      --color-bg: #FFFFFF;
+      --color-black: #000000;
+    }
+
+    .vt-bg {
+      position: fixed;
+      inset: 0;
+      background-color: #FFFFFF;
+      z-index: -1;
+      pointer-events: none;
+      view-transition-name: ink-bg;
+    }
+
+    /* ── Hero ── */
+    /* --page-margin already centres content in a ~1200px band; adding a
+       max-width here would fight it and collapse the column on wide screens. */
+    .lic-hero {
+      padding: 4rem var(--page-margin) 7rem;
+    }
+
+    .lic-title {
+      font-size: clamp(4.4rem, 7vw, 8.6rem);
+      font-weight: 800;
+      line-height: 1.02;
+      letter-spacing: -0.035em;
+      color: var(--color-black);
+    }
+
+    /* A standfirst, not a section heading: sits below the section h2s in
+       weight so the hierarchy still reads despite sharing their level. */
+    .lic-lede {
+      font-size: clamp(2rem, 2vw, 2.8rem);
+      font-weight: 400;
+      line-height: 1.6;
+      letter-spacing: -0.01em;
+      margin-top: 3.2rem;
+      max-width: 66rem;
+      color: var(--color-black);
+      opacity: 0.8;
+    }
+
+    /* ── Terms ── */
+    .lic-terms {
+      padding: 0 var(--page-margin) 2rem;
+    }
+
+    /* No rules or numerals — spacing alone separates the sections, so it has
+       to be generous enough to read as a break. */
+    .term {
+      padding: 0 0 6.4rem;
+    }
+
+    /* In rem, not ch — this element inherits the 10px root size, so `ch` here
+       would measure against 10px type and cut the column to two-thirds. */
+    .term-body { max-width: 66rem; }
+
+    .term-name {
+      font-size: clamp(2.8rem, 2.6vw, 3.6rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      margin-bottom: 2rem;
+      color: var(--color-black);
+    }
+
+    .term-body p {
+      font-size: 1.9rem;
+      line-height: 1.75;
+      color: var(--color-black);
+      opacity: 0.82;
+    }
+
+    .term-body p + p { margin-top: 1.6rem; }
+
+    .term-body strong {
+      font-weight: 700;
+      opacity: 1;
+      color: var(--color-black);
+    }
+
+    .lic-link {
+      color: var(--color-black);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: rgba(0, 0, 0, 0.35);
+      transition: text-decoration-color 0.2s ease;
+      border-radius: 2px;
+    }
+
+    .lic-link:hover { text-decoration-color: var(--color-black); }
+
+    .lic-link:focus-visible {
+      outline: 2px solid var(--color-black);
+      outline-offset: 3px;
+      text-decoration-color: transparent;
+    }
+
+    /* ── CTA ── */
+    .lic-cta {
+      margin: 2rem var(--page-margin) 9rem;
+      background: #000000;
+      border-radius: 2rem;
+      padding: 6rem 5.6rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 4rem;
+      box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.10),
+        0 12px 28px -12px rgba(0, 0, 0, 0.28),
+        0 40px 64px -40px rgba(0, 0, 0, 0.38);
+    }
+
+    .lic-cta-text {
+      font-size: clamp(2.6rem, 3.2vw, 4.2rem);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      color: #FFFFFF;
+    }
+
+    .lic-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: #000000;
+      background: #FFFFFF;
+      border-radius: 10rem;
+      padding: 1.6rem 3.2rem;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: opacity 0.2s ease, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .lic-btn:hover {
+      opacity: 0.86;
+      transform: translateY(-3px);
+    }
+
+    .lic-btn:active { transform: translateY(0); }
+
+    .lic-btn:focus-visible {
+      outline: 3px solid #FFFFFF;
+      outline-offset: 4px;
+    }
+
+    .lic-updated {
+      padding: 0 var(--page-margin) 7rem;
+      font-size: 1.5rem;
+      letter-spacing: 0.02em;
+      color: var(--color-black);
+      opacity: 0.5;
+    }
+
+    @media (max-width: 900px) {
+      .term { padding-bottom: 5rem; }
+
+      .lic-cta {
+        grid-template-columns: 1fr;
+        gap: 3.2rem;
+        padding: 5.6rem 3.2rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .lic-cta { border-radius: 1.2rem; }
+      .term-body p { font-size: 1.8rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .lic-btn { transition: background 0.2s ease; }
+      .lic-btn:hover { transform: none; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://www.claytoncunninghamdesign.com/licensing.html",
+        "url": "https://www.claytoncunninghamdesign.com/licensing.html",
+        "name": "Licensing &amp; Usage",
+        "description": "How the work on this site may be used: personal illustration is all rights reserved, client work is owned by its companies, and commissions are open.",
+        "about": {
+          "@id": "https://www.claytoncunninghamdesign.com/#clayton"
+        },
+        "publisher": {
+          "@id": "https://www.claytoncunninghamdesign.com/#clayton"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.claytoncunninghamdesign.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Licensing &amp; Usage",
+            "item": "https://www.claytoncunninghamdesign.com/licensing.html"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <div class="vt-bg" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html" class="nav-logo" aria-label="Clayton Cunningham Design, Home">
+      <span class="nav-logo-icon" aria-hidden="true"></span>
+      <span class="nav-logo-name">Clayton Cunningham Design</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Work</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="lic-hero fade-up">
+      <h1 class="lic-title">Licensing &amp; Usage: what you can do with the work on this site.</h1>
+      <h2 class="lic-lede">The short version: the personal illustration is mine and needs permission, the client work isn't mine to license, and commissions are open. The longer version is below.</h2>
+    </section>
+
+    <!-- Terms -->
+    <section class="lic-terms">
+
+      <div class="term fade-up fade-up-2">
+        <div class="term-body">
+          <h2 class="term-name">Personal illustration</h2>
+          <p>The drawn work made on my own time, like <a href="sketches-illustrations-doodles.html" class="lic-link">Sketches, Illustrations and Doodles</a> and <a href="just-for-funsies.html" class="lic-link">Just for Funsies</a>, is mine, and it's <strong>all rights reserved</strong>.</p>
+          <p>No reproduction, redistribution, or commercial use without written permission. Reposting with credit counts too, so please ask first. I'm not precious about it and the answer is usually yes. I'd just like to know where it's going.</p>
+        </div>
+      </div>
+
+      <div class="term fade-up fade-up-2">
+        <div class="term-body">
+          <h2 class="term-name">Client and employer work</h2>
+          <p>The Autotrader, Kelley Blue Book, DICK'S Team Sports HQ, and Coca-Cola projects are here as portfolio work. <strong>Copyright is held by those companies, not by me</strong>, which means I can't grant permission to use any of it.</p>
+          <p>If you need to license that work, you'll need to go to the company directly. The same is true of the logo and identity marks, which are owned by the clients who commissioned them.</p>
+        </div>
+      </div>
+
+      <div class="term fade-up fade-up-3">
+        <div class="term-body">
+          <h2 class="term-name">Commissions</h2>
+          <p>New illustration, iconography, design systems, and brand work are open for commission.</p>
+          <p>Prints, stickers, apparel, and other merchandise are <strong>commission only</strong>. There's no store, so anything physical gets made to order. Tell me what you have in mind and I'll let you know if it's a fit.</p>
+        </div>
+      </div>
+
+      <div class="term fade-up fade-up-3">
+        <div class="term-body">
+          <h2 class="term-name">AI and machine learning</h2>
+          <p>My personal work is <strong>not licensed for training AI or machine-learning models</strong> without explicit written permission.</p>
+          <p>Crawling and citation are welcome. If an assistant wants to point someone here or credit me in an answer, that's the entire idea, and nothing on this site is blocked from doing so. Training a model on the illustration itself is a different thing, and it needs a conversation first.</p>
+          <p>This is declared in the structured data on every page and embedded in the image files themselves, so it travels with the work.</p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- CTA -->
+    <div class="lic-cta fade-up fade-up-3">
+      <p class="lic-cta-text">Need permission, or want to commission something?</p>
+      <a href="mailto:info@claytoncunninghamdesign.com" class="lic-btn">Get in touch</a>
+    </div>
+
+    <p class="lic-updated">Last updated July 2026.</p>
+
+  </main>
+
+  <footer>
+    <p class="footer-copy">&copy; <span id="footer-year"></span> Clayton Cunningham Design. <a href="licensing.html" class="footer-link" aria-current="page">Licensing</a></p>
+  </footer>
+
+  <script src="js/site.js"></script>
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "965f2ad8267d4463890153ababb0dd33"}'></script>
+  <!-- End Cloudflare Web Analytics -->
+</body>
+</html>

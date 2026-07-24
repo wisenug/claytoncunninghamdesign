@@ -12,9 +12,10 @@
    Uses exiftool so pixels are never re-encoded (sharp would decode + re-encode
    every file, costing a generation of quality on already-compressed assets).
 
-   Not written here: WebStatement / LicensorURL. Those point at licensing terms
-   that don't exist yet; they're the second half of this, added with the
-   licensing page.
+   WebStatement points every file at the licensing page, so anyone who opens
+   the metadata lands on the terms. LicensorURL is only set on work Clayton can
+   actually grant rights to — pointing it at his contact page for client-owned
+   work would imply he can license something he doesn't own.
 
    Usage: node embed-image-credits.mjs [--dry-run] */
 import fs from 'fs/promises';
@@ -25,6 +26,7 @@ const run = promisify(execFile);
 const DRY = process.argv.includes('--dry-run');
 const CREATOR = 'Clayton Cunningham';
 const SITE = 'https://www.claytoncunninghamdesign.com';
+const LICENSE_URL = `${SITE}/licensing.html`;
 
 /* Copyright per client, mirroring OWNERSHIP in inject-schema.mjs. */
 const RIGHTS = {
@@ -186,11 +188,14 @@ for (const [client, list] of Object.entries(byClient)) {
     `-XMP-xmpRights:Marked=True`,
     `-XMP-xmpRights:UsageTerms=${r.terms}`,
     `-XMP-plus:CopyrightOwnerName=${r.credit}`,
+    `-XMP-xmpRights:WebStatement=${LICENSE_URL}`,
     `-IPTC:By-line=${CREATOR}`,
     `-IPTC:CopyrightNotice=${r.notice}`,
     `-IPTC:Credit=${r.credit}`,
     `-EXIF:Artist=${CREATOR}`,
     `-EXIF:Copyright=${r.notice}`,
+    // Only where Clayton holds the rights; see LicensorURL note at the top.
+    ...(client === 'Personal' ? [`-XMP-plus:LicensorURL=${LICENSE_URL}`] : []),
     ...list,
   ];
 

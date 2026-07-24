@@ -50,6 +50,12 @@ const PERSON = {
     'https://www.linkedin.com/in/clayton-cunningham-4057aa29',
     'https://dribbble.com/ClaytonCunningham',
   ],
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'Commissions and licensing',
+    email: 'info@claytoncunninghamdesign.com',
+    url: `${SITE}/licensing.html`,
+  },
 };
 
 // Short reference to the Person for use inside other entities.
@@ -98,10 +104,16 @@ const PERSONAL_PAGES = {
   'shoe-rotation.html': { keywords: ['Illustration', 'Personal Work', 'Interactive'] },
 };
 
+const LICENSE_URL = `${SITE}/licensing.html`;
+
 const OWNED_BY_CLAYTON = {
   copyrightHolder: PERSON_REF,
   copyrightNotice: '© Clayton Cunningham. All rights reserved. Not licensed for AI or machine-learning training without explicit written permission.',
   creditText: 'Clayton Cunningham',
+  // Google reads these two to mark images as licensable and to show a "get
+  // this image" link. Only on work Clayton can actually grant rights to.
+  license: LICENSE_URL,
+  acquireLicensePage: LICENSE_URL,
 };
 
 // Load the project manifest (browser global style) for client names + article dates.
@@ -141,6 +153,18 @@ for (const file of files) {
       url: `${SITE}/`,
       name: 'Clayton Cunningham Design',
       description,
+      publisher: { '@id': PERSON_ID },
+    });
+  }
+
+  if (file === 'licensing.html') {
+    graph.push({
+      '@type': 'WebPage',
+      '@id': LICENSE_URL,
+      url: canonical,
+      name: bareTitle(title),
+      description,
+      about: { '@id': PERSON_ID },
       publisher: { '@id': PERSON_ID },
     });
   }
