@@ -1,4 +1,4 @@
-/* Branded 1200×630 OG cards for project + capability pages, rendered with
+/* Branded 1200×630 OG cards for project pages, rendered with
    puppeteer from the manifest's ink colors and the site's own fonts.
    Outputs img/og/og-<page>.jpg and updates each page's og:image/twitter:image.
    Requires the dev server on :3000 (for fonts/ and img/). Re-run after
@@ -9,7 +9,7 @@ import puppeteer from 'puppeteer';
 const SITE = 'https://www.claytoncunninghamdesign.com';
 const shim = {};
 new Function('window', await fs.readFile('js/projects.js', 'utf8'))(shim);
-const { CCD_PROJECTS, CCD_TAG_META, CCD_TAG_HREF } = shim;
+const { CCD_PROJECTS } = shim;
 
 await fs.mkdir('img/og', { recursive: true });
 
@@ -75,16 +75,6 @@ for (const p of CCD_PROJECTS.filter(p => !p.homeOnly)) {
   });
   await updateMeta(p.href, out);
   console.log(`${p.href} → ${out}`);
-}
-
-for (const tag of Object.keys(CCD_TAG_META)) {
-  const file = CCD_TAG_HREF(tag);
-  const sample = CCD_PROJECTS.find(p => !p.homeOnly && p.tags.includes(tag));
-  const out = await render(`og-${file.replace('.html', '')}.jpg`, {
-    bg: '#0B2D52', fg: '#B8D9F5', kicker: 'Capabilities', title: CCD_TAG_META[tag].title, image: sample?.image,
-  });
-  await updateMeta(file, out);
-  console.log(`${file} → ${out}`);
 }
 
 await browser.close();

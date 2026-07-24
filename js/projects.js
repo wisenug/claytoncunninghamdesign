@@ -1,51 +1,9 @@
 /* projects.js — single source of truth for project metadata.
-   Consumed by index.js (view-transition ink colors) and capabilities.js
-   (filterable project grid). To add a project, add one entry here with the
+   Consumed by index.js (view-transition ink colors, ?cap= filter) and
+   inject-schema.mjs (JSON-LD). To add a project, add one entry here with the
    page's [--color-bg, --color-black] as bgColor/fgColor.
    homeOnly: true — gets ink colors on the home page but stays out of the
-   capabilities grid. */
-
-// Tag metadata: title + description per capability. Used by capabilities.js
-// (client filter) and generate-tag-pages.mjs (static SEO pages).
-window.CCD_TAG_META = {
-  'UI/UX Design': {
-    title: 'UI/UX Design',
-    description: 'End-to-end product design across automotive, enterprise, and consumer platforms, from early research through shipped product.'
-  },
-  'Iconography': {
-    title: 'Iconography',
-    description: 'Unified icon systems built on precise grids, optical corrections, and systematic rules, spanning UI, spot, and navigation icons.'
-  },
-  'Illustration': {
-    title: 'Illustration',
-    description: 'Custom illustration systems built to scale across product, marketing, and brand, with rules for how to extend them.'
-  },
-  'Design System': {
-    title: 'Design System',
-    description: 'Component libraries, style guides, and design infrastructure built to last and scale across teams.'
-  },
-  'Motion Design': {
-    title: 'Motion Design',
-    description: 'Motion and animation work spanning UI micro-interactions, Lottie animations, and marketing assets.'
-  },
-  'Visual Identity': {
-    title: 'Visual Identity',
-    description: 'Brand identity and expression work that extends naturally into product, marketing, and beyond.'
-  },
-  'Research': {
-    title: 'Research',
-    description: 'User research, interviews, usability testing, and data-informed design decisions that reduce friction and build confidence.'
-  },
-  'Case Study': {
-    title: 'Case Study',
-    description: 'In-depth project walkthroughs covering research, process, and outcomes from discovery through delivery.'
-  }
-};
-
-// URL slug for a tag's static page, e.g. 'UI/UX Design' → 'capabilities-uiux-design.html'
-window.CCD_TAG_HREF = function (tag) {
-  return 'capabilities-' + tag.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') + '.html';
-};
+   filterable grid. */
 
 // Process write-ups (file → original publish date). Consumed by
 // inject-schema.mjs (Article datePublished) and generate-rss.mjs (feed).

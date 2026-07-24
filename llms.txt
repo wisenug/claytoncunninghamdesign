@@ -12,15 +12,6 @@
 - [Kelley Blue Book Icons & Illustrations](https://www.claytoncunninghamdesign.com/kbb-icons-illustrations.html): Growing a renowned leader's visual library
 - [Paradesmith MVP](https://www.claytoncunninghamdesign.com/paradesmith.html): An MVP transforming scattered online content into curated community experiences
 
-## Capabilities
-
-- [UI/UX Design](https://www.claytoncunninghamdesign.com/capabilities-uiux-design.html)
-- [Illustration](https://www.claytoncunninghamdesign.com/capabilities-illustration.html)
-- [Iconography](https://www.claytoncunninghamdesign.com/capabilities-iconography.html)
-- [Design Systems](https://www.claytoncunninghamdesign.com/capabilities-design-system.html)
-- [Visual Identity](https://www.claytoncunninghamdesign.com/capabilities-visual-identity.html)
-- [Motion Design](https://www.claytoncunninghamdesign.com/capabilities-motion-design.html)
-
 ## Process write-ups
 
 - [How to build a scalable illustration system](https://www.claytoncunninghamdesign.com/how-to-build-a-scalable-illustration-system.html): Core element libraries, style point of view, spot distillation, and system governance
