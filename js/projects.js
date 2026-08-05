@@ -149,6 +149,17 @@ window.CCD_PROJECTS = [
     tags: ['UI/UX Design', 'Iconography', 'Motion Design']
   },
   {
+    href: 'iris-design-system.html',
+    bgColor: '#ffffff',
+    fgColor: '#0B2D52',
+    image: 'img/iris_brand_themes.webp',
+    alt: 'Iris Design System, five brand themes side by side',
+    client: 'Cox Automotive',
+    title: 'Iris Design System',
+    label: 'Building the multi-brand design system behind Autotrader, KBB, and OEM dealer sites',
+    tags: ['Design System', 'UI/UX Design', 'Case Study']
+  },
+  {
     href: 'just-for-funsies.html',
     bgColor: '#b8e4f0',
     fgColor: '#0F3D4A',

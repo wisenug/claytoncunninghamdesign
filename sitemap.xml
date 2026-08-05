@@ -10,6 +10,7 @@
     <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/tshq_fanwear_thumbnail.webp</image:loc></image:image>
     <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/lotuslion_thumbnail.webp</image:loc></image:image>
     <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/shoes/treeline/treeline-01.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/iris_brand_themes.webp</image:loc></image:image>
     <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/Kbb_thumbnail.webp</image:loc></image:image>
     <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/tshq_app_thumbnail.webp</image:loc></image:image>
     <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/tshq_reg_thumbnail.webp</image:loc></image:image>
@@ -166,6 +167,17 @@
     <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/autotrader_icons_library.webp</image:loc></image:image>
     <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/autotrader_icons_11.webp</image:loc></image:image>
     <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/kbb_1.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.claytoncunninghamdesign.com/iris-design-system.html</loc>
+    <lastmod>2026-07-25</lastmod>
+    <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/iris_foundations.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/iris_what_are_tokens.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/iris_token_table.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/iris_brand_themes.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/iris_governance_process.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/iris_rollout_timeline.webp</image:loc></image:image>
+    <image:image><image:loc>https://www.claytoncunninghamdesign.com/img/iris_q2_faster_quality.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.claytoncunninghamdesign.com/just-for-funsies.html</loc>

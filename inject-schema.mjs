@@ -83,6 +83,10 @@ const OWNERSHIP = {
     holder: { name: 'Cox Automotive', url: 'https://www.coxautomotive.com' },
     note: 'Designed by Clayton Cunningham as Senior Product Designer at Cox Automotive. Copyright is held by Cox Automotive.',
   },
+  'Cox Automotive': {
+    holder: { name: 'Cox Automotive', url: 'https://www.coxautomotive.com' },
+    note: 'Designed by Clayton Cunningham as Senior Product Designer at Cox Automotive. Copyright is held by Cox Automotive.',
+  },
   'DICK\'S TSHQ': {
     holder: { name: 'DICK\'S Sporting Goods', url: 'https://www.dickssportinggoods.com' },
     note: 'Designed by Clayton Cunningham as Product Designer at DICK\'S Team Sports HQ. Copyright is held by DICK\'S Sporting Goods.',

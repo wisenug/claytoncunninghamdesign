@@ -40,6 +40,11 @@ const RIGHTS = {
     credit: 'Clayton Cunningham / Cox Automotive',
     terms: 'Created by Clayton Cunningham as Senior Product Designer at Cox Automotive. Copyright is held by Cox Automotive.',
   },
+  'Cox Automotive': {
+    notice: '© Cox Automotive. All rights reserved.',
+    credit: 'Clayton Cunningham / Cox Automotive',
+    terms: 'Created by Clayton Cunningham as Senior Product Designer at Cox Automotive. Copyright is held by Cox Automotive.',
+  },
   'DICK\'S TSHQ': {
     notice: '© DICK\'S Sporting Goods. All rights reserved.',
     credit: 'Clayton Cunningham / DICK\'S Sporting Goods',
