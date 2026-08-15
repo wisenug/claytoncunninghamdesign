@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://cloudflareinsights.com https://static.cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+  <link rel="icon" type="image/png" sizes="192x192" href="img/icon-192.png">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#0B2D52">
+  <link rel="canonical" href="https://www.claytoncunninghamdesign.com/iris-design-system.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Clayton Cunningham Design">
+  <meta property="og:url" content="https://www.claytoncunninghamdesign.com/iris-design-system.html">
+  <meta property="og:title" content="Iris Design System • Clayton Cunningham Design">
+  <meta property="og:description" content="Iris is Cox Automotive's consumer design system, running Autotrader, Kelley Blue Book, and OEM dealer sites on one shared component platform with multi-brand tokens and governance.">
+  <meta property="og:image" content="https://www.claytoncunninghamdesign.com/img/og/og-iris-design-system.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Iris Design System • Clayton Cunningham Design">
+  <meta name="twitter:description" content="Iris is Cox Automotive's consumer design system, running Autotrader, Kelley Blue Book, and OEM dealer sites on one shared component platform with multi-brand tokens and governance.">
+  <meta name="twitter:image" content="https://www.claytoncunninghamdesign.com/img/og/og-iris-design-system.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iris Design System • Clayton Cunningham Design</title>
+  <meta name="description" content="Iris is Cox Automotive's consumer design system, running Autotrader, Kelley Blue Book, and OEM dealer sites on one shared component platform with multi-brand tokens and governance.">
+  <link rel="preload" href="fonts/dm-sans-04.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    :root {
+      --color-bg: #ffffff;
+      --color-black: #0B2D52;
+      --iris-surface: #F2F6FA;
+      --iris-line: rgba(11, 45, 82, 0.14);
+      --iris-muted: rgba(11, 45, 82, 0.68);
+    }
+
+    /* Page canvas: light gray. --color-bg stays white for card/surface
+       elements layered on top so they still pop. */
+    body {
+      background-color: #F5F5F5;
+    }
+
+    /* ── View transition ── */
+    .vt-bg {
+      position: fixed;
+      inset: 0;
+      background-color: #F5F5F5;
+      z-index: -1;
+      pointer-events: none;
+      view-transition-name: ink-bg;
+    }
+
+    .project-title { view-transition-name: page-title; }
+
+    /* View transition — outgoing (to next project); names assigned via JS on click */
+    .next-project-title { position: relative; }
+    .next-label         { position: relative; }
+
+    /* ── Image captions ── */
+    .img-caption {
+      font-size: 1.6rem;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      color: rgba(11, 45, 82, 0.65);
+      font-style: italic;
+      margin-top: 1.2rem;
+      padding: 0 0.4rem;
+    }
+
+    /* ── Hairline border so white figures hold their edge ── */
+    .full-image img {
+      border: 1px solid var(--iris-line);
+    }
+
+    /* ── Foundations montage already has its own edge-to-edge background; the hairline reads as a stray stroke ── */
+    .full-image.no-frame img {
+      border: none;
+    }
+
+    /* ── Hero: wider column than the site's default 1200px text width, capped at 2000px ── */
+    .hero-image {
+      max-width: 2000px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .hero-image video {
+      width: 100%;
+      height: auto;
+      display: block;
+      aspect-ratio: 1920 / 1134;
+    }
+
+    /* ── Lottie block ── */
+    .lottie-block {
+      width: 100%;
+      border-radius: var(--radius-img);
+      overflow: hidden;
+    }
+
+    /* ── Component showcase: rounded/bordered frame around the injected canvas ── */
+    #showcase-root {
+      width: 100%;
+      border-radius: var(--radius-img);
+      overflow: hidden;
+      border: 1px solid var(--iris-line);
+    }
+
+    /* ── Problem bullets ── */
+    .body-text ul {
+      display: inline-block;
+      text-align: left;
+      margin: 1.6rem auto 0;
+      padding-left: 2rem;
+    }
+
+    .body-text li {
+      margin-bottom: 0.8rem;
+    }
+
+    /* ── Challenges grid ── */
+    .challenges {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3.2rem;
+      padding: 0 var(--page-margin) 8rem;
+      max-width: 118rem;
+      margin: 0 auto;
+      box-sizing: content-box;
+    }
+
+
+    .challenge h3 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin: 0 0 0.8rem;
+      color: var(--color-black);
+    }
+
+    .challenge p {
+      font-size: 1.7rem;
+      line-height: 1.7;
+      color: rgba(11, 45, 82, 0.72);
+      margin: 0;
+    }
+
+    /* ── Token flow: image half-width, pullquote fills the other half ── */
+    .token-flow-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4.8rem;
+      align-items: center;
+    }
+
+    .token-flow-split img {
+      width: 100%;
+      max-width: 1000px;
+      height: auto;
+      display: block;
+      border-radius: var(--radius-img);
+      border: 1px solid var(--iris-line);
+    }
+
+    .token-flow-quote p {
+      font-size: 3.2rem;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+      color: var(--color-black);
+      margin: 0;
+    }
+
+    @media (max-width: 820px) {
+      .token-flow-split {
+        grid-template-columns: 1fr;
+        gap: 2.4rem;
+      }
+    }
+
+    /* ── Asset placeholder ──
+       Real screenshots are still being sourced. These blocks reserve the exact
+       slot and state the spec, so the layout is settled before the art lands.
+       Deliberately not <img> tags: the CSP is img-src 'self', and
+       checks/validate-site.mjs fails on any src that isn't on disk. */
+    .img-slot {
+      border: 2px dashed rgba(11, 45, 82, 0.3);
+      border-radius: var(--radius-img);
+      background:
+        repeating-linear-gradient(
+          45deg,
+          rgba(11, 45, 82, 0.022) 0 12px,
+          transparent 12px 24px
+        ),
+        var(--iris-surface);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4.8rem 3.2rem;
+      gap: 0.8rem;
+    }
+
+    .img-slot__tag {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(11, 45, 82, 0.45);
+    }
+
+    .img-slot__title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      color: var(--color-black);
+      max-width: 46rem;
+    }
+
+    .img-slot__spec {
+      font-size: 1.6rem;
+      line-height: 1.6;
+      color: var(--iris-muted);
+      max-width: 52rem;
+      margin: 0;
+    }
+
+    /* ── Guidelines carousel ──
+       Same auto-scrolling marquee as autotrader-illustration-system.html
+       (.carousel-wrapper/.carousel-track/.carousel-item, driven by the
+       shared marquee keyframe in styles.css and the drag handler in
+       js/site.js). This ID just scopes the drop shadow to this page's
+       instance without touching the shared carousel styling. */
+    #guidelines-carousel .carousel-item {
+      width: 44rem;
+    }
+
+    #guidelines-carousel .carousel-item img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: var(--radius-img);
+      box-shadow: 0 8px 24px rgba(11, 45, 82, 0.12), 0 2px 6px rgba(11, 45, 82, 0.08);
+    }
+
+    /* ── System architecture stack ──
+       Reads bottom-up: foundations settle first, brand themes resolve last. */
+    .arch {
+      padding: 0 var(--page-margin) 6.4rem;
+      max-width: 92rem;
+      margin: 0 auto;
+      box-sizing: content-box;
+    }
+
+    .arch-layer {
+      border: 1px solid var(--iris-line);
+      border-radius: calc(var(--radius-img) / 2);
+      background: var(--color-bg);
+      padding: 2.4rem 2.8rem;
+      display: grid;
+      grid-template-columns: 4.8rem 1fr;
+      gap: 0 2rem;
+      align-items: baseline;
+    }
+
+    .arch-layer + .arch-layer {
+      margin-top: 0.8rem;
+    }
+
+    /* Top layer is what everything else resolves into, so it carries the
+       emphasis; the base layer is tinted to read as ground. */
+    .arch-layer--top {
+      border-color: var(--color-black);
+      border-width: 2px;
+    }
+
+    .arch-layer--base {
+      background: var(--iris-surface);
+    }
+
+    .arch-layer__n {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: rgba(11, 45, 82, 0.4);
+      grid-row: span 2;
+    }
+
+    .arch-layer__name {
+      font-size: 1.9rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--color-black);
+      margin: 0;
+    }
+
+    .arch-layer__desc {
+      font-size: 1.6rem;
+      line-height: 1.65;
+      color: var(--iris-muted);
+      margin: 0.5rem 0 0;
+    }
+
+    .arch-layer__desc code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.92em;
+      background: var(--iris-surface);
+      border: 1px solid var(--iris-line);
+      border-radius: 0.3rem;
+      padding: 0.15em 0.4em;
+    }
+
+    .arch-layer--top .arch-layer__desc code {
+      background: #ffffff;
+    }
+
+    .arch-flow {
+      font-size: 1.4rem;
+      line-height: 1.6;
+      color: rgba(11, 45, 82, 0.5);
+      text-align: center;
+      margin: 1.6rem 0 0;
+      font-style: italic;
+    }
+
+    /* ── Outcomes ── */
+    .outcomes {
+      background: var(--iris-surface);
+      border-radius: var(--radius-img);
+      margin: 0 var(--page-margin) 8rem;
+      padding: 5.6rem 4.8rem;
+    }
+
+    .outcomes .section-heading {
+      padding: 0;
+      margin-bottom: 3.6rem;
+    }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2.4rem;
+      margin-bottom: 4.4rem;
+    }
+
+    .stat .stat-n {
+      font-size: 4.8rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--color-black);
+      line-height: 1;
+    }
+
+    .stat .stat-l {
+      font-size: 1.5rem;
+      color: rgba(11, 45, 82, 0.65);
+      margin-top: 0.8rem;
+      line-height: 1.5;
+    }
+
+    .outcomes .outcomes-body {
+      max-width: 76rem;
+      font-size: 1.8rem;
+      line-height: 1.7;
+      color: rgba(11, 45, 82, 0.8);
+      margin: 0 0 3.6rem;
+    }
+
+    .outcomes-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 3.6rem;
+    }
+
+    .outcomes-grid img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: calc(var(--radius-img) / 2);
+    }
+
+    /* Single panel gets the full column: the source screenshot's body copy is
+       small enough that half-width made it unreadable. */
+    .outcomes-grid--single {
+      grid-template-columns: 1fr;
+    }
+
+    /* ── Next project ── */
+    .next-project-wrap {
+      margin-top: 8rem;
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 640px) {
+      .challenges {
+        grid-template-columns: 1fr;
+        gap: 2.8rem;
+      }
+
+      .outcomes {
+        padding: 3.6rem 2.4rem;
+      }
+
+      .stat-row {
+        grid-template-columns: 1fr 1fr;
+        gap: 2.8rem 2rem;
+      }
+
+      .outcomes-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .img-slot {
+        padding: 3.2rem 2rem;
+      }
+
+      .arch-layer {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .arch-layer__n {
+        grid-row: auto;
+        margin-bottom: 0.6rem;
+      }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CreativeWork",
+        "url": "https://www.claytoncunninghamdesign.com/iris-design-system.html",
+        "name": "Iris Design System",
+        "headline": "Building the multi-brand design system behind Autotrader, KBB, and OEM dealer sites",
+        "description": "Iris is Cox Automotive's consumer design system, running Autotrader, Kelley Blue Book, and OEM dealer sites on one shared component platform with multi-brand tokens and governance.",
+        "image": "https://www.claytoncunninghamdesign.com/img/og/og-iris-design-system.jpg",
+        "creator": {
+          "@type": "Person",
+          "@id": "https://www.claytoncunninghamdesign.com/#clayton",
+          "name": "Clayton Cunningham",
+          "url": "https://www.claytoncunninghamdesign.com/"
+        },
+        "copyrightHolder": {
+          "@type": "Organization",
+          "name": "Cox Automotive",
+          "url": "https://www.coxautomotive.com"
+        },
+        "sourceOrganization": {
+          "@type": "Organization",
+          "name": "Cox Automotive"
+        },
+        "disambiguatingDescription": "Designed by Clayton Cunningham as Senior Product Designer at Cox Automotive. Copyright is held by Cox Automotive.",
+        "keywords": [
+          "Design System",
+          "UI/UX Design",
+          "Case Study"
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.claytoncunninghamdesign.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Iris Design System",
+            "item": "https://www.claytoncunninghamdesign.com/iris-design-system.html"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <div class="vt-bg" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html" class="nav-logo" aria-label="Clayton Cunningham Design, Home">
+      <span class="nav-logo-icon" aria-hidden="true"></span>
+      <span class="nav-logo-name">Clayton Cunningham Design</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Work</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <!-- Project header -->
+    <header class="project-header">
+      <h1 class="project-title">
+        Iris Design System
+      </h1>
+      <div class="capabilities-block fade-up fade-up-2">
+        <div class="capabilities-tags">
+          <a href="index.html?cap=design-system" class="tag">Design System</a>          <a href="index.html?cap=uiux-design" class="tag">UI/UX Design</a>          <a href="index.html?cap=case-study" class="tag">Case Study</a>        </div>
+      </div>
+    </header>
+
+    <!-- Hero: live walkthrough of the Iris component library -->
+    <section class="hero-image fade-up fade-up-3">
+      <video autoplay muted playsinline loop aria-label="Iris component library walkthrough: buttons, inputs, calendar, toasts, tooltips, and sliders across brand themes">
+        <source src="img/iris_hero_desktop.mp4" type="video/mp4">
+      </video>
+    </section>
+
+    <!-- Intro text -->
+    <div class="intro-text" style="grid-template-columns: 1fr; text-align: center;">
+      <p>Iris is Cox Automotive's consumer design system, powering Autotrader, Kelley Blue Book, and OEM dealer sites including Audi and Chevrolet. What started as a two-brand toolkit is now the shared platform every brand theme runs on.</p>
+    </div>
+
+    <!-- The Problem -->
+    <div class="text-section">
+      <h2 class="section-heading">The Problem</h2>
+      <p class="body-text">Cox Automotive's consumer products had no shared design language. Autotrader and KBB each had their own separate design systems, and all of our OEM dealer websites each built the same components differently, with no common source of truth between design and engineering.</p>
+    </div>
+
+    <!-- Challenges -->
+    <div class="text-section">
+      <h2 class="section-heading">Challenges</h2>
+    </div>
+
+    <div class="challenges">
+      <div class="challenge">
+        <h3>Multi-brand</h3>
+        <p>A system flexible enough to hold Autotrader's bold orange alongside OEM dealer's unique brand colors, while also supporting brands not yet onboarded.</p>
+      </div>
+      <div class="challenge">
+        <h3>Inconsistent components</h3>
+        <p>The same button was rebuilt five different ways across brands, with no shared source of truth.</p>
+      </div>
+      <div class="challenge">
+        <h3>No shared vocabulary</h3>
+        <p>Teams had no common language for what a &ldquo;primary&rdquo; action, or any other pattern, was even supposed to look like.</p>
+      </div>
+    </div>
+
+    <!-- System architecture -->
+    <div class="text-section">
+      <h2 class="section-heading">Foundations</h2>
+    </div>
+
+    <div class="full-image no-frame">
+      <img srcset="img/iris_foundations-w800.webp 800w, img/iris_foundations.webp 2000w" sizes="92vw" width="2000" height="938" src="img/iris_foundations.webp" alt="Consumer Design System foundations: title slide, color palette, type scale, margins and columns, motion principles, iconography, grid, and key shapes" loading="lazy">
+      <p class="img-caption">Core foundations: type scale, color palette, and key shapes underneath every Iris component.</p>
+    </div>
+
+    <div class="text-section">
+      <p class="body-text">I worked on the design-foundations team to tackle the design system's core items first: color palette and ramps, typography scale, layout and grid specifics, motion, and accessibility standards, before a single component was designed. The system was built with Autotrader in mind as our first brand.</p>
+    </div>
+
+    <div class="full-image">
+      <div id="lottie-foundations-detail" class="lottie-block" data-lottie="animations/iris-foundations-detail.json" role="img" aria-label="Animated breakdown of Iris foundational elements: color palette, type scale, key shapes, and grid" style="aspect-ratio: 2000/998; height: auto;"></div>
+    </div>
+
+    <!-- Components -->
+    <div class="text-section">
+      <h2 class="section-heading">Components</h2>
+      <p class="body-text">After a solid set of foundations was in place, my team began building our core set of components necessary for any UI: Buttons, inputs, cards, links, etc., along with documentation for the product designers, and component specs for the engineering teams.</p>
+      <p class="body-text">I worked alongside the engineers to get these components from Figma into code so they could be used as real tangible building blocks for Iris.</p>
+    </div>
+
+    <div class="full-image">
+      <div id="showcase-root" role="img" aria-label="Animated showcase of Iris components: avatar badge, spinner, skeleton loader, chips, toast, range slider, progress bar, tooltip, toggle, icon button, and dropdown"></div>
+    </div>
+
+    <!-- Guidelines: horizontal carousel, slide 1 starts in view on the left,
+         2–6 trail off to the right. PREVIEW — placeholder slots until real
+         exports land. -->
+    <div class="text-section">
+      <h2 class="section-heading">Guidelines</h2>
+      <p class="body-text">Documentation was created for each component as a part of the overall design process. Usage, variants, anatomy, sizing, do's and don'ts, tokenized properties, and accessibility notes were created for product designers. Detailed specs with styling, interaction, and motion and accessibility guidelines for engineering.</p>
+    </div>
+
+    <div class="carousel-wrapper" id="guidelines-carousel" role="region" aria-label="Iris avatar component guidelines">
+      <div class="carousel-track" aria-hidden="true">
+        <div class="carousel-item"><img srcset="img/iris_avatar_variants-w800.webp 800w, img/iris_avatar_variants-w1600.webp 1600w, img/iris_avatar_variants.webp 1998w" sizes="44rem" src="img/iris_avatar_variants.webp" width="1998" height="1088" alt="Avatar guidelines: initials and image variants, with use-when and don't-use-when guidance" loading="lazy"></div>
+        <div class="carousel-item"><img srcset="img/iris_avatar_anatomy_sizes-w800.webp 800w, img/iris_avatar_anatomy_sizes-w1600.webp 1600w, img/iris_avatar_anatomy_sizes.webp 1998w" sizes="44rem" src="img/iris_avatar_anatomy_sizes.webp" width="1998" height="1088" alt="Avatar anatomy: container callout, plus the small, medium, and large size scale" loading="lazy"></div>
+        <div class="carousel-item"><img srcset="img/iris_avatar_usage-w800.webp 800w, img/iris_avatar_usage-w1600.webp 1600w, img/iris_avatar_usage.webp 1998w" sizes="44rem" src="img/iris_avatar_usage.webp" width="1998" height="1088" alt="Avatar usage do's and don'ts: variant and size selection, initials fallback, character count, and consistent alignment" loading="lazy"></div>
+        <div class="carousel-item"><img srcset="img/iris_avatar_properties-w800.webp 800w, img/iris_avatar_properties-w1600.webp 1600w, img/iris_avatar_properties.webp 1998w" sizes="44rem" src="img/iris_avatar_properties.webp" width="1998" height="1088" alt="Avatar properties: initials and image variant tokens for background, border, and label color, in standard and inverse modes" loading="lazy"></div>
+        <div class="carousel-item"><img srcset="img/iris_avatar_styling_a11y-w800.webp 800w, img/iris_avatar_styling_a11y-w1600.webp 1600w, img/iris_avatar_styling_a11y.webp 1998w" sizes="44rem" src="img/iris_avatar_styling_a11y.webp" width="1998" height="1088" alt="Avatar styling variables table, focus style, motion guidance, and accessibility notes including keyboard navigation and ARIA attributes" loading="lazy"></div>
+        <!-- duplicated for infinite scroll -->
+        <div class="carousel-item"><img srcset="img/iris_avatar_variants-w800.webp 800w, img/iris_avatar_variants-w1600.webp 1600w, img/iris_avatar_variants.webp 1998w" sizes="44rem" src="img/iris_avatar_variants.webp" width="1998" height="1088" alt="" loading="lazy"></div>
+        <div class="carousel-item"><img srcset="img/iris_avatar_anatomy_sizes-w800.webp 800w, img/iris_avatar_anatomy_sizes-w1600.webp 1600w, img/iris_avatar_anatomy_sizes.webp 1998w" sizes="44rem" src="img/iris_avatar_anatomy_sizes.webp" width="1998" height="1088" alt="" loading="lazy"></div>
+        <div class="carousel-item"><img srcset="img/iris_avatar_usage-w800.webp 800w, img/iris_avatar_usage-w1600.webp 1600w, img/iris_avatar_usage.webp 1998w" sizes="44rem" src="img/iris_avatar_usage.webp" width="1998" height="1088" alt="" loading="lazy"></div>
+        <div class="carousel-item"><img srcset="img/iris_avatar_properties-w800.webp 800w, img/iris_avatar_properties-w1600.webp 1600w, img/iris_avatar_properties.webp 1998w" sizes="44rem" src="img/iris_avatar_properties.webp" width="1998" height="1088" alt="" loading="lazy"></div>
+        <div class="carousel-item"><img srcset="img/iris_avatar_styling_a11y-w800.webp 800w, img/iris_avatar_styling_a11y-w1600.webp 1600w, img/iris_avatar_styling_a11y.webp 1998w" sizes="44rem" src="img/iris_avatar_styling_a11y.webp" width="1998" height="1088" alt="" loading="lazy"></div>
+      </div>
+    </div>
+
+    <!-- Tokens -->
+    <div class="text-section">
+      <h2 class="section-heading">Tokens</h2>
+      <p class="body-text">A token system was established, following a semantic rather than literal framework. A token named for a color locks the system to one brand. A token named for its job lets multiple brands share one component, and still retain their unique brand traits. This is where the real magic with Iris shows. Tokens were created for all aspects of component design decisions: color, space, padding/margin, motion, and typography.</p>
+    </div>
+
+    <div class="full-image">
+      <div class="token-flow-split">
+        <img src="img/iris_token_flow_example.webp" width="1000" height="553" alt="Token flow diagram: Autotrader, Kelley Blue Book, and Ford buttons each resolving through bg-button-primary-rest to primary-600 to their own base hex value" loading="lazy">
+        <div class="token-flow-quote">
+          <p>&ldquo;A token named for a color locks the system to one brand. A token named for its job lets multiple brands share one component, and still retain their unique brand traits.&rdquo;</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="full-image">
+      <img srcset="img/iris_token_table-w800.webp 800w, img/iris_token_table.webp 1400w" sizes="92vw" width="1400" height="700" src="img/iris_token_table.webp" alt="Iris CDS Library in Figma: token variables table with one row per token and one column per brand, including Autotrader, KBB, Ford Blue Advantage, and Car and Driver" loading="lazy">
+      <p class="img-caption">The token system as it lives in Figma, one row per token, one column per brand.</p>
+    </div>
+
+    <div class="text-section">
+      <p class="body-text">The token system is composed of three levels: base tokens, semantic tokens, and component tokens. Base tokens store raw values, like color hex codes, or rems. Semantic tokens reference base tokens, and provide general brand styling, and component tokens will provide granular styling info for specific components. The naming convention provides meaning and consistency across Iris.</p>
+    </div>
+
+    <div class="full-image">
+      <div id="lottie-tokens-detail" class="lottie-block" data-lottie="animations/iris-tokens-detail.json" role="img" aria-label="Animated breakdown of the Iris token system, resolving a semantic token to different values per brand" style="aspect-ratio: 2000/813; height: auto;"></div>
+      <p class="img-caption">Each color variant can have sub-variants, primary, secondary, tertiary and inverse to indicate usage.</p>
+    </div>
+
+    <div class="full-image">
+      <img srcset="img/iris_brand_themes-w800.webp 800w, img/iris_brand_themes.webp 1400w" sizes="92vw" width="1400" height="575" src="img/iris_brand_themes.webp" alt="The same vehicle listing card themed for Autotrader, Kelley Blue Book, and a Mercedes-Benz OEM dealer site" loading="lazy">
+      <p class="img-caption">Autotrader, Kelley Blue Book, and Mercedes-Benz, each themed to the components that brand tier uses.</p>
+    </div>
+
+    <div class="text-section">
+      <p class="body-text">The token model was proven through an Autotrader refresh first, before other brands were added to the library.</p>
+    </div>
+
+    <!-- Governance -->
+    <div class="text-section">
+      <h2 class="section-heading">Governance</h2>
+      <p class="body-text">I joined the governance team, helping define how changes get reviewed as more components, and additional themes come online. Every change now moves from proposal to production on a defined path, with design and engineering bought in. I also run a bi-weekly Iris open office hours meeting to assist product designers requesting new components, or extended functionality, or need guidance or answer questions about the design system.</p>
+    </div>
+
+    <!-- Evolution -->
+    <div class="text-section">
+      <h2 class="section-heading">Evolution</h2>
+      <p class="body-text">Iris isn't a one time build. It was the culmination of a multi-year effort. It's an ongoing, living system that is constantly adapting to the business's needs.</p>
+    </div>
+
+    <!-- Outcomes -->
+    <div class="outcomes">
+      <h2 class="section-heading">Results</h2>
+      <div class="stat-row">
+        <div class="stat"><div class="stat-n">38</div><div class="stat-l">Teams building with Iris</div></div>
+        <div class="stat"><div class="stat-n">24</div><div class="stat-l">Repositories shipping in production</div></div>
+        <div class="stat"><div class="stat-n">585K+</div><div class="stat-l">Component instances across 722 Figma files</div></div>
+      </div>
+    </div>
+
+    <!-- Next project -->
+    <section class="next-project next-project-wrap" style="margin-top: 8rem;" aria-label="Navigate to next project">
+      <div class="next-project-bg" aria-hidden="true" style="background-color: #006554;"></div>
+      <span class="next-label" style="color: rgba(224, 250, 224, 0.85);">Next Project</span>
+      <a href="tshq-mobile-app.html" class="next-project-title" style="color: rgba(224, 250, 224, 0.8);">
+        DICK'S TSHQ<br>Mobile App
+      </a>
+    </section>
+
+  </main>
+
+  <footer>
+    <p class="footer-copy">&copy; <span id="footer-year"></span> Clayton Cunningham Design. <a href="licensing.html" class="footer-link">Licensing</a></p>
+  </footer>
+
+
+  <script src="js/vendor/lottie.min.js"></script>
+  <script src="js/iris-component-showcase.js"></script>
+  <script src="js/site.js"></script>
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "965f2ad8267d4463890153ababb0dd33"}'></script>
+  <!-- End Cloudflare Web Analytics -->
+</body>
+</html>
