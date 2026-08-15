@@ -40,6 +40,10 @@
       background-color: #F5F5F5;
     }
 
+    nav {
+      background: #F5F5F5;
+    }
+
     /* ── View transition ── */
     .vt-bg {
       position: fixed;
@@ -116,6 +120,12 @@
 
     .body-text li {
       margin-bottom: 0.8rem;
+    }
+
+    /* ── Standalone heading directly above a non-text-section block: match
+       the heading-to-paragraph gap used when they share a .text-section ── */
+    .text-section--tight {
+      padding-bottom: 1.8rem;
     }
 
     /* ── Challenges grid ── */
@@ -519,7 +529,7 @@
 
     <!-- Intro text -->
     <div class="intro-text" style="grid-template-columns: 1fr; text-align: center;">
-      <p>Iris is Cox Automotive's consumer design system, powering Autotrader, Kelley Blue Book, and OEM dealer sites including Audi and Chevrolet. What started as a two-brand toolkit is now the shared platform every brand theme runs on.</p>
+      <p>Iris is Cox Automotive's consumer design system, powering Autotrader, Kelley Blue Book, and OEM dealer sites like Audi, Chevrolet, and Volvo. What started as a two-brand toolkit is now the shared platform every brand theme runs on.</p>
     </div>
 
     <!-- The Problem -->
@@ -529,7 +539,7 @@
     </div>
 
     <!-- Challenges -->
-    <div class="text-section">
+    <div class="text-section text-section--tight">
       <h2 class="section-heading">Challenges</h2>
     </div>
 
@@ -549,7 +559,7 @@
     </div>
 
     <!-- System architecture -->
-    <div class="text-section">
+    <div class="text-section text-section--tight">
       <h2 class="section-heading">Foundations</h2>
     </div>
 
@@ -564,6 +574,10 @@
 
     <div class="full-image">
       <div id="lottie-foundations-detail" class="lottie-block" data-lottie="animations/iris-foundations-detail.json" role="img" aria-label="Animated breakdown of Iris foundational elements: color palette, type scale, key shapes, and grid" style="aspect-ratio: 2000/998; height: auto;"></div>
+    </div>
+
+    <div class="text-section">
+      <p class="body-text">My initial area of focus was selecting typefaces, and building a typography scale. The scale was adapted from a minor 3rd scale. We transitioned to using REM rather than hardcoded values for typographic attributes to retain flexibility across themes.</p>
     </div>
 
     <!-- Components -->
@@ -604,7 +618,7 @@
     <!-- Tokens -->
     <div class="text-section">
       <h2 class="section-heading">Tokens</h2>
-      <p class="body-text">A token system was established, following a semantic rather than literal framework. A token named for a color locks the system to one brand. A token named for its job lets multiple brands share one component, and still retain their unique brand traits. This is where the real magic with Iris shows. Tokens were created for all aspects of component design decisions: color, space, padding/margin, motion, and typography.</p>
+      <p class="body-text">A token system was established, following a semantic rather than literal framework. Tokens were created for all aspects of component design decisions: color, space, padding/margin, motion, and typography. A token named for a color locks the system to one brand. A token named for its job lets multiple brands share one component, and still retain their unique brand traits. This is where the real magic with Iris shows.</p>
     </div>
 
     <div class="full-image">
@@ -617,7 +631,7 @@
     </div>
 
     <div class="full-image">
-      <img srcset="img/iris_token_table-w800.webp 800w, img/iris_token_table.webp 1400w" sizes="92vw" width="1400" height="700" src="img/iris_token_table.webp" alt="Iris CDS Library in Figma: token variables table with one row per token and one column per brand, including Autotrader, KBB, Ford Blue Advantage, and Car and Driver" loading="lazy">
+      <img srcset="img/iris_token_table-w800.webp 800w, img/iris_token_table.webp 1400w" sizes="92vw" width="1400" height="657" src="img/iris_token_table.webp" alt="Iris CDS Library in Figma: token variables table with one row per token and one column per brand, including Autotrader, KBB, KBB 100, Ford Blue Advantage, and Car and Driver" loading="lazy">
       <p class="img-caption">The token system as it lives in Figma, one row per token, one column per brand.</p>
     </div>
 
@@ -642,7 +656,7 @@
     <!-- Governance -->
     <div class="text-section">
       <h2 class="section-heading">Governance</h2>
-      <p class="body-text">I joined the governance team, helping define how changes get reviewed as more components, and additional themes come online. Every change now moves from proposal to production on a defined path, with design and engineering bought in. I also run a bi-weekly Iris open office hours meeting to assist product designers requesting new components, or extended functionality, or need guidance or answer questions about the design system.</p>
+      <p class="body-text">I joined the Iris governance team, helping define how changes get reviewed as more components, and additional themes come online. Every change now moves from proposal to production on a defined path, with design and engineering bought in. I also run a bi-weekly Iris open office hours meeting to assist product designers requesting new components, or extended functionality, or need guidance or answer questions about the design system.</p>
     </div>
 
     <!-- Evolution -->
