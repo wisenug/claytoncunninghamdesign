@@ -150,10 +150,10 @@ window.CCD_PROJECTS = [
   },
   {
     href: 'iris-design-system.html',
-    bgColor: '#ffffff',
+    bgColor: '#F5F5F5',
     fgColor: '#0B2D52',
     image: 'img/iris_brand_themes.webp',
-    alt: 'Iris Design System, five brand themes side by side',
+    alt: 'Iris Design System, the same vehicle listing card themed for three brands',
     client: 'Cox Automotive',
     title: 'Iris Design System',
     label: 'Building the multi-brand design system behind Autotrader, KBB, and OEM dealer sites',
