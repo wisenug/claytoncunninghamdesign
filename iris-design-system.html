@@ -236,22 +236,96 @@
       margin: 0;
     }
 
-    /* ── Guidelines carousel ──
-       Same auto-scrolling marquee as autotrader-illustration-system.html
-       (.carousel-wrapper/.carousel-track/.carousel-item, driven by the
-       shared marquee keyframe in styles.css and the drag handler in
-       js/site.js). This ID just scopes the drop shadow to this page's
-       instance without touching the shared carousel styling. */
-    #guidelines-carousel .carousel-item {
-      width: 44rem;
+    /* ── Guidelines: inverted color band ── */
+    .section-color-break {
+      height: 8rem;
     }
 
-    #guidelines-carousel .carousel-item img {
+    .guidelines-bg {
+      background-color: #0B2D52;
+      padding-top: 5.3rem;
+      padding-bottom: 6rem;
+    }
+
+    .guidelines-bg .section-heading,
+    .guidelines-bg .body-text {
+      color: #B8D9F5;
+    }
+
+    /* ── Guidelines carousel: user-driven native scroll with snap ── */
+    .guidelines-scroll {
+      display: flex;
+      gap: 2.4rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-padding-left: var(--page-margin);
+      scroll-padding-right: var(--page-margin);
+      padding: 0 var(--page-margin);
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .guidelines-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .guidelines-scroll-item {
+      flex: 0 0 auto;
+      width: 50rem;
+      scroll-snap-align: start;
+    }
+
+    .guidelines-scroll-item img {
       width: 100%;
       height: auto;
+      display: block;
       object-fit: cover;
       border-radius: var(--radius-img);
-      box-shadow: 0 8px 24px rgba(11, 45, 82, 0.12), 0 2px 6px rgba(11, 45, 82, 0.08);
+    }
+
+    .guidelines-nav {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1.2rem;
+      padding: 2.4rem var(--page-margin) 0;
+    }
+
+    .guidelines-nav button {
+      width: 4.8rem;
+      height: 4.8rem;
+      border-radius: 50%;
+      border: 1px solid rgba(184, 217, 245, 0.35);
+      background: transparent;
+      color: #B8D9F5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .guidelines-nav button:hover:not(:disabled) {
+      background: rgba(184, 217, 245, 0.12);
+      border-color: rgba(184, 217, 245, 0.6);
+    }
+
+    .guidelines-nav button:active:not(:disabled) {
+      transform: scale(0.94);
+    }
+
+    .guidelines-nav button:focus-visible {
+      outline: 2px solid #B8D9F5;
+      outline-offset: 2px;
+    }
+
+    .guidelines-nav button:disabled {
+      opacity: 0.35;
+      cursor: default;
+    }
+
+    .guidelines-nav svg {
+      width: 2rem;
+      height: 2rem;
     }
 
     /* ── System architecture stack ──
@@ -591,29 +665,34 @@
       <div id="showcase-root" role="img" aria-label="Animated showcase of Iris components: avatar badge, spinner, skeleton loader, chips, toast, range slider, progress bar, tooltip, toggle, icon button, and dropdown"></div>
     </div>
 
-    <!-- Guidelines: horizontal carousel, slide 1 starts in view on the left,
-         2–6 trail off to the right. PREVIEW — placeholder slots until real
-         exports land. -->
-    <div class="text-section">
-      <h2 class="section-heading">Guidelines</h2>
-      <p class="body-text">Documentation was created for each component as a part of the overall design process. Usage, variants, anatomy, sizing, do's and don'ts, tokenized properties, and accessibility notes were created for product designers. Detailed specs with styling, interaction, and motion and accessibility guidelines for engineering.</p>
-    </div>
+    <div class="section-color-break" aria-hidden="true"></div>
 
-    <div class="carousel-wrapper" id="guidelines-carousel" role="region" aria-label="Iris avatar component guidelines">
-      <div class="carousel-track" aria-hidden="true">
-        <div class="carousel-item"><img srcset="img/iris_avatar_variants-w800.webp 800w, img/iris_avatar_variants-w1600.webp 1600w, img/iris_avatar_variants.webp 1998w" sizes="44rem" src="img/iris_avatar_variants.webp" width="1998" height="1088" alt="Avatar guidelines: initials and image variants, with use-when and don't-use-when guidance" loading="lazy"></div>
-        <div class="carousel-item"><img srcset="img/iris_avatar_anatomy_sizes-w800.webp 800w, img/iris_avatar_anatomy_sizes-w1600.webp 1600w, img/iris_avatar_anatomy_sizes.webp 1998w" sizes="44rem" src="img/iris_avatar_anatomy_sizes.webp" width="1998" height="1088" alt="Avatar anatomy: container callout, plus the small, medium, and large size scale" loading="lazy"></div>
-        <div class="carousel-item"><img srcset="img/iris_avatar_usage-w800.webp 800w, img/iris_avatar_usage-w1600.webp 1600w, img/iris_avatar_usage.webp 1998w" sizes="44rem" src="img/iris_avatar_usage.webp" width="1998" height="1088" alt="Avatar usage do's and don'ts: variant and size selection, initials fallback, character count, and consistent alignment" loading="lazy"></div>
-        <div class="carousel-item"><img srcset="img/iris_avatar_properties-w800.webp 800w, img/iris_avatar_properties-w1600.webp 1600w, img/iris_avatar_properties.webp 1998w" sizes="44rem" src="img/iris_avatar_properties.webp" width="1998" height="1088" alt="Avatar properties: initials and image variant tokens for background, border, and label color, in standard and inverse modes" loading="lazy"></div>
-        <div class="carousel-item"><img srcset="img/iris_avatar_styling_a11y-w800.webp 800w, img/iris_avatar_styling_a11y-w1600.webp 1600w, img/iris_avatar_styling_a11y.webp 1998w" sizes="44rem" src="img/iris_avatar_styling_a11y.webp" width="1998" height="1088" alt="Avatar styling variables table, focus style, motion guidance, and accessibility notes including keyboard navigation and ARIA attributes" loading="lazy"></div>
-        <!-- duplicated for infinite scroll -->
-        <div class="carousel-item"><img srcset="img/iris_avatar_variants-w800.webp 800w, img/iris_avatar_variants-w1600.webp 1600w, img/iris_avatar_variants.webp 1998w" sizes="44rem" src="img/iris_avatar_variants.webp" width="1998" height="1088" alt="" loading="lazy"></div>
-        <div class="carousel-item"><img srcset="img/iris_avatar_anatomy_sizes-w800.webp 800w, img/iris_avatar_anatomy_sizes-w1600.webp 1600w, img/iris_avatar_anatomy_sizes.webp 1998w" sizes="44rem" src="img/iris_avatar_anatomy_sizes.webp" width="1998" height="1088" alt="" loading="lazy"></div>
-        <div class="carousel-item"><img srcset="img/iris_avatar_usage-w800.webp 800w, img/iris_avatar_usage-w1600.webp 1600w, img/iris_avatar_usage.webp 1998w" sizes="44rem" src="img/iris_avatar_usage.webp" width="1998" height="1088" alt="" loading="lazy"></div>
-        <div class="carousel-item"><img srcset="img/iris_avatar_properties-w800.webp 800w, img/iris_avatar_properties-w1600.webp 1600w, img/iris_avatar_properties.webp 1998w" sizes="44rem" src="img/iris_avatar_properties.webp" width="1998" height="1088" alt="" loading="lazy"></div>
-        <div class="carousel-item"><img srcset="img/iris_avatar_styling_a11y-w800.webp 800w, img/iris_avatar_styling_a11y-w1600.webp 1600w, img/iris_avatar_styling_a11y.webp 1998w" sizes="44rem" src="img/iris_avatar_styling_a11y.webp" width="1998" height="1088" alt="" loading="lazy"></div>
+    <!-- Guidelines — inverted color band, user-scrollable carousel -->
+    <div class="guidelines-bg">
+      <div class="text-section">
+        <h2 class="section-heading">Guidelines</h2>
+        <p class="body-text">Documentation was created for each component as a part of the overall design process. Usage, variants, anatomy, sizing, do's and don'ts, tokenized properties, and accessibility notes were created for product designers. Detailed specs with styling, interaction, and motion and accessibility guidelines for engineering.</p>
       </div>
-    </div>
+
+      <div class="guidelines-scroll" id="guidelines-carousel" role="region" aria-label="Iris avatar component guidelines" tabindex="0">
+        <div class="guidelines-scroll-item"><img srcset="img/iris_avatar_variants-w800.webp 800w, img/iris_avatar_variants-w1600.webp 1600w, img/iris_avatar_variants.webp 1998w" sizes="50rem" src="img/iris_avatar_variants.webp" width="1998" height="1088" alt="Avatar guidelines: initials and image variants, with use-when and don't-use-when guidance" loading="lazy"></div>
+        <div class="guidelines-scroll-item"><img srcset="img/iris_avatar_anatomy_sizes-w800.webp 800w, img/iris_avatar_anatomy_sizes-w1600.webp 1600w, img/iris_avatar_anatomy_sizes.webp 1998w" sizes="50rem" src="img/iris_avatar_anatomy_sizes.webp" width="1998" height="1088" alt="Avatar anatomy: container callout, plus the small, medium, and large size scale" loading="lazy"></div>
+        <div class="guidelines-scroll-item"><img srcset="img/iris_avatar_usage-w800.webp 800w, img/iris_avatar_usage-w1600.webp 1600w, img/iris_avatar_usage.webp 1998w" sizes="50rem" src="img/iris_avatar_usage.webp" width="1998" height="1088" alt="Avatar usage do's and don'ts: variant and size selection, initials fallback, character count, and consistent alignment" loading="lazy"></div>
+        <div class="guidelines-scroll-item"><img srcset="img/iris_avatar_properties-w800.webp 800w, img/iris_avatar_properties-w1600.webp 1600w, img/iris_avatar_properties.webp 1998w" sizes="50rem" src="img/iris_avatar_properties.webp" width="1998" height="1088" alt="Avatar properties: initials and image variant tokens for background, border, and label color, in standard and inverse modes" loading="lazy"></div>
+        <div class="guidelines-scroll-item"><img srcset="img/iris_avatar_styling_a11y-w800.webp 800w, img/iris_avatar_styling_a11y-w1600.webp 1600w, img/iris_avatar_styling_a11y.webp 1998w" sizes="50rem" src="img/iris_avatar_styling_a11y.webp" width="1998" height="1088" alt="Avatar styling variables table, focus style, motion guidance, and accessibility notes including keyboard navigation and ARIA attributes" loading="lazy"></div>
+      </div>
+
+      <div class="guidelines-nav">
+        <button type="button" class="guidelines-prev" aria-label="Previous guideline image">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <button type="button" class="guidelines-next" aria-label="Next guideline image">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div><!-- /.guidelines-bg -->
+
+    <div class="section-color-break" aria-hidden="true"></div>
 
     <!-- Tokens -->
     <div class="text-section">
@@ -656,7 +735,8 @@
     <!-- Governance -->
     <div class="text-section">
       <h2 class="section-heading">Governance</h2>
-      <p class="body-text">I joined the Iris governance team, helping define how changes get reviewed as more components, and additional themes come online. Every change now moves from proposal to production on a defined path, with design and engineering bought in. I also run a bi-weekly Iris open office hours meeting to assist product designers requesting new components, or extended functionality, or need guidance or answer questions about the design system.</p>
+      <p class="body-text">I joined the Iris governance team, helping define how changes get reviewed as more components, and additional themes come online. Every change now moves from proposal to production on a defined path, with design and engineering bought in.</p>
+      <p class="body-text">I also run a bi-weekly Iris open office hours meeting to assist product designers requesting new components, or extended functionality, or need guidance or answer questions about the design system.</p>
     </div>
 
     <!-- Evolution -->
@@ -693,6 +773,7 @@
 
   <script src="js/vendor/lottie.min.js"></script>
   <script src="js/iris-component-showcase.js"></script>
+  <script src="js/iris-guidelines-scroll.js"></script>
   <script src="js/site.js"></script>
   <!-- Cloudflare Web Analytics -->
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "965f2ad8267d4463890153ababb0dd33"}'></script>
