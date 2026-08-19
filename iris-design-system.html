@@ -110,6 +110,20 @@
       border: 1px solid var(--iris-line);
     }
 
+    /* ── Inline links within body copy ── */
+    .body-text a {
+      color: inherit;
+      text-decoration: underline;
+      text-decoration-color: currentColor;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      transition: opacity 0.2s ease;
+    }
+
+    .body-text a:hover {
+      opacity: 0.7;
+    }
+
     /* ── Problem bullets ── */
     .body-text ul {
       display: inline-block;
@@ -163,7 +177,8 @@
       align-items: center;
     }
 
-    .token-flow-split img {
+    .token-flow-split img,
+    .token-flow-split .lottie-block {
       width: 100%;
       max-width: 1000px;
       height: auto;
@@ -241,10 +256,29 @@
       height: 8rem;
     }
 
-    .guidelines-bg {
+    .guidelines-bg,
+    .problem-bg {
       background-color: #0B2D52;
       padding-top: 5.3rem;
       padding-bottom: 6rem;
+    }
+
+    /* .challenges already carries its own 8rem trailing padding */
+    .problem-bg {
+      padding-bottom: 0;
+    }
+
+    .problem-bg .section-heading,
+    .problem-bg .body-text {
+      color: #B8D9F5;
+    }
+
+    .problem-bg .challenge h3 {
+      color: #B8D9F5;
+    }
+
+    .problem-bg .challenge p {
+      color: rgba(184, 217, 245, 0.72);
     }
 
     .guidelines-bg .section-heading,
@@ -408,69 +442,6 @@
       font-style: italic;
     }
 
-    /* ── Outcomes ── */
-    .outcomes {
-      background: var(--iris-surface);
-      border-radius: var(--radius-img);
-      margin: 0 var(--page-margin) 8rem;
-      padding: 5.6rem 4.8rem;
-    }
-
-    .outcomes .section-heading {
-      padding: 0;
-      margin-bottom: 3.6rem;
-    }
-
-    .stat-row {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2.4rem;
-      margin-bottom: 4.4rem;
-    }
-
-    .stat .stat-n {
-      font-size: 4.8rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      color: var(--color-black);
-      line-height: 1;
-    }
-
-    .stat .stat-l {
-      font-size: 1.5rem;
-      color: rgba(11, 45, 82, 0.65);
-      margin-top: 0.8rem;
-      line-height: 1.5;
-    }
-
-    .outcomes .outcomes-body {
-      max-width: 76rem;
-      font-size: 1.8rem;
-      line-height: 1.7;
-      color: rgba(11, 45, 82, 0.8);
-      margin: 0 0 3.6rem;
-    }
-
-    .outcomes-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      margin-bottom: 3.6rem;
-    }
-
-    .outcomes-grid img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: calc(var(--radius-img) / 2);
-    }
-
-    /* Single panel gets the full column: the source screenshot's body copy is
-       small enough that half-width made it unreadable. */
-    .outcomes-grid--single {
-      grid-template-columns: 1fr;
-    }
-
     /* ── Next project ── */
     .next-project-wrap {
       margin-top: 8rem;
@@ -481,19 +452,6 @@
       .challenges {
         grid-template-columns: 1fr;
         gap: 2.8rem;
-      }
-
-      .outcomes {
-        padding: 3.6rem 2.4rem;
-      }
-
-      .stat-row {
-        grid-template-columns: 1fr 1fr;
-        gap: 2.8rem 2rem;
-      }
-
-      .outcomes-grid {
-        grid-template-columns: 1fr;
       }
 
       .img-slot {
@@ -606,31 +564,40 @@
       <p>Iris is Cox Automotive's consumer design system, powering Autotrader, Kelley Blue Book, and OEM dealer sites like Audi, Chevrolet, and Volvo. What started as a two-brand toolkit is now the shared platform every brand theme runs on.</p>
     </div>
 
-    <!-- The Problem -->
-    <div class="text-section">
-      <h2 class="section-heading">The Problem</h2>
-      <p class="body-text">Cox Automotive's consumer products had no shared design language. Autotrader and KBB each had their own separate design systems, and all of our OEM dealer websites each built the same components differently, with no common source of truth between design and engineering.</p>
-    </div>
+    <div class="section-color-break" aria-hidden="true"></div>
 
-    <!-- Challenges -->
-    <div class="text-section text-section--tight">
-      <h2 class="section-heading">Challenges</h2>
-    </div>
+    <!-- The Problem + Challenges — inverted color band -->
+    <div class="problem-bg">
 
-    <div class="challenges">
-      <div class="challenge">
-        <h3>Multi-brand</h3>
-        <p>A system flexible enough to hold Autotrader's bold orange alongside OEM dealer's unique brand colors, while also supporting brands not yet onboarded.</p>
+      <!-- The Problem -->
+      <div class="text-section">
+        <h2 class="section-heading">The Problem</h2>
+        <p class="body-text">Cox Automotive's consumer products had no shared design language. Autotrader and KBB each had their own separate design systems, and all of our OEM dealer websites each built the same components differently, with no common source of truth between design and engineering.</p>
       </div>
-      <div class="challenge">
-        <h3>Inconsistent components</h3>
-        <p>The same button was rebuilt five different ways across brands, with no shared source of truth.</p>
+
+      <!-- Challenges -->
+      <div class="text-section text-section--tight">
+        <h2 class="section-heading">Challenges</h2>
       </div>
-      <div class="challenge">
-        <h3>No shared vocabulary</h3>
-        <p>Teams had no common language for what a &ldquo;primary&rdquo; action, or any other pattern, was even supposed to look like.</p>
+
+      <div class="challenges">
+        <div class="challenge">
+          <h3>Multi-brand</h3>
+          <p>A system flexible enough to hold Autotrader's bold orange alongside OEM dealer's unique brand colors, while also supporting brands not yet onboarded.</p>
+        </div>
+        <div class="challenge">
+          <h3>Inconsistent components</h3>
+          <p>The same button was rebuilt five different ways across brands, with no shared source of truth.</p>
+        </div>
+        <div class="challenge">
+          <h3>No shared vocabulary</h3>
+          <p>Teams had no common language for what a &ldquo;primary&rdquo; action, or any other pattern, was even supposed to look like.</p>
+        </div>
       </div>
-    </div>
+
+    </div><!-- /.problem-bg -->
+
+    <div class="section-color-break" aria-hidden="true"></div>
 
     <!-- System architecture -->
     <div class="text-section text-section--tight">
@@ -651,7 +618,8 @@
     </div>
 
     <div class="text-section">
-      <p class="body-text">My initial area of focus was selecting typefaces, and building a typography scale. The scale was adapted from a minor 3rd scale. We transitioned to using REM rather than hardcoded values for typographic attributes to retain flexibility across themes.</p>
+      <p class="body-text">My initial areas of focus were typography, and <a href="autotrader-icons.html">iconography</a>. Typography work involved selecting brand and product appropriate typefaces, and building a type scale. We transitioned to using REM rather than hardcoded values for typographic attributes to retain flexibility across themes.</p>
+      <p class="body-text">Iconography work involved building a functional icon library that worked within the components, and keeping those icons consistent with a unifying grid.</p>
     </div>
 
     <!-- Components -->
@@ -702,7 +670,7 @@
 
     <div class="full-image">
       <div class="token-flow-split">
-        <img src="img/iris_token_flow_example.webp" width="1000" height="553" alt="Token flow diagram: Autotrader, Kelley Blue Book, and Ford buttons each resolving through bg-button-primary-rest to primary-600 to their own base hex value" loading="lazy">
+        <div id="lottie-token-flow" class="lottie-block" data-lottie="animations/iris-token-flow-example.json" role="img" aria-label="Animated token flow diagram: Autotrader, Kelley Blue Book, and Ford buttons each resolving through bg-button-primary-rest to primary-600 to their own base hex value" style="aspect-ratio: 1000/554;"></div>
         <div class="token-flow-quote">
           <p>&ldquo;A token named for a color locks the system to one brand. A token named for its job lets multiple brands share one component, and still retain their unique brand traits.&rdquo;</p>
         </div>
@@ -710,7 +678,7 @@
     </div>
 
     <div class="full-image">
-      <img srcset="img/iris_token_table-w800.webp 800w, img/iris_token_table.webp 1400w" sizes="92vw" width="1400" height="657" src="img/iris_token_table.webp" alt="Iris CDS Library in Figma: token variables table with one row per token and one column per brand, including Autotrader, KBB, KBB 100, Ford Blue Advantage, and Car and Driver" loading="lazy">
+      <img srcset="img/iris_token_table-w800.webp 800w, img/iris_token_table.webp 1400w" sizes="92vw" width="1400" height="1024" src="img/iris_token_table.webp" alt="Iris CDS Library in Figma: token variables table with one row per token and one column per brand, including Autotrader, KBB, and Car and Driver" loading="lazy">
       <p class="img-caption">The token system as it lives in Figma, one row per token, one column per brand.</p>
     </div>
 
@@ -745,16 +713,6 @@
       <p class="body-text">Iris isn't a one time build. It was the culmination of a multi-year effort. It's an ongoing, living system that is constantly adapting to the business's needs.</p>
     </div>
 
-    <!-- Outcomes -->
-    <div class="outcomes">
-      <h2 class="section-heading">Results</h2>
-      <div class="stat-row">
-        <div class="stat"><div class="stat-n">38</div><div class="stat-l">Teams building with Iris</div></div>
-        <div class="stat"><div class="stat-n">24</div><div class="stat-l">Repositories shipping in production</div></div>
-        <div class="stat"><div class="stat-n">585K+</div><div class="stat-l">Component instances across 722 Figma files</div></div>
-      </div>
-    </div>
-
     <!-- Next project -->
     <section class="next-project next-project-wrap" style="margin-top: 8rem;" aria-label="Navigate to next project">
       <div class="next-project-bg" aria-hidden="true" style="background-color: #006554;"></div>
@@ -767,7 +725,7 @@
   </main>
 
   <footer>
-    <p class="footer-copy">&copy; <span id="footer-year"></span> Clayton Cunningham Design. <a href="licensing.html" class="footer-link">Licensing</a></p>
+    <p class="footer-copy">&copy; <span id="footer-year"></span> Clayton Cunningham Design.</p>
   </footer>
 
 

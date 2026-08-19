@@ -248,3 +248,15 @@ document.querySelectorAll('.project-card[data-static-ink]').forEach(function (ca
     }
   }, { passive: false });
 })();
+
+// Re-land on a URL's #hash target after late layout shifts (lazy images,
+// data-lottie containers) settle — the browser's own hash-jump fires before
+// that content finishes sizing itself in and can land short.
+(function () {
+  if (!location.hash) return;
+  var target = document.querySelector(location.hash);
+  if (!target) return;
+  window.addEventListener('load', function () {
+    setTimeout(function () { target.scrollIntoView(); }, 300);
+  });
+})();

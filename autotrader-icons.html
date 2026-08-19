@@ -37,6 +37,7 @@
     .spot-icons-bg {
       background-color: #001F6E;
       padding-top: 5.3rem;
+      scroll-margin-top: 10rem;
     }
 
     .spot-icons-bg .section-heading,
@@ -83,6 +84,20 @@
       width: 100%;
       border-radius: var(--radius-img);
       overflow: hidden;
+    }
+
+    /* ── Inline links within body copy ── */
+    .body-text a {
+      color: inherit;
+      text-decoration: underline;
+      text-decoration-color: currentColor;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      transition: opacity 0.2s ease;
+    }
+
+    .body-text a:hover {
+      opacity: 0.7;
     }
 
     /* Write-up link sits on the navy Spot Icons band, keep it legible */
@@ -197,7 +212,7 @@
     <!-- Icon Construction System -->
     <div class="text-section">
       <h2 class="section-heading">Functional Icons</h2>
-      <p class="body-text">I started with <a href="https://heroicons.com/" target="_blank" rel="noopener noreferrer">Heroicons</a> as a base for the Autotrader functional icon library. The set had a good mix of legibility and visual distinction, and it already covered a lot of the core UI needs. Think chevrons for accordion arrows, a gear for settings, or an X for closing a modal. From there I designed the remaining 40+ icons our library needed that weren't in the Heroicons set.</p>
+      <p class="body-text">I started with <a href="https://heroicons.com/" target="_blank" rel="noopener noreferrer">Heroicons</a> as a base for the Autotrader functional icon library. The set had a good mix of legibility and visual distinction, and it already covered a lot of the core UI needs. Think chevrons for accordion arrows, a gear for settings, or an X for closing a modal. From there I designed the remaining 40+ icons our library needed that weren't in the Heroicons set. This was a step in the <a href="iris-design-system.html">Iris Design System</a> buildout process.</p>
     </div>
 
     <!-- Grid + Orthogonals 2-up -->
@@ -254,7 +269,7 @@
     <div class="section-color-break" aria-hidden="true"></div>
 
     <!-- SPOT ICONS — inverted section start -->
-    <div class="spot-icons-bg">
+    <div class="spot-icons-bg" id="spot-icons">
 
       <div class="text-section">
         <h2 class="section-heading">Spot Icons</h2>
@@ -327,7 +342,7 @@
   </main>
 
   <footer>
-    <p class="footer-copy">&copy; <span id="footer-year"></span> Clayton Cunningham Design. <a href="licensing.html" class="footer-link">Licensing</a></p>
+    <p class="footer-copy">&copy; <span id="footer-year"></span> Clayton Cunningham Design.</p>
   </footer>
 
 

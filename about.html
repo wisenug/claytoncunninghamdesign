@@ -289,6 +289,26 @@
       transform: translateY(0);
     }
 
+    .cta-license {
+      font-size: clamp(2.8rem, 3.6vw, 5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: #091f3a;
+      margin-top: 1.2rem;
+    }
+
+    .cta-license a {
+      color: inherit;
+      text-decoration: underline;
+      text-decoration-color: currentColor;
+      text-underline-offset: 0.06em;
+    }
+
+    .cta-license a:hover {
+      opacity: 0.7;
+    }
+
     /* ── Responsive ── */
     @media (max-width: 900px) {
       .service-row {
@@ -511,7 +531,10 @@
 
       <!-- CTA -->
       <div class="about-cta fade-up fade-up-3">
-        <p class="cta-text">Ready to make something cool? I'd love to hear about your project.</p>
+        <div>
+          <p class="cta-text">Ready to make something cool? I'd love to hear about your project.</p>
+          <p class="cta-license">Looking to license existing work? See <a href="licensing.html">Licensing</a>.</p>
+        </div>
         <a href="mailto:info@claytoncunninghamdesign.com" class="cta-btn">Holla!</a>
       </div>
 
@@ -521,7 +544,7 @@
   </main>
 
   <footer>
-    <p class="footer-copy">&copy; <span id="footer-year"></span> Clayton Cunningham Design. <a href="licensing.html" class="footer-link">Licensing</a></p>
+    <p class="footer-copy">&copy; <span id="footer-year"></span> Clayton Cunningham Design.</p>
   </footer>
 
 

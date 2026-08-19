@@ -188,7 +188,11 @@
     }
 
     .home-headline {
-      view-transition-name: page-title;
+      /* No static view-transition-name: this headline is much larger than
+         any project-title, so letting the browser match/morph an incoming
+         page's title into it produces a jarring scale-up "drop in". The
+         work-card click flow (js/index.js) still gets its own curated
+         card-to-title morph by assigning the name dynamically at click time. */
       /* Mobile keeps the project-title scale; desktop takes a step down so
          the top of the work grid peeks above the fold (no false bottom). */
       font-size: clamp(5.6rem, 8.3vw + 1.5rem, 14.4rem);
@@ -478,7 +482,7 @@
   </main>
 
   <footer>
-    <p class="footer-copy">&copy; <span id="footer-year"></span> Clayton Cunningham Design. <a href="licensing.html" class="footer-link">Licensing</a></p>
+    <p class="footer-copy">&copy; <span id="footer-year"></span> Clayton Cunningham Design.</p>
   </footer>
 
   <script src="js/projects.js"></script>
