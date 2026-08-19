@@ -23,15 +23,12 @@
     card.addEventListener('click', function (e) {
       // New-tab opens: leave the page's static names in place.
       if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-      // The static ink-bg/page-title move from the page to the card so the
+      // The static ink-bg moves from the page to the card so the
       // ink spills out of the card (names must be unique per snapshot).
       var vtBg = document.querySelector('.vt-bg');
-      var headline = document.querySelector('.home-headline');
       if (vtBg) vtBg.style.viewTransitionName = 'none';
-      if (headline) headline.style.viewTransitionName = 'none';
       inkEl.style.opacity = '1';
       inkEl.style.viewTransitionName = 'ink-bg';
-      labelEl.style.viewTransitionName = 'page-title';
     });
   });
 })();

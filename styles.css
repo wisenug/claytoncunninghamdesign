@@ -910,13 +910,6 @@ footer {
   mix-blend-mode: normal;
 }
 
-/* Title: position + size morph */
-::view-transition-group(page-title) {
-  animation-duration: 0.75s;
-  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-  z-index: 2;
-}
-
 /* Root: old page stays visible while ink covers it, then fades */
 ::view-transition-old(root) {
   animation: vt-old-linger 0.85s ease-out both;

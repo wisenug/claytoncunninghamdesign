@@ -86,7 +86,7 @@ window.addEventListener('pagereveal', function (e) {
   els.forEach(function (el) { observer.observe(el); });
 })();
 
-// On Next Project click: swap ink-bg/page-title from incoming elements to outgoing elements
+// On Next Project click: swap ink-bg from the page to the outgoing link
 (function () {
   var nextLink = document.querySelector('.next-project-title');
   if (!nextLink || nextLink.getAttribute('href') === '#') return;
@@ -95,11 +95,8 @@ window.addEventListener('pagereveal', function (e) {
     if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     var vtBg = document.querySelector('.vt-bg');
     var nextBg = document.querySelector('.next-project-bg');
-    var projTitle = document.querySelector('.project-title');
-    if (vtBg)      vtBg.style.viewTransitionName = '';
-    if (nextBg)    nextBg.style.viewTransitionName = 'ink-bg';
-    if (projTitle) projTitle.style.viewTransitionName = '';
-    nextLink.style.viewTransitionName = 'page-title';
+    if (vtBg)   vtBg.style.viewTransitionName = '';
+    if (nextBg) nextBg.style.viewTransitionName = 'ink-bg';
   });
 })();
 
@@ -222,7 +219,6 @@ document.querySelectorAll('.project-card[data-static-ink]').forEach(function (ca
   card.addEventListener('click', function () {
     inkEl.style.opacity = '1';
     inkEl.style.viewTransitionName = 'ink-bg';
-    labelEl.style.viewTransitionName = 'page-title';
   });
 });
 
