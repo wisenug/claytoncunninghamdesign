@@ -94,6 +94,18 @@
       aspect-ratio: 1920 / 1134;
     }
 
+    .hero-image video.hero-video-mobile { display: none; }
+
+    @media (max-width: 640px) {
+      .hero-image video.hero-video-desktop { display: none; }
+      .hero-image video.hero-video-mobile {
+        display: block;
+        max-width: 380px;
+        margin: 0 auto;
+        aspect-ratio: 760 / 912;
+      }
+    }
+
     /* ── Lottie block ── */
     .lottie-block {
       width: 100%;
@@ -107,6 +119,20 @@
       border-radius: var(--radius-img);
       overflow: hidden;
       border: 1px solid var(--iris-line);
+    }
+
+    #showcase-root-mobile {
+      display: none;
+      max-width: 390px;
+      margin: 0 auto;
+      border-radius: var(--radius-img);
+      overflow: hidden;
+      border: 1px solid var(--iris-line);
+    }
+
+    @media (max-width: 640px) {
+      #showcase-root { display: none; }
+      #showcase-root-mobile { display: block; }
     }
 
     /* ── Inline links within body copy ── */
@@ -553,8 +579,11 @@
 
     <!-- Hero: live walkthrough of the Iris component library -->
     <section class="hero-image fade-up fade-up-3">
-      <video autoplay muted playsinline loop aria-label="Iris component library walkthrough: buttons, inputs, calendar, toasts, tooltips, and sliders across brand themes">
+      <video class="hero-video-desktop" autoplay muted playsinline loop aria-label="Iris component library walkthrough: buttons, inputs, calendar, toasts, tooltips, and sliders across brand themes">
         <source src="img/iris_hero_desktop.mp4" type="video/mp4">
+      </video>
+      <video class="hero-video-mobile" autoplay muted playsinline loop aria-label="Iris component library walkthrough: buttons, inputs, calendar, toasts, tooltips, and sliders across brand themes">
+        <source src="img/iris_hero_mobile.mp4" type="video/mp4">
       </video>
     </section>
 
@@ -630,6 +659,7 @@
 
     <div class="full-image">
       <div id="showcase-root" role="img" aria-label="Animated showcase of Iris components: avatar badge, spinner, skeleton loader, chips, toast, range slider, progress bar, tooltip, toggle, icon button, and dropdown"></div>
+      <div id="showcase-root-mobile" role="img" aria-label="Animated showcase of Iris components: spinner, toggle, skeleton loader, range slider, toast, progress bar, and dropdown"></div>
     </div>
 
     <div class="section-color-break" aria-hidden="true"></div>
@@ -730,6 +760,7 @@
 
   <script src="js/vendor/lottie.min.js"></script>
   <script src="js/iris-component-showcase.js"></script>
+  <script src="js/iris-component-showcase-mobile.js"></script>
   <script src="js/iris-guidelines-scroll.js"></script>
   <script src="js/site.js"></script>
   <!-- Cloudflare Web Analytics -->
