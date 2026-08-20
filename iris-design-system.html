@@ -103,6 +103,14 @@
         max-width: 380px;
         margin: 0 auto;
         aspect-ratio: 760 / 912;
+        border-radius: 1.8rem;
+        border: 1px solid var(--iris-line);
+        /* Crops the source recording's corner UI (a progress-ring
+           component bleeds into the bottom-right frame edge) along
+           with rounding the corners. */
+        object-fit: cover;
+        object-position: center;
+        transform: scale(1.08);
       }
     }
 
