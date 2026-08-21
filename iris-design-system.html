@@ -236,6 +236,25 @@
       }
     }
 
+    /* ── Foundations: color palette + functional icons, side by side ── */
+    .foundations-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.4rem;
+    }
+
+    .foundations-pair .lottie-block {
+      border-radius: var(--radius-img);
+      border: 1px solid var(--iris-line);
+    }
+
+    @media (max-width: 820px) {
+      .foundations-pair {
+        grid-template-columns: 1fr;
+        gap: 1.6rem;
+      }
+    }
+
     /* ── Asset placeholder ──
        Real screenshots are still being sourced. These blocks reserve the exact
        slot and state the spec, so the layout is settled before the art lands.
@@ -658,6 +677,13 @@
       <p class="body-text">Iconography work involved building a functional icon library that worked within the components, and keeping those icons consistent with a unifying grid.</p>
     </div>
 
+    <div class="full-image">
+      <div class="foundations-pair">
+        <div id="lottie-color-palette" class="lottie-block" data-lottie="animations/iris-color-palette.json" role="img" aria-label="Animated Iris color palette, cycling through the ramp of shades for each color" style="aspect-ratio: 1000/530;"></div>
+        <div id="lottie-functional-icons" class="lottie-block" data-lottie="animations/iris-functional-icons.json" role="img" aria-label="Animated scroll through the Iris functional icon library" style="aspect-ratio: 1000/530;"></div>
+      </div>
+    </div>
+
     <!-- Components -->
     <div class="text-section">
       <h2 class="section-heading">Components</h2>
@@ -676,7 +702,7 @@
     <div class="guidelines-bg">
       <div class="text-section">
         <h2 class="section-heading">Guidelines</h2>
-        <p class="body-text">Documentation was created for each component as a part of the overall design process. Usage, variants, anatomy, sizing, do's and don'ts, tokenized properties, and accessibility notes were created for product designers. Detailed specs with styling, interaction, and motion and accessibility guidelines for engineering.</p>
+        <p class="body-text">Documentation was created for each component as a part of the overall design process. Usage, variants, anatomy, sizing, do's and don'ts, tokenized properties, and accessibility notes were created for product designers. Detailed specs with styling, interaction, motion, and accessibility guidelines for engineering.</p>
       </div>
 
       <div class="guidelines-scroll" id="guidelines-carousel" role="region" aria-label="Iris avatar component guidelines" tabindex="0">
@@ -715,7 +741,7 @@
     </div>
 
     <div class="full-image">
-      <img srcset="img/iris_token_table-w800.webp 800w, img/iris_token_table.webp 1400w" sizes="92vw" width="1400" height="1024" src="img/iris_token_table.webp" alt="Iris CDS Library in Figma: token variables table with one row per token and one column per brand, including Autotrader, KBB, and Car and Driver" loading="lazy">
+      <img srcset="img/iris_token_table-v2-w800.webp 800w, img/iris_token_table-v2.webp 1400w" sizes="92vw" width="1400" height="1024" src="img/iris_token_table-v2.webp" alt="Iris CDS Library in Figma: token variables table with one row per token and one column per brand, including Autotrader, KBB, and Car and Driver" loading="lazy">
       <p class="img-caption">The token system as it lives in Figma, one row per token, one column per brand.</p>
     </div>
 
@@ -729,8 +755,8 @@
     </div>
 
     <div class="full-image">
-      <img srcset="img/iris_brand_themes-w800.webp 800w, img/iris_brand_themes.webp 1400w" sizes="92vw" width="1400" height="575" src="img/iris_brand_themes.webp" alt="The same vehicle listing card themed for Autotrader, Kelley Blue Book, and a Mercedes-Benz OEM dealer site" loading="lazy">
-      <p class="img-caption">Autotrader, Kelley Blue Book, and Mercedes-Benz, each themed to the components that brand tier uses.</p>
+      <div id="lottie-brand-modes" class="lottie-block" data-lottie="animations/iris-brand-modes.json" role="img" aria-label="Animated scroll through the same vehicle listing card themed for Autotrader, Kelley Blue Book, Mercedes-Benz, Ford, Honda, Chevrolet, and Volkswagen" style="aspect-ratio: 2000/1325;"></div>
+      <p class="img-caption">Autotrader, Kelley Blue Book, Mercedes-Benz, Ford, Honda, Chevrolet, and Volkswagen each themed to the component design decisions that brand tier uses.</p>
     </div>
 
     <div class="text-section">
