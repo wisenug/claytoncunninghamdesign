@@ -481,8 +481,10 @@ main {
   padding: 0 var(--page-margin) 1.6rem;
 }
 
-.full-image img {
+.full-image img,
+.full-image video {
   width: 100%;
+  height: auto;
   display: block;
   border-radius: var(--radius-img);
 }
