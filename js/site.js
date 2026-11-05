@@ -26,6 +26,8 @@ CCD.loadLottie = function (el, path, opts) {
 // Deferred until the container nears the viewport so a page with several
 // animations doesn't parse them all at load (elements already in view
 // initialize immediately).
+// Optional data-lottie-delay="600" (ms) offsets when a specific instance
+// starts, so animations that land in view together don't play in lockstep.
 (function () {
   var els = document.querySelectorAll('[data-lottie]');
   if (!els.length) return;
@@ -34,9 +36,17 @@ CCD.loadLottie = function (el, path, opts) {
       if (!entry.isIntersecting) return;
       var el = entry.target;
       observer.unobserve(el);
-      CCD.loadLottie(el, el.getAttribute('data-lottie'), {
-        slice: el.hasAttribute('data-lottie-slice')
-      });
+      var start = function () {
+        CCD.loadLottie(el, el.getAttribute('data-lottie'), {
+          slice: el.hasAttribute('data-lottie-slice')
+        });
+      };
+      var delay = parseInt(el.getAttribute('data-lottie-delay'), 10) || 0;
+      if (delay > 0 && !CCD.prefersReducedMotion) {
+        setTimeout(start, delay);
+      } else {
+        start();
+      }
     });
   }, { rootMargin: '300px' });
   els.forEach(function (el) { observer.observe(el); });

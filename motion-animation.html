@@ -38,11 +38,11 @@
     }
 
     .motion-subtitle {
-      font-size: 2rem;
+      font-size: 4.8rem;
       font-weight: 400;
-      line-height: 1.5;
+      line-height: 1.4;
       color: rgba(20, 33, 61, 0.68);
-      max-width: 44rem;
+      max-width: 90rem;
       margin-top: 1.8rem;
     }
 
@@ -79,7 +79,7 @@
 
     /* Pulse / Bounce — full-bleed, edge to edge; stays two-up at every viewport width */
     .pulse-bounce-row {
-      padding: 1.6rem 0;
+      padding: 1.6rem 0 0;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 0;
@@ -94,18 +94,38 @@
       margin: 0;
     }
 
-    .pulse-bounce-row figcaption {
-      font-size: 1.6rem;
-      font-weight: 400;
-      text-align: center;
-      margin-top: 1rem;
+    /* Save interaction split: one tall, two stacked */
+    .save-split {
+      padding-top: 1.6rem;
+    }
+
+    .save-split video,
+    .save-split img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: var(--radius-img);
+    }
+
+    /* The tall clip matches the stacked column's exact height at every
+       viewport: taking it out of flow lets the stack alone set the row
+       height, then it fills that cell. Its subject sits centred on a flat
+       field, so cover-cropping only trims background. */
+    .save-split .image-split-tall__tall {
+      position: relative;
+    }
+
+    .save-split .image-split-tall__tall video {
+      position: absolute;
+      inset: 0;
+      height: 100%;
+      object-fit: cover;
     }
 
     /* ── KBB — inverted navy band ── */
     .kbb-section-bg {
       background: var(--at-navy);
       padding: 7rem 0 6rem;
-      margin-top: 4rem;
     }
 
     .kbb-heading-wrap {
@@ -119,31 +139,72 @@
       margin-bottom: 0;
     }
 
+    .kbb-section-bg .pullquote blockquote {
+      color: #F5F1E8;
+    }
+
+    .kbb-section-bg .intro-text p {
+      color: #F5F1E8;
+    }
+
     .kbb-section-bg .img-caption {
       color: rgba(245, 241, 232, 0.72);
     }
 
+    /* max-width must account for this element's own page-margin padding,
+       otherwise the padding alone can exceed the cap on wide viewports
+       (--page-margin grows with viewport width) and collapse the content
+       area to zero. */
     .loading-anim {
-      max-width: 48rem;
+      max-width: calc(48rem + (var(--page-margin) * 2));
       margin: 0 auto;
+    }
+
+    .loading-anim .lottie-block {
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+    }
+
+    /* Solid blue artwork, so the white .lottie-block placeholder shows as a
+       hairline along the rounded clip edge. Match the block to the artwork. */
+    .kelley-logo-block {
+      background: #2B5194;
+    }
+
+    /* Both clips are natively 400 tall, so sizing the columns to their native
+       widths lands them at matching heights while the chat panel keeps the
+       ratio it was supplied at. */
+    .kelley-pair {
+      padding: 0 var(--page-margin) 1.6rem;
+      display: grid;
+      grid-template-columns: 367fr 800fr;
+      gap: 1.6rem;
     }
 
     .heart-alternatives {
       padding-top: 3rem;
     }
 
+    /* This clip is dark artwork on the navy band. The generic white
+       .lottie-block placeholder bled a half-pixel of white along the
+       rounded clip edge, so match the block to the band instead. */
+    .dataviz-block {
+      background: var(--at-navy);
+    }
+
     .heart-duo {
       margin-top: 3rem;
     }
 
-    .heart-duo .lottie-block svg {
-      transform: scale(1.75);
+    .heart-duo > div:first-child .lottie-block svg {
+      transform: scale(3.98);
       transform-origin: center;
     }
 
-    .heart-duo-caption {
-      padding: 0 var(--page-margin);
-      margin-top: 1.6rem;
+    @media (max-width: 1024px) {
+      .motion-subtitle {
+        font-size: 3.6rem;
+      }
     }
 
     @media (max-width: 640px) {
@@ -152,7 +213,7 @@
       }
 
       .motion-subtitle {
-        font-size: 1.8rem;
+        font-size: 2.8rem;
       }
 
       .brand-section-header {
@@ -202,41 +263,47 @@
     </div>
 
     <div class="intro-text">
-      <p>Ask Autotrader is Cox Automotive's AI shopping assistant, built into the car search experience. These are a few of the motion pieces I designed for it: a thinking indicator, in-context product moments, and small character beats that give the assistant some personality.</p>
+      <p>Ask Autotrader is Cox Automotive's AI shopping assistant, built into the car search experience. These are a few of the motion pieces I designed for it: a thinking indicator, in-context product moments, and small character traits that give the assistant some personality, and help to anthropomorphize.</p>
     </div>
 
     <!-- Product demos — search results w/ save, and the assistant chat panel -->
     <div class="image-grid-2 phone-pair">
       <div>
         <div class="lottie-block" data-lottie="animations/ask-at-intro.json" role="img" aria-label="Ask Autotrader intro prompt appearing over the search results page" style="aspect-ratio: 390 / 822; height: auto;"></div>
-        <p class="img-caption">Assistant intro, on search results</p>
       </div>
       <div>
         <div class="lottie-block" data-lottie="animations/ask-at-chat-ui.json" role="img" aria-label="Ask Autotrader assistant chat panel with a greeting message and quick reply options" style="aspect-ratio: 367 / 730; height: auto;"></div>
-        <p class="img-caption">Assistant chat panel</p>
       </div>
     </div>
 
     <div class="pullquote">
-      <blockquote>Small moments of personality. The mark pulses and bounces to keep the assistant feeling alive.</blockquote>
+      <blockquote>Small character traits give the assistant some personality. The mark pulses and bounces to keep the assistant feeling alive.</blockquote>
     </div>
 
     <!-- A few more concepts explored along the way -->
     <div class="full-image">
       <div class="lottie-block" data-lottie="animations/ask-at-more-ideas.json" role="img" aria-label="Four alternate speech-bubble mark concepts explored for the assistant, animating in sequence" style="aspect-ratio: 1000 / 300; height: auto;"></div>
-      <p class="img-caption">A few more concepts explored along the way</p>
     </div>
 
     <!-- Pulse / Bounce — two-up, stays two-up on mobile -->
     <div class="pulse-bounce-row">
       <figure>
         <div class="lottie-block" data-lottie="animations/ask-at-pulse.json" role="img" aria-label="Ask Autotrader mark, pulsing animation, white on an orange background"></div>
-        <figcaption>Pulse</figcaption>
       </figure>
       <figure>
         <div class="lottie-block" data-lottie="animations/ask-at-bounce.json" role="img" aria-label="Ask Autotrader mark, bouncing animation, white on a navy background"></div>
-        <figcaption>Bounce</figcaption>
       </figure>
+    </div>
+
+    <!-- Save interaction — tall + two stacked -->
+    <div class="image-split-tall save-split">
+      <div class="image-split-tall__tall">
+        <video width="962" height="1138" autoplay muted playsinline loop aria-label="Save button animation, an outlined heart filling in solid orange"><source src="img/at-save-heart.mp4" type="video/mp4"></video>
+      </div>
+      <div class="image-split-tall__stack">
+        <img width="823" height="358" src="img/at-saved-toast.svg" alt="Saved confirmation, a heart icon beside the word Saved on an orange field" loading="lazy">
+        <video width="1642" height="1166" autoplay muted playsinline loop aria-label="Saving a Lexus GX listing, the heart button on the vehicle card fills in when tapped"><source src="img/at-save-gx-card.mp4" type="video/mp4"></video>
+      </div>
     </div>
 
     <!-- ============================================================
@@ -248,39 +315,41 @@
         <h2 class="section-heading">Kelley Blue Book</h2>
       </div>
 
+      <div class="full-image">
+        <div class="lottie-block" data-lottie="animations/kbb-ask-kelley.json" role="img" aria-label="Ask Kelley, the Kelley Blue Book question box with suggested prompts" style="aspect-ratio: 1000 / 464; height: auto;"></div>
+      </div>
+
       <div class="image-grid-3 kbb-ai-trio">
         <div>
           <div class="lottie-block" data-lottie="animations/kbb-ai-logo-intro-sparkles.json" role="img" aria-label="Kelley Blue Book ribbon logo with sparkles, intro animation" style="aspect-ratio: 259 / 247; height: auto;"></div>
-          <p class="img-caption">Intro, sparkles</p>
         </div>
         <div>
           <div class="lottie-block" data-lottie="animations/kbb-ai-logo-speech-bubble.json" role="img" aria-label="Kelley Blue Book ribbon logo paired with a chat speech bubble" style="aspect-ratio: 260 / 247; height: auto;"></div>
-          <p class="img-caption">With chat bubble</p>
         </div>
         <div>
-          <div class="lottie-block" data-lottie="animations/kbb-ai-slow-sparkles.json" role="img" aria-label="Kelley Blue Book ribbon logo with a slower, calmer sparkle animation" style="aspect-ratio: 260 / 247; height: auto;"></div>
-          <p class="img-caption">Idle, slow sparkles</p>
+          <div class="lottie-block" data-lottie="animations/kbb-success-sparkles.json" role="img" aria-label="Success state, a green check mark bursting with sparkles" style="aspect-ratio: 260 / 247; height: auto;"></div>
         </div>
+      </div>
+
+      <div class="intro-text">
+        <p>Kelley Blue Book's take on the AI chatbot. I animated the logo according to the brand's attributes, using a personified thinking animation.</p>
+      </div>
+
+      <div class="kelley-pair">
+        <div class="lottie-block" data-lottie="animations/kbb-ask-kelley-chat-ui.json" role="img" aria-label="Ask Kelley chat, a question about finding a truck with the badge as the assistant avatar" style="aspect-ratio: 367 / 400; height: auto;"></div>
+        <div class="lottie-block kelley-logo-block" data-lottie="animations/kbb-ask-kelley-lines-logo.json" role="img" aria-label="Kelley Blue Book badge with animated lines forming inside it" style="aspect-ratio: 800 / 400; height: auto;"></div>
+      </div>
+
+      <div class="full-image loading-anim">
+        <div class="lottie-block" data-lottie="animations/car-road.json" data-lottie-slice role="img" aria-label="A simple car icon driving along a dashed road, a loading moment, in a circular frame" style="height: auto;"></div>
       </div>
 
       <div class="full-image">
         <div class="lottie-block" data-lottie="animations/kbb-truck-heart.json" role="img" aria-label="A heart filling in with a truck illustration, save-this-vehicle interaction" style="aspect-ratio: 1005 / 796; height: auto;"></div>
-        <p class="img-caption">Save-a-vehicle heart interaction</p>
       </div>
 
-      <div class="full-image loading-anim">
-        <div class="lottie-block" data-lottie="animations/car-road.json" role="img" aria-label="A simple car icon driving along a dashed road, a loading moment" style="aspect-ratio: 400 / 300; height: auto;"></div>
-        <p class="img-caption">A loading moment while results come in</p>
-      </div>
-
-      <div class="full-image heart-alternatives">
-        <div class="lottie-block" data-lottie="animations/kbb-heart-alternatives.json" role="img" aria-label="A grid of ten alternate heart icon color and style explorations for the save interaction, light blue background" style="aspect-ratio: 300 / 140; height: auto;"></div>
-        <p class="img-caption">A few heart color explorations, light blue background</p>
-      </div>
-
-      <div class="full-image heart-alternatives">
-        <div class="lottie-block" data-lottie="animations/kbb-heart-alternatives-w.json" role="img" aria-label="The same ten heart icon color and style explorations, on a white background" style="aspect-ratio: 300 / 180; height: auto;"></div>
-        <p class="img-caption">Same explorations, white background</p>
+      <div class="pullquote kbb-pullquote">
+        <blockquote>Motion should bring added value to the overall product experience, while connecting users into accompanying narratives, while telling a unified story.</blockquote>
       </div>
 
       <div class="image-grid-2 heart-duo">
@@ -288,10 +357,19 @@
           <div class="lottie-block" data-lottie="animations/kbb-heart-animation.json" role="img" aria-label="Heart save interaction, animated" style="aspect-ratio: 100 / 80; height: auto;"></div>
         </div>
         <div>
-          <div class="lottie-block" data-lottie="animations/kbb-heart-animation.json" role="img" aria-label="Heart save interaction, animated, duplicate for comparison" style="aspect-ratio: 100 / 80; height: auto;"></div>
+          <div class="lottie-block" data-lottie="animations/kbb-save.json" role="img" aria-label="Save interaction on a Kelley Blue Book vehicle listing, phone mockup" style="aspect-ratio: 500 / 400; height: auto;"></div>
         </div>
       </div>
-      <p class="img-caption heart-duo-caption">Same clip, duplicated. Two more variants coming</p>
+
+      <div class="full-image heart-alternatives">
+        <div class="lottie-block" data-lottie="animations/kbb-heart-alternatives-w.json" data-lottie-delay="650" role="img" aria-label="The same ten heart icon color and style explorations, on a white background" style="aspect-ratio: 300 / 180; height: auto;"></div>
+        <p class="img-caption">A few heart color explorations</p>
+      </div>
+
+      <div class="full-image">
+        <div class="lottie-block dataviz-block" data-lottie="animations/ev-range-chart.json" role="img" aria-label="Longest EV Range, an animated bar chart ranking electric vehicles by range, by year since 2015" style="aspect-ratio: 1533 / 1206; height: auto;"></div>
+        <p class="img-caption">Data visualization</p>
+      </div>
     </div>
 
   </main>
