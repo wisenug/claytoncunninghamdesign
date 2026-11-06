@@ -65,6 +65,34 @@
       margin-bottom: 0;
     }
 
+    /* View transition — full-viewport page-colour backdrop */
+    .vt-bg {
+      position: fixed;
+      inset: 0;
+      background-color: #F5F1E8;
+      z-index: -1;
+      pointer-events: none;
+      view-transition-name: ink-bg;
+    }
+
+    /* View transition — outgoing (to next project); names assigned via JS on click */
+    .next-project-title { position: relative; }
+    .next-label         { position: relative; }
+
+    /* Next project — navy text on Iris grey */
+    .next-project .next-label {
+      color: rgba(11, 45, 82, 0.5);
+    }
+    .next-project .next-label:hover {
+      color: rgba(11, 45, 82, 1);
+    }
+    .next-project .next-project-title {
+      color: rgba(11, 45, 82, 0.65);
+    }
+    .next-project .next-project-title:hover {
+      color: rgba(11, 45, 82, 1);
+    }
+
     /* ── Lottie blocks ── */
     .lottie-block {
       width: 100%;
@@ -289,6 +317,9 @@
   </script>
 </head>
 <body>
+  <!-- Full-viewport background: seeds the ink-spill view transition -->
+  <div class="vt-bg" aria-hidden="true"></div>
+
 
   <!-- Navigation -->
   <nav>
@@ -433,6 +464,15 @@
         <p class="img-caption">Data visualization</p>
       </div>
     </div>
+
+    <!-- Next project -->
+    <section class="next-project" style="margin-top: 8rem;" aria-label="Navigate to next project">
+      <div class="next-project-bg" aria-hidden="true" style="background-color: #F5F5F5;"></div>
+      <span class="next-label" aria-hidden="true">Next Project</span>
+      <a href="iris-design-system.html" class="next-project-title">
+        Iris<br>Design System
+      </a>
+    </section>
 
   </main>
 
