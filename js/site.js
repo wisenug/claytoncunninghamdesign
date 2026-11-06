@@ -266,3 +266,16 @@ document.querySelectorAll('.project-card[data-static-ink]').forEach(function (ca
     setTimeout(function () { target.scrollIntoView(); }, 300);
   });
 })();
+
+// Image skeletons: images still downloading get .is-loading (shimmer in
+// styles.css), removed on load or error so transparent images aren't left
+// with a tinted background.
+(function () {
+  document.querySelectorAll('img').forEach(function (img) {
+    if (img.complete) return;
+    img.classList.add('is-loading');
+    var done = function () { img.classList.remove('is-loading'); };
+    img.addEventListener('load', done, { once: true });
+    img.addEventListener('error', done, { once: true });
+  });
+})();
