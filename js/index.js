@@ -221,3 +221,11 @@ if (!CCD.prefersReducedMotion) {
     }
   }, { passive: true });
 })();
+
+// Motion thumbnail: hold on the poster frame when the user prefers reduced motion
+if (CCD.prefersReducedMotion) {
+  document.querySelectorAll('video[data-motion-thumb]').forEach(function (v) {
+    v.removeAttribute('autoplay');
+    v.pause();
+  });
+}

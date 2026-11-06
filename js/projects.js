@@ -124,6 +124,17 @@ window.CCD_PROJECTS = [
     tags: ['UI/UX Design', 'Illustration', 'Motion Design']
   },
   {
+    href: 'motion-animation.html',
+    bgColor: '#F5F1E8',
+    fgColor: '#14213D',
+    image: 'img/motion-thumbnail-poster.webp',
+    alt: 'Motion and animation reel',
+    client: 'Personal',
+    title: 'Motion & Animation',
+    label: 'Interface motion, micro-interactions, and animated data',
+    tags: ['Motion Design']
+  },
+  {
     href: 'kbb-icons-illustrations.html',
     bgColor: '#FFBF00',
     fgColor: '#002B5C',

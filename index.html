@@ -158,18 +158,19 @@
 
       a[href="iris-design-system.html"].work-card                { order: 1; }
       a[href="autotrader-illustration-system.html"].work-card { order: 2; }
-      a[href="kbb-icons-illustrations.html"].work-card          { order: 3; }
-      a[href="autotrader-icons.html"].work-card                 { order: 4; }
-      a[href="tshq-mobile-app.html"].work-card                  { order: 5; }
-      a[href="tshq-registration.html"].work-card                { order: 6; }
+      a[href="kbb-icons-illustrations.html"].work-card          { order: 6; }
+      a[href="autotrader-icons.html"].work-card                 { order: 5; }
+      a[href="tshq-mobile-app.html"].work-card                  { order: 4; }
+      a[href="tshq-registration.html"].work-card                { order: 8; }
       a[href="sketches-illustrations-doodles.html"].work-card   { order: 7; }
-      a[href="paradesmith.html"].work-card                      { order: 8; }
-      a[href="coca-cola-campus-messaging.html"].work-card       { order: 9; }
-      a[href="coca-cola-assorted-projects.html"].work-card      { order: 10; }
-      a[href="tshq-fanwear-redesign.html"].work-card            { order: 11; }
-      a[href="tshq-assorted-projects.html"].work-card           { order: 12; }
-      a[href="logos.html"].work-card                            { order: 13; }
-      a[href="just-for-funsies.html"].work-card                 { order: 14; }
+      a[href="paradesmith.html"].work-card                      { order: 9; }
+      a[href="motion-animation.html"].work-card                 { order: 3; }
+      a[href="coca-cola-campus-messaging.html"].work-card       { order: 10; }
+      a[href="coca-cola-assorted-projects.html"].work-card      { order: 11; }
+      a[href="tshq-fanwear-redesign.html"].work-card            { order: 12; }
+      a[href="tshq-assorted-projects.html"].work-card           { order: 13; }
+      a[href="logos.html"].work-card                            { order: 14; }
+      a[href="just-for-funsies.html"].work-card                 { order: 15; }
 
 
     }
@@ -212,8 +213,8 @@
     /* Bar sits in flow under the headline; past that point it pins below
        the nav and mirrors its hide-on-scroll-down, return-on-scroll-up
        behavior (classes toggled in index.js — html/body overflow-x breaks
-       sticky). The inner row scrolls; a mask clips it at the right page
-       margin with a fade into the bar's background to signal more chips. */
+       sticky). The inner row scrolls; clip-path hides chips that
+       scroll past either page margin. */
     .cap-chips-bar {
       position: relative;
       z-index: 90;
@@ -246,14 +247,8 @@
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
-      -webkit-mask-image: linear-gradient(to right,
-        #000 0,
-        #000 calc(100% - var(--page-margin) - 8rem),
-        transparent calc(100% - var(--page-margin)));
-      mask-image: linear-gradient(to right,
-        #000 0,
-        #000 calc(100% - var(--page-margin) - 8rem),
-        transparent calc(100% - var(--page-margin)));
+      /* chips vanish at the page margins instead of running to the screen edge */
+      clip-path: inset(0 var(--page-margin));
     }
 
     .cap-chips::-webkit-scrollbar { display: none; }
@@ -414,9 +409,9 @@
           <div class="work-card__img-wrap"><img class="work-img" width="700" height="700" style="aspect-ratio: 1/1; object-fit: cover;" src="img/iris_thumbnail.webp" alt="Iris component library grid across headings, buttons, tabs, and labels" loading="eager"></div>
           <div class="work-card__label" style="background: #F5F5F5; color: #0B2D52;"><span class="work-card__label-client">Cox Automotive</span>Building the multi-brand design system behind Autotrader, KBB, and OEM dealer sites</div>
         </a>
-        <a href="kbb-icons-illustrations.html" class="work-card" data-caps="uiux-design iconography illustration">
-          <div class="work-card__img-wrap"><img srcset="img/Kbb_thumbnail-w800.webp 800w, img/Kbb_thumbnail-w1600.webp 1600w, img/Kbb_thumbnail.webp 2000w" sizes="(max-width: 640px) 92vw, 46vw" width="2000" height="2000" class="work-img" src="img/Kbb_thumbnail.webp" alt="Kelley Blue Book icon and illustration system overview" loading="eager"></div>
-          <div class="work-card__label"><span class="work-card__label-client">Kelley Blue Book</span>Growing a renowned leader's visual library</div>
+        <a href="motion-animation.html" class="work-card" data-caps="motion-design">
+          <div class="work-card__img-wrap"><video class="work-img" width="1080" height="1080" style="height: auto; aspect-ratio: 1/1; object-fit: cover;" autoplay muted loop playsinline preload="metadata" poster="img/motion-thumbnail-poster.webp" aria-label="Looping reel of motion design work: ribbon animation, heart tap, Autotrader logo bounce, and an animated EV range chart" data-motion-thumb><source src="img/motion-thumbnail.webm" type="video/webm"><source src="img/motion-thumbnail.mp4" type="video/mp4"></video></div>
+          <div class="work-card__label" style="background: #F5F1E8; color: #14213D;"><span class="work-card__label-client">Motion &amp; Animation</span>Interface motion, micro-interactions, and animated data</div>
         </a>
         <a href="autotrader-icons.html" class="work-card" data-caps="uiux-design iconography motion-design">
           <div class="work-card__img-wrap"><div id="lottie-at-icons-thumb" data-lottie="animations/spot_icons.json" style="width:100%;display:block;aspect-ratio:2000/1409;"></div></div>
@@ -453,6 +448,10 @@
         <a href="tshq-mobile-app.html" class="work-card" data-caps="uiux-design research illustration case-study">
           <div class="work-card__img-wrap"><img srcset="img/tshq_app_thumbnail-w800.webp 800w, img/tshq_app_thumbnail-w1600.webp 1600w, img/tshq_app_thumbnail.webp 1920w" sizes="92vw" width="1920" height="1920" class="work-img" src="img/tshq_app_thumbnail.webp" alt="DICK'S TSHQ mobile app" loading="lazy"></div>
           <div class="work-card__label" style="background: #006554; color: #E0FAE0;"><span class="work-card__label-client">DICK'S TSHQ</span>Designing mobile app features that ease the pain of youth sports management</div>
+        </a>
+        <a href="kbb-icons-illustrations.html" class="work-card" data-caps="uiux-design iconography illustration">
+          <div class="work-card__img-wrap"><img srcset="img/Kbb_thumbnail-w800.webp 800w, img/Kbb_thumbnail-w1600.webp 1600w, img/Kbb_thumbnail.webp 2000w" sizes="(max-width: 640px) 92vw, 46vw" width="2000" height="2000" class="work-img" src="img/Kbb_thumbnail.webp" alt="Kelley Blue Book icon and illustration system overview" loading="eager"></div>
+          <div class="work-card__label"><span class="work-card__label-client">Kelley Blue Book</span>Growing a renowned leader's visual library</div>
         </a>
         <a href="tshq-registration.html" class="work-card" data-caps="uiux-design design-system research illustration case-study">
           <div class="work-card__img-wrap"><img width="1500" height="1500" class="work-img" src="img/tshq_reg_thumbnail.webp" alt="DICK'S TSHQ Registration Redesign" loading="lazy"></div>
