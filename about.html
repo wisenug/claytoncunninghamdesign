@@ -66,9 +66,10 @@
     }
 
     /* ── Cycling headline word ── */
-    @keyframes wordRise {
-      from { opacity: 0; transform: translateY(6px) scale(0.92); }
-      to   { opacity: 1; transform: translateY(0) scale(1); }
+    /* Masked word reveal, adapted from ibelick/motion-primitives (MIT) */
+    @keyframes wordMaskRise {
+      from { opacity: 0; transform: translateY(100%); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
     .cycle-word {
@@ -78,8 +79,19 @@
       padding-right: 0.12em; /* italic overhang was crowding the trailing emoji against "for" */
     }
 
-    .cycle-word.swapping {
-      animation: wordRise 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+    .cw-mask {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: top;
+      /* room for descenders + italic overhang so the mask doesn't clip glyphs */
+      padding: 0 0.12em 0.12em 0;
+      margin: 0 -0.12em -0.12em 0;
+    }
+
+    .cw-word {
+      display: inline-block;
+      animation: wordMaskRise 0.52s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-delay: calc(var(--i) * 75ms);
     }
 
     /* ── Hero ── */
@@ -546,7 +558,7 @@
 
 
   <script src="js/site.js?v=20261106"></script>
-  <script src="js/about.js?v=20261106b"></script>
+  <script src="js/about.js?v=20261106c"></script>
   <!-- Cloudflare Web Analytics -->
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "965f2ad8267d4463890153ababb0dd33"}'></script>
   <!-- End Cloudflare Web Analytics -->
