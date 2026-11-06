@@ -2,7 +2,7 @@
 
 // Headline word cycle
 (function () {
-  var words = ['design systems 🤙', 'illustration & icon libraries ☮️', 'motion 🏄🏻‍♂️'];
+  var words = ['design systems 🤙', 'illustrations 🌭', 'icon libraries ☮️', 'motion 🏄🏻‍♂️'];
   var idx = 0;
   var el = document.querySelector('.cycle-word');
   if (!el || CCD.prefersReducedMotion) return;
