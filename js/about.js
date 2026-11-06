@@ -1,19 +1,19 @@
-/* about.js — emoji cycle + photo tilt. Requires site.js. */
+/* about.js — headline word cycle + photo tilt. Requires site.js. */
 
-// Emoji cycle — starts after initial rise animation
+// Headline word cycle
 (function () {
-  var emojis = ['🍑', '🏄‍♂️', '🌼', '🤠', '⚾', '🔥', '🪻', '🤙', '🎨', '🏖️', '🍔', '🪐', '🇺🇸', '🗿', '🌷', '🌞', '🦩'];
+  var words = ['design systems 🤙', 'illustration & icon libraries ☮️', 'motion 🏄🏻‍♂️'];
   var idx = 0;
-  var el = document.querySelector('.peach');
-  if (!el) return;
+  var el = document.querySelector('.cycle-word');
+  if (!el || CCD.prefersReducedMotion) return;
 
   setInterval(function () {
     if (document.hidden) return;
-    idx = (idx + 1) % emojis.length;
+    idx = (idx + 1) % words.length;
     el.classList.remove('swapping');
     // Force reflow so the animation re-triggers
     void el.offsetWidth;
-    el.textContent = emojis[idx];
+    el.textContent = words[idx];
     el.classList.add('swapping');
   }, 2000);
 })();
