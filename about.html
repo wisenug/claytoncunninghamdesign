@@ -65,24 +65,18 @@
       color: #201515;
     }
 
-    /* ── Peach emoji animation ── */
-    @keyframes peachRise {
-      from { opacity: 0; transform: translateY(14px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes emojiFade {
-      from { opacity: 0; transform: translateY(6px) scale(0.85); }
+    /* ── Cycling headline word ── */
+    @keyframes wordRise {
+      from { opacity: 0; transform: translateY(6px) scale(0.92); }
       to   { opacity: 1; transform: translateY(0) scale(1); }
     }
 
-    .peach {
+    .cycle-word {
       display: inline-block;
-      animation: peachRise 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
     }
 
-    .peach.swapping {
-      animation: emojiFade 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+    .cycle-word.swapping {
+      animation: wordRise 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
     }
 
     /* ── Hero ── */
@@ -476,7 +470,7 @@
         </div>
         <div class="about-intro">
           <h1 class="about-headline">
-            Senior Product Designer at Cox Automotive in Atlanta, GA <span class="peach">🍑</span><span class="about-headline-sub">Building design systems, illustration &amp; icon libraries, and motion for <a href="https://www.autotrader.com" target="_blank" rel="noopener" class="tagline-link">Autotrader</a> and <a href="https://www.kbb.com" target="_blank" rel="noopener" class="tagline-link">Kelley Blue Book</a>.</span>
+            Senior Product Designer at Cox Automotive in Atlanta, GA<span class="about-headline-sub">Building <span class="cycle-word">design systems 🤙</span> for <a href="https://www.autotrader.com" target="_blank" rel="noopener" class="tagline-link">Autotrader</a> and <a href="https://www.kbb.com" target="_blank" rel="noopener" class="tagline-link">Kelley Blue Book</a>.</span>
           </h1>
         </div>
       </div>
