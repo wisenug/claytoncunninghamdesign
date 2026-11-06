@@ -1,0 +1,17 @@
+# Files Cloudflare Workers should NOT upload as site assets.
+# wrangler.toml serves the repo root ("."), so anything here that isn't part
+# of the site is skipped. (The .git pack alone is >25 MiB, the per-file limit.)
+.git
+.github
+.claude
+.gitignore
+.DS_Store
+node_modules
+checks
+*.mjs
+package.json
+package-lock.json
+CLAUDE.md
+SKILL.md
+wrangler.toml
+.assetsignore
