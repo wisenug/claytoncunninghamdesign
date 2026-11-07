@@ -76,8 +76,9 @@
 
     .cycle-word {
       display: inline-block;
+      vertical-align: top; /* overflow:hidden masks move the baseline to their bottom edge, which pushed this line down at h1 size */
       font-style: italic;
-      font-weight: 600;
+      font-weight: inherit; /* match the bold h1 now that the whole headline shares one size */
       padding-right: 0.12em; /* italic overhang was crowding the trailing emoji against "for" */
     }
 
@@ -86,8 +87,8 @@
       overflow: hidden;
       vertical-align: top;
       /* room for descenders + italic overhang so the mask doesn't clip glyphs */
-      padding: 0 0.12em 0.12em 0;
-      margin: 0 -0.12em -0.12em 0;
+      padding: 0.12em 0.12em 0.3em 0;
+      margin: -0.12em -0.12em -0.3em 0;
     }
 
     .cw-word {
@@ -154,15 +155,6 @@
       line-height: 1.15;
       letter-spacing: -0.03em;
       color: #B8D9F5;
-    }
-
-    .about-headline-sub {
-      display: block;
-      font-size: clamp(2.8rem, 3.6vw, 4.2rem);
-      font-weight: 400;
-      letter-spacing: -0.02em;
-      line-height: 1.75; /* match project-page body copy */
-      margin-top: 1.6rem;
     }
 
     .tagline-link {
@@ -334,11 +326,6 @@
         font-size: clamp(2.8rem, 7vw, 3.6rem);
       }
 
-      .about-headline-sub {
-        font-size: clamp(1.8rem, 5vw, 2.4rem);
-        margin-top: 1.2rem;
-      }
-
       .about-cta {
         border-radius: 1.2rem;
         padding: 5.6rem var(--page-margin);
@@ -452,7 +439,7 @@
         </div>
         <div class="about-intro">
           <h1 class="about-headline">
-            Senior Product Designer at Cox Automotive in Atlanta, GA<span class="about-headline-sub">Building <span class="cycle-word">design systems 🤙</span> for <a href="https://www.autotrader.com" target="_blank" rel="noopener" class="tagline-link">Autotrader</a> and <a href="https://www.kbb.com" target="_blank" rel="noopener" class="tagline-link">Kelley Blue Book</a>.</span>
+            Senior product designer building <span class="cycle-word">design systems 🤙</span> for <a href="https://www.autotrader.com" target="_blank" rel="noopener" class="tagline-link">Autotrader</a> and <a href="https://www.kbb.com" target="_blank" rel="noopener" class="tagline-link">Kelley Blue Book</a> in Atlanta, GA
           </h1>
         </div>
       </div>
