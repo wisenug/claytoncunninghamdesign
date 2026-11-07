@@ -7,6 +7,10 @@ on:
     branches: [main]
   workflow_dispatch: # manual run: Actions tab → Site checks → Run workflow
 
+# Least privilege: jobs only read the repo unless they ask for more (deploy does).
+permissions:
+  contents: read
+
 jobs:
   checks:
     runs-on: ubuntu-latest

@@ -11,10 +11,13 @@ trap 'rm -rf "$TMP"' EXIT
 
 cd "$TMP"
 npm init -y >/dev/null
-npm i --silent --no-audit --no-fund \
+# Exact versions so a rebuild is byte-identical to the committed file.
+# Bump deliberately, rebuild, and compare (then bump CCD.lottieSrc's ?v).
+npm i --silent --no-audit --no-fund --save-exact \
   lottie-web@5.13.0 \
-  rollup@^2.61.0 @rollup/plugin-node-resolve@^13.0.6 @rollup/plugin-babel@^5.3.0 rollup-plugin-terser@^7.0.2 \
-  @babel/core@^7 @babel/preset-env@^7 @babel/plugin-transform-runtime@^7 @babel/runtime@^7
+  rollup@2.80.0 @rollup/plugin-node-resolve@13.3.0 @rollup/plugin-babel@5.3.1 \
+  @rollup/plugin-terser@0.4.4 terser@5.51.2 \
+  @babel/core@7.29.13 @babel/preset-env@7.29.7 @babel/plugin-transform-runtime@7.29.7 @babel/runtime@7.29.13
 
 # Work on a copy of the library source so the entry file can sit beside the
 # library's own modules (it imports them by relative path).
