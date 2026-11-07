@@ -150,6 +150,8 @@ for (const img of ['img/claytoncunningham-og.jpg', 'img/claytoncunningham.webp',
   for (const v of withVariants(img)) claim(v, 'Personal');
 }
 for (const v of withVariants('img/at_illustration_style_10.png')) claim(v, 'Autotrader');
+// Process write-up cards (generate-og-cards.mjs ARTICLE_CARDS) show Autotrader work
+for (const og of ['img/og/og-how-to-build-a-scalable-illustration-system.jpg', 'img/og/og-icon-grids-and-optical-corrections.jpg']) claim(og, 'Autotrader');
 
 for (const file of (await fs.readdir('.')).filter(f => f.endsWith('.html'))) {
   const src = await fs.readFile(file, 'utf8');

@@ -116,6 +116,24 @@ for (const p of CCD_PROJECTS.filter(p => !p.homeOnly)) {
   console.log(`${p.href} → ${out}`);
 }
 
+// Process write-ups (CCD_ARTICLES) get their own cards so a shared link
+// shows the article, not the case study it draws from. Colors match the page.
+const ARTICLE_CARDS = {
+  'how-to-build-a-scalable-illustration-system.html': {
+    bg: '#E3F2FF', fg: '#0F2960', image: 'img/at_illustration_style_10.webp',
+    title: 'How to Build a Scalable Illustration System',
+  },
+  'icon-grids-and-optical-corrections.html': {
+    bg: '#FF8806', fg: '#001F6E', image: 'img/autotrader_icons_library.webp',
+    title: 'Icon Grids and Optical Corrections',
+  },
+};
+for (const [href, a] of Object.entries(ARTICLE_CARDS)) {
+  const out = await render(`og-${href.replace('.html', '')}.jpg`, { ...a, kicker: 'Process write-up' });
+  await updateMeta(href, out);
+  console.log(`${href} → ${out}`);
+}
+
 const byHref = Object.fromEntries(CCD_PROJECTS.map(p => [p.href, p]));
 const home = await render('og-home.jpg', {
   bg: '#0B2D52', fg: '#ffffff',   // index.html's --color-bg / --color-black
