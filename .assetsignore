@@ -8,6 +8,7 @@
 .DS_Store
 node_modules
 checks
+tools
 *.mjs
 package.json
 package-lock.json

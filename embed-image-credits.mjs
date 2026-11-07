@@ -83,15 +83,20 @@ const clientByPage = Object.fromEntries(projects.map(p => [p.href, p.client]));
 
 /* Responsive variants (foo-w800.webp) sit next to the file they came from and
    are what a browser actually downloads, so they need the same credit. */
-const onDisk = new Set(
-  (await fs.readdir('img', { recursive: true })).map(f => `img/${f}`)
-);
+// unused/ is live despite its name (Coca-Cola dining gallery, Paradesmith media)
+const onDisk = new Set([
+  ...(await fs.readdir('img', { recursive: true })).map(f => `img/${f}`),
+  ...(await fs.readdir('unused', { recursive: true })).map(f => `unused/${f}`),
+]);
 function withVariants(img) {
   const m = img.match(/^(.*)(\.[a-z0-9]+)$/i);
   if (!m) return [img];
   const out = [img];
-  for (const f of onDisk) {
-    if (new RegExp(`^${m[1].replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}-w\\d+${m[2].replace('.', '\\.')}$`).test(f)) out.push(f);
+  // AVIF twins (generate-avif.mjs) of a WebP are delivered in its place
+  const exts = /^\.webp$/i.test(m[2]) ? [m[2], '.avif'] : [m[2]];
+  if (exts.length > 1) out.push(m[1] + '.avif');
+  for (const f of onDisk) for (const ext of exts) {
+    if (new RegExp(`^${m[1].replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}-w\\d+${ext.replace('.', '\\.')}$`).test(f)) out.push(f);
   }
   return out;
 }
@@ -100,7 +105,7 @@ function withVariants(img) {
    variants carry the same credit as the file they were derived from. */
 function imagesIn(src) {
   const out = new Set();
-  for (const m of src.matchAll(/<img\b[^>]*>/g)) {
+  for (const m of src.matchAll(/<(?:img|source)\b[^>]*>/g)) {  // <source> carries the AVIF srcset
     const tag = m[0];
     const s = tag.match(/\bsrc="([^"]+)"/)?.[1];
     if (s) out.add(decodeURI(s));
@@ -110,7 +115,7 @@ function imagesIn(src) {
       if (url) out.add(decodeURI(url));
     }
   }
-  return [...out].filter(u => u.startsWith('img/') && !/\.svg$/i.test(u));
+  return [...out].filter(u => /^(img|unused)\//.test(u) && !/\.svg$/i.test(u));
 }
 
 const owner = new Map();      // image path -> client key
@@ -141,10 +146,12 @@ for (const p of projects) {
 }
 // Portrait, the home page's own OG image, and the funsies card, none of which
 // belong to a project page.
-for (const img of ['img/claytoncunningham-og.jpg', 'img/claytoncunningham.webp', 'img/og-shoe-rotation.jpg']) {
+for (const img of ['img/claytoncunningham-og.jpg', 'img/claytoncunningham.webp', 'img/og-shoe-rotation.jpg', 'img/reba-og.png', 'img/dino-og.png']) {
   for (const v of withVariants(img)) claim(v, 'Personal');
 }
 for (const v of withVariants('img/at_illustration_style_10.png')) claim(v, 'Autotrader');
+// Process write-up cards (generate-og-cards.mjs ARTICLE_CARDS) show Autotrader work
+for (const og of ['img/og/og-how-to-build-a-scalable-illustration-system.jpg', 'img/og/og-icon-grids-and-optical-corrections.jpg']) claim(og, 'Autotrader');
 
 for (const file of (await fs.readdir('.')).filter(f => f.endsWith('.html'))) {
   const src = await fs.readFile(file, 'utf8');

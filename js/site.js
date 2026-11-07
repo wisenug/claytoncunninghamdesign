@@ -5,20 +5,42 @@ var CCD = window.CCD || (window.CCD = {});
 
 CCD.prefersReducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+// The Lottie player is fetched on demand, the first time an animation needs
+// it, so it never blocks first paint (it used to sit in <head> on six pages).
+// It's a custom build, see tools/lottie/. Bump the ?v= when you rebuild it.
+CCD.lottieSrc = 'js/vendor/lottie.ccd.min.js?v=5.13.0-ccd1';
+CCD.lottieReady = null;
+CCD.whenLottie = function () {
+  if (typeof lottie !== 'undefined') return Promise.resolve();
+  if (!CCD.lottieReady) {
+    CCD.lottieReady = new Promise(function (resolve, reject) {
+      var s = document.createElement('script');
+      s.src = CCD.lottieSrc;
+      s.onload = resolve;
+      s.onerror = function () { CCD.lottieReady = null; reject(new Error('Lottie player failed to load')); };
+      document.head.appendChild(s);
+    });
+  }
+  return CCD.lottieReady;
+};
+
 // Lottie loader shared by page scripts and [data-lottie] containers.
+// Returns a promise for the animation instance (null if there is no element).
 // Honors reduced-motion: renders first frame, no autoplay/loop.
 CCD.loadLottie = function (el, path, opts) {
-  if (!el || typeof lottie === 'undefined') return null;
+  if (!el) return Promise.resolve(null);
   opts = opts || {};
-  return lottie.loadAnimation({
-    container: el,
-    renderer: 'svg',
-    loop: !CCD.prefersReducedMotion,
-    autoplay: !CCD.prefersReducedMotion,
-    path: path,
-    rendererSettings: opts.slice
-      ? { preserveAspectRatio: 'xMidYMid slice', progressiveLoad: true }
-      : undefined
+  return CCD.whenLottie().then(function () {
+    return lottie.loadAnimation({
+      container: el,
+      renderer: 'svg',
+      loop: !CCD.prefersReducedMotion,
+      autoplay: !CCD.prefersReducedMotion,
+      path: path,
+      rendererSettings: opts.slice
+        ? { preserveAspectRatio: 'xMidYMid slice', progressiveLoad: true }
+        : undefined
+    });
   });
 };
 
@@ -39,7 +61,7 @@ CCD.loadLottie = function (el, path, opts) {
       var start = function () {
         CCD.loadLottie(el, el.getAttribute('data-lottie'), {
           slice: el.hasAttribute('data-lottie-slice')
-        });
+        }).catch(function () { /* player failed to load: leave the block empty */ });
       };
       var delay = parseInt(el.getAttribute('data-lottie-delay'), 10) || 0;
       if (delay > 0 && !CCD.prefersReducedMotion) {
