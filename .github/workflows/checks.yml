@@ -5,6 +5,7 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  workflow_dispatch: # manual run: Actions tab → Site checks → Run workflow
 
 jobs:
   checks:
@@ -39,3 +40,38 @@ jobs:
           node serve.mjs &
           sleep 2
           node check-csp.mjs
+
+  # Publishes to GitHub Pages only after every check above passes, and only
+  # from main. Ships the site files alone: anything listed in .assetsignore
+  # (scripts, CLAUDE.md, package files, .github, etc.) stays out, the same
+  # list Cloudflare uses. Requires Settings → Pages → Source: GitHub Actions.
+  deploy:
+    needs: checks
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Stage site files (everything not in .assetsignore)
+        run: |
+          mkdir _site
+          tar --exclude-from=.assetsignore --exclude=./_site -cf - . | tar -xf - -C _site
+          echo "Staged $(find _site -type f | wc -l) files"
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+          include-hidden-files: true # keeps .well-known/security.txt
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
