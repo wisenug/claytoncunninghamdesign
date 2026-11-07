@@ -24,6 +24,7 @@ const mimeTypes = {
   '.json': 'application/json',
   '.webmanifest': 'application/manifest+json',
   '.mp4': 'video/mp4',
+  '.webm': 'video/webm',
   '.mov': 'video/quicktime',
   '.xml': 'application/xml',
   '.txt': 'text/plain',

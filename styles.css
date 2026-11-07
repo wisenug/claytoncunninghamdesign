@@ -448,13 +448,6 @@ main {
   gap: 1.6rem;
 }
 
-.image-grid-4 {
-  padding: 0 var(--page-margin) 1.6rem;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.2rem;
-}
-
 .image-grid-3 img {
   width: 100%;
   display: block;
@@ -462,12 +455,6 @@ main {
 }
 
 .image-grid-2 img {
-  width: 100%;
-  display: block;
-  border-radius: var(--radius-img);
-}
-
-.image-grid-4 img {
   width: 100%;
   display: block;
   border-radius: var(--radius-img);
@@ -615,22 +602,6 @@ footer {
   color: #000;
 }
 
-/* Inherits currentColor so it survives each page's .footer-copy override. */
-.footer-link {
-  color: inherit;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  text-decoration-color: currentColor;
-  text-decoration-thickness: 1px;
-  opacity: 0.62;
-  border-radius: 2px;
-  transition: opacity 0.2s ease;
-}
-
-.footer-link:hover {
-  opacity: 1;
-}
-
 .footer-link:focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 3px;
@@ -656,15 +627,6 @@ footer {
   align-items: stretch;
 }
 
-/* Mirrored: tall on left, stacked on right */
-.image-split-tall--mirror {
-  direction: rtl;
-}
-
-.image-split-tall--mirror > * {
-  direction: ltr;
-}
-
 .image-split-tall__stack {
   display: flex;
   flex-direction: column;
@@ -687,7 +649,6 @@ footer {
   border-radius: var(--radius-img);
 }
 
-
 /* ============================================================
    Scrolling Carousel
    ============================================================ */
@@ -709,7 +670,6 @@ footer {
   width: max-content;
   animation: marquee 36s linear infinite;
 }
-
 
 .carousel-item {
   width: 40rem;
@@ -766,7 +726,6 @@ footer {
   height: 500px;
 }
 
-
 /* ============================================================
    Animations
    ============================================================ */
@@ -779,8 +738,6 @@ footer {
 .fade-up {
   animation: fadeUp 0.45s ease-in-out both;
 }
-
-.fade-up-1 { animation-delay: 0.03s; }
 .fade-up-2 { animation-delay: 0.09s; }
 .fade-up-3 { animation-delay: 0.15s; }
 
@@ -861,10 +818,6 @@ footer {
   .text-two-col {
     grid-template-columns: 1fr;
     gap: 3.2rem;
-  }
-
-  .image-grid-4 {
-    grid-template-columns: repeat(2, 1fr);
   }
 
   .lottie-two-col {
