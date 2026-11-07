@@ -83,9 +83,11 @@ const clientByPage = Object.fromEntries(projects.map(p => [p.href, p.client]));
 
 /* Responsive variants (foo-w800.webp) sit next to the file they came from and
    are what a browser actually downloads, so they need the same credit. */
-const onDisk = new Set(
-  (await fs.readdir('img', { recursive: true })).map(f => `img/${f}`)
-);
+// unused/ is live despite its name (Coca-Cola dining gallery, Paradesmith media)
+const onDisk = new Set([
+  ...(await fs.readdir('img', { recursive: true })).map(f => `img/${f}`),
+  ...(await fs.readdir('unused', { recursive: true })).map(f => `unused/${f}`),
+]);
 function withVariants(img) {
   const m = img.match(/^(.*)(\.[a-z0-9]+)$/i);
   if (!m) return [img];
@@ -113,7 +115,7 @@ function imagesIn(src) {
       if (url) out.add(decodeURI(url));
     }
   }
-  return [...out].filter(u => u.startsWith('img/') && !/\.svg$/i.test(u));
+  return [...out].filter(u => /^(img|unused)\//.test(u) && !/\.svg$/i.test(u));
 }
 
 const owner = new Map();      // image path -> client key
@@ -144,7 +146,7 @@ for (const p of projects) {
 }
 // Portrait, the home page's own OG image, and the funsies card, none of which
 // belong to a project page.
-for (const img of ['img/claytoncunningham-og.jpg', 'img/claytoncunningham.webp', 'img/og-shoe-rotation.jpg']) {
+for (const img of ['img/claytoncunningham-og.jpg', 'img/claytoncunningham.webp', 'img/og-shoe-rotation.jpg', 'img/reba-og.png', 'img/dino-og.png']) {
   for (const v of withVariants(img)) claim(v, 'Personal');
 }
 for (const v of withVariants('img/at_illustration_style_10.png')) claim(v, 'Autotrader');
