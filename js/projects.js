@@ -121,7 +121,7 @@ window.CCD_PROJECTS = [
     client: 'Autotrader',
     title: 'Illustration System',
     label: 'Designing a scalable illustration system across web, mobile apps, and marketing',
-    tags: ['UI/UX Design', 'Illustration', 'Motion Design']
+    tags: ['UI/UX Design', 'Illustration']
   },
   {
     href: 'motion-animation.html',
