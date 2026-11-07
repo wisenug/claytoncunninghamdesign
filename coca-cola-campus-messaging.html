@@ -27,11 +27,11 @@
   <meta name="description" content="Unified campus communication experiences across Coca-Cola's world headquarters.">
   <link rel="preload" href="fonts/dm-sans-04.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" as="image" fetchpriority="high" imagesrcset="img/cm_welcome_msg_1-w800.webp 800w, img/cm_welcome_msg_1.webp 1500w" imagesizes="100vw">
-  <link rel="stylesheet" href="styles.css?v=20261107">
+  <link rel="stylesheet" href="styles.css?v=20261107a">
   <style>
     :root {
       --color-bg: #DE4138;
-      --color-black: #270604;
+      --color-black: #1F0503;
     }
 
     /* ── View transition ── */
@@ -51,18 +51,18 @@
     /* ── Inverted tag hover ── */
     .tag {
       border-color: rgba(39, 6, 4, 0.35);
-      color: rgba(39, 6, 4, 0.65);
+      color: var(--color-black);
     }
 
     .tag:hover,
     .tag--active {
-      background: #270604;
+      background: #1F0503;
       color: var(--color-bg);
-      border-color: #270604;
+      border-color: #1F0503;
     }
 
     .footer-copy {
-      color: #270604;
+      color: #1F0503;
     }
 
     /* ── Spacer before colored section ── */
@@ -72,7 +72,7 @@
 
     /* ── Dining section — inverted band ── */
     .dining-bg {
-      background-color: #270604;
+      background-color: #1F0503;
       padding-top: 5.3rem;
     }
 
@@ -345,7 +345,7 @@
     <!-- Next project -->
     <section class="next-project next-project-wrap" style="margin-top: 8rem;" aria-label="Navigate to next project">
       <div class="next-project-bg" aria-hidden="true" style="background-color: #ffffff;"></div>
-      <span class="next-label" style="color: rgba(212, 32, 32, 0.75);">Next Project</span>
+      <span class="next-label" style="color: rgba(212, 32, 32, 0.9);">Next Project</span>
       <a href="coca-cola-assorted-projects.html" class="next-project-title" style="color: rgba(240, 45, 45, 0.75);">
         Coca-Cola<br>Assorted Projects
       </a>

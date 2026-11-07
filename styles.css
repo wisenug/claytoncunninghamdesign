@@ -242,6 +242,9 @@ html {
   html { scroll-behavior: auto; }
 }
 
+/* Keep focused elements and #anchors clear of the fixed 10rem nav */
+html { scroll-padding-top: 10rem; }
+
 body {
   background-color: var(--color-bg);
   color: var(--color-black);
@@ -329,19 +332,16 @@ nav.nav--hidden {
   letter-spacing: 0.005em;
   color: var(--color-black);
   text-decoration: none;
-  opacity: 0.82;
   border-radius: 0.6rem;
   padding: 0.5rem 1rem;
   transition: background 0.2s ease, color 0.2s ease, opacity 0.2s ease;
 }
 
 .nav-links a:hover {
-  opacity: 1;
   background: rgba(0, 0, 0, 0.07);
 }
 
 .nav-links a[aria-current="page"] {
-  opacity: 1;
   font-weight: 600;
   background: rgba(0, 0, 0, 0.17);
 }
@@ -578,7 +578,8 @@ main {
 }
 
 .next-project-title {
-  font-size: clamp(6.4rem, 9vw, 11.2rem);
+  /* min() lets long single words (Iconography, Paradesmith) fit at 320px */
+  font-size: clamp(min(6.4rem, 16.25vw), 9vw, 11.2rem);
   font-weight: 800;
   letter-spacing: -0.04em;
   line-height: 0.95;
@@ -772,6 +773,32 @@ footer {
 .update-notice.is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Show text right away for reduced-motion users, and whenever keyboard focus
+   lands inside a block that hasn't revealed yet (otherwise the focused link
+   is invisible). */
+.text-section:focus-within,
+.intro-text:focus-within,
+.assumption:focus-within,
+.pain-points:focus-within,
+.image-note:focus-within,
+.update-notice:focus-within {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .text-section,
+  .intro-text,
+  .assumption,
+  .pain-points,
+  .image-note,
+  .update-notice {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 /* ============================================================
