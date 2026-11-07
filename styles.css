@@ -199,6 +199,11 @@ picture {
   display: contents;
 }
 
+/* with the wrapper gone, the <source> would become a grid/flex item of its own */
+picture > source {
+  display: none;
+}
+
 /* Variables */
 :root {
   --color-black: #201515;

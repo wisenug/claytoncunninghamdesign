@@ -90,8 +90,11 @@ function withVariants(img) {
   const m = img.match(/^(.*)(\.[a-z0-9]+)$/i);
   if (!m) return [img];
   const out = [img];
-  for (const f of onDisk) {
-    if (new RegExp(`^${m[1].replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}-w\\d+${m[2].replace('.', '\\.')}$`).test(f)) out.push(f);
+  // AVIF twins (generate-avif.mjs) of a WebP are delivered in its place
+  const exts = /^\.webp$/i.test(m[2]) ? [m[2], '.avif'] : [m[2]];
+  if (exts.length > 1) out.push(m[1] + '.avif');
+  for (const f of onDisk) for (const ext of exts) {
+    if (new RegExp(`^${m[1].replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}-w\\d+${ext.replace('.', '\\.')}$`).test(f)) out.push(f);
   }
   return out;
 }
