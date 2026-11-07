@@ -310,7 +310,7 @@
       body.appendChild(span("Undo","text-decoration:underline;font-size:11.46px;"));
       textWrap.appendChild(title);
       textWrap.appendChild(body);
-      var closeBtn = document.createElement("button");
+      var closeBtn = document.createElement("span"); // decorative mock, not a real control
       closeBtn.style.cssText = "position:absolute;top:6.55px;right:6.55px;width:26.193px;height:26.193px;" +
         "display:flex;align-items:center;justify-content:center;cursor:pointer;background:none;border:none;padding:0;";
       closeBtn.appendChild(makeSvg("0 0 11.05 11.05","11.05","11.05",[

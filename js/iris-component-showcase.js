@@ -294,7 +294,7 @@
       body.textContent = "Provides a brief feedback that an action has been completed. ";
       body.appendChild(span("Undo","text-decoration:underline;font-size:14px;"));
       textWrap.appendChild(title); textWrap.appendChild(body);
-      var closeBtn = document.createElement("button");
+      var closeBtn = document.createElement("span"); // decorative mock, not a real control
       closeBtn.style.cssText = "position:absolute;top:13.1px;right:13.1px;width:52.385px;height:52.385px;" +
         "display:flex;align-items:center;justify-content:center;cursor:pointer;background:none;border:none;";
       closeBtn.appendChild(makeSvg("0 0 22.0999 22.0999","22.1","22.1",[
