@@ -84,7 +84,7 @@ function homeCardHtml({ bg, fg, tiles }) {
   </body></html>`;
 }
 
-const browser = await puppeteer.launch({ headless: 'new' });
+const browser = await puppeteer.launch({ headless: true });
 const page = await browser.newPage();
 await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 1 });
 // Fonts are fetched with CORS: give the page the dev server's origin so
