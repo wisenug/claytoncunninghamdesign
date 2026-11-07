@@ -100,7 +100,7 @@ function withVariants(img) {
    variants carry the same credit as the file they were derived from. */
 function imagesIn(src) {
   const out = new Set();
-  for (const m of src.matchAll(/<img\b[^>]*>/g)) {
+  for (const m of src.matchAll(/<(?:img|source)\b[^>]*>/g)) {  // <source> carries the AVIF srcset
     const tag = m[0];
     const s = tag.match(/\bsrc="([^"]+)"/)?.[1];
     if (s) out.add(decodeURI(s));

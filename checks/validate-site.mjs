@@ -33,6 +33,15 @@ for (const f of files) {
     for (const entry of m[1].split(',')) checkTarget(f, entry.trim().split(/\s+/)[0]);
   }
 
+  // AVIF <source>s (see generate-avif.mjs) must list only .avif files and keep a plain <img> fallback
+  for (const m of src.matchAll(/<picture>(.*?)<\/picture>/gs)) {
+    const sources = [...m[1].matchAll(/<source type="image\/avif" srcset="([^"]+)"/g)];
+    if (!sources.length || !/<img\b/.test(m[1])) errors.push(`${f}: <picture> without an AVIF <source> and <img> fallback`);
+    for (const [, ss] of sources) for (const e of ss.split(',')) {
+      if (!/\.avif$/i.test(e.trim().split(/\s+/)[0])) errors.push(`${f}: AVIF <source> lists a non-AVIF file → ${e.trim()}`);
+    }
+  }
+
   // 2. JSON-LD parses
   for (const m of src.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)) {
     try { JSON.parse(m[1]); } catch (e) { errors.push(`${f}: invalid JSON-LD — ${e.message}`); }

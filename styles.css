@@ -193,6 +193,12 @@ img {
   height: auto;
 }
 
+/* <picture> wrappers (AVIF with WebP fallback, see generate-avif.mjs) must not
+   affect layout: the <img> inside behaves exactly as if it were unwrapped */
+picture {
+  display: contents;
+}
+
 /* Variables */
 :root {
   --color-black: #201515;
