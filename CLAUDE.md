@@ -26,7 +26,8 @@ Clayton Cunningham's portfolio. Hand-written static HTML, one shared stylesheet,
 | `js/site.js` | Shared behaviors for every page (`window.CCD`), including the Lottie loader |
 | `js/projects.js` | **Single source of truth for project metadata** (`CCD_PROJECTS`, `CCD_ARTICLES`). Feeds the home grid, JSON-LD, OG cards, RSS |
 | `js/*.js` | Page scripts (`index.js`, `about.js`, `shoe-rotation.js`, Iris showcase scripts, etc.) |
-| `js/vendor/lottie.min.js` | Vendored lottie-web 5.13.0 (SVG renderer) |
+| `js/vendor/lottie.ccd.min.js` | Custom lottie-web 5.13.0 build (SVG renderer plus Drop Shadow, nothing else), loaded on demand by `site.js`. Rebuild with `bash tools/lottie/build.sh` |
+| `tools/lottie/` | Source for that custom build, plus `check-features.mjs` (run it after adding an animation) |
 | `animations/` | Lottie JSON (images embedded as WebP) plus one MP4 |
 | `img/` | Site images (WebP, responsive `-w800` / `-w1600` variants), MP4/WebM, `og/` cards, `shoes/` rotation frames |
 | `fonts/` | Self-hosted DM Sans (body) and Playfair Display (display) |
@@ -58,7 +59,7 @@ Locally, `check-csp.mjs` reports the analytics beacon failing against localhost.
 
 **Adding a project.** Add an entry to `CCD_PROJECTS` in `js/projects.js` (with the page's bg/fg colors). Then run `inject-schema.mjs`, `generate-og-cards.mjs` (needs the dev server running), and `generate-sitemap.mjs`. Add a write-up to `CCD_ARTICLES` and run `generate-rss.mjs`.
 
-**Adding a Lottie.** Load it with `CCD.loadLottie` or a `[data-lottie]` container. If it embeds PNGs, add it to the `FILES` list in `optimize-lottie-images.mjs` and run that script to convert them to WebP.
+**Adding a Lottie.** Use a `[data-lottie]` container (or `CCD.loadLottie`, which returns a promise); the player loads itself on first use, so never add a `<script>` tag for it. Run `node tools/lottie/check-features.mjs` to confirm the animation only uses features in the custom build. If it embeds PNGs, add it to the `FILES` list in `optimize-lottie-images.mjs` and run that script to convert them to WebP.
 
 **Video.** Ship H.264 MP4 (WebM optional), not `.mov`. Give `<video>` an `aspect-ratio` or width/height so layout doesn't shift.
 
