@@ -27,7 +27,7 @@
   <title>About • Clayton Cunningham Design</title>
   <link rel="preload" href="fonts/dm-sans-04.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/playfair-display-08.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=20261108b">
+  <link rel="stylesheet" href="styles.css?v=20261108a">
   <style>
 
     /* ── Nav overrides ── */
@@ -69,8 +69,6 @@
 
     /* ── Hero ── */
     .about-hero {
-      position: relative;
-      z-index: 2;
       padding: 4rem var(--page-margin) 7rem;
     }
 
@@ -100,19 +98,6 @@
       grid-row: 1;
       align-self: end;
       padding-bottom: 1.4rem;
-    }
-
-    /* Twirl logo: straddles the line where the hero meets Services & Skills.
-       The hero sits above the services band (z-index) so the logo isn't
-       painted over; the services band adds top padding to clear its lower half. */
-    .about-twirl {
-      position: absolute;
-      bottom: 0;
-      right: max(var(--page-margin), calc((100% - 112rem) / 2));
-      transform: translateY(50%);
-      width: clamp(18rem, 20vw, 24rem);
-      height: clamp(18rem, 20vw, 24rem);
-      color: #B8D9F5;
     }
 
     .about-photo-inner {
@@ -149,7 +134,7 @@
       font-size: clamp(2.8rem, 3.6vw, 4.2rem);
       font-weight: 400;
       letter-spacing: -0.02em;
-      line-height: 1.75; /* match project-page body copy */
+      line-height: 1.35;
       margin-top: 1.6rem;
     }
 
@@ -326,22 +311,6 @@
         width: 28.6rem;
       }
 
-      .about-hero {
-        padding-bottom: 12rem; /* room above the logo that straddles the line below */
-      }
-
-      .about-services {
-        padding-top: 11rem; /* clears the lower half of the logo above */
-      }
-
-      .about-twirl {
-        right: auto;
-        left: 50%;
-        transform: translate(-50%, 50%);
-        width: 18rem;
-        height: 18rem;
-      }
-
       .about-headline {
         font-size: clamp(2.8rem, 7vw, 3.6rem);
       }
@@ -462,7 +431,6 @@
             Clayton Cunningham<span class="about-headline-sub"><em class="about-role">Designer &amp; Illustrator</em> for <a href="https://www.autotrader.com" target="_blank" rel="noopener" class="tagline-link">Autotrader</a> and <a href="https://www.kbb.com" target="_blank" rel="noopener" class="tagline-link">Kelley Blue Book</a> in Atlanta, GA</span>
           </h1>
         </div>
-        <canvas class="about-twirl" data-twirl-logo role="img" aria-label="Clayton Cunningham logo"></canvas>
       </div>
     </section>
 
@@ -531,7 +499,7 @@
   </footer>
 
 
-  <script src="js/site.js?v=20261108b"></script>
+  <script src="js/site.js?v=20261107"></script>
   <script src="js/about.js?v=20261108a"></script>
   <!-- Cloudflare Web Analytics -->
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "965f2ad8267d4463890153ababb0dd33"}'></script>
