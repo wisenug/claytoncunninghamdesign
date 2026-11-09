@@ -69,6 +69,8 @@
 
     /* ── Hero ── */
     .about-hero {
+      position: relative;
+      z-index: 2;
       padding: 4rem var(--page-margin) 7rem;
     }
 
@@ -100,15 +102,16 @@
       padding-bottom: 1.4rem;
     }
 
-    /* Twirl logo under the headline, same blue as the headline text */
+    /* Twirl logo: straddles the line where the hero meets Services & Skills.
+       The hero sits above the services band (z-index) so the logo isn't
+       painted over; the services band adds top padding to clear its lower half. */
     .about-twirl {
-      grid-column: 2;
-      grid-row: 2;
-      align-self: start;
-      justify-self: end;
+      position: absolute;
+      bottom: 0;
+      right: max(var(--page-margin), calc((100% - 112rem) / 2));
+      transform: translateY(50%);
       width: clamp(18rem, 20vw, 24rem);
       height: clamp(18rem, 20vw, 24rem);
-      margin-top: 2.4rem;
       color: #B8D9F5;
     }
 
@@ -323,11 +326,18 @@
         width: 28.6rem;
       }
 
+      .about-hero {
+        padding-bottom: 12rem; /* room above the logo that straddles the line below */
+      }
+
+      .about-services {
+        padding-top: 11rem; /* clears the lower half of the logo above */
+      }
+
       .about-twirl {
-        order: 3;
-        align-self: center;
-        justify-self: auto;
-        margin-top: 0;
+        right: auto;
+        left: 50%;
+        transform: translate(-50%, 50%);
         width: 18rem;
         height: 18rem;
       }
