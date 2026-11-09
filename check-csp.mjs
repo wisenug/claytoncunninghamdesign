@@ -14,7 +14,7 @@ const URLS = [
 // GitHub Actions runners lack a usable Chromium sandbox; --no-sandbox is
 // safe there (ephemeral, isolated VM) but stays off for local runs.
 const browser = await puppeteer.launch({
-  headless: 'new',
+  headless: true,
   args: process.env.CI ? ['--no-sandbox', '--disable-setuid-sandbox'] : [],
 });
 let totalViolations = 0;

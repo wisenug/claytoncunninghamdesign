@@ -16,6 +16,8 @@
   <meta property="og:title" content="Coca-Cola Campus Messaging • Clayton Cunningham Design">
   <meta property="og:description" content="Unified campus communication experiences across Coca-Cola's world headquarters.">
   <meta property="og:image" content="https://www.claytoncunninghamdesign.com/img/og/og-coca-cola-campus-messaging.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Coca-Cola Campus Messaging • Clayton Cunningham Design">
   <meta name="twitter:description" content="Unified campus communication experiences across Coca-Cola's world headquarters.">
@@ -25,11 +27,11 @@
   <meta name="description" content="Unified campus communication experiences across Coca-Cola's world headquarters.">
   <link rel="preload" href="fonts/dm-sans-04.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" as="image" fetchpriority="high" imagesrcset="img/cm_welcome_msg_1-w800.webp 800w, img/cm_welcome_msg_1.webp 1500w" imagesizes="100vw">
-  <link rel="stylesheet" href="styles.css?v=skeleton">
+  <link rel="stylesheet" href="styles.css?v=20261107a">
   <style>
     :root {
       --color-bg: #DE4138;
-      --color-black: #270604;
+      --color-black: #1F0503;
     }
 
     /* ── View transition ── */
@@ -42,7 +44,6 @@
       view-transition-name: ink-bg;
     }
 
-
     /* View transition — outgoing (to next project); names assigned via JS on click */
     .next-project-title { position: relative; }
     .next-label         { position: relative; }
@@ -50,22 +51,18 @@
     /* ── Inverted tag hover ── */
     .tag {
       border-color: rgba(39, 6, 4, 0.35);
-      color: rgba(39, 6, 4, 0.65);
+      color: var(--color-black);
     }
 
     .tag:hover,
     .tag--active {
-      background: #270604;
+      background: #1F0503;
       color: var(--color-bg);
-      border-color: #270604;
-    }
-
-    .img-caption {
-      color: rgba(39, 6, 4, 0.75);
+      border-color: #1F0503;
     }
 
     .footer-copy {
-      color: #270604;
+      color: #1F0503;
     }
 
     /* ── Spacer before colored section ── */
@@ -75,17 +72,13 @@
 
     /* ── Dining section — inverted band ── */
     .dining-bg {
-      background-color: #270604;
+      background-color: #1F0503;
       padding-top: 5.3rem;
     }
 
     .dining-bg .section-heading,
     .dining-bg .body-text {
       color: #DE4138;
-    }
-
-    .dining-bg .img-caption {
-      color: rgba(222, 65, 56, 0.75);
     }
   </style>
   <script type="application/ld+json">
@@ -190,7 +183,7 @@
     </div>
 
     <div class="full-image">
-      <img srcset="img/cm_welcome_msg_2-w800.webp 800w, img/cm_welcome_msg_2.webp 1440w" sizes="92vw" width="1440" height="1920" src="img/cm_welcome_msg_2.webp" alt="Second view of Coca-Cola campus welcome display screen with branded messaging" loading="lazy">
+      <picture><source type="image/avif" srcset="img/cm_welcome_msg_2-w800.avif 800w, img/cm_welcome_msg_2.avif 1440w" sizes="92vw"><img srcset="img/cm_welcome_msg_2-w800.webp 800w, img/cm_welcome_msg_2.webp 1440w" sizes="92vw" width="1440" height="1920" src="img/cm_welcome_msg_2.webp" alt="Second view of Coca-Cola campus welcome display screen with branded messaging" loading="lazy"></picture>
     </div>
 
     <!-- Traffic & Transportation -->
@@ -200,7 +193,7 @@
     </div>
 
     <div class="full-image">
-      <img srcset="img/cm_traffic-w800.webp 800w, img/cm_traffic.webp 1500w" sizes="92vw" width="1500" height="1020" src="img/cm_traffic.webp" alt="Coca-Cola campus traffic and transportation information display screen" loading="lazy">
+      <picture><source type="image/avif" srcset="img/cm_traffic-w800.avif 800w, img/cm_traffic.avif 1500w" sizes="92vw"><img srcset="img/cm_traffic-w800.webp 800w, img/cm_traffic.webp 1500w" sizes="92vw" width="1500" height="1020" src="img/cm_traffic.webp" alt="Coca-Cola campus traffic and transportation information display screen" loading="lazy"></picture>
     </div>
 
     <div class="full-image">
@@ -231,7 +224,7 @@
     </div>
 
     <div class="full-image">
-      <img srcset="img/cm_credit_union_1-w800.webp 800w, img/cm_credit_union_1.webp 1500w" sizes="92vw" width="1500" height="844" src="img/cm_credit_union_1.webp" alt="Coca-Cola credit union display screen showing rates and service offerings" loading="lazy">
+      <picture><source type="image/avif" srcset="img/cm_credit_union_1-w800.avif 800w, img/cm_credit_union_1.avif 1500w" sizes="92vw"><img srcset="img/cm_credit_union_1-w800.webp 800w, img/cm_credit_union_1.webp 1500w" sizes="92vw" width="1500" height="844" src="img/cm_credit_union_1.webp" alt="Coca-Cola credit union display screen showing rates and service offerings" loading="lazy"></picture>
     </div>
 
     <div class="full-image">
@@ -285,16 +278,16 @@
     </div>
 
     <div class="full-image">
-      <img srcset="unused/dining_bistro-w800.webp 800w, unused/dining_bistro.webp 1500w" sizes="92vw" width="1500" height="1000" src="unused/dining_bistro.webp" alt="Coca-Cola Bistro dining venue digital menu screens on display" loading="lazy">
+      <picture><source type="image/avif" srcset="unused/dining_bistro-w800.avif 800w, unused/dining_bistro.avif 1500w" sizes="92vw"><img srcset="unused/dining_bistro-w800.webp 800w, unused/dining_bistro.webp 1500w" sizes="92vw" width="1500" height="1000" src="unused/dining_bistro.webp" alt="Coca-Cola Bistro dining venue digital menu screens on display" loading="lazy"></picture>
     </div>
 
     <div class="image-grid-2">
       <img srcset="unused/dining_1_bistro-w800.webp 800w, unused/dining_1_bistro.webp 1500w" sizes="(max-width: 640px) 92vw, 46vw" width="1500" height="988" src="unused/dining_1_bistro.webp" alt="Bistro digital menu screens showing breakfast and lunch offerings" loading="lazy">
-      <img srcset="unused/dining_2_bistro_signage-w800.webp 800w, unused/dining_2_bistro_signage.webp 1500w" sizes="(max-width: 640px) 92vw, 46vw" width="1500" height="997" src="unused/dining_2_bistro_signage.webp" alt="Bistro in-venue signage with branded typography and food photography" loading="lazy">
+      <picture><source type="image/avif" srcset="unused/dining_2_bistro_signage-w800.avif 800w, unused/dining_2_bistro_signage.avif 1500w" sizes="(max-width: 640px) 92vw, 46vw"><img srcset="unused/dining_2_bistro_signage-w800.webp 800w, unused/dining_2_bistro_signage.webp 1500w" sizes="(max-width: 640px) 92vw, 46vw" width="1500" height="997" src="unused/dining_2_bistro_signage.webp" alt="Bistro in-venue signage with branded typography and food photography" loading="lazy"></picture>
     </div>
 
     <div class="full-image">
-      <img width="778" height="1920" src="unused/dining_3_menus.webp" alt="Side-by-side digital menu displays for multiple Coca-Cola Dining venues" loading="lazy">
+      <picture><source type="image/avif" srcset="unused/dining_3_menus.avif"><img width="778" height="1920" src="unused/dining_3_menus.webp" alt="Side-by-side digital menu displays for multiple Coca-Cola Dining venues" loading="lazy"></picture>
     </div>
 
     <div class="full-image">
@@ -307,29 +300,29 @@
     </div>
 
     <div class="full-image">
-      <img srcset="unused/dining_8_marquee_wireframes-w800.webp 800w, unused/dining_8_marquee_wireframes.webp 1500w" sizes="92vw" width="1500" height="1235" src="unused/dining_8_marquee_wireframes.webp" alt="Wireframes for Marquee digital menu layout and content hierarchy" loading="lazy">
+      <picture><source type="image/avif" srcset="unused/dining_8_marquee_wireframes-w800.avif 800w, unused/dining_8_marquee_wireframes.avif 1500w" sizes="92vw"><img srcset="unused/dining_8_marquee_wireframes-w800.webp 800w, unused/dining_8_marquee_wireframes.webp 1500w" sizes="92vw" width="1500" height="1235" src="unused/dining_8_marquee_wireframes.webp" alt="Wireframes for Marquee digital menu layout and content hierarchy" loading="lazy"></picture>
     </div>
 
     <div class="full-image">
-      <img srcset="unused/dining_9_jacobs-w800.webp 800w, unused/dining_9_jacobs.webp 1500w" sizes="92vw" width="1500" height="1011" src="unused/dining_9_jacobs.webp" alt="Jacob's dining venue digital menu display screens" loading="lazy">
+      <picture><source type="image/avif" srcset="unused/dining_9_jacobs-w800.avif 800w, unused/dining_9_jacobs.avif 1500w" sizes="92vw"><img srcset="unused/dining_9_jacobs-w800.webp 800w, unused/dining_9_jacobs.webp 1500w" sizes="92vw" width="1500" height="1011" src="unused/dining_9_jacobs.webp" alt="Jacob's dining venue digital menu display screens" loading="lazy"></picture>
     </div>
 
     <div class="image-grid-2">
       <img srcset="unused/dining_10_jacobs_detail-w800.webp 800w, unused/dining_10_jacobs_detail.webp 1500w" sizes="(max-width: 640px) 92vw, 46vw" width="1500" height="983" src="unused/dining_10_jacobs_detail.webp" alt="Jacob's venue menu screen detail with styled food category headers" loading="lazy">
-      <img srcset="unused/dining_10_wireframes-w800.webp 800w, unused/dining_10_wireframes.webp 1500w" sizes="(max-width: 640px) 92vw, 46vw" width="1500" height="965" src="unused/dining_10_wireframes.webp" alt="Wireframes for Jacob's digital menu layout" loading="lazy">
+      <picture><source type="image/avif" srcset="unused/dining_10_wireframes-w800.avif 800w, unused/dining_10_wireframes.avif 1500w" sizes="(max-width: 640px) 92vw, 46vw"><img srcset="unused/dining_10_wireframes-w800.webp 800w, unused/dining_10_wireframes.webp 1500w" sizes="(max-width: 640px) 92vw, 46vw" width="1500" height="965" src="unused/dining_10_wireframes.webp" alt="Wireframes for Jacob's digital menu layout" loading="lazy"></picture>
     </div>
 
     <div class="full-image">
-      <img srcset="unused/dining_11_mix_venue-w800.webp 800w, unused/dining_11_mix_venue-w1600.webp 1600w, unused/dining_11_mix_venue.webp 1920w" sizes="92vw" width="1920" height="1311" src="unused/dining_11_mix_venue.webp" alt="Mix dining venue digital menu screens with eclectic food offerings" loading="lazy">
+      <picture><source type="image/avif" srcset="unused/dining_11_mix_venue-w800.avif 800w, unused/dining_11_mix_venue-w1600.avif 1600w, unused/dining_11_mix_venue.avif 1920w" sizes="92vw"><img srcset="unused/dining_11_mix_venue-w800.webp 800w, unused/dining_11_mix_venue-w1600.webp 1600w, unused/dining_11_mix_venue.webp 1920w" sizes="92vw" width="1920" height="1311" src="unused/dining_11_mix_venue.webp" alt="Mix dining venue digital menu screens with eclectic food offerings" loading="lazy"></picture>
     </div>
 
     <div class="image-grid-2">
-      <img srcset="unused/dining_13_spice-w800.webp 800w, unused/dining_13_spice.webp 1500w" sizes="(max-width: 640px) 92vw, 46vw" width="1500" height="1100" src="unused/dining_13_spice.webp" alt="Spice dining venue with global cuisine digital menu screens" loading="lazy">
+      <picture><source type="image/avif" srcset="unused/dining_13_spice-w800.avif 800w, unused/dining_13_spice.avif 1500w" sizes="(max-width: 640px) 92vw, 46vw"><img srcset="unused/dining_13_spice-w800.webp 800w, unused/dining_13_spice.webp 1500w" sizes="(max-width: 640px) 92vw, 46vw" width="1500" height="1100" src="unused/dining_13_spice.webp" alt="Spice dining venue with global cuisine digital menu screens" loading="lazy"></picture>
       <img srcset="unused/dining_11_logos-w800.webp 800w, unused/dining_11_logos.webp 1500w" sizes="(max-width: 640px) 92vw, 46vw" width="1500" height="1095" src="unused/dining_11_logos.webp" alt="Logo marks for all six Coca-Cola Dining venue brands" loading="lazy">
     </div>
 
     <div class="full-image">
-      <img srcset="unused/dining_spice-w800.webp 800w, unused/dining_spice.webp 1500w" sizes="92vw" width="1500" height="1062" src="unused/dining_spice.webp" alt="Spice venue full menu board screens showing hot and cold dishes" loading="lazy">
+      <picture><source type="image/avif" srcset="unused/dining_spice-w800.avif 800w, unused/dining_spice.avif 1500w" sizes="92vw"><img srcset="unused/dining_spice-w800.webp 800w, unused/dining_spice.webp 1500w" sizes="92vw" width="1500" height="1062" src="unused/dining_spice.webp" alt="Spice venue full menu board screens showing hot and cold dishes" loading="lazy"></picture>
     </div>
 
     <div class="image-grid-2">
@@ -338,11 +331,11 @@
     </div>
 
     <div class="full-image">
-      <img srcset="unused/dining_12_closed_screens-w800.webp 800w, unused/dining_12_closed_screens.webp 1500w" sizes="92vw" width="1500" height="902" src="unused/dining_12_closed_screens.webp" alt="Closed state screens for dining venues shown after-hours" loading="lazy">
+      <picture><source type="image/avif" srcset="unused/dining_12_closed_screens-w800.avif 800w, unused/dining_12_closed_screens.avif 1500w" sizes="92vw"><img srcset="unused/dining_12_closed_screens-w800.webp 800w, unused/dining_12_closed_screens.webp 1500w" sizes="92vw" width="1500" height="902" src="unused/dining_12_closed_screens.webp" alt="Closed state screens for dining venues shown after-hours" loading="lazy"></picture>
     </div>
 
     <div class="full-image">
-      <img srcset="unused/dining_guide-w800.webp 800w, unused/dining_guide-w1600.webp 1600w, unused/dining_guide.webp 1920w" sizes="92vw" width="1920" height="1389" src="unused/dining_guide.webp" alt="Coca-Cola Dining design system and style guide documentation" loading="lazy">
+      <picture><source type="image/avif" srcset="unused/dining_guide-w800.avif 800w, unused/dining_guide-w1600.avif 1600w, unused/dining_guide.avif 1920w" sizes="92vw"><img srcset="unused/dining_guide-w800.webp 800w, unused/dining_guide-w1600.webp 1600w, unused/dining_guide.webp 1920w" sizes="92vw" width="1920" height="1389" src="unused/dining_guide.webp" alt="Coca-Cola Dining design system and style guide documentation" loading="lazy"></picture>
     </div>
 
     <div class="full-image">
@@ -352,7 +345,7 @@
     <!-- Next project -->
     <section class="next-project next-project-wrap" style="margin-top: 8rem;" aria-label="Navigate to next project">
       <div class="next-project-bg" aria-hidden="true" style="background-color: #ffffff;"></div>
-      <span class="next-label" style="color: rgba(212, 32, 32, 0.75);">Next Project</span>
+      <span class="next-label" style="color: rgba(212, 32, 32, 0.9);">Next Project</span>
       <a href="coca-cola-assorted-projects.html" class="next-project-title" style="color: rgba(240, 45, 45, 0.75);">
         Coca-Cola<br>Assorted Projects
       </a>
@@ -366,8 +359,7 @@
     <p class="footer-copy">&copy; <span id="footer-year"></span> Clayton Cunningham Design.</p>
   </footer>
 
-
-  <script src="js/site.js?v=20261106"></script>
+  <script src="js/site.js?v=20261107"></script>
   <!-- Cloudflare Web Analytics -->
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "965f2ad8267d4463890153ababb0dd33"}'></script>
   <!-- End Cloudflare Web Analytics -->

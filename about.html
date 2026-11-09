@@ -16,6 +16,8 @@
   <meta property="og:title" content="About • Clayton Cunningham Design">
   <meta property="og:description" content="About Clayton Cunningham, a product designer with a background in illustration, design systems, and UX.">
   <meta property="og:image" content="https://www.claytoncunninghamdesign.com/img/claytoncunningham-og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="1200">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="About • Clayton Cunningham Design">
   <meta name="twitter:description" content="About Clayton Cunningham, a product designer with a background in illustration, design systems, and UX.">
@@ -25,7 +27,7 @@
   <title>About • Clayton Cunningham Design</title>
   <link rel="preload" href="fonts/dm-sans-04.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/playfair-display-08.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=skeleton2">
+  <link rel="stylesheet" href="styles.css?v=20261108a">
   <style>
 
     /* ── Nav overrides ── */
@@ -98,12 +100,6 @@
       padding-bottom: 1.4rem;
     }
 
-    .about-tagline-wrap {
-      grid-column: 2;
-      grid-row: 2;
-      align-self: start;
-    }
-
     .about-photo-inner {
       width: 100%;
       border-radius: 50%;
@@ -160,16 +156,6 @@
 
     .tagline-link:hover {
       text-decoration-color: #B8D9F5;
-    }
-
-    .about-tagline {
-      font-size: clamp(1.8rem, 1.6vw, 2.4rem);
-      font-weight: 400;
-      line-height: 1.65;
-      margin-top: 2.8rem;
-      color: #B8D9F5;
-      opacity: 0.72;
-      max-width: 44ch;
     }
 
     /* ── Services ── */
@@ -244,13 +230,6 @@
       line-height: 1.1;
       letter-spacing: -0.03em;
       color: #091f3a;
-    }
-
-    .cta-text em {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-style: italic;
-      font-weight: 400;
-      color: #0B2D52;
     }
 
     .cta-btn {
@@ -332,25 +311,8 @@
         width: 28.6rem;
       }
 
-      .about-tagline-wrap {
-        order: 3;
-        width: 100%;
-      }
-
       .about-headline {
         font-size: clamp(2.8rem, 7vw, 3.6rem);
-      }
-
-      .about-headline-sub {
-        font-size: clamp(1.8rem, 5vw, 2.4rem);
-        margin-top: 1.2rem;
-      }
-
-      .about-tagline {
-        max-width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 0;
       }
 
       .about-cta {
@@ -461,7 +423,7 @@
       <div class="about-hero-grid">
         <div class="about-photo-wrap" id="photo-wrap">
           <div class="about-photo-inner" id="photo-inner">
-            <img srcset="img/claytoncunningham-w800.webp 800w, img/claytoncunningham-w1600.webp 1600w, img/claytoncunningham.webp 2000w" sizes="92vw" width="2000" height="2000" src="img/claytoncunningham.webp" alt="Clayton Cunningham" class="about-photo" id="about-photo">
+            <picture><source type="image/avif" srcset="img/claytoncunningham-w800.avif 800w, img/claytoncunningham-w1600.avif 1600w, img/claytoncunningham.avif 2000w" sizes="92vw"><img srcset="img/claytoncunningham-w800.webp 800w, img/claytoncunningham-w1600.webp 1600w, img/claytoncunningham.webp 2000w" sizes="92vw" width="2000" height="2000" src="img/claytoncunningham.webp" alt="Clayton Cunningham" class="about-photo" id="about-photo"></picture>
           </div>
         </div>
         <div class="about-intro">
@@ -530,7 +492,6 @@
 
     </section>
 
-
   </main>
 
   <footer>
@@ -538,8 +499,8 @@
   </footer>
 
 
-  <script src="js/site.js?v=20261106"></script>
-  <script src="js/about.js?v=20261106d"></script>
+  <script src="js/site.js?v=20261107"></script>
+  <script src="js/about.js?v=20261108a"></script>
   <!-- Cloudflare Web Analytics -->
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "965f2ad8267d4463890153ababb0dd33"}'></script>
   <!-- End Cloudflare Web Analytics -->

@@ -17,6 +17,10 @@ const FILES = [
   'kbb-car-heart.json',
   'at-icon-grid.json',
   'at-icon-labels.json',
+  'iris-brand-modes.json',
+  'ask-at-intro.json',
+  'kbb-save.json',
+  'ev-range-chart.json',
 ];
 
 async function optimizeEmbeddedImages(data) {

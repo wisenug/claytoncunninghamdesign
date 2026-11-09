@@ -11,7 +11,7 @@ const svg = readFileSync(resolve(root, 'img/clayton-cunningham-design-logo.svg')
 const NAVY = '#0B2D52';
 const LIGHT = '#B8D9F5';
 
-const browser = await puppeteer.launch({ headless: 'new' });
+const browser = await puppeteer.launch({ headless: true });
 const page = await browser.newPage();
 
 // Circular navy badge, light mark, transparent corners.

@@ -5,6 +5,7 @@
    3. Every sitemap URL maps to a real file whose canonical matches
    4. Every site URL mentioned in llms.txt resolves to a real file
    5. feed.xml is well-formed and every item link resolves
+   6. The lazily loaded Lottie player named in js/site.js exists on disk
    Used by CI (.github/workflows/checks.yml) and runnable locally. */
 import fs from 'fs/promises';
 import { existsSync } from 'fs';
@@ -30,6 +31,15 @@ for (const f of files) {
   // srcset / imagesrcset entries
   for (const m of src.matchAll(/(?:imagesrcset|srcset)="([^"]+)"/g)) {
     for (const entry of m[1].split(',')) checkTarget(f, entry.trim().split(/\s+/)[0]);
+  }
+
+  // AVIF <source>s (see generate-avif.mjs) must list only .avif files and keep a plain <img> fallback
+  for (const m of src.matchAll(/<picture>(.*?)<\/picture>/gs)) {
+    const sources = [...m[1].matchAll(/<source type="image\/avif" srcset="([^"]+)"/g)];
+    if (!sources.length || !/<img\b/.test(m[1])) errors.push(`${f}: <picture> without an AVIF <source> and <img> fallback`);
+    for (const [, ss] of sources) for (const e of ss.split(',')) {
+      if (!/\.avif$/i.test(e.trim().split(/\s+/)[0])) errors.push(`${f}: AVIF <source> lists a non-AVIF file → ${e.trim()}`);
+    }
   }
 
   // 2. JSON-LD parses
@@ -68,6 +78,11 @@ if (existsSync('feed.xml')) {
     if (rel && !existsSync(rel)) errors.push(`feed.xml: missing file for ${m[1]}`);
   }
 }
+
+// 6. Lottie player is injected at runtime, so the href/src scan above can't see it
+const lottieSrc = (await fs.readFile('js/site.js', 'utf8')).match(/CCD\.lottieSrc = '([^'?]+)/)?.[1];
+if (!lottieSrc) errors.push('js/site.js: CCD.lottieSrc not found');
+else if (!existsSync(lottieSrc)) errors.push(`js/site.js: Lottie player missing → ${lottieSrc}`);
 
 if (errors.length) {
   console.error(`FAIL — ${errors.length} problem(s):`);

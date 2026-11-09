@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'unsafe-inline'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Reba and the Great Bed Heist</title>
 <meta name="description" content="A retro platformer starring Reba the redbone coonhound, on a mission through the piney woods to rescue her beloved bed from a no-good raccoon.">
 <link rel="icon" type="image/svg+xml" href="/img/favicon.svg">
@@ -18,6 +18,8 @@
 <meta property="og:title" content="Reba and the Great Bed Heist">
 <meta property="og:description" content="A retro platformer starring Reba the redbone coonhound, on a mission to rescue her beloved bed from a no-good raccoon.">
 <meta property="og:image" content="https://www.claytoncunninghamdesign.com/img/reba-og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Reba and the Great Bed Heist">
 <meta name="twitter:description" content="A retro platformer starring Reba the redbone coonhound, on a mission to rescue her beloved bed from a no-good raccoon.">
@@ -40,7 +42,8 @@
     display:flex; flex-direction:column; align-items:center; justify-content:center;
     min-height:100%; font-family:"Press Start 2P", monospace; color:var(--cream);
     padding:16px; gap:14px; overflow:hidden;
-    touch-action:none; -webkit-user-select:none; user-select:none;
+    /* pinch-zoom stays available for low-vision players; panning and double-tap zoom stay off */
+    touch-action:pinch-zoom; -webkit-user-select:none; user-select:none;
   }
   .frame{
     position:relative;

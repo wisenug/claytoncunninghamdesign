@@ -16,6 +16,8 @@
   <meta property="og:title" content="Coolest Shoes I've Owned (So Far) • Clayton Cunningham Design">
   <meta property="og:description" content="A side project: interactive 360-degree views of sneakers from my rotation.">
   <meta property="og:image" content="https://www.claytoncunninghamdesign.com/img/og-shoe-rotation.jpg">
+  <meta property="og:image:width" content="2400">
+  <meta property="og:image:height" content="1260">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Coolest Shoes I've Owned (So Far) • Clayton Cunningham Design">
   <meta name="twitter:description" content="A side project: interactive 360-degree views of sneakers from my rotation.">
@@ -179,17 +181,12 @@
     /* ── Stage ── */
     .stage {
       position: relative;
-      width: min(101.2vw, 644px);
+      width: min(100vw, 644px);
       aspect-ratio: 1 / 0.85;
       flex-shrink: 0;
       border-radius: 16px;
       overflow: hidden;
       pointer-events: none;
-    }
-
-    .stage.has-bg {
-      background: #fff;
-      box-shadow: 0 2px 24px rgba(0,0,0,0.06);
     }
 
     .frame {
@@ -533,7 +530,7 @@
 
   </main>
 
-  <script src="js/site.js?v=20261106"></script>
+  <script src="js/site.js?v=20261107"></script>
   <script src="js/shoe-rotation.js?v=20261106"></script>
   <!-- Cloudflare Web Analytics -->
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "965f2ad8267d4463890153ababb0dd33"}'></script>

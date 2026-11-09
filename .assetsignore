@@ -8,6 +8,7 @@
 .DS_Store
 node_modules
 checks
+tools
 *.mjs
 package.json
 package-lock.json
@@ -15,3 +16,4 @@ CLAUDE.md
 SKILL.md
 wrangler.toml
 .assetsignore
+_site
