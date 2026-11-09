@@ -242,41 +242,6 @@ window.addEventListener('pagereveal', function (e) {
   });
 })();
 
-// Ink view-transition for statically rendered project cards (generated tag
-// pages).
-document.querySelectorAll('.project-card[data-static-ink]').forEach(function (card) {
-  var inkEl = card.querySelector('.project-card__ink-bg');
-  var labelEl = card.querySelector('.project-card__label');
-  if (!inkEl || !labelEl) return;
-  card.addEventListener('click', function () {
-    inkEl.style.opacity = '1';
-    inkEl.style.viewTransitionName = 'ink-bg';
-  });
-});
-
-// Card overlay: tap-to-reveal on touch devices.
-// Delegated so it also covers cards rendered after load (capabilities grid).
-(function () {
-  var SELECTOR = '.work-card, .project-card';
-  function clearAll(except) {
-    document.querySelectorAll(SELECTOR).forEach(function (c) {
-      if (c !== except) c.classList.remove('is-active');
-    });
-  }
-  document.addEventListener('touchend', function (e) {
-    var card = e.target.closest(SELECTOR);
-    if (!card) { clearAll(null); return; }
-    var isActive = card.classList.contains('is-active');
-    clearAll(card);
-    if (isActive) {
-      card.classList.remove('is-active');
-    } else {
-      e.preventDefault(); // prevent immediate navigation on first tap
-      card.classList.add('is-active');
-    }
-  }, { passive: false });
-})();
-
 // Re-land on a URL's #hash target after late layout shifts (lazy images,
 // data-lottie containers) settle — the browser's own hash-jump fires before
 // that content finishes sizing itself in and can land short.

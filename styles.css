@@ -275,9 +275,15 @@ nav.nav--hidden {
   transform: translateY(-100%);
 }
 
+/* Never slide away while a nav link has keyboard focus (WCAG 2.4.11) */
+nav:focus-within {
+  transform: none;
+}
+
 .nav-logo {
   display: flex;
   align-items: center;
+  gap: 1.4rem;
   text-decoration: none;
   transition: filter 0.2s ease;
 }
@@ -305,10 +311,6 @@ nav.nav--hidden {
   -webkit-mask-repeat: no-repeat;
   mask-position: center;
   -webkit-mask-position: center;
-}
-
-.nav-logo {
-  gap: 1.4rem;
 }
 
 .nav-logo-name {
@@ -565,16 +567,7 @@ main {
   text-transform: uppercase;
   color: rgba(0, 0, 0, 0.68);
   margin-bottom: 1.6rem;
-  transition: filter 0.2s ease;
   cursor: default;
-}
-
-.next-label:hover {
-  filter: brightness(0.8);
-}
-
-.next-label:active {
-  filter: brightness(0.6);
 }
 
 .next-project-title {
@@ -612,12 +605,6 @@ footer {
   font-size: 2.4rem;
   font-weight: 400;
   color: #000;
-}
-
-.footer-link:focus-visible {
-  outline: 2px solid currentColor;
-  outline-offset: 3px;
-  opacity: 1;
 }
 
 .img-caption {
@@ -753,51 +740,18 @@ footer {
 .fade-up-2 { animation-delay: 0.09s; }
 .fade-up-3 { animation-delay: 0.15s; }
 
-/* ── Scroll reveal — typography only ── */
-.text-section,
-.intro-text,
-.assumption,
-.pain-points,
-.image-note,
-.update-notice {
-  opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 0.65s ease, transform 0.65s ease;
-}
+/* ── Scroll reveal, typography only ──
+   Hidden state only applies when motion is allowed, so reduced-motion users
+   get the text right away. Focus inside a block that hasn't revealed yet
+   also shows it, otherwise the focused link would be invisible. */
+@media (prefers-reduced-motion: no-preference) {
+  :is(.text-section, .intro-text, .assumption, .pain-points, .image-note, .update-notice):not(.is-visible, :focus-within) {
+    opacity: 0;
+    transform: translateY(32px);
+  }
 
-.text-section.is-visible,
-.intro-text.is-visible,
-.assumption.is-visible,
-.pain-points.is-visible,
-.image-note.is-visible,
-.update-notice.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Show text right away for reduced-motion users, and whenever keyboard focus
-   lands inside a block that hasn't revealed yet (otherwise the focused link
-   is invisible). */
-.text-section:focus-within,
-.intro-text:focus-within,
-.assumption:focus-within,
-.pain-points:focus-within,
-.image-note:focus-within,
-.update-notice:focus-within {
-  opacity: 1;
-  transform: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .text-section,
-  .intro-text,
-  .assumption,
-  .pain-points,
-  .image-note,
-  .update-notice {
-    opacity: 1;
-    transform: none;
-    transition: none;
+  :is(.text-section, .intro-text, .assumption, .pain-points, .image-note, .update-notice) {
+    transition: opacity 0.65s ease, transform 0.65s ease;
   }
 }
 
@@ -865,7 +819,6 @@ footer {
   /* Uniform image-to-image spacing — horizontal gap matches vertical padding */
   .image-grid-2,
   .image-grid-3,
-  .image-grid-4,
   .full-image,
   .lottie-container,
   .lottie-two-col,
@@ -875,7 +828,6 @@ footer {
 
   .image-grid-2,
   .image-grid-3,
-  .image-grid-4,
   .lottie-two-col,
   .image-split-tall {
     gap: 2.4rem;
