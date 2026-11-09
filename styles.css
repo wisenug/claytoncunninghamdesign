@@ -224,10 +224,11 @@ picture > source {
 
 /* Base */
 html {
-  font-size: 10px;
+  font-size: 62.5%; /* 10px at the 16px default, but scales with the visitor's browser setting */
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow-x: hidden; /* fallback for browsers without clip */
+  overflow-x: clip;   /* clips without creating a scroll container, so position: sticky keeps working */
   scroll-behavior: smooth;
 }
 
@@ -250,6 +251,7 @@ body {
   color: var(--color-black);
   min-height: 100%;
   overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* ============================================================
@@ -275,9 +277,15 @@ nav.nav--hidden {
   transform: translateY(-100%);
 }
 
+/* Never slide away while a nav link has keyboard focus (WCAG 2.4.11) */
+nav:focus-within {
+  transform: none;
+}
+
 .nav-logo {
   display: flex;
   align-items: center;
+  gap: 1.4rem;
   text-decoration: none;
   transition: filter 0.2s ease;
 }
@@ -305,10 +313,6 @@ nav.nav--hidden {
   -webkit-mask-repeat: no-repeat;
   mask-position: center;
   -webkit-mask-position: center;
-}
-
-.nav-logo {
-  gap: 1.4rem;
 }
 
 .nav-logo-name {
@@ -448,14 +452,16 @@ main {
 .image-grid-3 {
   padding: 0 var(--page-margin) 1.6rem;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  /* minmax(0, ...) so content min sizes (e.g. lottie skeletons) can't push the
+     grid wider than the screen */
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.6rem;
 }
 
 .image-grid-2 {
   padding: 0 var(--page-margin) 1.6rem;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.6rem;
 }
 
@@ -565,16 +571,7 @@ main {
   text-transform: uppercase;
   color: rgba(0, 0, 0, 0.68);
   margin-bottom: 1.6rem;
-  transition: filter 0.2s ease;
   cursor: default;
-}
-
-.next-label:hover {
-  filter: brightness(0.8);
-}
-
-.next-label:active {
-  filter: brightness(0.6);
 }
 
 .next-project-title {
@@ -612,12 +609,6 @@ footer {
   font-size: 2.4rem;
   font-weight: 400;
   color: #000;
-}
-
-.footer-link:focus-visible {
-  outline: 2px solid currentColor;
-  outline-offset: 3px;
-  opacity: 1;
 }
 
 .img-caption {
@@ -726,7 +717,7 @@ footer {
 .lottie-two-col {
   padding: 0 var(--page-margin) 1.6rem;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.6rem;
 }
 
@@ -753,51 +744,22 @@ footer {
 .fade-up-2 { animation-delay: 0.09s; }
 .fade-up-3 { animation-delay: 0.15s; }
 
-/* ── Scroll reveal — typography only ── */
-.text-section,
-.intro-text,
-.assumption,
-.pain-points,
-.image-note,
-.update-notice {
-  opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 0.65s ease, transform 0.65s ease;
-}
-
-.text-section.is-visible,
-.intro-text.is-visible,
-.assumption.is-visible,
-.pain-points.is-visible,
-.image-note.is-visible,
-.update-notice.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Show text right away for reduced-motion users, and whenever keyboard focus
-   lands inside a block that hasn't revealed yet (otherwise the focused link
-   is invisible). */
-.text-section:focus-within,
-.intro-text:focus-within,
-.assumption:focus-within,
-.pain-points:focus-within,
-.image-note:focus-within,
-.update-notice:focus-within {
-  opacity: 1;
-  transform: none;
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .text-section,
-  .intro-text,
-  .assumption,
-  .pain-points,
-  .image-note,
-  .update-notice {
-    opacity: 1;
-    transform: none;
-    transition: none;
+  .fade-up { animation: none; }
+}
+
+/* ── Scroll reveal, typography only ──
+   Hidden state only applies when motion is allowed and scripting is on, so
+   reduced-motion users and no-JS visitors get the text right away. Focus inside a block that hasn't revealed yet
+   also shows it, otherwise the focused link would be invisible. */
+@media (prefers-reduced-motion: no-preference) and (scripting: enabled) {
+  :is(.text-section, .intro-text, .assumption, .pain-points, .image-note, .update-notice):not(.is-visible, :focus-within) {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+
+  :is(.text-section, .intro-text, .assumption, .pain-points, .image-note, .update-notice) {
+    transition: opacity 0.65s ease, transform 0.65s ease;
   }
 }
 
@@ -865,7 +827,6 @@ footer {
   /* Uniform image-to-image spacing — horizontal gap matches vertical padding */
   .image-grid-2,
   .image-grid-3,
-  .image-grid-4,
   .full-image,
   .lottie-container,
   .lottie-two-col,
@@ -875,7 +836,6 @@ footer {
 
   .image-grid-2,
   .image-grid-3,
-  .image-grid-4,
   .lottie-two-col,
   .image-split-tall {
     gap: 2.4rem;
