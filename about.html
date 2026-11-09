@@ -27,7 +27,7 @@
   <title>About • Clayton Cunningham Design</title>
   <link rel="preload" href="fonts/dm-sans-04.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/playfair-display-08.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=20261108a">
+  <link rel="stylesheet" href="styles.css?v=20261108b">
   <style>
 
     /* ── Nav overrides ── */
@@ -98,6 +98,18 @@
       grid-row: 1;
       align-self: end;
       padding-bottom: 1.4rem;
+    }
+
+    /* Twirl logo under the headline, same blue as the headline text */
+    .about-twirl {
+      grid-column: 2;
+      grid-row: 2;
+      align-self: start;
+      justify-self: end;
+      width: clamp(18rem, 20vw, 24rem);
+      height: clamp(18rem, 20vw, 24rem);
+      margin-top: 2.4rem;
+      color: #B8D9F5;
     }
 
     .about-photo-inner {
@@ -311,6 +323,15 @@
         width: 28.6rem;
       }
 
+      .about-twirl {
+        order: 3;
+        align-self: center;
+        justify-self: auto;
+        margin-top: 0;
+        width: 18rem;
+        height: 18rem;
+      }
+
       .about-headline {
         font-size: clamp(2.8rem, 7vw, 3.6rem);
       }
@@ -431,6 +452,7 @@
             Clayton Cunningham<span class="about-headline-sub"><em class="about-role">Designer &amp; Illustrator</em> for <a href="https://www.autotrader.com" target="_blank" rel="noopener" class="tagline-link">Autotrader</a> and <a href="https://www.kbb.com" target="_blank" rel="noopener" class="tagline-link">Kelley Blue Book</a> in Atlanta, GA</span>
           </h1>
         </div>
+        <canvas class="about-twirl" data-twirl-logo role="img" aria-label="Clayton Cunningham logo"></canvas>
       </div>
     </section>
 
@@ -499,7 +521,7 @@
   </footer>
 
 
-  <script src="js/site.js?v=20261107"></script>
+  <script src="js/site.js?v=20261108b"></script>
   <script src="js/about.js?v=20261108a"></script>
   <!-- Cloudflare Web Analytics -->
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "965f2ad8267d4463890153ababb0dd33"}'></script>

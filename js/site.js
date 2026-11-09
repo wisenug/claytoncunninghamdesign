@@ -96,6 +96,53 @@ CCD.loadLottie = function (el, path, opts) {
   if (year) year.textContent = new Date().getFullYear();
 })();
 
+// Twirl logo: the favicon as a grid of dots that twirls around the cursor
+// (js/twirl-logo.js). A canvas[data-twirl-logo] gets it; every page's footer
+// gets a small one to the left of the copyright line. The module is loaded
+// lazily, the first time one of these canvases scrolls near the viewport.
+(function () {
+  var copy = document.querySelector('footer .footer-copy');
+  if (copy && !copy.parentNode.classList.contains('footer-row')) {
+    var row = document.createElement('div');
+    row.className = 'footer-row';
+    var fc = document.createElement('canvas');
+    fc.className = 'footer-logo';
+    fc.setAttribute('data-twirl-logo', '');
+    fc.setAttribute('data-grid', '56');
+    fc.setAttribute('role', 'img');
+    fc.setAttribute('aria-label', 'Clayton Cunningham logo');
+    copy.parentNode.insertBefore(row, copy);
+    row.appendChild(fc);
+    row.appendChild(copy);
+  }
+
+  var canvases = document.querySelectorAll('canvas[data-twirl-logo]');
+  if (!canvases.length || !('IntersectionObserver' in window)) return;
+
+  var modulePromise = null;
+  function load() {
+    return modulePromise || (modulePromise = import('./twirl-logo.js?v=1'));
+  }
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      io.unobserve(entry.target);
+      var c = entry.target;
+      // Match the surrounding text color, so it reads on any page background.
+      var rgb = (getComputedStyle(c).color.match(/\d+(\.\d+)?/g) || ['0', '0', '0']).slice(0, 3).join(', ');
+      load().then(function (m) {
+        m.mountTwirlLogo(c, {
+          src: 'img/favicon.svg',
+          grid: parseInt(c.getAttribute('data-grid'), 10) || 112,
+          color: { light: rgb, dark: rgb }
+        });
+      });
+    });
+  }, { rootMargin: '200px' });
+  canvases.forEach(function (c) { io.observe(c); });
+})();
+
 // Skip view transition on back/forward navigation
 window.addEventListener('pagereveal', function (e) {
   if (e.viewTransition && navigation?.activation?.navigationType === 'traverse') {
