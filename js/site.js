@@ -136,7 +136,7 @@ window.addEventListener('pagereveal', function (e) {
 (function () {
   var hero = document.querySelector('.hero-image');
   var heroImg = hero && hero.querySelector('img, video');
-  if (!hero || !heroImg) return;
+  if (!hero || !heroImg || CCD.prefersReducedMotion) return;
   var basePad = parseFloat(getComputedStyle(hero).paddingLeft);
   var raf = 0;
   function updateHero() {
@@ -162,10 +162,11 @@ window.addEventListener('pagereveal', function (e) {
 
 // Carousel: drag to scroll while keeping continuous auto-scroll
 (function () {
-  var DURATION = 36; // must match CSS marquee animation duration (seconds)
   var wrapper = document.querySelector('.carousel-wrapper');
   var track = document.querySelector('.carousel-track');
   if (!wrapper || !track) return;
+  // Speed lives in styles.css (.carousel-track animation); read it from there.
+  var DURATION = parseFloat(getComputedStyle(track).animationDuration) || 36;
 
   var isDragging = false;
   var startX = 0;
@@ -203,7 +204,7 @@ window.addEventListener('pagereveal', function (e) {
     var half = track.scrollWidth / 2;
     var progress = Math.abs(x) / half;
     track.style.transform = '';
-    track.style.animation = 'marquee ' + DURATION + 's linear infinite';
+    track.style.animation = ''; // hand the animation back to styles.css
     track.style.animationDelay = '-' + (progress * DURATION).toFixed(3) + 's';
   }
 
@@ -247,7 +248,9 @@ window.addEventListener('pagereveal', function (e) {
 // that content finishes sizing itself in and can land short.
 (function () {
   if (!location.hash) return;
-  var target = document.querySelector(location.hash);
+  var id;
+  try { id = decodeURIComponent(location.hash.slice(1)); } catch (e) { return; }
+  var target = document.getElementById(id);
   if (!target) return;
   window.addEventListener('load', function () {
     setTimeout(function () { target.scrollIntoView(); }, 300);

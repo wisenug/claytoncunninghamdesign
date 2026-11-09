@@ -224,10 +224,11 @@ picture > source {
 
 /* Base */
 html {
-  font-size: 10px;
+  font-size: 62.5%; /* 10px at the 16px default, but scales with the visitor's browser setting */
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow-x: hidden; /* fallback for browsers without clip */
+  overflow-x: clip;   /* clips without creating a scroll container, so position: sticky keeps working */
   scroll-behavior: smooth;
 }
 
@@ -250,6 +251,7 @@ body {
   color: var(--color-black);
   min-height: 100%;
   overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* ============================================================
@@ -450,14 +452,16 @@ main {
 .image-grid-3 {
   padding: 0 var(--page-margin) 1.6rem;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  /* minmax(0, ...) so content min sizes (e.g. lottie skeletons) can't push the
+     grid wider than the screen */
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.6rem;
 }
 
 .image-grid-2 {
   padding: 0 var(--page-margin) 1.6rem;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.6rem;
 }
 
@@ -713,7 +717,7 @@ footer {
 .lottie-two-col {
   padding: 0 var(--page-margin) 1.6rem;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.6rem;
 }
 
@@ -740,11 +744,15 @@ footer {
 .fade-up-2 { animation-delay: 0.09s; }
 .fade-up-3 { animation-delay: 0.15s; }
 
+@media (prefers-reduced-motion: reduce) {
+  .fade-up { animation: none; }
+}
+
 /* ── Scroll reveal, typography only ──
-   Hidden state only applies when motion is allowed, so reduced-motion users
-   get the text right away. Focus inside a block that hasn't revealed yet
+   Hidden state only applies when motion is allowed and scripting is on, so
+   reduced-motion users and no-JS visitors get the text right away. Focus inside a block that hasn't revealed yet
    also shows it, otherwise the focused link would be invisible. */
-@media (prefers-reduced-motion: no-preference) {
+@media (prefers-reduced-motion: no-preference) and (scripting: enabled) {
   :is(.text-section, .intro-text, .assumption, .pain-points, .image-note, .update-notice):not(.is-visible, :focus-within) {
     opacity: 0;
     transform: translateY(32px);
