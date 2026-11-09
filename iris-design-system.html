@@ -494,6 +494,37 @@
       font-style: italic;
     }
 
+    /* ── Results stat row ── */
+    .iris-stats {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2.4rem 6.4rem;
+      margin: 0 0 2.4rem;
+      padding: 0;
+      list-style: none;
+    }
+
+    .iris-stats li {
+      text-align: center;
+    }
+
+    .iris-stat__num {
+      display: block;
+      font-size: clamp(4.8rem, 6vw, 7.2rem);
+      font-weight: 600;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--color-black);
+    }
+
+    .iris-stat__label {
+      display: block;
+      margin-top: 0.8rem;
+      font-size: 1.6rem;
+      color: var(--iris-muted);
+    }
+
     /* ── Next project ── */
     .next-project-wrap {
       margin-top: 8rem;
@@ -617,6 +648,10 @@
     <!-- Intro text -->
     <div class="intro-text" style="grid-template-columns: 1fr; text-align: center;">
       <p>Iris is Cox Automotive's consumer design system, powering Autotrader, Kelley Blue Book, and OEM dealer sites like Audi, Chevrolet, and Volvo. What started as a two-brand toolkit is now the shared platform every brand theme runs on.</p>
+    </div>
+
+    <div class="intro-text" style="grid-template-columns: 1fr; text-align: center;">
+      <p>I was on the Iris design-foundations team since its inception. I owned the token naming convention and structure, typography and iconography, built more than a dozen components, and hold a seat on governance.</p>
     </div>
 
     <div class="section-color-break" aria-hidden="true"></div>
@@ -760,7 +795,7 @@
 
     <div class="full-image">
       <div id="lottie-brand-modes" class="lottie-block" data-lottie="animations/iris-brand-modes.json" role="img" aria-label="Animated scroll through the same vehicle listing card themed for Autotrader, Kelley Blue Book, Mercedes-Benz, Ford, Honda, Chevrolet, and Volkswagen" style="aspect-ratio: 2000/1325;"></div>
-      <p class="img-caption">Autotrader, Kelley Blue Book, Mercedes-Benz, Ford, Honda, Chevrolet, and Volkswagen each themed to the component design decisions that brand tier uses.</p>
+      <p class="img-caption">Autotrader, Kelley Blue Book, and 12 OEM brands, from Mercedes-Benz and Ford to Honda, Chevrolet, and Volkswagen, each themed to the component design decisions that brand tier uses.</p>
     </div>
 
     <div class="text-section">
@@ -774,10 +809,21 @@
       <p class="body-text">I also run a bi-weekly Iris open office hours meeting to assist product designers requesting new components, or extended functionality, or need guidance or answer questions about the design system.</p>
     </div>
 
+    <!-- Results -->
+    <div class="text-section">
+      <h2 class="section-heading">Results</h2>
+      <ul class="iris-stats">
+        <li><span class="iris-stat__num">40</span><span class="iris-stat__label">product teams</span></li>
+        <li><span class="iris-stat__num">54</span><span class="iris-stat__label">core components</span></li>
+        <li><span class="iris-stat__num">12</span><span class="iris-stat__label">OEM brands</span></li>
+      </ul>
+      <p class="body-text">New brands onboard in weeks, not months. Fewer QA bugs, accessibility issues, and one-off requests since adoption.</p>
+    </div>
+
     <!-- Evolution -->
     <div class="text-section">
       <h2 class="section-heading">Evolution</h2>
-      <p class="body-text">Iris isn't a one time build. It was the culmination of a multi-year effort. It's an ongoing, living system that is constantly adapting to the business's needs.</p>
+      <p class="body-text">Iris isn't a one-time build. It was the culmination of a multi-year effort. It's an ongoing, living system that is constantly adapting to the business's needs.</p>
     </div>
 
     <!-- Next project -->

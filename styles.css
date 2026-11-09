@@ -968,3 +968,33 @@ img.is-loading {
     background-image: none;
   }
 }
+
+
+/* ── Cycling headline word ── */
+/* Masked word reveal, adapted from ibelick/motion-primitives (MIT) */
+@keyframes wordMaskRise {
+  from { opacity: 0; transform: translateY(100%); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.cycle-word {
+  display: inline-block;
+  font-style: italic;
+  font-weight: 600;
+  padding-right: 0.12em; /* italic overhang was crowding the trailing emoji against "for" */
+}
+
+.cw-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  /* room for descenders + italic overhang so the mask doesn't clip glyphs */
+  padding: 0 0.12em 0.12em 0;
+  margin: 0 -0.12em -0.12em 0;
+}
+
+.cw-word {
+  display: inline-block;
+  animation: wordMaskRise 0.52s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--i) * 75ms);
+}

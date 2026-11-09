@@ -25,7 +25,7 @@
   <title>Clayton Cunningham Design</title>
   <link rel="preload" href="fonts/dm-sans-04.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/playfair-display-08.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=skeleton">
+  <link rel="stylesheet" href="styles.css?v=skeleton2">
   <style>
     :root {
       --color-bg: #0B2D52;
@@ -200,13 +200,34 @@
     }
 
     .home-headline em {
+      display: block;
+      line-height: 1.1;
+      /* Role text is upright (inherits DM Sans 800 from .home-headline);
+         only the cycling word is italic serif. */
+      font-style: normal;
+    }
+
+    .home-headline .cycle-word {
       font-family: 'Playfair Display', Georgia, serif;
       font-style: italic;
       font-weight: 400;
     }
 
+    /* Desktop: "Senior Product Designer" / "building [cycling word]".
+       Line 2 never wraps at this size, so the grid below stays put. */
     @media (min-width: 641px) {
-      .home-headline { font-size: min(9vw, 12rem); }
+      /* Floor keeps tablets from dropping below the phone size; the 10rem cap
+         keeps line 1 inside the max content width on very large screens. */
+      .home-headline { font-size: clamp(4.8rem, 5.6vw, 10rem); }
+      .home-headline br.br-m { display: none; }
+    }
+
+    /* Mobile: "Senior Product" / "Designer building" / [cycling word].
+       The cycling word owns its line so its width can't reflow the page. */
+    @media (max-width: 640px) {
+      .home-headline em { font-size: 0.7em; }
+      .home-headline br.br-d { display: none; }
+      .home-headline .cycle-word { display: block; }
     }
 
     /* ── Capability chips ── */
@@ -383,7 +404,7 @@
 
     <!-- Home headline -->
     <header class="home-headline-wrap">
-      <h1 class="home-headline">Clayton Cunningham<br><em>Designer &amp; Illustrator</em></h1>
+      <h1 class="home-headline"><em>Senior Product<br class="br-m"> Designer<br class="br-d"> building <span class="cycle-word">design systems 🤙</span></em></h1>
     </header>
 
     <!-- Capability chips -->
@@ -482,6 +503,7 @@
   <script src="js/projects.js?v=20261106"></script>
   <script src="js/site.js?v=20261106"></script>
   <script src="js/index.js?v=filter-4"></script>
+  <script src="js/cycle-word.js?v=1"></script>
   <!-- Cloudflare Web Analytics -->
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "965f2ad8267d4463890153ababb0dd33"}'></script>
   <!-- End Cloudflare Web Analytics -->
