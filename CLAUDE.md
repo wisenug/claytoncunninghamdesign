@@ -34,7 +34,7 @@ Clayton Cunningham's portfolio. Hand-written static HTML, one shared stylesheet,
 | `*.mjs` (root) | Tooling scripts, never deployed |
 | `checks/validate-site.mjs` | Link, JSON-LD, sitemap, llms.txt, RSS validator |
 
-Script tags use `?v=` query strings for cache busting. Bump the value when you change a JS file.
+CSS and JS references carry a `?v=` content hash for cache busting. Never edit it by hand: run `node stamp-assets.mjs` after changing any CSS or JS file (CI fails if a hash is stale).
 
 ## Local dev
 - `npm ci`, then `node serve.mjs` serves the root at `http://localhost:3000` (byte ranges supported, so video works in Safari). Don't start a second instance if one is running.
@@ -44,7 +44,7 @@ Script tags use `?v=` query strings for cache busting. Bump the value when you c
 ## Checks (same as CI)
 ```
 node checks/validate-site.mjs
-node inject-colors.mjs && node inject-schema.mjs && node generate-rss.mjs && node generate-sitemap.mjs
+node inject-colors.mjs && node inject-schema.mjs && node generate-rss.mjs && node generate-sitemap.mjs && node stamp-assets.mjs
 git diff --exit-code -I '<lastmod>'      # generators must be idempotent
 node serve.mjs &  node check-csp.mjs      # headless Chrome: CSP and console errors
 ```
