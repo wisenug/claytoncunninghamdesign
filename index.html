@@ -27,7 +27,7 @@
   <title>Clayton Cunningham Design</title>
   <link rel="preload" href="fonts/dm-sans-04.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/playfair-display-08.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=5903c4dc59">
+  <link rel="stylesheet" href="styles.css?v=f4b45c40a8">
   <style>
     :root {
       --color-bg: #0B2D52;
@@ -192,6 +192,7 @@
          first work card (chips-bar margin 0.8rem + grid padding 4rem) */
       padding: var(--space-10) var(--page-margin) var(--space-6);
       text-align: left;
+      position: relative;
     }
 
     .home-headline {
@@ -514,14 +515,24 @@
 
   </main>
 
+  <button type="button" class="pause-toggle" data-motion-toggle aria-label="Pause animations" aria-pressed="false" hidden>
+    <svg class="icon-pause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+      <line x1="9" y1="5" x2="9" y2="19"></line>
+      <line x1="15" y1="5" x2="15" y2="19"></line>
+    </svg>
+    <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M7 4.5v15l13-7.5z"></path>
+    </svg>
+  </button>
+
   <footer>
     <p class="footer-copy">&copy; <span id="footer-year"></span> Clayton Cunningham Design.</p>
   </footer>
 
   <script src="js/projects.js?v=6fd25ccc3b"></script>
-  <script src="js/site.js?v=72af271650"></script>
-  <script src="js/index.js?v=b2d8cfa3b3"></script>
-  <script src="js/cycle-word.js?v=3127abb20b"></script>
+  <script src="js/site.js?v=1351b8f5ef"></script>
+  <script src="js/index.js?v=de2e0ff0a0"></script>
+  <script src="js/cycle-word.js?v=e67bde6139"></script>
   <!-- Cloudflare Web Analytics -->
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "965f2ad8267d4463890153ababb0dd33"}'></script>
   <!-- End Cloudflare Web Analytics -->

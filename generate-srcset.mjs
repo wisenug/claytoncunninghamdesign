@@ -1,6 +1,9 @@
 /* Responsive images: for every local <img> in the content pages whose source
-   is wider than 1200px, generate 800w/1600w WebP variants (skipped if already
-   present and fresh) and add srcset/sizes. `sizes` is derived from the layout
+   is wider than 1200px, generate 800w/1600w WebP variants and add srcset/sizes.
+   A variant is rebuilt when its source image is newer, so replacing an image
+   and re-running refreshes the -w800/-w1600 files of images that are already
+   tagged (if the new image has different dimensions, also update the width,
+   height and the last srcset entry by hand). `sizes` is derived from the layout
    container (grid column count, full-width, card). Hero images also get their
    <link rel="preload"> upgraded to imagesrcset so the preload matches what
    the browser actually picks.
@@ -27,22 +30,46 @@ const meta = new Map();
 async function imgMeta(src) {
   if (!meta.has(src)) {
     try {
-      const m = await sharp(decodeURI(src), { limitInputPixels: false }).metadata();
+      const m = await sharp(decodeURI(src)).metadata();
       meta.set(src, { width: m.width, animated: (m.pages || 1) > 1 });
     } catch { meta.set(src, null); }
   }
   return meta.get(src);
 }
 
+// A variant is stale when its source is newer by more than this. The slack
+// is for git, which stamps files with checkout time in no particular order:
+// without it a fresh clone would re-encode variants at random.
+const STALE_SLACK_MS = 60 * 1000;
+let rebuilt = 0;
+
 async function ensureVariant(src, width) {
-  const out = decodeURI(src).replace(/\.(webp|png|jpe?g)$/i, `-w${width}.webp`);
-  try { await fs.access(out); } catch {
-    await sharp(decodeURI(src), { limitInputPixels: false })
+  const input = decodeURI(src);
+  const out = input.replace(/\.(webp|png|jpe?g)$/i, `-w${width}.webp`);
+  const srcStat = await fs.stat(input);
+  const outStat = await fs.stat(out).catch(() => null);
+  if (!outStat || srcStat.mtimeMs - outStat.mtimeMs > STALE_SLACK_MS) {
+    await sharp(input)
       .resize({ width })
       .webp({ quality: 82, effort: 5 })
       .toFile(out);
+    if (outStat) { rebuilt++; console.log(`  refreshed ${out}`); }
   }
   return out;
+}
+
+// Already-tagged <img>: rebuild any of its variants that are older than the source.
+async function refreshVariants(tag) {
+  const imgSrc = tag.match(/\ssrc="([^"]+)"/)?.[1];
+  const srcset = tag.match(/\ssrcset="([^"]+)"/)?.[1];
+  if (!imgSrc || !srcset || !/\.(webp|png|jpe?g)$/i.test(imgSrc)) return;
+  const stem = imgSrc.replace(/\.(webp|png|jpe?g)$/i, '');
+  for (const entry of srcset.split(',')) {
+    const url = entry.trim().split(/\s+/)[0];
+    const width = url.startsWith(stem + '-w') && url.slice(stem.length).match(/^-w(\d+)\.webp$/)?.[1];
+    if (!width) continue;
+    try { await ensureVariant(imgSrc, Number(width)); } catch { /* source missing: validate-site reports it */ }
+  }
 }
 
 function sizesFor(html, tagIndex) {
@@ -65,7 +92,7 @@ for (const f of files) {
   const edits = [];
   for (const m of tags) {
     const tag = m[0];
-    if (/\bsrcset=/.test(tag)) continue;
+    if (/\bsrcset=/.test(tag)) { await refreshVariants(tag); continue; }
     const imgSrc = tag.match(/src="([^"]+)"/)?.[1];
     if (!imgSrc || /^(https?:|data:)/.test(imgSrc) || /\.svg$/i.test(imgSrc)) continue;
     if (/rotation-thumb/.test(tag)) continue; // JS swaps src every ~94ms
@@ -95,4 +122,4 @@ for (const f of files) {
   tagged += edits.length;
   console.log(`${f}: ${edits.length} imgs`);
 }
-console.log(`\n${tagged} imgs tagged, ${variants} variant refs, ${skippedAnimated} animated skipped`);
+console.log(`\n${tagged} imgs tagged, ${variants} variant refs, ${rebuilt} stale variants refreshed, ${skippedAnimated} animated skipped`);
