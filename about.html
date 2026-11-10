@@ -184,12 +184,17 @@
       color: #B8D9F5;
     }
 
+    /* Every item carries a leading dot in a 2rem slot. The list is pulled left by
+       that slot and its left edge is clipped, so the dot at the start of each
+       line (first or wrapped) is hidden and every line starts flush left. */
     .service-items {
       display: flex;
       flex-wrap: wrap;
       gap: var(--space-2) 0;
       align-items: baseline;
       padding-top: var(--space-1);
+      margin-left: -2rem;
+      clip-path: inset(0 0 0 2rem);
     }
 
     .service-item {
@@ -200,9 +205,11 @@
       white-space: nowrap;
     }
 
-    .service-item + .service-item::before {
+    .service-item::before {
       content: '·';
-      margin: 0 var(--space-2);
+      display: inline-block;
+      width: 2rem;
+      text-align: center;
       opacity: 0.4;
     }
 
