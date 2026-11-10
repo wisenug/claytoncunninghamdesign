@@ -8,7 +8,7 @@
   <link rel="icon" type="image/png" sizes="192x192" href="img/icon-192.png">
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
-  <meta name="theme-color" content="#0B2D52">
+  <meta name="theme-color" content="#4D93FC">
   <link rel="canonical" href="https://www.claytoncunninghamdesign.com/sketches-illustrations-doodles.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Clayton Cunningham Design">
@@ -27,19 +27,19 @@
   <meta name="description" content="A collection of drawn things: sketches, illustrations, and doodles by Clayton Cunningham.">
   <link rel="preload" href="fonts/dm-sans-04.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" as="image" fetchpriority="high" imagesrcset="img/sketch_stipple-w800.avif 800w, img/sketch_stipple-w1600.avif 1600w, img/sketch_stipple.avif 3000w" type="image/avif" imagesizes="100vw">
-  <link rel="stylesheet" href="styles.css?v=20261109b">
+  <link rel="stylesheet" href="styles.css?v=20261110a">
   <style>
     :root {
       --color-bg: #4D93FC;
-      --color-black: #19133A;
+      --color-fg: #19133A;
     }
 
     /* ── View transition ── */
     .vt-bg {
       position: fixed;
       inset: 0;
-      background-color: #4D93FC;
-      z-index: -1;
+      background-color: var(--color-bg);
+      z-index: var(--z-below);
       pointer-events: none;
       view-transition-name: ink-bg;
     }
@@ -51,14 +51,14 @@
     /* ── Inverted tag hover ── */
     .tag {
       border-color: rgba(25, 19, 58, 0.4);
-      color: #19133A;
+      color: var(--color-fg);
     }
 
     .tag:hover,
     .tag--active {
-      background: #19133A;
+      background: var(--color-fg);
       color: var(--color-bg);
-      border-color: #19133A;
+      border-color: var(--color-fg);
     }
 
     /* ── Video elements ── */
@@ -76,7 +76,7 @@
 
     /* ── Next project ── */
     .next-project-wrap {
-      margin-top: 8rem;
+      margin-top: var(--space-20);
     }
   </style>
   <script type="application/ld+json">
@@ -422,7 +422,7 @@
     </div>
 
     <!-- Next project -->
-    <section class="next-project next-project-wrap" style="margin-top: 8rem;" aria-label="Navigate to next project">
+    <section class="next-project next-project-wrap" style="margin-top: var(--space-20);" aria-label="Navigate to next project">
       <div class="next-project-bg" aria-hidden="true" style="background-color: #07465A;"></div>
       <span class="next-label" style="color: #1BBFCA;">Next Project</span>
       <a href="paradesmith.html" class="next-project-title" style="color: rgba(27, 191, 202, 0.75);">

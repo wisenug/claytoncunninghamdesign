@@ -8,7 +8,7 @@
   <link rel="icon" type="image/png" sizes="192x192" href="img/icon-192.png">
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
-  <meta name="theme-color" content="#0B2D52">
+  <meta name="theme-color" content="#FFBF00">
   <link rel="canonical" href="https://www.claytoncunninghamdesign.com/kbb-icons-illustrations.html">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Clayton Cunningham Design">
@@ -27,16 +27,16 @@
   <title>Kelley Blue Book Icons & Illustrations • Clayton Cunningham Design</title>
   <link rel="preload" href="fonts/dm-sans-04.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" as="image" fetchpriority="high" imagesrcset="img/kbb_1-w800.avif 800w, img/kbb_1-w1600.avif 1600w, img/kbb_1.avif 1746w" type="image/avif" imagesizes="100vw">
-  <link rel="stylesheet" href="styles.css?v=20261109b">
+  <link rel="stylesheet" href="styles.css?v=20261110a">
   <style>
     :root {
       --color-bg: #FFBF00;
-      --color-black: #002B5C;
+      --color-fg: #002B5C;
     }
 
     /* Illustrations navy band */
     .illustrations-bg {
-      background-color: #002B5C;
+      background-color: var(--color-fg);
       padding-top: 5.3rem;
     }
 
@@ -47,7 +47,7 @@
 
     .illustrations-bg .section-heading,
     .illustrations-bg .body-text {
-      color: #FFBF00;
+      color: var(--color-bg);
     }
 
     /* Write-up link sits on the navy Illustrations band, keep it legible */
@@ -80,8 +80,8 @@
     .vt-bg {
       position: fixed;
       inset: 0;
-      background-color: #FFBF00;
-      z-index: -1;
+      background-color: var(--color-bg);
+      z-index: var(--z-below);
       pointer-events: none;
       view-transition-name: ink-bg;
     }

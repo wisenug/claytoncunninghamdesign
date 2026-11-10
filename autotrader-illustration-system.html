@@ -8,7 +8,7 @@
   <link rel="icon" type="image/png" sizes="192x192" href="img/icon-192.png">
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
-  <meta name="theme-color" content="#0B2D52">
+  <meta name="theme-color" content="#E3F2FF">
   <link rel="canonical" href="https://www.claytoncunninghamdesign.com/autotrader-illustration-system.html">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Clayton Cunningham Design">
@@ -27,20 +27,20 @@
   <title>Autotrader Illustration System • Clayton Cunningham Design</title>
   <link rel="preload" href="fonts/dm-sans-04.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" as="image" fetchpriority="high" imagesrcset="img/at_illustration_style_1-w800.webp 800w, img/at_illustration_style_1-w1600.webp 1600w, img/at_illustration_style_1.webp 2000w" imagesizes="100vw">
-  <link rel="stylesheet" href="styles.css?v=20261109b">
+  <link rel="stylesheet" href="styles.css?v=20261110a">
   <style>
     :root {
       --color-bg: #E3F2FF;
       --color-blue: #0F2960;
-      --color-black: #0F2960;
+      --color-fg: #0F2960;
     }
 
     /* View transition — incoming (from index / capabilities) */
     .vt-bg {
       position: fixed;
       inset: 0;
-      background-color: #E3F2FF;
-      z-index: -1;
+      background-color: var(--color-bg);
+      z-index: var(--z-below);
       pointer-events: none;
       view-transition-name: ink-bg;
     }
@@ -338,7 +338,7 @@
 
     <!-- Next project -->
     <section class="next-project" aria-label="Navigate to next project">
-      <div class="next-project-bg" aria-hidden="true"></div>
+      <div class="next-project-bg" aria-hidden="true" style="background-color: #FFBF00;"></div>
       <span class="next-label" aria-hidden="true">Next Project</span>
       <a href="kbb-icons-illustrations.html" class="next-project-title">
         Kelley Blue Book<br>Icons & Illustrations

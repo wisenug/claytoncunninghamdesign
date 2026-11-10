@@ -30,8 +30,9 @@ jobs:
       - name: Validate links, JSON-LD, sitemap, llms.txt
         run: node checks/validate-site.mjs
 
-      - name: Generator idempotency (schema, RSS, sitemap)
+      - name: Generator idempotency (colors, schema, RSS, sitemap)
         run: |
+          node inject-colors.mjs
           node inject-schema.mjs
           node generate-rss.mjs
           node generate-sitemap.mjs

@@ -8,7 +8,7 @@
   <link rel="icon" type="image/png" sizes="192x192" href="img/icon-192.png">
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
-  <meta name="theme-color" content="#0B2D52">
+  <meta name="theme-color" content="#FFF8D5">
   <link rel="canonical" href="https://www.claytoncunninghamdesign.com/logos.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Clayton Cunningham Design">
@@ -26,18 +26,18 @@
   <title>Logos • Clayton Cunningham Design</title>
   <meta name="description" content="A collection of logo and brand identity work by Clayton Cunningham.">
   <link rel="preload" href="fonts/dm-sans-04.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=20261109b">
+  <link rel="stylesheet" href="styles.css?v=20261110a">
   <style>
     :root {
       --color-bg: #FFF8D5;
-      --color-black: #553B06;
+      --color-fg: #553B06;
     }
 
     .vt-bg {
       position: fixed;
       inset: 0;
-      background-color: #FFF8D5;
-      z-index: -1;
+      background-color: var(--color-bg);
+      z-index: var(--z-below);
       pointer-events: none;
       view-transition-name: ink-bg;
     }
@@ -48,19 +48,17 @@
 
     .tag {
       border-color: rgba(85, 59, 6, 0.35);
-      color: #553B06;
+      color: var(--color-fg);
     }
 
     .tag:hover,
     .tag--active {
-      background: #553B06;
+      background: var(--color-fg);
       color: var(--color-bg);
-      border-color: #553B06;
+      border-color: var(--color-fg);
     }
 
-    .footer-copy {
-      color: #553B06;
-    }
+    footer { --color-footer-fg: var(--color-fg); }
 
     /* Extra breathing room between projects */
     .text-section {
@@ -209,7 +207,7 @@
     </div>
 
     <!-- ── Paradesmith ── -->
-    <div class="text-section" style="padding-top: 4.8rem;">
+    <div class="text-section" style="padding-top: var(--space-12);">
       <h2 class="section-heading"><a href="paradesmith.html" style="color: inherit; text-decoration: none;">Paradesmith</a></h2>
     </div>
 
@@ -226,7 +224,7 @@
     </div>
 
     <!-- Next project -->
-    <section class="next-project next-project-wrap" style="margin-top: 8rem;" aria-label="Navigate to next project">
+    <section class="next-project next-project-wrap" style="margin-top: var(--space-20);" aria-label="Navigate to next project">
       <div class="next-project-bg" aria-hidden="true" style="background-color: #E3F2FF;"></div>
       <span class="next-label" style="color: rgba(15, 41, 96, 0.85);">Next Project</span>
       <a href="autotrader-illustration-system.html" class="next-project-title" style="color: rgba(15, 41, 96, 0.8);">

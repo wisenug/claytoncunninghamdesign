@@ -8,7 +8,7 @@
   <link rel="icon" type="image/png" sizes="192x192" href="img/icon-192.png">
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
-  <meta name="theme-color" content="#0B2D52">
+  <meta name="theme-color" content="#006554">
   <link rel="canonical" href="https://www.claytoncunninghamdesign.com/tshq-mobile-app.html">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Clayton Cunningham Design">
@@ -27,39 +27,39 @@
   <meta name="description" content="DICK'S Team Sports Headquarters mobile app, a product design case study by Clayton Cunningham.">
   <link rel="preload" href="fonts/dm-sans-04.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" as="image" fetchpriority="high" imagesrcset="img/tshq_app_hero-w800.avif 800w, img/tshq_app_hero-w1600.avif 1600w, img/tshq_app_hero.avif 1920w" type="image/avif" imagesizes="100vw">
-  <link rel="stylesheet" href="styles.css?v=20261109b">
+  <link rel="stylesheet" href="styles.css?v=20261110a">
   <style>
     :root {
       --color-bg: #006554;
-      --color-black: #E0FAE0;
+      --color-fg: #E0FAE0;
     }
 
     /* ── Image captions ── */
     .img-caption {
-      font-size: 1.6rem;
+      font-size: var(--text-sm);
       font-weight: 400;
       letter-spacing: 0.01em;
       color: rgba(255, 255, 255, 1);
-      margin-top: 1.2rem;
-      padding: 0 0.4rem;
+      margin-top: var(--space-3);
+      padding: 0 var(--space-1);
     }
 
     /* ── Inline text block after a full-image ── */
     .image-note {
-      padding: 2.4rem var(--page-margin) 0;
+      padding: var(--space-6) var(--page-margin) 0;
     }
 
     .image-note p {
-      font-size: 2.4rem;
+      font-size: var(--text-lg);
       font-weight: 400;
       line-height: 1.75;
-      color: var(--color-black);
+      color: var(--color-fg);
       max-width: 72rem;
     }
 
     /* ── Update notice ── */
     .update-notice {
-      padding: 0 var(--page-margin) 4rem;
+      padding: 0 var(--page-margin) var(--space-10);
     }
 
     .update-notice p {
@@ -71,7 +71,7 @@
 
     /* ── Next project ── */
     .next-project-wrap {
-      margin-top: 8rem;
+      margin-top: var(--space-20);
     }
 
     /* ── Inverted tag hover ── */
@@ -105,14 +105,14 @@
 
     /* ── Bold pain-points block ── */
     .pain-points {
-      padding: 0 var(--page-margin) 6rem;
+      padding: 0 var(--page-margin) var(--space-15);
     }
 
     .pain-points p {
-      font-size: 2.4rem;
+      font-size: var(--text-lg);
       font-weight: 600;
       line-height: 1.75;
-      color: var(--color-black);
+      color: var(--color-fg);
       max-width: 72rem;
     }
 
@@ -120,8 +120,8 @@
     .vt-bg {
       position: fixed;
       inset: 0;
-      background-color: #006554;
-      z-index: -1;
+      background-color: var(--color-bg);
+      z-index: var(--z-below);
       pointer-events: none;
       view-transition-name: ink-bg;
     }
@@ -247,7 +247,7 @@
     </div>
 
     <!-- Post-research text -->
-    <div class="text-section" style="padding-top: 4.8rem;">
+    <div class="text-section" style="padding-top: var(--space-12);">
       <p class="body-text">Based off the findings from our research, we saw an opportunity to integrate new functionality that the product initially was missing. The team finalized a plan of action that targeted all of the core problem areas we wanted to solve.</p>
     </div>
 
@@ -265,7 +265,7 @@
 
     <!-- User flow -->
     <div class="full-image">
-      <p class="body-text" style="padding-bottom: 2.4rem;">The first flow we tackled was for the creation of a new custom event. The pattern of this flow had to be scalable to all of the sports supported by the TSHQ platform. The process for shepherding a user through the event creation process was tough to nail down, and took many iterations and logic hoops to make sense on our end.</p>
+      <p class="body-text" style="padding-bottom: var(--space-6);">The first flow we tackled was for the creation of a new custom event. The pattern of this flow had to be scalable to all of the sports supported by the TSHQ platform. The process for shepherding a user through the event creation process was tough to nail down, and took many iterations and logic hoops to make sense on our end.</p>
       <img srcset="img/tshq_app_user_flow-w800.webp 800w, img/tshq_app_user_flow-w1600.webp 1600w, img/tshq_app_user_flow.webp 1920w" sizes="92vw" width="1920" height="1039" src="img/tshq_app_user_flow.webp" alt="User flow diagram for creating a new custom event" loading="lazy">
       <p class="img-caption">User flow for creating a new custom event.</p>
     </div>
@@ -303,7 +303,7 @@
     </div>
 
     <!-- Scores video -->
-    <div class="full-image" style="padding-top: 4rem;">
+    <div class="full-image" style="padding-top: var(--space-10);">
       <video src="img/tshq_app_scores.mp4" autoplay muted playsinline loop aria-label="TSHQ mobile app scores feature, viewing past game wins and losses within custom events"></video>
     </div>
     <div class="text-section">
@@ -311,7 +311,7 @@
     </div>
 
     <!-- RSVP section -->
-    <div class="text-section" style="padding-top: 8rem;">
+    <div class="text-section" style="padding-top: var(--space-20);">
       <h2 class="section-heading">RSVP</h2>
       <p class="body-text">A team-wide RSVP system was built so coaches could see attendance at a glance. A 24-hour reminder prompts players and parents to confirm, giving staff time to plan ahead.</p>
     </div>
@@ -367,7 +367,7 @@
     </div>
 
     <!-- Next project -->
-    <section class="next-project next-project-wrap" style="margin-top: 8rem;" aria-label="Navigate to next project">
+    <section class="next-project next-project-wrap" style="margin-top: var(--space-20);" aria-label="Navigate to next project">
       <div class="next-project-bg" aria-hidden="true" style="background-color: #f0f0f0;"></div>
       <span class="next-label" style="color: rgba(27, 86, 26, 0.85);">Next Project</span>
       <a href="tshq-registration.html" class="next-project-title" style="color: rgba(27, 86, 26, 0.75);">

@@ -8,7 +8,7 @@
   <link rel="icon" type="image/png" sizes="192x192" href="img/icon-192.png">
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
-  <meta name="theme-color" content="#0B2D52">
+  <meta name="theme-color" content="#FF8806">
   <link rel="canonical" href="https://www.claytoncunninghamdesign.com/autotrader-icons.html">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Clayton Cunningham Design">
@@ -27,23 +27,23 @@
   <meta name="description" content="Spot icon style created for Autotrader. Iconography system spanning the AT website and mobile apps." />
   <link rel="preload" href="fonts/dm-sans-04.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" as="image" fetchpriority="high" imagesrcset="img/autotrader_icons_hero-w800.webp 800w, img/autotrader_icons_hero-w1600.webp 1600w, img/autotrader_icons_hero.webp 2000w" imagesizes="100vw">
-  <link rel="stylesheet" href="styles.css?v=20261109b">
+  <link rel="stylesheet" href="styles.css?v=20261110a">
   <style>
     :root {
       --color-bg: #FF8806;
-      --color-black: #001F6E;
+      --color-fg: #001F6E;
     }
 
     /* Spot Icons inverted band */
     .spot-icons-bg {
-      background-color: #001F6E;
+      background-color: var(--color-fg);
       padding-top: 5.3rem;
       scroll-margin-top: 10rem;
     }
 
     .spot-icons-bg .section-heading,
     .spot-icons-bg .body-text {
-      color: #FF8806;
+      color: var(--color-bg);
     }
 
     /* Spacer before colored-background section */
@@ -69,8 +69,8 @@
     .vt-bg {
       position: fixed;
       inset: 0;
-      background-color: #FF8806;
-      z-index: -1;
+      background-color: var(--color-bg);
+      z-index: var(--z-below);
       pointer-events: none;
       view-transition-name: ink-bg;
     }
@@ -237,7 +237,7 @@
     </div>
 
     <!-- AT Grid Lottie -->
-    <div class="lottie-container" role="img" aria-label="Animated Autotrader icon grid demonstrating alignment and optical balance" style="padding: 0 var(--page-margin) 1.6rem;">
+    <div class="lottie-container" role="img" aria-label="Animated Autotrader icon grid demonstrating alignment and optical balance" style="padding: 0 var(--page-margin) var(--space-4);">
       <div id="lottie-at-grid" data-lottie="animations/at-icon-grid.json" style="aspect-ratio: 2000/1760; height: auto;"></div>
     </div>
 

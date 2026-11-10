@@ -8,7 +8,7 @@
   <link rel="icon" type="image/png" sizes="192x192" href="img/icon-192.png">
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
-  <meta name="theme-color" content="#0B2D52">
+  <meta name="theme-color" content="#07465A">
   <link rel="canonical" href="https://www.claytoncunninghamdesign.com/paradesmith.html">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Clayton Cunningham Design">
@@ -27,19 +27,19 @@
   <meta name="description" content="Building an MVP to transform scattered online content into curated community experiences.">
   <link rel="preload" href="fonts/dm-sans-04.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" as="image" fetchpriority="high" imagesrcset="img/paradesmith_1-w800.webp 800w, img/paradesmith_1-w1600.webp 1600w, img/paradesmith_1.webp 1920w" imagesizes="100vw">
-  <link rel="stylesheet" href="styles.css?v=20261109b">
+  <link rel="stylesheet" href="styles.css?v=20261110a">
   <style>
     :root {
       --color-bg: #07465A;
-      --color-black: #1BBFCA;
+      --color-fg: #1BBFCA;
     }
 
     /* ── View transition ── */
     .vt-bg {
       position: fixed;
       inset: 0;
-      background-color: #07465A;
-      z-index: -1;
+      background-color: var(--color-bg);
+      z-index: var(--z-below);
       pointer-events: none;
       view-transition-name: ink-bg;
     }
@@ -52,14 +52,14 @@
     /* ── Inverted tag hover ── */
     .tag {
       border-color: rgba(27, 191, 202, 0.4);
-      color: #1BBFCA;
+      color: var(--color-fg);
     }
 
     .tag:hover,
     .tag--active {
-      background: #1BBFCA;
+      background: var(--color-fg);
       color: var(--color-bg);
-      border-color: #1BBFCA;
+      border-color: var(--color-fg);
     }
 
     /* ── Image captions ── */
@@ -76,18 +76,16 @@
 
     /* ── RIP note ── */
     .rip-note {
-      padding: 4rem var(--page-margin) 2rem;
+      padding: var(--space-10) var(--page-margin) var(--space-5);
     }
 
     .rip-note p {
-      font-size: 2.4rem;
+      font-size: var(--text-lg);
       font-weight: 600;
-      color: var(--color-black);
+      color: var(--color-fg);
     }
 
-    .footer-copy {
-      color: #07465A;
-    }
+    footer { --color-footer-fg: var(--color-bg); }
   </style>
   <script type="application/ld+json">
   {
@@ -268,7 +266,7 @@
     </div>
 
     <!-- Next project -->
-    <section class="next-project next-project-wrap" style="margin-top: 8rem;" aria-label="Navigate to next project">
+    <section class="next-project next-project-wrap" style="margin-top: var(--space-20);" aria-label="Navigate to next project">
       <div class="next-project-bg" aria-hidden="true" style="background-color: #DE4138;"></div>
       <span class="next-label" style="color: #1F0503;">Next Project</span>
       <a href="coca-cola-campus-messaging.html" class="next-project-title" style="color: rgba(39, 6, 4, 0.8);">

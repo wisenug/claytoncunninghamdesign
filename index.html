@@ -27,65 +27,50 @@
   <title>Clayton Cunningham Design</title>
   <link rel="preload" href="fonts/dm-sans-04.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/playfair-display-08.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=20261109b">
+  <link rel="stylesheet" href="styles.css?v=20261110a">
   <style>
     :root {
       --color-bg: #0B2D52;
-      --color-black: #ffffff;
+      --color-fg: #ffffff;
+      /* Home ink: headline, nav and chips */
+      --color-accent: #B8D9F5;
+      --color-nav-fg: var(--color-accent);
+      --color-hover-overlay: rgba(184, 217, 245, 0.12);
+      --color-selected-overlay: rgba(184, 217, 245, 0.22);
     }
 
     .vt-bg {
       position: fixed;
       inset: 0;
-      background-color: #0B2D52;
-      z-index: -1;
+      background-color: var(--color-bg);
+      z-index: var(--z-below);
       pointer-events: none;
       view-transition-name: ink-bg;
     }
 
-    .nav-logo-icon,
-    .nav-logo-name,
-    .nav-links a {
-      color: #B8D9F5;
-    }
-
-    .nav-links a {
-      opacity: 1;
-    }
-
-    .nav-links a:hover {
-      background: rgba(184, 217, 245, 0.12);
-      color: #B8D9F5;
-    }
-
-    .nav-links a[aria-current="page"] {
-      background: rgba(184, 217, 245, 0.22);
-    }
-
     /* ── Staggered two-column image grid ── */
     .work-grid {
-      padding: 4rem var(--page-margin) 10rem;
+      padding: var(--space-10) var(--page-margin) var(--space-25);
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1.6rem;
+      gap: var(--space-4);
       align-items: start;
     }
 
     .work-col {
       display: flex;
       flex-direction: column;
-      gap: 1.6rem;
+      gap: var(--space-4);
     }
 
-    /* ── Project card with hover label ── */
+    /* ── Project card with hover label ──
+       --card-bg / --card-fg come from the generated block at the end of this
+       <style> (inject-colors.mjs, from js/projects.js). */
     .work-card {
       position: relative;
       display: flex;
       flex-direction: column;
       text-decoration: none;
-    }
-
-    .work-card {
       transition: opacity 0.28s ease, transform 0.34s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
@@ -101,6 +86,7 @@
       inset: 0;
       pointer-events: none;
       opacity: 0;
+      background: var(--card-bg);
       border-radius: var(--radius-img);
     }
 
@@ -117,6 +103,24 @@
       transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
+    /* Square crop for thumbnails whose source isn't square */
+    .work-img--square {
+      height: auto;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+    }
+
+    .work-card__lottie {
+      width: 100%;
+      display: block;
+      aspect-ratio: 2000 / 1409;
+    }
+
+    /* Product photos shot on white */
+    .work-card__img-wrap--white {
+      background: #fff;
+    }
+
     .work-card:hover .work-img {
       transform: scale(1.04);
     }
@@ -131,10 +135,10 @@
     }
 
     .work-card__label {
-      padding: 2rem 2.4rem 2.4rem;
-      background: #E3F2FF;
-      color: #001F6E;
-      font-size: 1.6rem;
+      padding: var(--space-5) var(--space-6) var(--space-6);
+      background: var(--card-bg);
+      color: var(--card-fg);
+      font-size: var(--text-sm);
       font-weight: 400;
       letter-spacing: 0;
       line-height: 1.5;
@@ -150,8 +154,8 @@
       .work-grid {
         display: flex;
         flex-direction: column;
-        padding-top: 2.4rem;
-        gap: 1.6rem;
+        padding-top: var(--space-6);
+        gap: var(--space-4);
       }
 
       .work-col {
@@ -186,18 +190,18 @@
     .home-headline-wrap {
       /* Bottom padding = half the 4.8rem gap between the chips and the
          first work card (chips-bar margin 0.8rem + grid padding 4rem) */
-      padding: 4rem var(--page-margin) 2.4rem;
+      padding: var(--space-10) var(--page-margin) var(--space-6);
       text-align: left;
     }
 
     .home-headline {
       /* Mobile keeps the project-title scale; desktop takes a step down so
          the top of the work grid peeks above the fold (no false bottom). */
-      font-size: clamp(5.6rem, 8.3vw + 1.5rem, 14.4rem);
+      font-size: var(--text-display);
       font-weight: 800;
       line-height: 1.05;
       letter-spacing: -0.03em;
-      color: #B8D9F5;
+      color: var(--color-accent);
       margin: 0;
     }
 
@@ -240,17 +244,17 @@
        scroll past either page margin. */
     .cap-chips-bar {
       position: relative;
-      z-index: 90;
+      z-index: var(--z-sticky);
       background: var(--color-bg);
-      margin-bottom: 0.8rem;
+      margin-bottom: var(--space-2);
     }
 
     .cap-chips-bar--fixed {
       position: fixed;
-      top: 10rem;
+      top: var(--nav-height);
       left: 0;
       right: 0;
-      transform: translateY(calc(-100% - 10rem));
+      transform: translateY(calc(-100% - var(--nav-height)));
       transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
@@ -258,15 +262,10 @@
       transform: translateY(0);
     }
 
-    @media (max-width: 640px) {
-      .cap-chips-bar--fixed { top: 8rem; transform: translateY(calc(-100% - 8rem)); }
-      .cap-chips-bar--fixed.cap-chips-bar--shown { transform: translateY(0); }
-    }
-
     .cap-chips {
       display: flex;
-      gap: 1.2rem;
-      padding: 1.2rem var(--page-margin);
+      gap: var(--space-3);
+      padding: var(--space-3) var(--page-margin);
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
@@ -283,10 +282,10 @@
       font-size: 1.7rem;
       font-weight: 500;
       letter-spacing: 0.01em;
-      color: #B8D9F5;
-      border: 2px solid #B8D9F5;
-      border-radius: 10rem;
-      padding: 0.8rem 2rem;
+      color: var(--color-accent);
+      border: 2px solid var(--color-accent);
+      border-radius: var(--radius-pill);
+      padding: var(--space-2) var(--space-5);
       background: transparent;
       text-decoration: none;
       cursor: pointer;
@@ -296,13 +295,13 @@
 
     .chip:hover,
     .chip.is-active {
-      background: #B8D9F5;
-      color: #0B2D52;
-      border-color: #B8D9F5;
+      background: var(--color-accent);
+      color: var(--color-bg);
+      border-color: var(--color-accent);
     }
 
     .chip:focus-visible {
-      outline: 2px solid #B8D9F5;
+      outline: 2px solid var(--color-accent);
       outline-offset: 3px;
     }
 
@@ -324,6 +323,24 @@
     @media (prefers-reduced-motion: reduce) {
       .chip { animation: none; }
     }
+
+    /* Card colors: generated by inject-colors.mjs from js/projects.js. Do not edit by hand. */
+    .work-card[href="sketches-illustrations-doodles.html"] { --card-bg: #4D93FC; --card-fg: #19133A; }
+    .work-card[href="tshq-mobile-app.html"] { --card-bg: #006554; --card-fg: #E0FAE0; }
+    .work-card[href="tshq-registration.html"] { --card-bg: #f0f0f0; --card-fg: #1B561A; }
+    .work-card[href="tshq-fanwear-redesign.html"] { --card-bg: #FF5F1F; --card-fg: #0D0D1A; }
+    .work-card[href="tshq-assorted-projects.html"] { --card-bg: #2E1F4A; --card-fg: #F0E6FF; }
+    .work-card[href="logos.html"] { --card-bg: #FFF8D5; --card-fg: #553B06; }
+    .work-card[href="coca-cola-assorted-projects.html"] { --card-bg: #ffffff; --card-fg: #D42020; }
+    .work-card[href="coca-cola-campus-messaging.html"] { --card-bg: #DE4138; --card-fg: #1F0503; }
+    .work-card[href="paradesmith.html"] { --card-bg: #07465A; --card-fg: #1BBFCA; }
+    .work-card[href="autotrader-illustration-system.html"] { --card-bg: #E3F2FF; --card-fg: #0F2960; }
+    .work-card[href="motion-animation.html"] { --card-bg: #F5F1E8; --card-fg: #14213D; }
+    .work-card[href="kbb-icons-illustrations.html"] { --card-bg: #FFBF00; --card-fg: #002B5C; }
+    .work-card[href="autotrader-icons.html"] { --card-bg: #FF8806; --card-fg: #001F6E; }
+    .work-card[href="iris-design-system.html"] { --card-bg: #F5F5F5; --card-fg: #0B2D52; }
+    .work-card[href="just-for-funsies.html"] { --card-bg: #b8e4f0; --card-fg: #0F3D4A; }
+    /* End generated card colors */
   </style>
   <script type="application/ld+json">
   {
@@ -428,36 +445,36 @@
       <!-- Left column — starts at baseline -->
       <div class="work-col work-col--left">
         <a href="iris-design-system.html" class="work-card" data-caps="design-system uiux-design case-study">
-          <div class="work-card__img-wrap"><img class="work-img" width="700" height="700" style="aspect-ratio: 1/1; object-fit: cover;" src="img/iris_thumbnail-v2.webp" alt="Iris component library grid across headings, buttons, tabs, and labels" loading="eager"></div>
-          <div class="work-card__label" style="background: #F5F5F5; color: #0B2D52;"><span class="work-card__label-client">Cox Automotive</span>Building the multi-brand design system behind Autotrader, KBB, and OEM dealer sites</div>
+          <div class="work-card__img-wrap"><img class="work-img work-img--square" width="700" height="700" src="img/iris_thumbnail-v2.webp" alt="Iris component library grid across headings, buttons, tabs, and labels" loading="eager"></div>
+          <div class="work-card__label"><span class="work-card__label-client">Cox Automotive</span>Building the multi-brand design system behind Autotrader, KBB, and OEM dealer sites</div>
         </a>
         <a href="motion-animation.html" class="work-card" data-caps="motion-design">
-          <div class="work-card__img-wrap"><video class="work-img" width="1080" height="1080" style="height: auto; aspect-ratio: 1/1; object-fit: cover;" autoplay muted loop playsinline preload="metadata" poster="img/motion-thumbnail-poster.webp" aria-label="Looping reel of motion design work: ribbon animation, heart tap, Autotrader logo bounce, and an animated EV range chart" data-motion-thumb><source src="img/motion-thumbnail.webm" type="video/webm"><source src="img/motion-thumbnail.mp4" type="video/mp4"></video></div>
-          <div class="work-card__label" style="background: #F5F1E8; color: #14213D;"><span class="work-card__label-client">Motion &amp; Animation</span>Interface motion, micro-interactions, and animated data</div>
+          <div class="work-card__img-wrap"><video class="work-img work-img--square" width="1080" height="1080" autoplay muted loop playsinline preload="metadata" poster="img/motion-thumbnail-poster.webp" aria-label="Looping reel of motion design work: ribbon animation, heart tap, Autotrader logo bounce, and an animated EV range chart" data-motion-thumb><source src="img/motion-thumbnail.webm" type="video/webm"><source src="img/motion-thumbnail.mp4" type="video/mp4"></video></div>
+          <div class="work-card__label"><span class="work-card__label-client">Motion &amp; Animation</span>Interface motion, micro-interactions, and animated data</div>
         </a>
         <a href="autotrader-icons.html" class="work-card" data-caps="uiux-design iconography motion-design">
-          <div class="work-card__img-wrap"><div id="lottie-at-icons-thumb" data-lottie="animations/spot_icons.json" style="width:100%;display:block;aspect-ratio:2000/1409;"></div></div>
-          <div class="work-card__label" style="background:#FF8806;color:#001F6E;"><span class="work-card__label-client">Autotrader</span>Unifying a fragmented icon language</div>
+          <div class="work-card__img-wrap"><div id="lottie-at-icons-thumb" class="work-card__lottie" data-lottie="animations/spot_icons.json"></div></div>
+          <div class="work-card__label"><span class="work-card__label-client">Autotrader</span>Unifying a fragmented icon language</div>
         </a>
         <a href="sketches-illustrations-doodles.html" class="work-card" data-caps="illustration">
           <div class="work-card__img-wrap"><picture><source type="image/avif" srcset="img/sketch_thumbnail.avif"><img width="500" height="500" class="work-img" src="img/sketch_thumbnail.webp" alt="Collection of hand-drawn and digital sketches, illustrations, and doodles" loading="lazy"></picture></div>
-          <div class="work-card__label" style="background: #4D93FC; color: #19133A;"><span class="work-card__label-client">Sketches, Illustrations and Doodles</span>A collection of drawn things</div>
+          <div class="work-card__label"><span class="work-card__label-client">Sketches, Illustrations and Doodles</span>A collection of drawn things</div>
         </a>
         <a href="paradesmith.html" class="work-card" data-caps="uiux-design visual-identity">
           <div class="work-card__img-wrap"><img srcset="img/paradesmith_thumbnail-w800.webp 800w, img/paradesmith_thumbnail-w1600.webp 1600w, img/paradesmith_thumbnail.webp 1920w" sizes="(max-width: 640px) 92vw, 46vw" width="1920" height="1919" class="work-img" src="img/paradesmith_thumbnail.webp" alt="Paradesmith app screens on teal background showing content curation UI" loading="lazy"></div>
-          <div class="work-card__label" style="background: #1BBFCA; color: #07465A;"><span class="work-card__label-client">Paradesmith</span>Transforming scattered online content into curated experiences</div>
+          <div class="work-card__label"><span class="work-card__label-client">Paradesmith</span>Transforming scattered online content into curated experiences</div>
         </a>
         <a href="tshq-fanwear-redesign.html" class="work-card" data-caps="uiux-design research case-study">
           <div class="work-card__img-wrap"><picture><source type="image/avif" srcset="img/tshq_fanwear_thumbnail-w800.avif 800w, img/tshq_fanwear_thumbnail-w1600.avif 1600w, img/tshq_fanwear_thumbnail.avif 1920w" sizes="(max-width: 640px) 92vw, 46vw"><img srcset="img/tshq_fanwear_thumbnail-w800.webp 800w, img/tshq_fanwear_thumbnail-w1600.webp 1600w, img/tshq_fanwear_thumbnail.webp 1920w" sizes="(max-width: 640px) 92vw, 46vw" width="1920" height="1920" class="work-img" src="img/tshq_fanwear_thumbnail.webp" alt="DICK'S TSHQ Fan Wear Redesign" loading="lazy"></picture></div>
-          <div class="work-card__label" style="background: #FF5F1F; color: #0D0D1A;"><span class="work-card__label-client">DICK'S TSHQ</span>Designing a fan wear store to turn team spirit into club revenue</div>
+          <div class="work-card__label"><span class="work-card__label-client">DICK'S TSHQ</span>Designing a fan wear store to turn team spirit into club revenue</div>
         </a>
         <a href="logos.html" class="work-card" data-caps="visual-identity">
           <div class="work-card__img-wrap"><img srcset="img/lotuslion_thumbnail-w800.webp 800w, img/lotuslion_thumbnail-w1600.webp 1600w, img/lotuslion_thumbnail.webp 1920w" sizes="(max-width: 640px) 92vw, 46vw" width="1920" height="1920" class="work-img" src="img/lotuslion_thumbnail.webp" alt="Logos and brand identity work" loading="lazy"></div>
-          <div class="work-card__label" style="background: #FFF8D5; color: #553B06;"><span class="work-card__label-client">Logos</span>Collection of logo and brand identity work</div>
+          <div class="work-card__label"><span class="work-card__label-client">Logos</span>Collection of logo and brand identity work</div>
         </a>
         <a href="just-for-funsies.html" class="work-card" data-caps="">
-          <div class="work-card__img-wrap" style="background: #ffffff;"><img width="1035" height="542" class="work-img rotation-thumb" src="img/shoes/treeline/treeline-01.webp" alt="Nike Air Max 1 SH Treeline spinning in 360 degrees" loading="lazy" data-rotation-prefix="img/shoes/treeline/treeline-" data-rotation-total="36"></div>
-          <div class="work-card__label" style="background: #b8e4f0; color: #0F3D4A;"><span class="work-card__label-client">Just for Funsies</span></div>
+          <div class="work-card__img-wrap work-card__img-wrap--white"><img width="1035" height="542" class="work-img rotation-thumb" src="img/shoes/treeline/treeline-01.webp" alt="Nike Air Max 1 SH Treeline spinning in 360 degrees" loading="lazy" data-rotation-prefix="img/shoes/treeline/treeline-" data-rotation-total="36"></div>
+          <div class="work-card__label"><span class="work-card__label-client">Just for Funsies</span></div>
         </a>
       </div>
 
@@ -469,7 +486,7 @@
         </a>
         <a href="tshq-mobile-app.html" class="work-card" data-caps="uiux-design research illustration case-study">
           <div class="work-card__img-wrap"><picture><source type="image/avif" srcset="img/tshq_app_thumbnail-w800.avif 800w, img/tshq_app_thumbnail-w1600.avif 1600w, img/tshq_app_thumbnail.avif 1920w" sizes="92vw"><img srcset="img/tshq_app_thumbnail-w800.webp 800w, img/tshq_app_thumbnail-w1600.webp 1600w, img/tshq_app_thumbnail.webp 1920w" sizes="92vw" width="1920" height="1920" class="work-img" src="img/tshq_app_thumbnail.webp" alt="DICK'S TSHQ mobile app" loading="lazy"></picture></div>
-          <div class="work-card__label" style="background: #006554; color: #E0FAE0;"><span class="work-card__label-client">DICK'S TSHQ</span>Designing mobile app features that ease the pain of youth sports management</div>
+          <div class="work-card__label"><span class="work-card__label-client">DICK'S TSHQ</span>Designing mobile app features that ease the pain of youth sports management</div>
         </a>
         <a href="kbb-icons-illustrations.html" class="work-card" data-caps="uiux-design iconography illustration">
           <div class="work-card__img-wrap"><img srcset="img/Kbb_thumbnail-w800.webp 800w, img/Kbb_thumbnail-w1600.webp 1600w, img/Kbb_thumbnail.webp 2000w" sizes="(max-width: 640px) 92vw, 46vw" width="2000" height="2000" class="work-img" src="img/Kbb_thumbnail.webp" alt="Kelley Blue Book icon and illustration system overview" loading="eager"></div>
@@ -477,19 +494,19 @@
         </a>
         <a href="tshq-registration.html" class="work-card" data-caps="uiux-design design-system research illustration case-study">
           <div class="work-card__img-wrap"><img width="1500" height="1500" class="work-img" src="img/tshq_reg_thumbnail.webp" alt="DICK'S TSHQ Registration Redesign" loading="lazy"></div>
-          <div class="work-card__label" style="background: #f0f0f0; color: #1B561A;"><span class="work-card__label-client">DICK'S TSHQ</span>Redesigning youth sports registration for over 3 million players and 10,000 teams</div>
+          <div class="work-card__label"><span class="work-card__label-client">DICK'S TSHQ</span>Redesigning youth sports registration for over 3 million players and 10,000 teams</div>
         </a>
         <a href="coca-cola-campus-messaging.html" class="work-card" data-caps="visual-identity illustration">
           <div class="work-card__img-wrap"><img width="1000" height="1000" class="work-img" src="img/cm_thumbnail.webp" alt="Coca-Cola campus digital display screens and signage system" loading="lazy"></div>
-          <div class="work-card__label" style="background: #000000; color: #ffffff;"><span class="work-card__label-client">Coca-Cola</span>Unified campus communication</div>
+          <div class="work-card__label"><span class="work-card__label-client">Coca-Cola</span>Unified campus communication</div>
         </a>
         <a href="coca-cola-assorted-projects.html" class="work-card" data-caps="visual-identity">
           <div class="work-card__img-wrap"><img srcset="img/coca-cola_assorted_thumbnail-w800.webp 800w, img/coca-cola_assorted_thumbnail.webp 1200w" sizes="92vw" width="1200" height="1200" class="work-img" src="img/coca-cola_assorted_thumbnail.webp" alt="Illustrated Coca-Cola vending machine with bottles on a night sky background" loading="lazy"></div>
-          <div class="work-card__label" style="background: #ffffff; color: #D42020;"><span class="work-card__label-client">Coca-Cola</span>Designing for one of the world's most iconic brands</div>
+          <div class="work-card__label"><span class="work-card__label-client">Coca-Cola</span>Designing for one of the world's most iconic brands</div>
         </a>
         <a href="tshq-assorted-projects.html" class="work-card" data-caps="illustration iconography">
           <div class="work-card__img-wrap"><picture><source type="image/avif" srcset="img/tshq_assorted_projects_thumbnail-w800.avif 800w, img/tshq_assorted_projects_thumbnail-w1600.avif 1600w, img/tshq_assorted_projects_thumbnail.avif 1918w" sizes="92vw"><img srcset="img/tshq_assorted_projects_thumbnail-w800.webp 800w, img/tshq_assorted_projects_thumbnail-w1600.webp 1600w, img/tshq_assorted_projects_thumbnail.webp 1918w" sizes="92vw" width="1918" height="1920" class="work-img" src="img/tshq_assorted_projects_thumbnail.webp" alt="DICK'S TSHQ assorted project work including sport cutouts and marketing materials" loading="lazy"></picture></div>
-          <div class="work-card__label" style="background: #2E1F4A; color: #F0E6FF;"><span class="work-card__label-client">DICK'S TSHQ</span>Selected works from DICK's Team Sports Headquarters</div>
+          <div class="work-card__label"><span class="work-card__label-client">DICK'S TSHQ</span>Selected works from DICK's Team Sports Headquarters</div>
         </a>
       </div>
     </section>
@@ -503,7 +520,7 @@
 
   <script src="js/projects.js?v=20261107"></script>
   <script src="js/site.js?v=20261109b"></script>
-  <script src="js/index.js?v=filter-4"></script>
+  <script src="js/index.js?v=20261110a"></script>
   <script src="js/cycle-word.js?v=1"></script>
   <!-- Cloudflare Web Analytics -->
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "965f2ad8267d4463890153ababb0dd33"}'></script>

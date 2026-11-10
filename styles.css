@@ -204,14 +204,71 @@ picture > source {
   display: none;
 }
 
-/* Variables */
+/* Tokens
+   Each page overrides --color-bg / --color-fg (written by inject-colors.mjs
+   from js/projects.js). Everything below derives from those two or is a
+   page-independent scale. */
 :root {
-  --color-black: #201515;
+  /* Page colors */
+  --color-fg: #201515;
   --color-bg: #F5B990;
 
-  --page-margin: max(5vw, calc((100vw - 1200px) / 2));
+  /* Semantic colors: translucent black reads on any light page; dark pages
+     override them */
+  --color-hover-overlay: rgba(0, 0, 0, 0.07);
+  --color-selected-overlay: rgba(0, 0, 0, 0.17);
+  --color-skeleton: rgba(0, 0, 0, 0.06);
+  --color-skeleton-shine: rgba(255, 255, 255, 0.45);
+  --color-next-fg: rgba(0, 0, 0, 0.68); /* next-project band default */
 
+  /* Component colors */
+  --color-nav-fg: var(--color-fg);
+  --color-footer-bg: #F0C0CC;
+  --color-footer-fg: #000;
+
+  /* Layout */
+  --page-margin: max(5vw, calc((100vw - 1200px) / 2));
+  --nav-height: 10rem; /* 8rem at mobile widths */
+
+  /* Spacing: 0.4rem (4px) grid; --space-N = N x 0.4rem */
+  --space-1: 0.4rem;
+  --space-2: 0.8rem;
+  --space-3: 1.2rem;
+  --space-4: 1.6rem;
+  --space-5: 2rem;
+  --space-6: 2.4rem;
+  --space-8: 3.2rem;
+  --space-9: 3.6rem;
+  --space-10: 4rem;
+  --space-12: 4.8rem;
+  --space-14: 5.6rem;
+  --space-15: 6rem;
+  --space-20: 8rem;
+  --space-25: 10rem;
+
+  /* Type scale */
+  --text-sm: 1.6rem;
+  --text-md: 1.8rem;
+  --text-lg: 2.4rem;
+  --text-xl: 2.8rem;
+  --text-2xl: 3.6rem;
+  --text-3xl: 4.8rem;
+  --text-quote: clamp(3.6rem, 3vw + 1.8rem, 5.6rem);
+  --text-display: clamp(5.6rem, 8.3vw + 1.5rem, 14.4rem);
+  /* min() lets long single words (Iconography, Paradesmith) fit at 320px */
+  --text-display-next: clamp(min(6.4rem, 16.25vw), 9vw, 11.2rem);
+
+  /* Radius */
+  --radius-focus: 2px;
+  --radius-sm: 0.6rem;
   --radius-img: 0.8rem;
+  --radius-pill: 10rem;
+
+  /* Stacking */
+  --z-below: -1;
+  --z-raised: 1;
+  --z-sticky: 90;
+  --z-nav: 100;
   --font-body: 'DM Sans', 'Neue Haas Grotesk Display Pro', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
@@ -236,7 +293,7 @@ html {
 :focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 3px;
-  border-radius: 2px;
+  border-radius: var(--radius-focus);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -248,7 +305,7 @@ html { scroll-padding-top: 10rem; }
 
 body {
   background-color: var(--color-bg);
-  color: var(--color-black);
+  color: var(--color-fg);
   min-height: 100%;
   overflow-x: hidden;
   overflow-x: clip;
@@ -263,12 +320,12 @@ nav {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 100;
+  z-index: var(--z-nav);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 var(--page-margin);
-  height: 10rem;
+  height: var(--nav-height);
   background: var(--color-bg);
   transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -303,7 +360,7 @@ nav:focus-within {
   flex-shrink: 0;
   width: 5.6rem;
   height: 5.6rem;
-  color: var(--color-black);
+  color: var(--color-nav-fg);
   background-color: currentColor;
   mask-image: url('img/clayton-cunningham-design-logo.svg');
   -webkit-mask-image: url('img/clayton-cunningham-design-logo.svg');
@@ -319,14 +376,14 @@ nav:focus-within {
   font-size: 2rem;
   font-weight: 700;
   letter-spacing: -0.01em;
-  color: var(--color-black);
+  color: var(--color-nav-fg);
   white-space: nowrap;
 }
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 3.2rem;
+  gap: var(--space-8);
   list-style: none;
 }
 
@@ -334,20 +391,20 @@ nav:focus-within {
   font-size: 2.2rem;
   font-weight: 400;
   letter-spacing: 0.005em;
-  color: var(--color-black);
+  color: var(--color-nav-fg);
   text-decoration: none;
-  border-radius: 0.6rem;
+  border-radius: var(--radius-sm);
   padding: 0.5rem 1rem;
   transition: background 0.2s ease, color 0.2s ease, opacity 0.2s ease;
 }
 
 .nav-links a:hover {
-  background: rgba(0, 0, 0, 0.07);
+  background: var(--color-hover-overlay);
 }
 
 .nav-links a[aria-current="page"] {
   font-weight: 600;
-  background: rgba(0, 0, 0, 0.17);
+  background: var(--color-selected-overlay);
 }
 
 /* ============================================================
@@ -355,7 +412,7 @@ nav:focus-within {
    ============================================================ */
 
 main {
-  padding-top: 10rem;
+  padding-top: var(--nav-height);
 }
 
 /* ============================================================
@@ -363,38 +420,38 @@ main {
    ============================================================ */
 
 .project-header {
-  padding: 4rem var(--page-margin) 4rem;
+  padding: var(--space-10) var(--page-margin) var(--space-10);
 }
 
 .project-title {
-  font-size: clamp(5.6rem, 8.3vw + 1.5rem, 14.4rem);
+  font-size: var(--text-display);
   font-weight: 800;
   line-height: 0.97;
   letter-spacing: -0.035em;
-  color: var(--color-black);
-  margin-bottom: 3.6rem;
+  color: var(--color-fg);
+  margin-bottom: var(--space-9);
 }
 
 .capabilities-block {
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: var(--space-3);
 }
 
 .capabilities-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.8rem;
+  gap: var(--space-2);
 }
 
 .tag {
   font-size: 1.7rem;
   font-weight: 500;
   letter-spacing: 0.01em;
-  color: var(--color-black);
-  border: 2px solid var(--color-black);
-  border-radius: 10rem;
-  padding: 0.8rem 2rem;
+  color: var(--color-fg);
+  border: 2px solid var(--color-fg);
+  border-radius: var(--radius-pill);
+  padding: var(--space-2) var(--space-5);
   transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
   text-decoration: none;
   cursor: pointer;
@@ -402,9 +459,9 @@ main {
 
 .tag:hover,
 .tag--active {
-  background: var(--color-black);
+  background: var(--color-fg);
   color: var(--color-bg);
-  border-color: var(--color-black);
+  border-color: var(--color-fg);
 }
 
 /* ============================================================
@@ -428,10 +485,10 @@ main {
    ============================================================ */
 
 .intro-text {
-  padding: 7rem var(--page-margin) 6rem;
+  padding: 7rem var(--page-margin) var(--space-15);
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 6rem;
+  gap: var(--space-15);
 }
 
 .intro-text:has(p:only-of-type) {
@@ -439,10 +496,10 @@ main {
 }
 
 .intro-text p {
-  font-size: 4.8rem; /* 48px — 3rem at standard 16px base */
+  font-size: var(--text-3xl);
   font-weight: 400;
   line-height: 1.4;
-  color: var(--color-black);
+  color: var(--color-fg);
 }
 
 /* ============================================================
@@ -450,19 +507,19 @@ main {
    ============================================================ */
 
 .image-grid-3 {
-  padding: 0 var(--page-margin) 1.6rem;
+  padding: 0 var(--page-margin) var(--space-4);
   display: grid;
   /* minmax(0, ...) so content min sizes (e.g. lottie skeletons) can't push the
      grid wider than the screen */
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.6rem;
+  gap: var(--space-4);
 }
 
 .image-grid-2 {
-  padding: 0 var(--page-margin) 1.6rem;
+  padding: 0 var(--page-margin) var(--space-4);
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.6rem;
+  gap: var(--space-4);
 }
 
 .image-grid-3 img {
@@ -482,7 +539,7 @@ main {
    ============================================================ */
 
 .full-image {
-  padding: 0 var(--page-margin) 1.6rem;
+  padding: 0 var(--page-margin) var(--space-4);
 }
 
 .full-image img,
@@ -498,23 +555,23 @@ main {
    ============================================================ */
 
 .text-section {
-  padding: 4.8rem var(--page-margin) 6rem;
+  padding: var(--space-12) var(--page-margin) var(--space-15);
   text-align: center;
 }
 
 .section-heading {
-  font-size: 4.8rem;
+  font-size: var(--text-3xl);
   font-weight: 700;
   letter-spacing: -0.025em;
-  color: var(--color-black);
+  color: var(--color-fg);
   margin-bottom: 1.8rem;
 }
 
 .body-text {
-  font-size: 2.4rem;
+  font-size: var(--text-lg);
   font-weight: 400;
   line-height: 1.75;
-  color: var(--color-black);
+  color: var(--color-fg);
   max-width: 72rem;
   margin-left: auto;
   margin-right: auto;
@@ -523,7 +580,7 @@ main {
 .text-two-col {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 6rem;
+  gap: var(--space-15);
 }
 
 /* ============================================================
@@ -531,18 +588,18 @@ main {
    ============================================================ */
 
 .pullquote {
-  padding: 8rem var(--page-margin);
+  padding: var(--space-20) var(--page-margin);
   text-align: center;
 }
 
 .pullquote blockquote {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(3.6rem, 3vw + 1.8rem, 5.6rem);
+  font-size: var(--text-quote);
   font-weight: 400;
   font-style: italic;
   line-height: 1.3;
   letter-spacing: -0.02em;
-  color: var(--color-black);
+  color: var(--color-fg);
   max-width: 96rem;
   margin: 0 auto;
 }
@@ -552,7 +609,7 @@ main {
    ============================================================ */
 
 .next-project {
-  padding: 8rem var(--page-margin) 10rem;
+  padding: var(--space-20) var(--page-margin) var(--space-25);
   background-color: transparent;
   position: relative;
 }
@@ -560,7 +617,7 @@ main {
 .next-project-bg {
   position: absolute;
   inset: 0;
-  background-color: #FFBF00;
+  /* background-color is written per page by inject-colors.mjs */
 }
 
 .next-label {
@@ -569,18 +626,17 @@ main {
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(0, 0, 0, 0.68);
-  margin-bottom: 1.6rem;
+  color: var(--color-next-fg);
+  margin-bottom: var(--space-4);
   cursor: default;
 }
 
 .next-project-title {
-  /* min() lets long single words (Iconography, Paradesmith) fit at 320px */
-  font-size: clamp(min(6.4rem, 16.25vw), 9vw, 11.2rem);
+  font-size: var(--text-display-next);
   font-weight: 800;
   letter-spacing: -0.04em;
   line-height: 0.95;
-  color: rgba(0, 0, 0, 0.68);
+  color: var(--color-next-fg);
   transition: filter 0.2s ease;
   text-decoration: none;
   display: inline-block;
@@ -599,20 +655,20 @@ main {
    ============================================================ */
 
 footer {
-  padding: 5.6rem var(--page-margin);
-  background-color: #F0C0CC;
+  padding: var(--space-14) var(--page-margin);
+  background-color: var(--color-footer-bg);
   text-align: center;
-  color: #000;
+  color: var(--color-footer-fg);
 }
 
 .footer-copy {
-  font-size: 2.4rem;
+  font-size: var(--text-lg);
   font-weight: 400;
-  color: #000;
+  color: var(--color-footer-fg);
 }
 
 .img-caption {
-  font-size: 1.6rem;
+  font-size: var(--text-sm);
   font-weight: 400;
   margin-top: 1rem;
 }
@@ -623,17 +679,17 @@ footer {
 
 /* Stacked on left, tall on right */
 .image-split-tall {
-  padding: 0 var(--page-margin) 1.6rem;
+  padding: 0 var(--page-margin) var(--space-4);
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.6rem;
+  gap: var(--space-4);
   align-items: stretch;
 }
 
 .image-split-tall__stack {
   display: flex;
   flex-direction: column;
-  gap: 1.6rem;
+  gap: var(--space-4);
 }
 
 .image-split-tall__stack img {
@@ -658,7 +714,7 @@ footer {
 
 .carousel-wrapper {
   overflow: hidden;
-  padding-bottom: 8rem;
+  padding-bottom: var(--space-20);
   cursor: grab;
   user-select: none;
 }
@@ -669,7 +725,7 @@ footer {
 
 .carousel-track {
   display: flex;
-  gap: 1.6rem;
+  gap: var(--space-4);
   width: max-content;
   animation: marquee 36s linear infinite;
 }
@@ -698,7 +754,7 @@ footer {
    ============================================================ */
 
 .lottie-container {
-  padding: 0 var(--page-margin) 1.6rem;
+  padding: 0 var(--page-margin) var(--space-4);
 }
 
 .lottie-container > div {
@@ -715,10 +771,10 @@ footer {
 }
 
 .lottie-two-col {
-  padding: 0 var(--page-margin) 1.6rem;
+  padding: 0 var(--page-margin) var(--space-4);
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.6rem;
+  gap: var(--space-4);
 }
 
 .lottie-two-col .lottie-container {
@@ -770,7 +826,7 @@ footer {
 /* Tablet */
 @media (max-width: 1024px) {
   .intro-text p {
-    font-size: 3.6rem;
+    font-size: var(--text-2xl);
   }
 }
 
@@ -783,22 +839,21 @@ footer {
 
 /* Mobile */
 @media (max-width: 640px) {
-  nav {
-    height: 8rem;
-    padding-right: calc(var(--page-margin) + 0.8rem);
+  :root {
+    --nav-height: 8rem;
   }
 
-  main {
-    padding-top: 8rem;
+  nav {
+    padding-right: calc(var(--page-margin) + var(--space-2));
   }
 
   .intro-text {
     grid-template-columns: 1fr;
-    gap: 3.2rem;
+    gap: var(--space-8);
   }
 
   .intro-text p {
-    font-size: 2.8rem;
+    font-size: var(--text-xl);
   }
 
   .text-section {
@@ -806,18 +861,18 @@ footer {
   }
 
   .section-heading {
-    font-size: 3.6rem;
+    font-size: var(--text-2xl);
   }
 
   .body-text {
-    font-size: 1.8rem;
+    font-size: var(--text-md);
     margin-left: 0;
     margin-right: 0;
   }
 
   .text-two-col {
     grid-template-columns: 1fr;
-    gap: 3.2rem;
+    gap: var(--space-8);
   }
 
   .lottie-two-col {
@@ -831,18 +886,18 @@ footer {
   .lottie-container,
   .lottie-two-col,
   .image-split-tall {
-    padding-bottom: 2.4rem;
+    padding-bottom: var(--space-6);
   }
 
   .image-grid-2,
   .image-grid-3,
   .lottie-two-col,
   .image-split-tall {
-    gap: 2.4rem;
+    gap: var(--space-6);
   }
 
   .image-split-tall__stack {
-    gap: 2.4rem;
+    gap: var(--space-6);
   }
 }
 
@@ -854,7 +909,7 @@ footer {
 ::view-transition-group(ink-bg) {
   animation-duration: 0.85s;
   animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-  z-index: 1;
+  z-index: var(--z-raised);
 }
 
 ::view-transition-old(ink-bg),
@@ -899,9 +954,9 @@ footer {
 
 [data-lottie]:not(:has(> svg)),
 img.is-loading {
-  background-color: rgba(0, 0, 0, 0.06);
+  background-color: var(--color-skeleton);
   background-image: linear-gradient(90deg,
-    transparent 0%, rgba(255, 255, 255, 0.45) 50%, transparent 100%);
+    transparent 0%, var(--color-skeleton-shine) 50%, transparent 100%);
   background-size: 50% 100%;
   background-repeat: no-repeat;
   animation: skeleton-shimmer 1.6s ease-in-out infinite;

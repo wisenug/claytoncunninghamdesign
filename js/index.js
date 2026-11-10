@@ -4,22 +4,16 @@
 // View transition: ink-spill from card into project page.
 // Colors come from the shared manifest in projects.js.
 (function () {
-  var colorsByHref = {};
-  (window.CCD_PROJECTS || []).forEach(function (p) {
-    colorsByHref[p.href] = [p.bgColor, p.fgColor];
-  });
+  var known = {};
+  (window.CCD_PROJECTS || []).forEach(function (p) { known[p.href] = true; });
   document.querySelectorAll('.work-card').forEach(function (card) {
-    var colors = colorsByHref[card.getAttribute('href')];
-    if (!colors) return;
-    var bg = colors[0], fg = colors[1];
+    if (!known[card.getAttribute('href')]) return;
+    // Ink and label colors come from the card's --card-bg / --card-fg
+    // (generated into index.html by inject-colors.mjs).
     var inkEl = document.createElement('div');
     inkEl.className = 'work-card__ink-bg';
     inkEl.setAttribute('aria-hidden', 'true');
-    inkEl.style.background = bg;
     card.insertBefore(inkEl, card.firstChild);
-    var labelEl = card.querySelector('.work-card__label');
-    labelEl.style.background = bg;
-    labelEl.style.color = fg;
     card.addEventListener('click', function (e) {
       // New-tab opens: leave the page's static names in place.
       if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;

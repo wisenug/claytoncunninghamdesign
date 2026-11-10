@@ -136,7 +136,7 @@ for (const [href, a] of Object.entries(ARTICLE_CARDS)) {
 
 const byHref = Object.fromEntries(CCD_PROJECTS.map(p => [p.href, p]));
 const home = await render('og-home.jpg', {
-  bg: '#0B2D52', fg: '#ffffff',   // index.html's --color-bg / --color-black
+  bg: '#0B2D52', fg: '#ffffff',   // index.html's --color-bg / --color-fg
   tiles: HOME_PROJECTS.map(h => ({ bg: byHref[h].bgColor, image: byHref[h].image })),
 }, homeCardHtml);
 await updateMeta('index.html', home);
