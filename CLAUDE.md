@@ -22,9 +22,9 @@ Clayton Cunningham's portfolio. Hand-written static HTML, one shared stylesheet,
 |---|---|
 | `*.html` (root) | One file per page: home, about, case studies, process write-ups, licensing, 404, redirect stubs |
 | `dino/`, `reba/` | Standalone fun pages, served at `/dino/` and `/reba/` |
-| `styles.css` | Shared styles. Each page sets its own `--color-bg` / `--color-black` and adds page-specific rules in an inline `<style>` |
+| `styles.css` | Shared styles. Each page sets its own `--color-bg` / `--color-fg` and adds page-specific rules in an inline `<style>` |
 | `js/site.js` | Shared behaviors for every page (`window.CCD`), including the Lottie loader |
-| `js/projects.js` | **Single source of truth for project metadata** (`CCD_PROJECTS`, `CCD_ARTICLES`). Feeds the home grid, JSON-LD, OG cards, RSS |
+| `js/projects.js` | **Single source of truth for project metadata** (`CCD_PROJECTS`, `CCD_ARTICLES`), including each page's colors. Feeds the home grid, JSON-LD, OG cards, RSS |
 | `js/*.js` | Page scripts (`index.js`, `about.js`, `shoe-rotation.js`, Iris showcase scripts, etc.) |
 | `js/vendor/lottie.ccd.min.js` | Custom lottie-web 5.13.0 build (SVG renderer plus Drop Shadow, nothing else), loaded on demand by `site.js`. Rebuild with `bash tools/lottie/build.sh` |
 | `tools/lottie/` | Source for that custom build, plus `check-features.mjs` (run it after adding an animation) |
@@ -34,7 +34,7 @@ Clayton Cunningham's portfolio. Hand-written static HTML, one shared stylesheet,
 | `*.mjs` (root) | Tooling scripts, never deployed |
 | `checks/validate-site.mjs` | Link, JSON-LD, sitemap, llms.txt, RSS validator |
 
-Script tags use `?v=` query strings for cache busting. Bump the value when you change a JS file.
+CSS and JS references carry a `?v=` content hash for cache busting. Never edit it by hand: run `node stamp-assets.mjs` after changing any CSS or JS file (CI fails if a hash is stale).
 
 ## Local dev
 - `npm ci`, then `node serve.mjs` serves the root at `http://localhost:3000` (byte ranges supported, so video works in Safari). Don't start a second instance if one is running.
@@ -44,7 +44,7 @@ Script tags use `?v=` query strings for cache busting. Bump the value when you c
 ## Checks (same as CI)
 ```
 node checks/validate-site.mjs
-node inject-schema.mjs && node generate-rss.mjs && node generate-sitemap.mjs
+node inject-colors.mjs && node inject-schema.mjs && node generate-rss.mjs && node generate-sitemap.mjs && node stamp-assets.mjs
 git diff --exit-code -I '<lastmod>'      # generators must be idempotent
 node inject-csp.mjs --check              # CSP meta tags match the policy in inject-csp.mjs
 node serve.mjs &  node check-csp.mjs      # headless Chrome, every page: loads, JS errors, missing files, CSP
@@ -61,7 +61,7 @@ To change the CSP, edit the policy in `inject-csp.mjs` and run it: it rewrites t
 4. `node embed-image-credits.mjs` writes copyright metadata into the files, AVIF included (needs `exiftool`).
 5. Move the PNG/JPG original to `~/Desktop/ccd-originals/` and delete it from the repo.
 
-**Adding a project.** Add an entry to `CCD_PROJECTS` in `js/projects.js` (with the page's bg/fg colors). Then run `inject-schema.mjs`, `generate-og-cards.mjs` (needs the dev server running), and `generate-sitemap.mjs`. Add a write-up to `CCD_ARTICLES` and run `generate-rss.mjs`.
+**Adding a project.** Add an entry to `CCD_PROJECTS` in `js/projects.js` (with the page's bg/fg colors). Then run `inject-colors.mjs` (writes the page's `--color-bg`/`--color-fg`, `theme-color`, next-project band and home card colors; never hand-edit those), `inject-schema.mjs`, `generate-og-cards.mjs` (needs the dev server running), and `generate-sitemap.mjs`. Add a write-up to `CCD_ARTICLES` and run `generate-rss.mjs`.
 
 **Adding a Lottie.** Use a `[data-lottie]` container (or `CCD.loadLottie`, which returns a promise); the player loads itself on first use, so never add a `<script>` tag for it. Run `node tools/lottie/check-features.mjs` to confirm the animation only uses features in the custom build. If it embeds PNGs, add it to the `FILES` list in `optimize-lottie-images.mjs` and run that script to convert them to WebP.
 

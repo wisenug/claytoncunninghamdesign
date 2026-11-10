@@ -8,7 +8,7 @@
   <link rel="icon" type="image/png" sizes="192x192" href="img/icon-192.png">
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
-  <meta name="theme-color" content="#001F6E">
+  <meta name="theme-color" content="#F5F1E8">
   <link rel="canonical" href="https://www.claytoncunninghamdesign.com/motion-animation.html">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Clayton Cunningham Design">
@@ -26,18 +26,19 @@
   <title>Motion &amp; Animation • Clayton Cunningham Design</title>
   <meta name="description" content="A collection of moving things, compiled from various projects." />
   <link rel="preload" href="fonts/dm-sans-04.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=20261107a">
+  <link rel="preload" href="fonts/playfair-display-08.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css?v=f4b45c40a8">
   <style>
     :root {
       --color-bg: #F5F1E8;
-      --color-black: #14213D;
+      --color-fg: #14213D;
       --at-orange: #FF8806;
       --at-navy: #001F6E;
     }
 
     /* ── Masthead ── */
     .motion-masthead {
-      padding: 6rem var(--page-margin) 2rem;
+      padding: var(--space-15) var(--page-margin) var(--space-5);
     }
 
     .motion-title {
@@ -45,20 +46,20 @@
       font-weight: 800;
       line-height: 0.98;
       letter-spacing: -0.035em;
-      color: var(--color-black);
+      color: var(--color-fg);
     }
 
     .motion-subtitle {
-      font-size: 4.8rem;
+      font-size: var(--text-3xl);
       font-weight: 400;
       line-height: 1.4;
       color: rgba(20, 33, 61, 0.68);
       max-width: 90rem;
-      margin-top: 1.8rem;
+      margin-top: var(--space-5);
     }
 
     .brand-section-header {
-      padding: 7rem var(--page-margin) 0;
+      padding: var(--space-18) var(--page-margin) 0;
     }
 
     .brand-section-header .section-heading {
@@ -70,8 +71,8 @@
     .vt-bg {
       position: fixed;
       inset: 0;
-      background-color: #F5F1E8;
-      z-index: -1;
+      background-color: var(--color-bg);
+      z-index: var(--z-below);
       pointer-events: none;
       view-transition-name: ink-bg;
     }
@@ -104,7 +105,7 @@
     }
 
     .hero-anim {
-      padding: 4rem var(--page-margin) 1.6rem;
+      padding: var(--space-10) var(--page-margin) var(--space-4);
     }
 
     .hero-anim .lottie-block {
@@ -113,12 +114,12 @@
 
     /* Two phone-shaped product demos, side by side */
     .phone-pair .lottie-block {
-      background: #F5F1E8;
+      background: var(--color-bg);
     }
 
     /* Pulse / Bounce — full-bleed, edge to edge; stays two-up at every viewport width */
     .pulse-bounce-row {
-      padding: 1.6rem 0 0;
+      padding: var(--space-4) 0 0;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 0;
@@ -135,7 +136,7 @@
 
     /* Save interaction split: one tall, two stacked */
     .save-split {
-      padding-top: 1.6rem;
+      padding-top: var(--space-4);
     }
 
     .save-split video,
@@ -164,26 +165,26 @@
     /* ── KBB — inverted navy band ── */
     .kbb-section-bg {
       background: var(--at-navy);
-      padding: 7rem 0 6rem;
+      padding: var(--space-18) 0 var(--space-15);
     }
 
     .kbb-heading-wrap {
       padding: 0 var(--page-margin);
-      margin-bottom: 3rem;
+      margin-bottom: var(--space-8);
     }
 
     .kbb-section-bg .section-heading {
       text-align: left;
-      color: #F5F1E8;
+      color: var(--color-bg);
       margin-bottom: 0;
     }
 
     .kbb-section-bg .pullquote blockquote {
-      color: #F5F1E8;
+      color: var(--color-bg);
     }
 
     .kbb-section-bg .intro-text p {
-      color: #F5F1E8;
+      color: var(--color-bg);
     }
 
     .kbb-section-bg .img-caption {
@@ -214,14 +215,14 @@
        widths lands them at matching heights while the chat panel keeps the
        ratio it was supplied at. */
     .kelley-pair {
-      padding: 0 var(--page-margin) 1.6rem;
+      padding: 0 var(--page-margin) var(--space-4);
       display: grid;
       grid-template-columns: 367fr 800fr;
-      gap: 1.6rem;
+      gap: var(--space-4);
     }
 
     .heart-alternatives {
-      padding-top: 3rem;
+      padding-top: var(--space-8);
     }
 
     /* This clip is dark artwork on the navy band. The generic white
@@ -232,7 +233,7 @@
     }
 
     .heart-duo {
-      margin-top: 3rem;
+      margin-top: var(--space-8);
     }
 
     .heart-duo > div:first-child .lottie-block svg {
@@ -242,25 +243,25 @@
 
     @media (max-width: 1024px) {
       .motion-subtitle {
-        font-size: 3.6rem;
+        font-size: var(--text-2xl);
       }
     }
 
     @media (max-width: 640px) {
       .motion-masthead {
-        padding: 5rem var(--page-margin) 1.6rem;
+        padding: var(--space-13) var(--page-margin) var(--space-4);
       }
 
       .motion-subtitle {
-        font-size: 2.8rem;
+        font-size: var(--text-xl);
       }
 
       .brand-section-header {
-        padding-top: 5rem;
+        padding-top: var(--space-13);
       }
 
       .phone-pair {
-        gap: 1.2rem;
+        gap: var(--space-3);
       }
     }
   </style>
@@ -282,16 +283,15 @@
           "url": "https://www.claytoncunninghamdesign.com/"
         },
         "copyrightHolder": {
-          "@type": "Person",
-          "@id": "https://www.claytoncunninghamdesign.com/#clayton",
-          "name": "Clayton Cunningham",
-          "url": "https://www.claytoncunninghamdesign.com/"
+          "@type": "Organization",
+          "name": "Cox Automotive",
+          "url": "https://www.coxautomotive.com"
         },
-        "copyrightNotice": "© Clayton Cunningham. All rights reserved. Not licensed for AI or machine-learning training without explicit written permission.",
-        "creditText": "Clayton Cunningham",
-        "license": "https://www.claytoncunninghamdesign.com/licensing.html",
-        "acquireLicensePage": "https://www.claytoncunninghamdesign.com/licensing.html",
-        "disambiguatingDescription": "Original personal work by Clayton Cunningham, created outside of any client engagement.",
+        "sourceOrganization": {
+          "@type": "Organization",
+          "name": "Cox Automotive"
+        },
+        "disambiguatingDescription": "Designed by Clayton Cunningham as Senior Product Designer at Cox Automotive. Copyright is held by Cox Automotive.",
         "keywords": [
           "Motion Design"
         ]
@@ -467,7 +467,7 @@
     </div>
 
     <!-- Next project -->
-    <section class="next-project" style="margin-top: 8rem;" aria-label="Navigate to next project">
+    <section class="next-project" style="margin-top: var(--space-20);" aria-label="Navigate to next project">
       <div class="next-project-bg" aria-hidden="true" style="background-color: #F5F5F5;"></div>
       <span class="next-label" aria-hidden="true">Next Project</span>
       <a href="iris-design-system.html" class="next-project-title">
@@ -481,6 +481,6 @@
     <p class="footer-copy">&copy; <span id="footer-year"></span> Clayton Cunningham Design.</p>
   </footer>
 
-  <script src="js/site.js?v=20261109"></script>
+  <script src="js/site.js?v=1351b8f5ef"></script>
 </body>
 </html>

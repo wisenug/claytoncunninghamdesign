@@ -26,9 +26,16 @@
     });
   }
 
-  setInterval(function () {
+  function next() {
     if (document.hidden || CCD.motionPaused) return;
     idx = (idx + 1) % words.length;
     render(words[idx]);
-  }, 2000);
+  }
+
+  // First swap comes early so the cycling reads as intentional right away,
+  // then settles into a steady rhythm.
+  setTimeout(function () {
+    next();
+    setInterval(next, 2000);
+  }, 1000);
 })();

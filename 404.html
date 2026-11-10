@@ -13,7 +13,7 @@
   <meta name="robots" content="noindex">
   <title>404 • Page Not Found · Clayton Cunningham Design</title>
   <link rel="preload" href="fonts/dm-sans-04.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=20261107a">
+  <link rel="stylesheet" href="styles.css?v=f4b45c40a8">
   <style>
     body {
       overflow: hidden;
@@ -53,7 +53,7 @@
     .fx-scanlines {
       position: fixed;
       inset: 0;
-      z-index: 1;
+      z-index: var(--z-raised);
       pointer-events: none;
       background: repeating-linear-gradient(
         to bottom,
@@ -85,7 +85,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding-top: 8rem;
+      padding-top: var(--space-20);
     }
 
     /* GB battle menu dialog */
@@ -93,10 +93,10 @@
       background: #F8F8F0;
       border: 4px solid #181818;
       position: relative;
-      padding: 3.2rem 4rem 2.8rem;
+      padding: var(--space-8) var(--space-10) var(--space-7);
       max-width: 60rem;
       width: calc(100% - 4rem);
-      animation: dialogRise 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+      animation: dialogRise var(--duration-enter) var(--ease-out) 0.1s both;
       image-rendering: pixelated;
     }
 
@@ -133,7 +133,7 @@
       font-size: clamp(1.0rem, 1.4vw, 1.3rem);
       color: #181818;
       letter-spacing: 0.06em;
-      margin-bottom: 1.6rem;
+      margin-bottom: var(--space-4);
     }
 
     .dialog-heading {
@@ -142,7 +142,7 @@
       font-weight: normal;
       color: #181818;
       line-height: 1.6;
-      margin-bottom: 2.4rem;
+      margin-bottom: var(--space-6);
       text-shadow: none;
     }
 
@@ -151,7 +151,7 @@
       font-size: clamp(1.1rem, 1.4vw, 1.4rem);
       color: #181818;
       line-height: 2.2;
-      margin-bottom: 3.2rem;
+      margin-bottom: var(--space-8);
     }
 
     .dialog-cta {
@@ -161,8 +161,8 @@
       text-decoration: none;
       display: inline-flex;
       align-items: center;
-      gap: 1rem;
-      padding: 1.2rem 2rem;
+      gap: var(--space-3);
+      padding: var(--space-3) var(--space-5);
       border: 3px solid #181818;
       transition: background 0.08s ease, color 0.08s ease, transform 0.08s ease;
       background: transparent;

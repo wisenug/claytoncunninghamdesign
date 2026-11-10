@@ -12,8 +12,8 @@ CCD.lotties = [];
 
 // The Lottie player is fetched on demand, the first time an animation needs
 // it, so it never blocks first paint (it used to sit in <head> on six pages).
-// It's a custom build, see tools/lottie/. Bump the ?v= when you rebuild it.
-CCD.lottieSrc = 'js/vendor/lottie.ccd.min.js?v=5.13.0-ccd1';
+// It's a custom build, see tools/lottie/. stamp-assets.mjs keeps the ?v= current.
+CCD.lottieSrc = 'js/vendor/lottie.ccd.min.js?v=94b9b4862c';
 CCD.lottieReady = null;
 CCD.whenLottie = function () {
   if (typeof lottie !== 'undefined') return Promise.resolve();
@@ -166,7 +166,7 @@ window.addEventListener('pagereveal', function (e) {
 (function () {
   var hero = document.querySelector('.hero-image');
   var heroImg = hero && hero.querySelector('img, video');
-  if (!hero || !heroImg) return;
+  if (!hero || !heroImg || CCD.prefersReducedMotion) return;
   var basePad = parseFloat(getComputedStyle(hero).paddingLeft);
   var raf = 0;
   function updateHero() {
@@ -192,10 +192,11 @@ window.addEventListener('pagereveal', function (e) {
 
 // Carousel: drag to scroll while keeping continuous auto-scroll
 (function () {
-  var DURATION = 36; // must match CSS marquee animation duration (seconds)
   var wrapper = document.querySelector('.carousel-wrapper');
   var track = document.querySelector('.carousel-track');
   if (!wrapper || !track) return;
+  // Speed lives in styles.css (.carousel-track animation); read it from there.
+  var DURATION = parseFloat(getComputedStyle(track).animationDuration) || 36;
 
   var isDragging = false;
   var startX = 0;
@@ -236,7 +237,7 @@ window.addEventListener('pagereveal', function (e) {
     var half = track.scrollWidth / 2;
     var progress = Math.abs(x) / half;
     track.style.transform = '';
-    track.style.animation = 'marquee ' + DURATION + 's linear infinite';
+    track.style.animation = ''; // hand the animation back to styles.css
     track.style.animationDelay = '-' + (progress * DURATION).toFixed(3) + 's';
   }
 
@@ -275,47 +276,14 @@ window.addEventListener('pagereveal', function (e) {
   });
 })();
 
-// Ink view-transition for statically rendered project cards (generated tag
-// pages).
-document.querySelectorAll('.project-card[data-static-ink]').forEach(function (card) {
-  var inkEl = card.querySelector('.project-card__ink-bg');
-  var labelEl = card.querySelector('.project-card__label');
-  if (!inkEl || !labelEl) return;
-  card.addEventListener('click', function () {
-    inkEl.style.opacity = '1';
-    inkEl.style.viewTransitionName = 'ink-bg';
-  });
-});
-
-// Card overlay: tap-to-reveal on touch devices.
-// Delegated so it also covers cards rendered after load (capabilities grid).
-(function () {
-  var SELECTOR = '.work-card, .project-card';
-  function clearAll(except) {
-    document.querySelectorAll(SELECTOR).forEach(function (c) {
-      if (c !== except) c.classList.remove('is-active');
-    });
-  }
-  document.addEventListener('touchend', function (e) {
-    var card = e.target.closest(SELECTOR);
-    if (!card) { clearAll(null); return; }
-    var isActive = card.classList.contains('is-active');
-    clearAll(card);
-    if (isActive) {
-      card.classList.remove('is-active');
-    } else {
-      e.preventDefault(); // prevent immediate navigation on first tap
-      card.classList.add('is-active');
-    }
-  }, { passive: false });
-})();
-
 // Re-land on a URL's #hash target after late layout shifts (lazy images,
 // data-lottie containers) settle — the browser's own hash-jump fires before
 // that content finishes sizing itself in and can land short.
 (function () {
   if (!location.hash) return;
-  var target = document.querySelector(location.hash);
+  var id;
+  try { id = decodeURIComponent(location.hash.slice(1)); } catch (e) { return; }
+  var target = document.getElementById(id);
   if (!target) return;
   window.addEventListener('load', function () {
     setTimeout(function () { target.scrollIntoView(); }, 300);

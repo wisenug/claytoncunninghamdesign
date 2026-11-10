@@ -8,7 +8,7 @@
   <link rel="icon" type="image/png" sizes="192x192" href="img/icon-192.png">
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
-  <meta name="theme-color" content="#0B2D52">
+  <meta name="theme-color" content="#4D93FC">
   <link rel="canonical" href="https://www.claytoncunninghamdesign.com/sketches-illustrations-doodles.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Clayton Cunningham Design">
@@ -27,19 +27,19 @@
   <meta name="description" content="A collection of drawn things: sketches, illustrations, and doodles by Clayton Cunningham.">
   <link rel="preload" href="fonts/dm-sans-04.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" as="image" fetchpriority="high" imagesrcset="img/sketch_stipple-w800.avif 800w, img/sketch_stipple-w1600.avif 1600w, img/sketch_stipple.avif 3000w" type="image/avif" imagesizes="100vw">
-  <link rel="stylesheet" href="styles.css?v=20261107a">
+  <link rel="stylesheet" href="styles.css?v=f4b45c40a8">
   <style>
     :root {
       --color-bg: #4D93FC;
-      --color-black: #19133A;
+      --color-fg: #19133A;
     }
 
     /* ── View transition ── */
     .vt-bg {
       position: fixed;
       inset: 0;
-      background-color: #4D93FC;
-      z-index: -1;
+      background-color: var(--color-bg);
+      z-index: var(--z-below);
       pointer-events: none;
       view-transition-name: ink-bg;
     }
@@ -51,14 +51,14 @@
     /* ── Inverted tag hover ── */
     .tag {
       border-color: rgba(25, 19, 58, 0.4);
-      color: #19133A;
+      color: var(--color-fg);
     }
 
     .tag:hover,
     .tag--active {
-      background: #19133A;
+      background: var(--color-fg);
       color: var(--color-bg);
-      border-color: #19133A;
+      border-color: var(--color-fg);
     }
 
     /* ── Video elements ── */
@@ -76,7 +76,7 @@
 
     /* ── Next project ── */
     .next-project-wrap {
-      margin-top: 8rem;
+      margin-top: var(--space-20);
     }
   </style>
   <script type="application/ld+json">
@@ -178,7 +178,7 @@
     </div>
 
     <div class="full-image">
-      <video autoplay muted playsinline loop>
+      <video width="2000" height="2000" autoplay muted playsinline loop aria-label="Animated illustration of a brown puppy with a green collar, sitting with its tongue out">
         <source src="img/sketch_pooch.mp4" type="video/mp4">
       </video>
     </div>
@@ -196,7 +196,7 @@
     </div>
 
     <div class="full-image">
-      <video autoplay muted playsinline loop>
+      <video width="1552" height="1084" autoplay muted playsinline loop aria-label="Animated line doodle of an alligator, a smiling sun, a rainbow, a mushroom, and birds">
         <source src="img/sketch_alligator-v2.mp4" type="video/mp4">
       </video>
     </div>
@@ -211,7 +211,7 @@
     </div>
 
     <div class="full-image">
-      <video autoplay muted playsinline loop>
+      <video width="768" height="1100" autoplay muted playsinline loop aria-label="Animated pen and ink doodle collage with a wizard, a guitar, a cactus, speakers, and a basketball player">
         <source src="img/sketch_wizards_n_thangzcollage-v2.mp4" type="video/mp4">
       </video>
     </div>
@@ -257,7 +257,7 @@
     </div>
 
     <div class="full-image">
-      <video autoplay muted playsinline loop>
+      <video width="768" height="1100" autoplay muted playsinline loop aria-label="Animated illustration of a snarling brown bear face on a red background">
         <source src="img/sketch_wooly_bully-v2.mp4" type="video/mp4">
       </video>
     </div>
@@ -284,7 +284,7 @@
     </div>
 
     <div class="full-image">
-      <video autoplay muted playsinline loop>
+      <video width="1088" height="1088" autoplay muted playsinline loop aria-label="Animated hand-lettered FRIDAY in textured blue block letters">
         <source src="img/sketch_friday-v2.mp4" type="video/mp4">
       </video>
     </div>
@@ -331,7 +331,7 @@
     </div>
 
     <div class="full-image">
-      <video autoplay muted playsinline loop>
+      <video width="768" height="1100" autoplay muted playsinline loop aria-label="Animated line doodle on blue with a rooster on a brick wall, a car, building blocks, pizza, and peace signs">
         <source src="img/sketch_blue_rooster-v2.mp4" type="video/mp4">
       </video>
     </div>
@@ -364,7 +364,7 @@
     </div>
 
     <div class="full-image">
-      <video autoplay muted playsinline loop>
+      <video width="768" height="1100" autoplay muted playsinline loop aria-label="Animated western-style HOWDY lettering on a tan background">
         <source src="img/sketch_howdy-v2.mp4" type="video/mp4">
       </video>
     </div>
@@ -402,7 +402,7 @@
     </div>
 
     <div class="full-image">
-      <video autoplay muted playsinline loop>
+      <video width="768" height="1100" autoplay muted playsinline loop aria-label="Animated illustration of a turkey with its tail fanned out on an orange background">
         <source src="img/sketch_turkeyday-v2.mp4" type="video/mp4">
       </video>
     </div>
@@ -422,7 +422,7 @@
     </div>
 
     <!-- Next project -->
-    <section class="next-project next-project-wrap" style="margin-top: 8rem;" aria-label="Navigate to next project">
+    <section class="next-project next-project-wrap" style="margin-top: var(--space-20);" aria-label="Navigate to next project">
       <div class="next-project-bg" aria-hidden="true" style="background-color: #07465A;"></div>
       <span class="next-label" style="color: #1BBFCA;">Next Project</span>
       <a href="paradesmith.html" class="next-project-title" style="color: rgba(27, 191, 202, 0.75);">
@@ -436,7 +436,7 @@
     <p class="footer-copy">&copy; <span id="footer-year"></span> Clayton Cunningham Design.</p>
   </footer>
 
-  <script src="js/site.js?v=20261109"></script>
+  <script src="js/site.js?v=1351b8f5ef"></script>
   <!-- Cloudflare Web Analytics -->
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "965f2ad8267d4463890153ababb0dd33"}'></script>
   <!-- End Cloudflare Web Analytics -->

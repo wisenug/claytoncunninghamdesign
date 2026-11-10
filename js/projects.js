@@ -1,7 +1,8 @@
 /* projects.js — single source of truth for project metadata.
    Consumed by index.js (view-transition ink colors, ?cap= filter) and
    inject-schema.mjs (JSON-LD). To add a project, add one entry here with the
-   page's [--color-bg, --color-black] as bgColor/fgColor.
+   page's [--color-bg, --color-fg] as bgColor/fgColor, then run inject-colors.mjs,
+   which writes those colors into the pages (never hand-edit them there).
    homeOnly: true — gets ink colors on the home page but stays out of the
    filterable grid. */
 
@@ -93,7 +94,7 @@ window.CCD_PROJECTS = [
   {
     href: 'coca-cola-campus-messaging.html',
     bgColor: '#DE4138',
-    fgColor: '#000000',
+    fgColor: '#1F0503',
     image: 'img/cm_thumbnail.webp',
     alt: 'Coca-Cola Campus Messaging',
     client: 'Coca-Cola',
@@ -129,7 +130,7 @@ window.CCD_PROJECTS = [
     fgColor: '#14213D',
     image: 'img/motion-thumbnail-poster.webp',
     alt: 'Motion and animation reel',
-    client: 'Personal',
+    client: 'Cox Automotive',
     title: 'Motion & Animation',
     label: 'Interface motion, micro-interactions, and animated data',
     tags: ['Motion Design']
