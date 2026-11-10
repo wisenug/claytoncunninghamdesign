@@ -252,14 +252,15 @@
       transform: translateY(0);
     }
 
+    /* Holla! on top, LinkedIn underneath; both stretch to the wider one */
     .cta-actions {
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: column;
       gap: var(--space-3);
     }
 
     /* Secondary action: inset ring instead of a border so both pills share
-       the same height */
+       the same size */
     .cta-btn--outline {
       color: #091f3a;
       background: transparent;
@@ -301,10 +302,6 @@
       .about-cta {
         grid-template-columns: 1fr;
         gap: var(--space-8);
-      }
-
-      .cta-actions .cta-btn {
-        flex: 1;
       }
     }
 
