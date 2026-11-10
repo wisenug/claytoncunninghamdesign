@@ -30,12 +30,13 @@ jobs:
       - name: Validate links, JSON-LD, sitemap, llms.txt
         run: node checks/validate-site.mjs
 
-      - name: Generator idempotency (colors, schema, RSS, sitemap)
+      - name: Generator idempotency (colors, schema, RSS, sitemap, asset hashes)
         run: |
           node inject-colors.mjs
           node inject-schema.mjs
           node generate-rss.mjs
           node generate-sitemap.mjs
+          node stamp-assets.mjs
           # lastmod lines shift when the generating commit differs from the
           # committed sitemap's vantage point; everything else must be stable
           git diff --exit-code -I '<lastmod>'

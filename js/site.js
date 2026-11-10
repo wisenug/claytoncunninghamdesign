@@ -7,8 +7,8 @@ CCD.prefersReducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matche
 
 // The Lottie player is fetched on demand, the first time an animation needs
 // it, so it never blocks first paint (it used to sit in <head> on six pages).
-// It's a custom build, see tools/lottie/. Bump the ?v= when you rebuild it.
-CCD.lottieSrc = 'js/vendor/lottie.ccd.min.js?v=5.13.0-ccd1';
+// It's a custom build, see tools/lottie/. stamp-assets.mjs keeps the ?v= current.
+CCD.lottieSrc = 'js/vendor/lottie.ccd.min.js?v=94b9b4862c';
 CCD.lottieReady = null;
 CCD.whenLottie = function () {
   if (typeof lottie !== 'undefined') return Promise.resolve();
