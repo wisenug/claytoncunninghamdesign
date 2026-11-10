@@ -1,7 +1,7 @@
 /* ring-dots.js: dotted rings behind the about photo. Requires site.js.
 
-   Two rings of dots sit behind the circular photo: a light ring touching the
-   photo and a darker ring touching that. Dots push away from the cursor on
+   A light disc of dots sits behind the circular photo, with a darker ring
+   touching its outer edge. Dots push away from the cursor on
    hover and ripple outward on click or tap. On touch screens a finger
    pushes the dots, including while scrolling past. Press and hold sends
    ripples out until release. With reduced motion the rings are static.
@@ -18,8 +18,9 @@
       // Rings, in multiples of the photo radius (1 = photo edge).
       // fade: 0 = solid dots, 1 = dissolves to nothing toward the outer edge.
       bands: [
-        // Starts well under the photo (0.80) so the existing tilt/parallax never exposes a gap.
-        { from: 0.80, to: 1.09, color: '184, 217, 245', fade: 0 },    // light ring hugging the photo
+        // A full disc (from 0), not a ring: when the dots get pushed or the photo tilts,
+        // more light dots show from behind the photo instead of a hole.
+        { from: 0, to: 1.09, color: '184, 217, 245', fade: 0 },       // light disc behind the photo
         { from: 1.09, to: 1.22, color: '74, 134, 196', fade: 0.55 }   // darker outer ring, touching the first
       ],
       cell: 3,            // px between dots
