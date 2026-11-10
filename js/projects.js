@@ -130,7 +130,7 @@ window.CCD_PROJECTS = [
     fgColor: '#14213D',
     image: 'img/motion-thumbnail-poster.webp',
     alt: 'Motion and animation reel',
-    client: 'Personal',
+    client: 'Cox Automotive',
     title: 'Motion & Animation',
     label: 'Interface motion, micro-interactions, and animated data',
     tags: ['Motion Design']

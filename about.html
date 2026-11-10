@@ -252,6 +252,26 @@
       transform: translateY(0);
     }
 
+    /* Holla! on top, LinkedIn underneath; both stretch to the wider one */
+    .cta-actions {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    /* Secondary action: inset ring instead of a border so both pills share
+       the same size */
+    .cta-btn--outline {
+      color: #091f3a;
+      background: transparent;
+      box-shadow: inset 0 0 0 2px #091f3a;
+    }
+
+    .cta-btn--outline:hover {
+      color: #C5DFFB;
+      background: #091f3a;
+    }
+
     .cta-license {
       font-size: clamp(2.8rem, 3.6vw, 5rem);
       font-weight: 800;
@@ -481,7 +501,10 @@
           <p class="cta-text">Ready to make something cool? I'd love to hear about your project.</p>
           <p class="cta-license"><a href="licensing.html">Licensing</a></p>
         </div>
-        <a href="mailto:info@claytoncunninghamdesign.com" class="cta-btn">Holla!</a>
+        <div class="cta-actions">
+          <a href="mailto:info@claytoncunninghamdesign.com" class="cta-btn">Holla!</a>
+          <a href="https://www.linkedin.com/in/clayton-cunningham-4057aa29" class="cta-btn cta-btn--outline" rel="me">LinkedIn</a>
+        </div>
       </div>
 
     </section>
