@@ -2,8 +2,9 @@
 
    Two rings of dots sit behind the circular photo: a light ring touching the
    photo and a darker ring touching that. Dots push away from the cursor on
-   hover and ripple outward on click or tap. With reduced motion the rings
-   are static.
+   hover and ripple outward on click or tap. On touch screens a finger
+   pushes the dots, including while scrolling past. With reduced motion the
+   rings are static.
 
    The canvas is added as the first child of #photo-wrap, sits behind the
    photo, ignores pointer events (nearby links stay clickable) and never
@@ -27,7 +28,7 @@
       strength: 30,       // max hover push in px
       falloff: 3,         // 3 = cubic, tight around the cursor
       ease: 0.12,         // how fast dots chase their target
-      wave: { speed: 450, width: 40, strength: 18, duration: 1000 },  // click ripple (fast enough to reach the rings from the photo center)
+      wave: { speed: 450, width: 44, strength: 32, duration: 1000 },  // click ripple (fast enough to reach the rings from the photo center)
       ...options
     };
 
@@ -155,7 +156,29 @@
       wake();
     };
 
+    // Touch: there is no hover on a phone, so a finger pushes the dots instead.
+    // Touch events keep firing while the page scrolls (pointer events are
+    // cancelled), so the rings react as a thumb passes over them. Passive
+    // listeners: scrolling is never blocked.
+    let touchTimer = 0;
+    const onTouch = e => {
+      const t = e.touches[0];
+      if (!t) return;
+      clearTimeout(touchTimer);
+      const p = local(t), was = mouse.on;
+      mouse.on = near(p); mouse.x = p.x; mouse.y = p.y;
+      if (mouse.on || was) wake();
+    };
+    const onTouchEnd = () => {
+      clearTimeout(touchTimer);
+      touchTimer = setTimeout(() => { if (mouse.on) { mouse.on = false; wake(); } }, 350);
+    };
+
     if (!reduceMotion) {                                   // reduced motion: static rings
+      window.addEventListener('touchstart', onTouch, { passive: true });
+      window.addEventListener('touchmove', onTouch, { passive: true });
+      window.addEventListener('touchend', onTouchEnd, { passive: true });
+      window.addEventListener('touchcancel', onTouchEnd, { passive: true });
       window.addEventListener('pointermove', onMove, { passive: true });
       window.addEventListener('pointerup', onUp, { passive: true });
       document.documentElement.addEventListener('pointerleave', onOut);
@@ -167,6 +190,11 @@
       dead = true;
       cancelAnimationFrame(raf);
       ro.disconnect();
+      clearTimeout(touchTimer);
+      window.removeEventListener('touchstart', onTouch);
+      window.removeEventListener('touchmove', onTouch);
+      window.removeEventListener('touchend', onTouchEnd);
+      window.removeEventListener('touchcancel', onTouchEnd);
       window.removeEventListener('pointermove', onMove);
       window.removeEventListener('pointerup', onUp);
       document.documentElement.removeEventListener('pointerleave', onOut);
