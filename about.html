@@ -252,7 +252,10 @@
       transform: translateY(0);
     }
 
-    .cta-license {
+    .cta-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0 var(--space-8);
       font-size: clamp(2.8rem, 3.6vw, 5rem);
       font-weight: 800;
       line-height: 1.1;
@@ -261,14 +264,14 @@
       margin-top: var(--space-3);
     }
 
-    .cta-license a {
+    .cta-links a {
       color: inherit;
       text-decoration: underline;
       text-decoration-color: currentColor;
       text-underline-offset: 0.06em;
     }
 
-    .cta-license a:hover {
+    .cta-links a:hover {
       opacity: 0.7;
     }
 
@@ -479,7 +482,7 @@
       <div class="about-cta fade-up fade-up-3">
         <div>
           <p class="cta-text">Ready to make something cool? I'd love to hear about your project.</p>
-          <p class="cta-license"><a href="licensing.html">Licensing</a></p>
+          <p class="cta-links"><a href="licensing.html">Licensing</a><a href="https://www.linkedin.com/in/clayton-cunningham-4057aa29" rel="me">LinkedIn</a></p>
         </div>
         <a href="mailto:info@claytoncunninghamdesign.com" class="cta-btn">Holla!</a>
       </div>
