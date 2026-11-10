@@ -3,8 +3,8 @@
    Two rings of dots sit behind the circular photo: a light ring touching the
    photo and a darker ring touching that. Dots push away from the cursor on
    hover and ripple outward on click or tap. On touch screens a finger
-   pushes the dots, including while scrolling past. With reduced motion the
-   rings are static.
+   pushes the dots, including while scrolling past. Press and hold sends
+   ripples out until release. With reduced motion the rings are static.
 
    The canvas is added as the first child of #photo-wrap, sits behind the
    photo, ignores pointer events (nearby links stay clickable) and never
@@ -29,6 +29,8 @@
       falloff: 3,         // 3 = cubic, tight around the cursor
       ease: 0.12,         // how fast dots chase their target
       wave: { speed: 450, width: 44, strength: 32, duration: 1000 },  // click ripple (fast enough to reach the rings from the photo center)
+      holdDelay: 300,     // ms before a press counts as a hold
+      holdEvery: 420,     // ms between ripples while holding
       ...options
     };
 
@@ -146,10 +148,13 @@
       if (e.pointerType !== 'mouse') return;
       const p = local(e), was = mouse.on;
       mouse.on = near(p); mouse.x = p.x; mouse.y = p.y;
+      if (movedFar(p)) stopHold();
       if (mouse.on || was) wake();
     };
-    const onOut = () => { if (mouse.on) { mouse.on = false; wake(); } };
+    const onOut = () => { stopHold(); if (mouse.on) { mouse.on = false; wake(); } };
+    const onDown = e => { if (e.pointerType === 'mouse' && e.button === 0) startHold(local(e)); };
     const onUp = e => {                                    // click or tap on the photo or rings
+      stopHold();
       const p = local(e);
       if (Math.hypot(p.x - C, p.y - C) > outerR + 8) return;
       waves.push({ x: p.x, y: p.y, start: performance.now() });
@@ -160,6 +165,20 @@
     // Touch events keep firing while the page scrolls (pointer events are
     // cancelled), so the rings react as a thumb passes over them. Passive
     // listeners: scrolling is never blocked.
+    // Press and hold (finger or mouse button) on the photo or rings: ripples
+    // keep going out from that point until release. Moving more than a few
+    // px (a scroll or drag) cancels the hold.
+    let holdTimer = 0, holdAt = null;
+    const pulse = () => { waves.push({ x: holdAt.x, y: holdAt.y, start: performance.now() }); wake(); };
+    const startHold = p => {
+      stopHold();
+      if (Math.hypot(p.x - C, p.y - C) > outerR + 8) return;
+      holdAt = p;
+      holdTimer = setTimeout(() => { pulse(); holdTimer = setInterval(pulse, o.holdEvery); }, o.holdDelay);
+    };
+    const stopHold = () => { clearTimeout(holdTimer); clearInterval(holdTimer); holdTimer = 0; holdAt = null; };
+    const movedFar = p => holdAt && Math.hypot(p.x - holdAt.x, p.y - holdAt.y) > 10;
+
     let touchTimer = 0;
     const onTouch = e => {
       const t = e.touches[0];
@@ -167,9 +186,12 @@
       clearTimeout(touchTimer);
       const p = local(t), was = mouse.on;
       mouse.on = near(p); mouse.x = p.x; mouse.y = p.y;
+      if (e.type === 'touchstart') startHold(p);
+      else if (movedFar(p)) stopHold();
       if (mouse.on || was) wake();
     };
     const onTouchEnd = () => {
+      stopHold();
       clearTimeout(touchTimer);
       touchTimer = setTimeout(() => { if (mouse.on) { mouse.on = false; wake(); } }, 350);
     };
@@ -179,6 +201,11 @@
       window.addEventListener('touchmove', onTouch, { passive: true });
       window.addEventListener('touchend', onTouchEnd, { passive: true });
       window.addEventListener('touchcancel', onTouchEnd, { passive: true });
+      // A long press on the photo should ripple, not open the image menu or select text.
+      wrap.style.webkitTouchCallout = 'none';
+      wrap.style.webkitUserSelect = 'none';
+      wrap.style.userSelect = 'none';
+      window.addEventListener('pointerdown', onDown, { passive: true });
       window.addEventListener('pointermove', onMove, { passive: true });
       window.addEventListener('pointerup', onUp, { passive: true });
       document.documentElement.addEventListener('pointerleave', onOut);
@@ -191,6 +218,8 @@
       cancelAnimationFrame(raf);
       ro.disconnect();
       clearTimeout(touchTimer);
+      stopHold();
+      window.removeEventListener('pointerdown', onDown);
       window.removeEventListener('touchstart', onTouch);
       window.removeEventListener('touchmove', onTouch);
       window.removeEventListener('touchend', onTouchEnd);
