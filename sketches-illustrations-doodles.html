@@ -51,14 +51,14 @@
     /* ── Inverted tag hover ── */
     .tag {
       border-color: rgba(25, 19, 58, 0.4);
-      color: #19133A;
+      color: var(--color-fg);
     }
 
     .tag:hover,
     .tag--active {
-      background: #19133A;
+      background: var(--color-fg);
       color: var(--color-bg);
-      border-color: #19133A;
+      border-color: var(--color-fg);
     }
 
     /* ── Video elements ── */
@@ -76,7 +76,7 @@
 
     /* ── Next project ── */
     .next-project-wrap {
-      margin-top: 8rem;
+      margin-top: var(--space-20);
     }
   </style>
   <script type="application/ld+json">
@@ -422,7 +422,7 @@
     </div>
 
     <!-- Next project -->
-    <section class="next-project next-project-wrap" style="margin-top: 8rem;" aria-label="Navigate to next project">
+    <section class="next-project next-project-wrap" style="margin-top: var(--space-20);" aria-label="Navigate to next project">
       <div class="next-project-bg" aria-hidden="true" style="background-color: #07465A;"></div>
       <span class="next-label" style="color: #1BBFCA;">Next Project</span>
       <a href="paradesmith.html" class="next-project-title" style="color: rgba(27, 191, 202, 0.75);">

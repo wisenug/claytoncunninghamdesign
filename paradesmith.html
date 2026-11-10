@@ -52,14 +52,14 @@
     /* ── Inverted tag hover ── */
     .tag {
       border-color: rgba(27, 191, 202, 0.4);
-      color: #1BBFCA;
+      color: var(--color-fg);
     }
 
     .tag:hover,
     .tag--active {
-      background: #1BBFCA;
+      background: var(--color-fg);
       color: var(--color-bg);
-      border-color: #1BBFCA;
+      border-color: var(--color-fg);
     }
 
     /* ── Image captions ── */
@@ -76,11 +76,11 @@
 
     /* ── RIP note ── */
     .rip-note {
-      padding: 4rem var(--page-margin) 2rem;
+      padding: var(--space-10) var(--page-margin) var(--space-5);
     }
 
     .rip-note p {
-      font-size: 2.4rem;
+      font-size: var(--text-lg);
       font-weight: 600;
       color: var(--color-fg);
     }
@@ -266,7 +266,7 @@
     </div>
 
     <!-- Next project -->
-    <section class="next-project next-project-wrap" style="margin-top: 8rem;" aria-label="Navigate to next project">
+    <section class="next-project next-project-wrap" style="margin-top: var(--space-20);" aria-label="Navigate to next project">
       <div class="next-project-bg" aria-hidden="true" style="background-color: #DE4138;"></div>
       <span class="next-label" style="color: #1F0503;">Next Project</span>
       <a href="coca-cola-campus-messaging.html" class="next-project-title" style="color: rgba(39, 6, 4, 0.8);">

@@ -52,13 +52,13 @@
 
     /* ── Image captions ── */
     .img-caption {
-      font-size: 1.6rem;
+      font-size: var(--text-sm);
       font-weight: 400;
       letter-spacing: 0.01em;
       color: rgba(11, 45, 82, 0.7);
       font-style: italic;
-      margin-top: 1.2rem;
-      padding: 0 0.4rem;
+      margin-top: var(--space-3);
+      padding: 0 var(--space-1);
     }
 
     /* ── Hairline border so white figures hold their edge ── */
@@ -75,7 +75,7 @@
     .hero-image {
       max-width: 2000px;
       margin: 0 auto;
-      padding: 0 2rem;
+      padding: 0 var(--space-5);
     }
 
     .hero-image video {
@@ -152,12 +152,12 @@
     .body-text ul {
       display: inline-block;
       text-align: left;
-      margin: 1.6rem auto 0;
-      padding-left: 2rem;
+      margin: var(--space-4) auto 0;
+      padding-left: var(--space-5);
     }
 
     .body-text li {
-      margin-bottom: 0.8rem;
+      margin-bottom: var(--space-2);
     }
 
     /* ── Standalone heading directly above a non-text-section block: match
@@ -170,8 +170,8 @@
     .challenges {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 3.2rem;
-      padding: 0 var(--page-margin) 8rem;
+      gap: var(--space-8);
+      padding: 0 var(--page-margin) var(--space-20);
       max-width: 118rem;
       margin: 0 auto;
       box-sizing: content-box;
@@ -181,7 +181,7 @@
       font-size: 2rem;
       font-weight: 700;
       letter-spacing: -0.01em;
-      margin: 0 0 0.8rem;
+      margin: 0 0 var(--space-2);
       color: var(--color-fg);
     }
 
@@ -196,7 +196,7 @@
     .token-flow-split {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 4.8rem;
+      gap: var(--space-12);
       align-items: center;
     }
 
@@ -222,7 +222,7 @@
     @media (max-width: 820px) {
       .token-flow-split {
         grid-template-columns: 1fr;
-        gap: 2.4rem;
+        gap: var(--space-6);
       }
     }
 
@@ -230,7 +230,7 @@
     .foundations-pair {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 2.4rem;
+      gap: var(--space-6);
     }
 
     .foundations-pair .lottie-block {
@@ -241,7 +241,7 @@
     @media (max-width: 820px) {
       .foundations-pair {
         grid-template-columns: 1fr;
-        gap: 1.6rem;
+        gap: var(--space-4);
       }
     }
 
@@ -252,9 +252,9 @@
 
     .guidelines-bg,
     .problem-bg {
-      background-color: #0B2D52;
+      background-color: var(--color-fg);
       padding-top: 5.3rem;
-      padding-bottom: 6rem;
+      padding-bottom: var(--space-15);
     }
 
     /* .challenges already carries its own 8rem trailing padding */
@@ -283,7 +283,7 @@
     /* ── Guidelines carousel: user-driven native scroll with snap ── */
     .guidelines-scroll {
       display: flex;
-      gap: 2.4rem;
+      gap: var(--space-6);
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       scroll-padding-left: var(--page-margin);
@@ -314,8 +314,8 @@
     .guidelines-nav {
       display: flex;
       justify-content: flex-end;
-      gap: 1.2rem;
-      padding: 2.4rem var(--page-margin) 0;
+      gap: var(--space-3);
+      padding: var(--space-6) var(--page-margin) 0;
     }
 
     .guidelines-nav button {
@@ -368,8 +368,8 @@
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 2.4rem 6.4rem;
-      margin: 0 0 2.4rem;
+      gap: var(--space-6) 6.4rem;
+      margin: 0 0 var(--space-6);
       padding: 0;
       list-style: none;
     }
@@ -389,14 +389,14 @@
 
     .iris-stat__label {
       display: block;
-      margin-top: 0.8rem;
-      font-size: 1.6rem;
+      margin-top: var(--space-2);
+      font-size: var(--text-sm);
       color: var(--iris-muted);
     }
 
     /* ── Next project ── */
     .next-project-wrap {
-      margin-top: 8rem;
+      margin-top: var(--space-20);
     }
 
     /* ── Mobile ── */
@@ -682,7 +682,7 @@
     </div>
 
     <!-- Next project -->
-    <section class="next-project next-project-wrap" style="margin-top: 8rem;" aria-label="Navigate to next project">
+    <section class="next-project next-project-wrap" style="margin-top: var(--space-20);" aria-label="Navigate to next project">
       <div class="next-project-bg" aria-hidden="true" style="background-color: #006554;"></div>
       <span class="next-label" style="color: rgba(224, 250, 224, 0.85);">Next Project</span>
       <a href="tshq-mobile-app.html" class="next-project-title" style="color: rgba(224, 250, 224, 0.8);">

@@ -38,7 +38,7 @@
 
     /* ── Masthead ── */
     .motion-masthead {
-      padding: 6rem var(--page-margin) 2rem;
+      padding: var(--space-15) var(--page-margin) var(--space-5);
     }
 
     .motion-title {
@@ -50,7 +50,7 @@
     }
 
     .motion-subtitle {
-      font-size: 4.8rem;
+      font-size: var(--text-3xl);
       font-weight: 400;
       line-height: 1.4;
       color: rgba(20, 33, 61, 0.68);
@@ -105,7 +105,7 @@
     }
 
     .hero-anim {
-      padding: 4rem var(--page-margin) 1.6rem;
+      padding: var(--space-10) var(--page-margin) var(--space-4);
     }
 
     .hero-anim .lottie-block {
@@ -114,12 +114,12 @@
 
     /* Two phone-shaped product demos, side by side */
     .phone-pair .lottie-block {
-      background: #F5F1E8;
+      background: var(--color-bg);
     }
 
     /* Pulse / Bounce — full-bleed, edge to edge; stays two-up at every viewport width */
     .pulse-bounce-row {
-      padding: 1.6rem 0 0;
+      padding: var(--space-4) 0 0;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 0;
@@ -136,7 +136,7 @@
 
     /* Save interaction split: one tall, two stacked */
     .save-split {
-      padding-top: 1.6rem;
+      padding-top: var(--space-4);
     }
 
     .save-split video,
@@ -165,7 +165,7 @@
     /* ── KBB — inverted navy band ── */
     .kbb-section-bg {
       background: var(--at-navy);
-      padding: 7rem 0 6rem;
+      padding: 7rem 0 var(--space-15);
     }
 
     .kbb-heading-wrap {
@@ -175,16 +175,16 @@
 
     .kbb-section-bg .section-heading {
       text-align: left;
-      color: #F5F1E8;
+      color: var(--color-bg);
       margin-bottom: 0;
     }
 
     .kbb-section-bg .pullquote blockquote {
-      color: #F5F1E8;
+      color: var(--color-bg);
     }
 
     .kbb-section-bg .intro-text p {
-      color: #F5F1E8;
+      color: var(--color-bg);
     }
 
     .kbb-section-bg .img-caption {
@@ -215,10 +215,10 @@
        widths lands them at matching heights while the chat panel keeps the
        ratio it was supplied at. */
     .kelley-pair {
-      padding: 0 var(--page-margin) 1.6rem;
+      padding: 0 var(--page-margin) var(--space-4);
       display: grid;
       grid-template-columns: 367fr 800fr;
-      gap: 1.6rem;
+      gap: var(--space-4);
     }
 
     .heart-alternatives {
@@ -243,17 +243,17 @@
 
     @media (max-width: 1024px) {
       .motion-subtitle {
-        font-size: 3.6rem;
+        font-size: var(--text-2xl);
       }
     }
 
     @media (max-width: 640px) {
       .motion-masthead {
-        padding: 5rem var(--page-margin) 1.6rem;
+        padding: 5rem var(--page-margin) var(--space-4);
       }
 
       .motion-subtitle {
-        font-size: 2.8rem;
+        font-size: var(--text-xl);
       }
 
       .brand-section-header {
@@ -261,7 +261,7 @@
       }
 
       .phone-pair {
-        gap: 1.2rem;
+        gap: var(--space-3);
       }
     }
   </style>
@@ -468,7 +468,7 @@
     </div>
 
     <!-- Next project -->
-    <section class="next-project" style="margin-top: 8rem;" aria-label="Navigate to next project">
+    <section class="next-project" style="margin-top: var(--space-20);" aria-label="Navigate to next project">
       <div class="next-project-bg" aria-hidden="true" style="background-color: #F5F5F5;"></div>
       <span class="next-label" aria-hidden="true">Next Project</span>
       <a href="iris-design-system.html" class="next-project-title">

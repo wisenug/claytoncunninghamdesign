@@ -50,14 +50,14 @@
 
     .tag {
       border-color: rgba(13, 13, 26, 0.35);
-      color: #0D0D1A;
+      color: var(--color-fg);
     }
 
     .tag:hover,
     .tag--active {
-      background: #0D0D1A;
+      background: var(--color-fg);
       color: var(--color-bg);
-      border-color: #0D0D1A;
+      border-color: var(--color-fg);
     }
 
     .img-caption {
@@ -285,7 +285,7 @@
     </div>
 
     <!-- Next project -->
-    <section class="next-project next-project-wrap" style="margin-top: 8rem;" aria-label="Navigate to next project">
+    <section class="next-project next-project-wrap" style="margin-top: var(--space-20);" aria-label="Navigate to next project">
       <div class="next-project-bg" aria-hidden="true" style="background-color: #2E1F4A;"></div>
       <span class="next-label" style="color: rgba(240, 230, 255, 0.85);">Next Project</span>
       <a href="tshq-assorted-projects.html" class="next-project-title" style="color: rgba(240, 230, 255, 0.8);">

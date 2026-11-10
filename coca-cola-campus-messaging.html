@@ -56,9 +56,9 @@
 
     .tag:hover,
     .tag--active {
-      background: #1F0503;
+      background: var(--color-fg);
       color: var(--color-bg);
-      border-color: #1F0503;
+      border-color: var(--color-fg);
     }
 
     footer { --color-footer-fg: var(--color-fg); }
@@ -70,13 +70,13 @@
 
     /* ── Dining section — inverted band ── */
     .dining-bg {
-      background-color: #1F0503;
+      background-color: var(--color-fg);
       padding-top: 5.3rem;
     }
 
     .dining-bg .section-heading,
     .dining-bg .body-text {
-      color: #DE4138;
+      color: var(--color-bg);
     }
   </style>
   <script type="application/ld+json">
@@ -341,7 +341,7 @@
     </div>
 
     <!-- Next project -->
-    <section class="next-project next-project-wrap" style="margin-top: 8rem;" aria-label="Navigate to next project">
+    <section class="next-project next-project-wrap" style="margin-top: var(--space-20);" aria-label="Navigate to next project">
       <div class="next-project-bg" aria-hidden="true" style="background-color: #ffffff;"></div>
       <span class="next-label" style="color: rgba(212, 32, 32, 0.9);">Next Project</span>
       <a href="coca-cola-assorted-projects.html" class="next-project-title" style="color: rgba(240, 45, 45, 0.75);">
