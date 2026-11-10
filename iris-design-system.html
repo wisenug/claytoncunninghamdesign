@@ -26,7 +26,7 @@
   <title>Iris Design System • Clayton Cunningham Design</title>
   <meta name="description" content="Iris is Cox Automotive's consumer design system, running Autotrader, Kelley Blue Book, and OEM dealer sites on one multi-brand component platform.">
   <link rel="preload" href="fonts/dm-sans-04.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=b157461d9d">
+  <link rel="stylesheet" href="styles.css?v=5903c4dc59">
   <style>
     :root {
       --color-bg: #F5F5F5;
@@ -163,7 +163,7 @@
     /* ── Standalone heading directly above a non-text-section block: match
        the heading-to-paragraph gap used when they share a .text-section ── */
     .text-section--tight {
-      padding-bottom: 1.8rem;
+      padding-bottom: var(--space-5);
     }
 
     /* ── Challenges grid ── */
@@ -253,7 +253,7 @@
     .guidelines-bg,
     .problem-bg {
       background-color: var(--color-fg);
-      padding-top: 5.3rem;
+      padding-top: var(--space-band-top);
       padding-bottom: var(--space-15);
     }
 
@@ -368,7 +368,7 @@
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: var(--space-6) 6.4rem;
+      gap: var(--space-6) var(--space-16);
       margin: 0 0 var(--space-6);
       padding: 0;
       list-style: none;
@@ -403,7 +403,7 @@
     @media (max-width: 640px) {
       .challenges {
         grid-template-columns: 1fr;
-        gap: 2.8rem;
+        gap: var(--space-7);
       }
     }
   </style>

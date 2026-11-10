@@ -230,21 +230,30 @@ picture > source {
   --page-margin: max(5vw, calc((100vw - 1200px) / 2));
   --nav-height: 10rem; /* 8rem at mobile widths */
 
-  /* Spacing: 0.4rem (4px) grid; --space-N = N x 0.4rem */
+  /* Spacing: 0.4rem (4px) grid; --space-N = N x 0.4rem.
+     Off-grid values were snapped to the nearest step (ties round up). */
   --space-1: 0.4rem;
   --space-2: 0.8rem;
   --space-3: 1.2rem;
   --space-4: 1.6rem;
   --space-5: 2rem;
   --space-6: 2.4rem;
+  --space-7: 2.8rem;
   --space-8: 3.2rem;
   --space-9: 3.6rem;
   --space-10: 4rem;
   --space-12: 4.8rem;
+  --space-13: 5.2rem;
   --space-14: 5.6rem;
   --space-15: 6rem;
+  --space-16: 6.4rem;
+  --space-18: 7.2rem;
   --space-20: 8rem;
+  --space-23: 9.2rem;
   --space-25: 10rem;
+  --space-36: 14.4rem;
+  /* Deliberate off-grid value: top padding of the colored band sections */
+  --space-band-top: 5.3rem;
 
   /* Type scale */
   --text-sm: 1.6rem;
@@ -349,7 +358,7 @@ nav:focus-within {
 .nav-logo {
   display: flex;
   align-items: center;
-  gap: 1.4rem;
+  gap: var(--space-4);
   text-decoration: none;
   transition: filter var(--duration-fast) ease;
 }
@@ -401,7 +410,7 @@ nav:focus-within {
   color: var(--color-nav-fg);
   text-decoration: none;
   border-radius: var(--radius-sm);
-  padding: 0.5rem 1rem;
+  padding: var(--space-1) var(--space-3);
   transition: background var(--duration-fast) ease, color var(--duration-fast) ease, opacity var(--duration-fast) ease;
 }
 
@@ -492,7 +501,7 @@ main {
    ============================================================ */
 
 .intro-text {
-  padding: 7rem var(--page-margin) var(--space-15);
+  padding: var(--space-18) var(--page-margin) var(--space-15);
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--space-15);
@@ -571,7 +580,7 @@ main {
   font-weight: 700;
   letter-spacing: -0.025em;
   color: var(--color-fg);
-  margin-bottom: 1.8rem;
+  margin-bottom: var(--space-5);
 }
 
 .body-text {
@@ -677,7 +686,7 @@ footer {
 .img-caption {
   font-size: var(--text-sm);
   font-weight: 400;
-  margin-top: 1rem;
+  margin-top: var(--space-3);
 }
 
 /* ============================================================

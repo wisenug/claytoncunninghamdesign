@@ -27,7 +27,7 @@
   <title>Licensing &amp; Usage • Clayton Cunningham Design</title>
   <link rel="preload" href="fonts/dm-sans-04.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/playfair-display-08.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=b157461d9d">
+  <link rel="stylesheet" href="styles.css?v=5903c4dc59">
   <style>
     :root {
       --color-bg: #FFFFFF;
@@ -47,7 +47,7 @@
     /* --page-margin already centres content in a ~1200px band; adding a
        max-width here would fight it and collapse the column on wide screens. */
     .lic-hero {
-      padding: 4rem var(--page-margin) 7rem;
+      padding: var(--space-10) var(--page-margin) var(--space-18);
     }
 
     .lic-title {
@@ -65,7 +65,7 @@
       font-weight: 400;
       line-height: 1.6;
       letter-spacing: -0.01em;
-      margin-top: 3.2rem;
+      margin-top: var(--space-8);
       max-width: 66rem;
       color: var(--color-fg);
       opacity: 0.8;
@@ -73,13 +73,13 @@
 
     /* ── Terms ── */
     .lic-terms {
-      padding: 0 var(--page-margin) 2rem;
+      padding: 0 var(--page-margin) var(--space-5);
     }
 
     /* No rules or numerals — spacing alone separates the sections, so it has
        to be generous enough to read as a break. */
     .term {
-      padding: 0 0 6.4rem;
+      padding: 0 0 var(--space-16);
     }
 
     /* In rem, not ch — this element inherits the 10px root size, so `ch` here
@@ -91,7 +91,7 @@
       font-weight: 700;
       letter-spacing: -0.025em;
       line-height: 1.15;
-      margin-bottom: 2rem;
+      margin-bottom: var(--space-5);
       color: var(--color-fg);
     }
 
@@ -102,7 +102,7 @@
       opacity: 0.82;
     }
 
-    .term-body p + p { margin-top: 1.6rem; }
+    .term-body p + p { margin-top: var(--space-4); }
 
     .term-body strong {
       font-weight: 700;
@@ -129,14 +129,14 @@
 
     /* ── CTA ── */
     .lic-cta {
-      margin: 2rem var(--page-margin) 9rem;
-      background: #000000;
+      margin: var(--space-5) var(--page-margin) var(--space-23);
+      background: var(--color-fg);
       border-radius: 2rem;
-      padding: 6rem 5.6rem;
+      padding: var(--space-15) var(--space-14);
       display: grid;
       grid-template-columns: 1fr auto;
       align-items: center;
-      gap: 4rem;
+      gap: var(--space-10);
       box-shadow:
         0 1px 2px rgba(0, 0, 0, 0.10),
         0 12px 28px -12px rgba(0, 0, 0, 0.28),
@@ -148,20 +148,20 @@
       font-weight: 800;
       line-height: 1.12;
       letter-spacing: -0.03em;
-      color: #FFFFFF;
+      color: var(--color-bg);
     }
 
     .lic-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.8rem;
+      font-size: var(--text-md);
       font-weight: 700;
       letter-spacing: -0.01em;
-      color: #000000;
-      background: #FFFFFF;
-      border-radius: 10rem;
-      padding: 1.6rem 3.2rem;
+      color: var(--color-fg);
+      background: var(--color-bg);
+      border-radius: var(--radius-pill);
+      padding: var(--space-4) var(--space-8);
       text-decoration: none;
       white-space: nowrap;
       transition: opacity var(--duration-fast) ease, transform 0.25s var(--ease-out);
@@ -175,12 +175,12 @@
     .lic-btn:active { transform: translateY(0); }
 
     .lic-btn:focus-visible {
-      outline: 3px solid #FFFFFF;
+      outline: 3px solid var(--color-bg);
       outline-offset: 4px;
     }
 
     .lic-updated {
-      padding: 0 var(--page-margin) 7rem;
+      padding: 0 var(--page-margin) var(--space-18);
       font-size: 1.5rem;
       letter-spacing: 0.02em;
       color: var(--color-fg);
@@ -188,18 +188,18 @@
     }
 
     @media (max-width: 900px) {
-      .term { padding-bottom: 5rem; }
+      .term { padding-bottom: var(--space-13); }
 
       .lic-cta {
         grid-template-columns: 1fr;
-        gap: 3.2rem;
-        padding: 5.6rem 3.2rem;
+        gap: var(--space-8);
+        padding: var(--space-14) var(--space-8);
       }
     }
 
     @media (max-width: 640px) {
       .lic-cta { border-radius: 1.2rem; }
-      .term-body p { font-size: 1.8rem; }
+      .term-body p { font-size: var(--text-md); }
     }
 
     @media (prefers-reduced-motion: reduce) {
