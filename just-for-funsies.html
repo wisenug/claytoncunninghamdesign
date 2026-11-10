@@ -8,7 +8,7 @@
   <link rel="icon" type="image/png" sizes="192x192" href="img/icon-192.png">
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
-  <meta name="theme-color" content="#0B2D52">
+  <meta name="theme-color" content="#b8e4f0">
   <link rel="canonical" href="https://www.claytoncunninghamdesign.com/just-for-funsies.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Clayton Cunningham Design">
@@ -26,26 +26,24 @@
   <title>Just For Funsies • Clayton Cunningham Design</title>
   <meta name="description" content="Side projects made purely for the love of the game: spinning sneakers and a platformer starring my dog.">
   <link rel="preload" href="fonts/dm-sans-04.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=20261109b">
+  <link rel="stylesheet" href="styles.css?v=20261110a">
   <style>
     :root {
       --color-bg: #b8e4f0;
-      --color-black: #0F3D4A;
+      --color-fg: #0F3D4A;
     }
 
     .vt-bg {
       position: fixed;
       inset: 0;
-      background-color: #b8e4f0;
-      z-index: -1;
+      background-color: var(--color-bg);
+      z-index: var(--z-below);
       pointer-events: none;
       view-transition-name: ink-bg;
     }
 
 
-    .footer-copy {
-      color: #0F3D4A;
-    }
+    footer { --color-footer-fg: var(--color-fg); }
 
     /* Intro sits inside the header, spaced off the title exactly like the
        capability chips on project pages (title margin supplies the gap). */

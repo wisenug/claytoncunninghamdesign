@@ -8,7 +8,7 @@
   <link rel="icon" type="image/png" sizes="192x192" href="img/icon-192.png">
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
-  <meta name="theme-color" content="#0B2D52">
+  <meta name="theme-color" content="#F5F5F5">
   <link rel="canonical" href="https://www.claytoncunninghamdesign.com/iris-design-system.html">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Clayton Cunningham Design">
@@ -26,32 +26,22 @@
   <title>Iris Design System • Clayton Cunningham Design</title>
   <meta name="description" content="Iris is Cox Automotive's consumer design system, running Autotrader, Kelley Blue Book, and OEM dealer sites on one multi-brand component platform.">
   <link rel="preload" href="fonts/dm-sans-04.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=20261109b">
+  <link rel="stylesheet" href="styles.css?v=20261110a">
   <style>
     :root {
-      --color-bg: #ffffff;
-      --color-black: #0B2D52;
+      --color-bg: #F5F5F5;
+      --color-fg: #0B2D52;
       --iris-surface: #F2F6FA;
       --iris-line: rgba(11, 45, 82, 0.14);
       --iris-muted: rgba(11, 45, 82, 0.68);
-    }
-
-    /* Page canvas: light gray. --color-bg stays white for card/surface
-       elements layered on top so they still pop. */
-    body {
-      background-color: #F5F5F5;
-    }
-
-    nav {
-      background: #F5F5F5;
     }
 
     /* ── View transition ── */
     .vt-bg {
       position: fixed;
       inset: 0;
-      background-color: #F5F5F5;
-      z-index: -1;
+      background-color: var(--color-bg);
+      z-index: var(--z-below);
       pointer-events: none;
       view-transition-name: ink-bg;
     }
@@ -192,7 +182,7 @@
       font-weight: 700;
       letter-spacing: -0.01em;
       margin: 0 0 0.8rem;
-      color: var(--color-black);
+      color: var(--color-fg);
     }
 
     .challenge p {
@@ -225,7 +215,7 @@
       font-weight: 700;
       line-height: 1.35;
       letter-spacing: -0.01em;
-      color: var(--color-black);
+      color: var(--color-fg);
       margin: 0;
     }
 
@@ -369,7 +359,7 @@
     /* Top layer is what everything else resolves into, so it carries the
        emphasis; the base layer is tinted to read as ground. */
     .arch-layer--top {
-      border-color: var(--color-black);
+      border-color: var(--color-fg);
       border-width: 2px;
     }
 
@@ -394,7 +384,7 @@
       font-weight: 600;
       line-height: 1;
       letter-spacing: -0.03em;
-      color: var(--color-black);
+      color: var(--color-fg);
     }
 
     .iris-stat__label {

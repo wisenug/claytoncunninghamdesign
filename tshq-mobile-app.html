@@ -8,7 +8,7 @@
   <link rel="icon" type="image/png" sizes="192x192" href="img/icon-192.png">
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
-  <meta name="theme-color" content="#0B2D52">
+  <meta name="theme-color" content="#006554">
   <link rel="canonical" href="https://www.claytoncunninghamdesign.com/tshq-mobile-app.html">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Clayton Cunningham Design">
@@ -27,11 +27,11 @@
   <meta name="description" content="DICK'S Team Sports Headquarters mobile app, a product design case study by Clayton Cunningham.">
   <link rel="preload" href="fonts/dm-sans-04.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" as="image" fetchpriority="high" imagesrcset="img/tshq_app_hero-w800.avif 800w, img/tshq_app_hero-w1600.avif 1600w, img/tshq_app_hero.avif 1920w" type="image/avif" imagesizes="100vw">
-  <link rel="stylesheet" href="styles.css?v=20261109b">
+  <link rel="stylesheet" href="styles.css?v=20261110a">
   <style>
     :root {
       --color-bg: #006554;
-      --color-black: #E0FAE0;
+      --color-fg: #E0FAE0;
     }
 
     /* ── Image captions ── */
@@ -53,7 +53,7 @@
       font-size: 2.4rem;
       font-weight: 400;
       line-height: 1.75;
-      color: var(--color-black);
+      color: var(--color-fg);
       max-width: 72rem;
     }
 
@@ -112,7 +112,7 @@
       font-size: 2.4rem;
       font-weight: 600;
       line-height: 1.75;
-      color: var(--color-black);
+      color: var(--color-fg);
       max-width: 72rem;
     }
 
@@ -120,8 +120,8 @@
     .vt-bg {
       position: fixed;
       inset: 0;
-      background-color: #006554;
-      z-index: -1;
+      background-color: var(--color-bg);
+      z-index: var(--z-below);
       pointer-events: none;
       view-transition-name: ink-bg;
     }

@@ -27,18 +27,18 @@
   <title>Licensing &amp; Usage • Clayton Cunningham Design</title>
   <link rel="preload" href="fonts/dm-sans-04.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/playfair-display-08.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=20261109b">
+  <link rel="stylesheet" href="styles.css?v=20261110a">
   <style>
     :root {
       --color-bg: #FFFFFF;
-      --color-black: #000000;
+      --color-fg: #000000;
     }
 
     .vt-bg {
       position: fixed;
       inset: 0;
-      background-color: #FFFFFF;
-      z-index: -1;
+      background-color: var(--color-bg);
+      z-index: var(--z-below);
       pointer-events: none;
       view-transition-name: ink-bg;
     }
@@ -55,7 +55,7 @@
       font-weight: 800;
       line-height: 1.02;
       letter-spacing: -0.035em;
-      color: var(--color-black);
+      color: var(--color-fg);
     }
 
     /* A standfirst, not a section heading: sits below the section h2s in
@@ -67,7 +67,7 @@
       letter-spacing: -0.01em;
       margin-top: 3.2rem;
       max-width: 66rem;
-      color: var(--color-black);
+      color: var(--color-fg);
       opacity: 0.8;
     }
 
@@ -92,13 +92,13 @@
       letter-spacing: -0.025em;
       line-height: 1.15;
       margin-bottom: 2rem;
-      color: var(--color-black);
+      color: var(--color-fg);
     }
 
     .term-body p {
       font-size: 1.9rem;
       line-height: 1.75;
-      color: var(--color-black);
+      color: var(--color-fg);
       opacity: 0.82;
     }
 
@@ -107,11 +107,11 @@
     .term-body strong {
       font-weight: 700;
       opacity: 1;
-      color: var(--color-black);
+      color: var(--color-fg);
     }
 
     .lic-link {
-      color: var(--color-black);
+      color: var(--color-fg);
       text-decoration: underline;
       text-underline-offset: 3px;
       text-decoration-color: rgba(0, 0, 0, 0.35);
@@ -119,10 +119,10 @@
       border-radius: 2px;
     }
 
-    .lic-link:hover { text-decoration-color: var(--color-black); }
+    .lic-link:hover { text-decoration-color: var(--color-fg); }
 
     .lic-link:focus-visible {
-      outline: 2px solid var(--color-black);
+      outline: 2px solid var(--color-fg);
       outline-offset: 3px;
       text-decoration-color: transparent;
     }
@@ -183,7 +183,7 @@
       padding: 0 var(--page-margin) 7rem;
       font-size: 1.5rem;
       letter-spacing: 0.02em;
-      color: var(--color-black);
+      color: var(--color-fg);
       opacity: 0.6;
     }
 
