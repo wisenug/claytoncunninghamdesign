@@ -58,7 +58,7 @@ if (!CCD.prefersReducedMotion) {
       }
     }
     function step() {
-      if (document.hidden) return;
+      if (document.hidden || CCD.motionPaused) return;
       idx = (idx % total) + 1;
       img.src = prefix + pad(idx) + '.webp';
     }

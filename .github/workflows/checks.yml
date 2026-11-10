@@ -39,7 +39,10 @@ jobs:
           # committed sitemap's vantage point; everything else must be stable
           git diff --exit-code -I '<lastmod>'
 
-      - name: CSP and console-error check (headless Chrome)
+      - name: CSP meta tags match inject-csp.mjs
+        run: node inject-csp.mjs --check
+
+      - name: Page load, JavaScript error and CSP check (headless Chrome)
         run: |
           node serve.mjs &
           sleep 2

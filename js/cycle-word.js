@@ -27,7 +27,7 @@
   }
 
   setInterval(function () {
-    if (document.hidden) return;
+    if (document.hidden || CCD.motionPaused) return;
     idx = (idx + 1) % words.length;
     render(words[idx]);
   }, 2000);

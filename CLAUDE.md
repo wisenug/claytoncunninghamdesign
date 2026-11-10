@@ -46,9 +46,12 @@ Script tags use `?v=` query strings for cache busting. Bump the value when you c
 node checks/validate-site.mjs
 node inject-schema.mjs && node generate-rss.mjs && node generate-sitemap.mjs
 git diff --exit-code -I '<lastmod>'      # generators must be idempotent
-node serve.mjs &  node check-csp.mjs      # headless Chrome: CSP and console errors
+node inject-csp.mjs --check              # CSP meta tags match the policy in inject-csp.mjs
+node serve.mjs &  node check-csp.mjs      # headless Chrome, every page: loads, JS errors, missing files, CSP
 ```
-Locally, `check-csp.mjs` reports the analytics beacon failing against localhost. That's expected; only CSP violations fail it.
+Locally, `check-csp.mjs` reports the analytics beacon failing against localhost. That's expected and tolerated. Anything else fails it: a page that doesn't load, an uncaught JavaScript error, a missing same-origin file, a console error, or a CSP violation.
+
+To change the CSP, edit the policy in `inject-csp.mjs` and run it: it rewrites the meta tag on every root page (redirect stubs and `dino/`, `reba/` are left alone).
 
 ## Common tasks
 **Adding images.** Original PNG/JPG sources don't live in the repo. They're on the Mac mini at `~/Desktop/ccd-originals/` (same folder paths as the repo).

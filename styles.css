@@ -702,6 +702,98 @@ footer {
   to   { transform: translateX(-50%); }
 }
 
+/* Paused by the pause button. !important because site.js restarts the
+   marquee with an inline animation after a drag. */
+.motion-paused .carousel-track {
+  animation-play-state: paused !important;
+}
+
+/* Reduced motion: no auto-scroll. The track can still be dragged. */
+@media (prefers-reduced-motion: reduce) {
+  .carousel-track {
+    animation: none;
+  }
+}
+
+/* ============================================================
+   Pause button (stops the page's looping motion, see site.js)
+   ============================================================ */
+
+.pause-toggle {
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4.4rem;
+  height: 4.4rem;
+  padding: 0;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+  background: var(--color-bg);
+  color: var(--color-black);
+  cursor: pointer;
+  opacity: 0.55;
+  transition: opacity 0.2s ease;
+}
+
+.pause-toggle[hidden] {
+  display: none;
+}
+
+.pause-toggle:hover,
+.pause-toggle:focus-visible {
+  opacity: 1;
+}
+
+.pause-toggle:focus-visible {
+  border-radius: 50%;
+}
+
+/* Tooltip: mirrors the aria-label, so it flips to "Play animations" when paused */
+.pause-toggle::after {
+  content: attr(aria-label);
+  position: absolute;
+  right: calc(100% + 1rem);
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0.6rem 1rem;
+  border-radius: 0.6rem;
+  border: 1px solid currentColor;
+  background: var(--color-bg);
+  color: var(--color-black);
+  font-family: var(--font-body);
+  font-size: 1.3rem;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+
+.pause-toggle:hover::after,
+.pause-toggle:focus-visible::after {
+  opacity: 1;
+}
+
+.pause-toggle svg {
+  display: block;
+  width: 1.8rem;
+  height: 1.8rem;
+}
+
+.pause-toggle .icon-play,
+.motion-paused .pause-toggle .icon-pause {
+  display: none;
+}
+
+.motion-paused .pause-toggle .icon-play {
+  display: block;
+}
+
 /* ============================================================
    Lottie
    ============================================================ */

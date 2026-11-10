@@ -5,6 +5,11 @@ var CCD = window.CCD || (window.CCD = {});
 
 CCD.prefersReducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+// Set by the pause button (see "Motion pause" below). Page scripts that run
+// their own timers check this before each step.
+CCD.motionPaused = false;
+CCD.lotties = [];
+
 // The Lottie player is fetched on demand, the first time an animation needs
 // it, so it never blocks first paint (it used to sit in <head> on six pages).
 // It's a custom build, see tools/lottie/. Bump the ?v= when you rebuild it.
@@ -31,16 +36,18 @@ CCD.loadLottie = function (el, path, opts) {
   if (!el) return Promise.resolve(null);
   opts = opts || {};
   return CCD.whenLottie().then(function () {
-    return lottie.loadAnimation({
+    var anim = lottie.loadAnimation({
       container: el,
       renderer: 'svg',
       loop: !CCD.prefersReducedMotion,
-      autoplay: !CCD.prefersReducedMotion,
+      autoplay: !CCD.prefersReducedMotion && !CCD.motionPaused,
       path: path,
       rendererSettings: opts.slice
         ? { preserveAspectRatio: 'xMidYMid slice', progressiveLoad: true }
         : undefined
     });
+    CCD.lotties.push(anim);
+    return anim;
   });
 };
 
@@ -72,6 +79,29 @@ CCD.loadLottie = function (el, path, opts) {
     });
   }, { rootMargin: '300px' });
   els.forEach(function (el) { observer.observe(el); });
+})();
+
+// Motion pause: <button class="pause-toggle" data-motion-toggle hidden>
+// One button stops everything that moves by itself on the page: the
+// carousel, Lotties, autoplaying video, and any page script that checks
+// CCD.motionPaused. It stays hidden under reduced motion, where none of
+// those run in the first place.
+(function () {
+  var btn = document.querySelector('[data-motion-toggle]');
+  if (!btn || CCD.prefersReducedMotion) return;
+  btn.hidden = false;
+  btn.addEventListener('click', function () {
+    var paused = CCD.motionPaused = !CCD.motionPaused;
+    document.documentElement.classList.toggle('motion-paused', paused);
+    btn.setAttribute('aria-pressed', String(paused));
+    btn.setAttribute('aria-label', paused ? 'Play animations' : 'Pause animations');
+    if (btn.hasAttribute('title')) btn.title = btn.getAttribute('aria-label');
+    CCD.lotties.forEach(function (anim) { if (paused) anim.pause(); else anim.play(); });
+    document.querySelectorAll('video[autoplay]').forEach(function (v) {
+      if (paused) v.pause();
+      else v.play().catch(function () { /* autoplay refused: leave it on its current frame */ });
+    });
+  });
 })();
 
 // Hide nav on scroll down, reveal on scroll up
@@ -199,6 +229,9 @@ window.addEventListener('pagereveal', function (e) {
     if (!isDragging) return;
     isDragging = false;
     wrapper.classList.remove('is-dragging');
+    // Reduced motion: leave the track where it was dropped (the CSS marquee
+    // is off, so there is nothing to resume).
+    if (CCD.prefersReducedMotion) return;
     var x = getTranslateX();
     var half = track.scrollWidth / 2;
     var progress = Math.abs(x) / half;
