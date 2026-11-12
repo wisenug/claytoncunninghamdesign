@@ -733,6 +733,7 @@ footer {
   padding-bottom: var(--space-20);
   cursor: grab;
   user-select: none;
+  touch-action: pan-y; /* vertical swipes scroll the page, horizontal ones drag (site.js) */
 }
 
 .carousel-wrapper.is-dragging {
@@ -962,6 +963,13 @@ footer {
 
   .intro-text p {
     font-size: var(--text-xl);
+  }
+
+  /* Keep the copyright line on one row: step down a size, then scale with
+     the viewport on the narrowest phones. */
+  .footer-copy {
+    font-size: min(var(--text-md), 4.5vw);
+    white-space: nowrap;
   }
 
   .text-section {

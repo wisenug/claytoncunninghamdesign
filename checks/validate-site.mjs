@@ -6,21 +6,38 @@
    4. Every site URL mentioned in llms.txt resolves to a real file
    5. feed.xml is well-formed and every item link resolves
    6. The lazily loaded Lottie player named in js/site.js exists on disk
+   7. Files that only JavaScript loads exist: data-lottie animations,
+      rotating-thumbnail frames, the 360 shoe frames, js/projects.js media
+   dino/ and reba/ get the same link check as the root pages.
    Used by CI (.github/workflows/checks.yml) and runnable locally. */
 import fs from 'fs/promises';
 import { existsSync } from 'fs';
+import path from 'path';
 
 const SITE = 'https://www.claytoncunninghamdesign.com';
 const errors = [];
 
 const files = (await fs.readdir('.')).filter(f => f.endsWith('.html'));
+// Standalone pages in their own folders: refs resolve against that folder
+for (const dir of ['dino', 'reba']) {
+  for (const f of await fs.readdir(dir)) if (f.endsWith('.html')) files.push(path.join(dir, f));
+}
 
 function checkTarget(page, ref) {
   const clean = decodeURI(ref.split('#')[0].split('?')[0]);
   if (!clean || clean === '/') return;
   if (/^(https?:|mailto:|data:|tel:)/.test(ref)) return;
-  const target = clean.startsWith('/') ? clean.slice(1) : clean;
+  const target = clean.startsWith('/') ? clean.slice(1) : path.join(path.dirname(page), clean);
   if (!existsSync(target)) errors.push(`${page}: broken ref → ${ref}`);
+}
+
+const pad2 = n => String(n).padStart(2, '0');
+function checkFrames(where, prefix, total, skip = []) {
+  for (let i = 1; i <= total; i++) {
+    if (skip.includes(i)) continue;
+    const frame = `${prefix}${pad2(i)}.webp`;
+    if (!existsSync(frame)) errors.push(`${where}: missing rotation frame → ${frame}`);
+  }
 }
 
 for (const f of files) {
@@ -31,6 +48,14 @@ for (const f of files) {
   // srcset / imagesrcset entries
   for (const m of src.matchAll(/(?:imagesrcset|srcset)="([^"]+)"/g)) {
     for (const entry of m[1].split(',')) checkTarget(f, entry.trim().split(/\s+/)[0]);
+  }
+
+  // 7a. Files site.js fetches from data attributes
+  for (const m of src.matchAll(/data-lottie="([^"]+)"/g)) checkTarget(f, m[1]);
+  for (const m of src.matchAll(/<img\b[^>]*data-rotation-prefix="([^"]+)"[^>]*>/g)) {
+    const total = parseInt(m[0].match(/data-rotation-total="(\d+)"/)?.[1], 10);
+    if (!total) errors.push(`${f}: rotation thumb without data-rotation-total`);
+    else checkFrames(f, path.join(path.dirname(f), m[1]), total);
   }
 
   // AVIF <source>s (see generate-avif.mjs) must list only .avif files and keep a plain <img> fallback
@@ -83,6 +108,26 @@ if (existsSync('feed.xml')) {
 const lottieSrc = (await fs.readFile('js/site.js', 'utf8')).match(/CCD\.lottieSrc = '([^'?]+)/)?.[1];
 if (!lottieSrc) errors.push('js/site.js: CCD.lottieSrc not found');
 else if (!existsSync(lottieSrc)) errors.push(`js/site.js: Lottie player missing → ${lottieSrc}`);
+
+// 7b. js/projects.js media (home grid cards are built from it)
+const shim = {};
+new Function('window', await fs.readFile('js/projects.js', 'utf8'))(shim);
+for (const p of shim.CCD_PROJECTS) {
+  for (const key of ['href', 'image', 'lottie']) {
+    if (p[key] && !existsSync(p[key])) errors.push(`js/projects.js: missing ${key} → ${p[key]}`);
+  }
+}
+for (const file of Object.keys(shim.CCD_ARTICLES)) {
+  if (!existsSync(file)) errors.push(`js/projects.js: missing article → ${file}`);
+}
+
+// 7c. 360 shoe frames, from the SHOES table in js/shoe-rotation.js
+const shoeSrc = await fs.readFile('js/shoe-rotation.js', 'utf8');
+const shoes = [...shoeSrc.matchAll(/prefix:\s*'([^']+)',\s*count:\s*(\d+)(?:,\s*skip:\s*\[([^\]]*)\])?/g)];
+if (!shoes.length) errors.push('js/shoe-rotation.js: SHOES table not found');
+for (const [, prefix, count, skip] of shoes) {
+  checkFrames('js/shoe-rotation.js', prefix, +count, skip ? skip.split(',').map(Number) : []);
+}
 
 if (errors.length) {
   console.error(`FAIL — ${errors.length} problem(s):`);

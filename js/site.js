@@ -128,7 +128,7 @@ CCD.loadLottie = function (el, path, opts) {
 
 // Skip view transition on back/forward navigation
 window.addEventListener('pagereveal', function (e) {
-  if (e.viewTransition && navigation?.activation?.navigationType === 'traverse') {
+  if (e.viewTransition && window.navigation?.activation?.navigationType === 'traverse') {
     e.viewTransition.skipTransition();
   }
 });
@@ -244,9 +244,72 @@ window.addEventListener('pagereveal', function (e) {
   wrapper.addEventListener('mousedown', function (e) { startDrag(e.clientX); e.preventDefault(); });
   window.addEventListener('mousemove', function (e) { moveDrag(e.clientX); });
   window.addEventListener('mouseup', endDrag);
-  wrapper.addEventListener('touchstart', function (e) { startDrag(e.touches[0].clientX); }, { passive: true });
-  wrapper.addEventListener('touchmove', function (e) { moveDrag(e.touches[0].clientX); e.preventDefault(); }, { passive: false });
+  wrapper.addEventListener('touchstart', function (e) {
+    touchAxis = null;
+    touchStartY = e.touches[0].clientY;
+    startDrag(e.touches[0].clientX);
+  }, { passive: true });
+  // A touch only becomes a drag once it moves sideways. A swipe that starts
+  // out vertical is left to the browser so the page scrolls (styles.css
+  // gives the wrapper touch-action: pan-y); the marquee picks back up.
+  var touchStartY = 0;
+  var touchAxis = null; // null until the first move decides: 'x' or 'y'
+  wrapper.addEventListener('touchmove', function (e) {
+    var t = e.touches[0];
+    if (!touchAxis) {
+      touchAxis = Math.abs(t.clientX - startX) >= Math.abs(t.clientY - touchStartY) ? 'x' : 'y';
+      if (touchAxis === 'y') endDrag();
+    }
+    if (touchAxis !== 'x') return;
+    moveDrag(t.clientX);
+    if (e.cancelable) e.preventDefault();
+  }, { passive: false });
   wrapper.addEventListener('touchend', endDrag);
+  wrapper.addEventListener('touchcancel', endDrag);
+})();
+
+// Rotating thumbnail: <img class="rotation-thumb" data-rotation-prefix="img/shoes/x-"
+// data-rotation-total="36"> (home card and Just for Funsies).
+// Defers the frame preload + spin until the image nears the viewport, so a
+// page doesn't fetch 36 webps that may never be seen. Off under reduced motion.
+(function () {
+  if (CCD.prefersReducedMotion) return;
+  document.querySelectorAll('.rotation-thumb').forEach(function (img) {
+    var prefix = img.dataset.rotationPrefix;
+    var total  = parseInt(img.dataset.rotationTotal, 10);
+    if (!prefix || !total) return;
+    var pad = function (n) { return String(n).padStart(2, '0'); };
+    var idx = 1;
+    var interval = null;
+    var preloaded = false;
+    var visible = false;
+    var preloadRefs = []; // hold references so the browser can't GC mid-load
+    function preload() {
+      if (preloaded) return;
+      preloaded = true;
+      for (var i = 1; i <= total; i++) {
+        var pre = new Image();
+        pre.src = prefix + pad(i) + '.webp';
+        preloadRefs.push(pre);
+      }
+    }
+    function step() {
+      if (document.hidden || CCD.motionPaused) return;
+      idx = (idx % total) + 1;
+      img.src = prefix + pad(idx) + '.webp';
+    }
+    function start() { if (!interval && visible) interval = setInterval(step, 3375 / total); }
+    function stop()  { if (interval) { clearInterval(interval); interval = null; } }
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        visible = e.isIntersecting;
+        if (visible) { preload(); start(); } else { stop(); }
+      });
+    }, { rootMargin: '200px' }).observe(img);
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) stop(); else start();
+    });
+  });
 })();
 
 // Capabilities accordion: <button data-accordion="section-id">
