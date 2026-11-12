@@ -29,6 +29,7 @@ const mimeTypes = {
   '.mov': 'video/quicktime',
   '.xml': 'application/xml',
   '.txt': 'text/plain',
+  '.pdf': 'application/pdf',
 };
 
 const server = http.createServer((req, res) => {

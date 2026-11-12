@@ -4,6 +4,7 @@
 
 ## Case studies
 
+- [Iris Design System](https://www.claytoncunninghamdesign.com/iris-design-system.html): Building the multi-brand design system behind Autotrader, KBB, and OEM dealer sites
 - [DICK'S TSHQ Mobile App](https://www.claytoncunninghamdesign.com/tshq-mobile-app.html): Mobile app features that ease the pain of youth sports management
 - [TSHQ Registration Redesign](https://www.claytoncunninghamdesign.com/tshq-registration.html): Redesigning youth sports registration for over 3 million players and 10,000 teams
 - [TSHQ Fan Wear](https://www.claytoncunninghamdesign.com/tshq-fanwear-redesign.html): A standalone fan wear store that turned team spirit into club revenue
@@ -21,7 +22,8 @@ RSS feed of process write-ups: https://www.claytoncunninghamdesign.com/feed.xml
 
 ## About
 
-- [About Clayton](https://www.claytoncunninghamdesign.com/about.html): Background, approach, and contact
+- [About Clayton](https://www.claytoncunninghamdesign.com/about.html): Background, services, and skills
+- [Contact](https://www.claytoncunninghamdesign.com/contact.html): Contact form and email for roles, projects, and commissions
 
 ## Licensing
 

@@ -956,6 +956,16 @@ footer {
     padding-right: calc(var(--page-margin) + var(--space-2));
   }
 
+  /* Three links (Work, About, Contact) have to fit beside the logo */
+  .nav-links {
+    gap: var(--space-1);
+  }
+
+  .nav-links a {
+    font-size: 1.8rem;
+    padding: var(--space-1) var(--space-2);
+  }
+
   .intro-text {
     grid-template-columns: 1fr;
     gap: var(--space-8);

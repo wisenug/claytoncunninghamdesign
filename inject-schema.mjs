@@ -1,6 +1,7 @@
 /* Inject JSON-LD structured data into content pages.
    - index.html: Person + WebSite (the canonical Person entity lives here)
    - about.html: Person + ProfilePage
+   - contact.html: ContactPage
    - Project pages (from js/projects.js): CreativeWork + BreadcrumbList
    - Write-ups (CCD_ARTICLES): Article + BreadcrumbList
    Every CreativeWork states who holds the copyright: the client company for
@@ -179,6 +180,16 @@ for (const file of files) {
       description,
       about: { '@id': PERSON_ID },
       publisher: { '@id': PERSON_ID },
+    });
+  }
+
+  if (file === 'contact.html') {
+    graph.push({
+      '@type': 'ContactPage',
+      url: canonical,
+      name: bareTitle(title),
+      description,
+      about: { '@id': PERSON_ID },
     });
   }
 

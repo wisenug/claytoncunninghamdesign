@@ -27,7 +27,7 @@
   <title>Clayton Cunningham Design</title>
   <link rel="preload" href="fonts/dm-sans-04.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/playfair-display-08.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=0368e16d3a">
+  <link rel="stylesheet" href="styles.css?v=9ca874d7af">
   <style>
     :root {
       --color-bg: #0B2D52;
@@ -74,11 +74,34 @@
       transition: opacity 0.28s ease, transform 0.34s var(--ease-out);
     }
 
-    .work-card[hidden] { display: none; }
-
-    .work-grid.is-filtering .work-card {
+    main.is-filtering .work-card,
+    main.is-filtering .work-rest__title {
       opacity: 0;
       transform: translateY(14px);
+    }
+
+    /* ── Filtered view: matches stay in the main grid, everything else
+       moves to a second grid under a "More work" heading (index.js), so a
+       narrow filter never leaves the page empty. ── */
+    .work-grid.has-rest {
+      padding-bottom: var(--space-15);
+    }
+
+    .work-rest[hidden] { display: none; }
+
+    .work-rest__title {
+      padding: 0 var(--page-margin);
+      font-size: clamp(2.8rem, 3.2vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: var(--color-accent);
+      margin: 0;
+      transition: opacity 0.28s ease, transform 0.34s var(--ease-out);
+    }
+
+    .work-grid--rest {
+      padding-top: var(--space-6);
     }
 
     .work-card__ink-bg {
@@ -125,13 +148,24 @@
       transform: scale(1.04);
     }
 
+    /* Client name: small tracked micro-copy above the outcome headline */
     .work-card__label-client {
       display: block;
+      font-size: 1.2rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      line-height: 1.3;
+      opacity: 0.7;
+      margin: 0 0 var(--space-2);
+    }
+
+    .work-card__label-title {
       font-size: 2rem;
       font-weight: 700;
       letter-spacing: -0.02em;
-      line-height: 1.1;
-      margin-bottom: var(--space-1);
+      line-height: 1.2;
+      margin: 0;
     }
 
     .work-card__label {
@@ -238,11 +272,11 @@
     }
 
     /* ── Capability chips ── */
-    /* Bar sits in flow under the headline; past that point it pins below
-       the nav and mirrors its hide-on-scroll-down, return-on-scroll-up
-       behavior (classes toggled in index.js — html/body overflow-x breaks
-       sticky). The inner row scrolls; clip-path hides chips that
-       scroll past either page margin. */
+    /* Bar sits in flow under the headline and scrolls away with it. Once it
+       is fully off screen it pins below the nav and mirrors the nav's
+       hide-on-scroll-down, return-on-scroll-up behavior (classes toggled in
+       index.js). The inner row scrolls; clip-path hides chips that scroll
+       past either page margin. */
     .cap-chips-bar {
       position: relative;
       z-index: var(--z-sticky);
@@ -416,6 +450,7 @@
     <ul class="nav-links">
       <li><a href="index.html" aria-current="page">Work</a></li>
       <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
     </ul>
   </nav>
 
@@ -447,35 +482,35 @@
       <div class="work-col work-col--left">
         <a href="iris-design-system.html" class="work-card" data-caps="design-system uiux-design case-study">
           <div class="work-card__img-wrap"><img class="work-img work-img--square" width="700" height="700" fetchpriority="high" src="img/iris_thumbnail-v2.webp" alt="Iris component library grid across headings, buttons, tabs, and labels" loading="eager"></div>
-          <div class="work-card__label"><h2 class="work-card__label-client">Cox Automotive</h2>Building the multi-brand design system behind Autotrader, KBB, and OEM dealer sites</div>
+          <div class="work-card__label"><p class="work-card__label-client">Cox Automotive</p><h2 class="work-card__label-title">Building the multi-brand design system behind Autotrader, KBB, and OEM dealer sites</h2></div>
         </a>
         <a href="motion-animation.html" class="work-card" data-caps="motion-design">
           <div class="work-card__img-wrap"><video class="work-img work-img--square" width="1080" height="1080" autoplay muted loop playsinline preload="metadata" poster="img/motion-thumbnail-poster.webp" aria-label="Looping reel of motion design work: ribbon animation, heart tap, Autotrader logo bounce, and an animated EV range chart" data-motion-thumb><source src="img/motion-thumbnail.webm" type="video/webm"><source src="img/motion-thumbnail.mp4" type="video/mp4"></video></div>
-          <div class="work-card__label"><h2 class="work-card__label-client">Cox Automotive</h2>Interface motion, micro-interactions, and animated data</div>
+          <div class="work-card__label"><p class="work-card__label-client">Cox Automotive</p><h2 class="work-card__label-title">Interface motion, micro-interactions, and animated data</h2></div>
         </a>
         <a href="autotrader-icons.html" class="work-card" data-caps="uiux-design iconography motion-design">
           <div class="work-card__img-wrap"><div id="lottie-at-icons-thumb" class="work-card__lottie" data-lottie="animations/spot_icons.json"></div></div>
-          <div class="work-card__label"><h2 class="work-card__label-client">Autotrader</h2>Unifying a fragmented icon language</div>
+          <div class="work-card__label"><p class="work-card__label-client">Autotrader</p><h2 class="work-card__label-title">Unifying a fragmented icon language</h2></div>
         </a>
         <a href="sketches-illustrations-doodles.html" class="work-card" data-caps="illustration">
           <div class="work-card__img-wrap"><picture><source type="image/avif" srcset="img/sketch_thumbnail.avif"><img width="500" height="500" class="work-img" src="img/sketch_thumbnail.webp" alt="Collection of hand-drawn and digital sketches, illustrations, and doodles" loading="lazy"></picture></div>
-          <div class="work-card__label"><h2 class="work-card__label-client">Sketches, Illustrations and Doodles</h2>A collection of drawn things</div>
+          <div class="work-card__label"><p class="work-card__label-client">Sketches, Illustrations and Doodles</p><h2 class="work-card__label-title">A collection of drawn things</h2></div>
         </a>
         <a href="paradesmith.html" class="work-card" data-caps="uiux-design visual-identity">
           <div class="work-card__img-wrap"><img srcset="img/paradesmith_thumbnail-w800.webp 800w, img/paradesmith_thumbnail-w1600.webp 1600w, img/paradesmith_thumbnail.webp 1920w" sizes="(max-width: 640px) 92vw, 46vw" width="1920" height="1919" class="work-img" src="img/paradesmith_thumbnail.webp" alt="Paradesmith app screens on teal background showing content curation UI" loading="lazy"></div>
-          <div class="work-card__label"><h2 class="work-card__label-client">Paradesmith</h2>Transforming scattered online content into curated experiences</div>
+          <div class="work-card__label"><p class="work-card__label-client">Paradesmith</p><h2 class="work-card__label-title">Transforming scattered online content into curated experiences</h2></div>
         </a>
         <a href="tshq-fanwear-redesign.html" class="work-card" data-caps="uiux-design research case-study">
           <div class="work-card__img-wrap"><picture><source type="image/avif" srcset="img/tshq_fanwear_thumbnail-w800.avif 800w, img/tshq_fanwear_thumbnail-w1600.avif 1600w, img/tshq_fanwear_thumbnail.avif 1920w" sizes="(max-width: 640px) 92vw, 46vw"><img srcset="img/tshq_fanwear_thumbnail-w800.webp 800w, img/tshq_fanwear_thumbnail-w1600.webp 1600w, img/tshq_fanwear_thumbnail.webp 1920w" sizes="(max-width: 640px) 92vw, 46vw" width="1920" height="1920" class="work-img" src="img/tshq_fanwear_thumbnail.webp" alt="DICK'S TSHQ Fan Wear Redesign" loading="lazy"></picture></div>
-          <div class="work-card__label"><h2 class="work-card__label-client">DICK'S TSHQ</h2>Designing a fan wear store to turn team spirit into club revenue</div>
+          <div class="work-card__label"><p class="work-card__label-client">DICK'S TSHQ</p><h2 class="work-card__label-title">Designing a fan wear store to turn team spirit into club revenue</h2></div>
         </a>
         <a href="logos.html" class="work-card" data-caps="visual-identity">
           <div class="work-card__img-wrap"><img srcset="img/lotuslion_thumbnail-w800.webp 800w, img/lotuslion_thumbnail-w1600.webp 1600w, img/lotuslion_thumbnail.webp 1920w" sizes="(max-width: 640px) 92vw, 46vw" width="1920" height="1920" class="work-img" src="img/lotuslion_thumbnail.webp" alt="Logos and brand identity work" loading="lazy"></div>
-          <div class="work-card__label"><h2 class="work-card__label-client">Logos</h2>Collection of logo and brand identity work</div>
+          <div class="work-card__label"><p class="work-card__label-client">Logos</p><h2 class="work-card__label-title">Collection of logo and brand identity work</h2></div>
         </a>
         <a href="just-for-funsies.html" class="work-card" data-caps="">
           <div class="work-card__img-wrap work-card__img-wrap--white"><img width="1035" height="542" class="work-img rotation-thumb" src="img/shoes/treeline/treeline-01.webp" alt="Nike Air Max 1 SH Treeline spinning in 360 degrees" loading="lazy" data-rotation-prefix="img/shoes/treeline/treeline-" data-rotation-total="36"></div>
-          <div class="work-card__label"><h2 class="work-card__label-client">Just for Funsies</h2></div>
+          <div class="work-card__label"><h2 class="work-card__label-title">Just for Funsies</h2></div>
         </a>
       </div>
 
@@ -483,35 +518,43 @@
       <div class="work-col work-col--right">
         <a href="autotrader-illustration-system.html" class="work-card" data-caps="uiux-design illustration motion-design">
           <div class="work-card__img-wrap"><img srcset="img/at_illustration_style_10-w800.webp 800w, img/at_illustration_style_10-w1600.webp 1600w, img/at_illustration_style_10.webp 2000w" sizes="(max-width: 640px) 92vw, 46vw" width="2000" height="2297" class="work-img" src="img/at_illustration_style_10.webp" alt="Diverse group of illustrated character designs for the Autotrader people library" loading="eager"></div>
-          <div class="work-card__label"><h2 class="work-card__label-client">Autotrader</h2>Designing a scalable illustration system across web, mobile apps, and marketing</div>
+          <div class="work-card__label"><p class="work-card__label-client">Autotrader</p><h2 class="work-card__label-title">Designing a scalable illustration system across web, mobile apps, and marketing</h2></div>
         </a>
         <a href="tshq-mobile-app.html" class="work-card" data-caps="uiux-design research illustration case-study">
           <div class="work-card__img-wrap"><picture><source type="image/avif" srcset="img/tshq_app_thumbnail-w800.avif 800w, img/tshq_app_thumbnail-w1600.avif 1600w, img/tshq_app_thumbnail.avif 1920w" sizes="92vw"><img srcset="img/tshq_app_thumbnail-w800.webp 800w, img/tshq_app_thumbnail-w1600.webp 1600w, img/tshq_app_thumbnail.webp 1920w" sizes="92vw" width="1920" height="1920" class="work-img" src="img/tshq_app_thumbnail.webp" alt="DICK'S TSHQ mobile app" loading="lazy"></picture></div>
-          <div class="work-card__label"><h2 class="work-card__label-client">DICK'S TSHQ</h2>Designing mobile app features that ease the pain of youth sports management</div>
+          <div class="work-card__label"><p class="work-card__label-client">DICK'S TSHQ</p><h2 class="work-card__label-title">Designing mobile app features that ease the pain of youth sports management</h2></div>
         </a>
         <a href="kbb-icons-illustrations.html" class="work-card" data-caps="uiux-design iconography illustration">
           <div class="work-card__img-wrap"><img srcset="img/Kbb_thumbnail-w800.webp 800w, img/Kbb_thumbnail-w1600.webp 1600w, img/Kbb_thumbnail.webp 2000w" sizes="(max-width: 640px) 92vw, 46vw" width="2000" height="2000" class="work-img" src="img/Kbb_thumbnail.webp" alt="Kelley Blue Book icon and illustration system overview" loading="eager"></div>
-          <div class="work-card__label"><h2 class="work-card__label-client">Kelley Blue Book</h2>Growing a renowned leader's visual library</div>
+          <div class="work-card__label"><p class="work-card__label-client">Kelley Blue Book</p><h2 class="work-card__label-title">Growing a renowned leader's visual library</h2></div>
         </a>
         <a href="tshq-registration.html" class="work-card" data-caps="uiux-design design-system research illustration case-study">
           <div class="work-card__img-wrap"><img width="1500" height="1500" class="work-img" src="img/tshq_reg_thumbnail.webp" alt="DICK'S TSHQ Registration Redesign" loading="lazy"></div>
-          <div class="work-card__label"><h2 class="work-card__label-client">DICK'S TSHQ</h2>Redesigning youth sports registration for over 3 million players and 10,000 teams</div>
+          <div class="work-card__label"><p class="work-card__label-client">DICK'S TSHQ</p><h2 class="work-card__label-title">Redesigning youth sports registration for over 3 million players and 10,000 teams</h2></div>
         </a>
         <a href="coca-cola-campus-messaging.html" class="work-card" data-caps="visual-identity illustration">
           <div class="work-card__img-wrap"><img width="1000" height="1000" class="work-img" src="img/cm_thumbnail.webp" alt="Coca-Cola campus digital display screens and signage system" loading="lazy"></div>
-          <div class="work-card__label"><h2 class="work-card__label-client">Coca-Cola</h2>Unified campus communication</div>
+          <div class="work-card__label"><p class="work-card__label-client">Coca-Cola</p><h2 class="work-card__label-title">Unified campus communication</h2></div>
         </a>
         <a href="coca-cola-assorted-projects.html" class="work-card" data-caps="visual-identity">
           <div class="work-card__img-wrap"><img srcset="img/coca-cola_assorted_thumbnail-w800.webp 800w, img/coca-cola_assorted_thumbnail.webp 1200w" sizes="92vw" width="1200" height="1200" class="work-img" src="img/coca-cola_assorted_thumbnail.webp" alt="Illustrated Coca-Cola vending machine with bottles on a night sky background" loading="lazy"></div>
-          <div class="work-card__label"><h2 class="work-card__label-client">Coca-Cola</h2>Designing for one of the world's most iconic brands</div>
+          <div class="work-card__label"><p class="work-card__label-client">Coca-Cola</p><h2 class="work-card__label-title">Designing for one of the world's most iconic brands</h2></div>
         </a>
         <a href="tshq-assorted-projects.html" class="work-card" data-caps="illustration iconography">
           <div class="work-card__img-wrap"><picture><source type="image/avif" srcset="img/tshq_assorted_projects_thumbnail-w800.avif 800w, img/tshq_assorted_projects_thumbnail-w1600.avif 1600w, img/tshq_assorted_projects_thumbnail.avif 1918w" sizes="92vw"><img srcset="img/tshq_assorted_projects_thumbnail-w800.webp 800w, img/tshq_assorted_projects_thumbnail-w1600.webp 1600w, img/tshq_assorted_projects_thumbnail.webp 1918w" sizes="92vw" width="1918" height="1920" class="work-img" src="img/tshq_assorted_projects_thumbnail.webp" alt="DICK'S TSHQ assorted project work including sport cutouts and marketing materials" loading="lazy"></picture></div>
-          <div class="work-card__label"><h2 class="work-card__label-client">DICK'S TSHQ</h2>Selected works from DICK's Team Sports Headquarters</div>
+          <div class="work-card__label"><p class="work-card__label-client">DICK'S TSHQ</p><h2 class="work-card__label-title">Selected works from DICK's Team Sports Headquarters</h2></div>
         </a>
       </div>
     </section>
 
+    <!-- Filled by index.js while a filter is active: the work that doesn't match -->
+    <section class="work-rest" aria-labelledby="work-rest-title" hidden>
+      <h2 class="work-rest__title" id="work-rest-title">More work</h2>
+      <div class="work-grid work-grid--rest">
+        <div class="work-col work-col--left"></div>
+        <div class="work-col work-col--right"></div>
+      </div>
+    </section>
 
   </main>
 
@@ -531,7 +574,7 @@
 
   <script src="js/projects.js?v=6fd25ccc3b"></script>
   <script src="js/site.js?v=de369b8ff7"></script>
-  <script src="js/index.js?v=0876913634"></script>
+  <script src="js/index.js?v=7f2f9b875e"></script>
   <script src="js/cycle-word.js?v=e67bde6139"></script>
   <!-- Cloudflare Web Analytics -->
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "965f2ad8267d4463890153ababb0dd33"}'></script>
