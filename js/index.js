@@ -7,6 +7,7 @@
 (function () {
   var known = {};
   (window.CCD_PROJECTS || []).forEach(function (p) { known[p.href] = true; });
+  var inks = [];
   document.querySelectorAll('.work-card').forEach(function (card) {
     if (!known[card.getAttribute('href')]) return;
     // Ink and label colors come from the card's --card-bg / --card-fg
@@ -15,6 +16,7 @@
     inkEl.className = 'work-card__ink-bg';
     inkEl.setAttribute('aria-hidden', 'true');
     card.insertBefore(inkEl, card.firstChild);
+    inks.push(inkEl);
     card.addEventListener('click', function (e) {
       // New-tab opens: leave the page's static names in place.
       if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
@@ -25,6 +27,18 @@
       inkEl.style.opacity = '1';
       inkEl.style.viewTransitionName = 'ink-bg';
     });
+  });
+
+  // Coming back with the Back button restores the page as it was left, with
+  // the clicked card's ink still switched on and covering its thumbnail.
+  // Put everything back the way a fresh load has it.
+  window.addEventListener('pageshow', function () {
+    inks.forEach(function (inkEl) {
+      inkEl.style.opacity = '';
+      inkEl.style.viewTransitionName = '';
+    });
+    var vtBg = document.querySelector('.vt-bg');
+    if (vtBg) vtBg.style.viewTransitionName = '';
   });
 })();
 
