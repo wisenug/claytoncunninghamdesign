@@ -3,7 +3,9 @@
 
 const rotations = [];
 const controllerBySection = new WeakMap();
-let motionPaused = CCD.prefersReducedMotion;
+// Shared pause state (CCD.motionPaused, see site.js). Under reduced motion
+// the page starts paused and the toggle lets the visitor opt in.
+CCD.motionPaused = CCD.prefersReducedMotion;
 
 function createRotation(config) {
   const { stageId, loaderId, loaderFillId, frames } = config;
@@ -43,7 +45,7 @@ function createRotation(config) {
   }
 
   function startSpin() {
-    if (spinInterval || motionPaused || !visible || !ready) return;
+    if (spinInterval || CCD.motionPaused || !visible || !ready) return;
     const FULL_ROTATION_MS = 3375;
     spinInterval = setInterval(() => showFrame(currentFrame + 1), FULL_ROTATION_MS / TOTAL);
   }
@@ -86,17 +88,17 @@ function createRotation(config) {
 // ── Motion toggle ──
 const motionToggle = document.getElementById('motion-toggle');
 function syncMotionToggle() {
-  motionToggle.classList.toggle('paused', motionPaused);
-  motionToggle.setAttribute('aria-pressed', String(motionPaused));
-  motionToggle.setAttribute('aria-label', motionPaused ? 'Play animations' : 'Pause animations');
+  motionToggle.classList.toggle('paused', CCD.motionPaused);
+  motionToggle.setAttribute('aria-pressed', String(CCD.motionPaused));
+  motionToggle.setAttribute('aria-label', CCD.motionPaused ? 'Play animations' : 'Pause animations');
 }
 // Reflect initial state if user prefers reduced motion
 syncMotionToggle();
 motionToggle.addEventListener('click', () => {
-  motionPaused = !motionPaused;
+  CCD.motionPaused = !CCD.motionPaused;
   syncMotionToggle();
   rotations.forEach(r => {
-    if (motionPaused) r.stopSpin();
+    if (CCD.motionPaused) r.stopSpin();
     else if (r.isReady()) r.startSpin();
   });
 });
@@ -175,7 +177,7 @@ document.querySelectorAll('.shoe-section').forEach(function(s) {
 document.addEventListener('visibilitychange', function() {
   if (document.hidden) {
     rotations.forEach(function(r) { r.stopSpin(); });
-  } else if (!motionPaused) {
+  } else if (!CCD.motionPaused) {
     rotations.forEach(function(r) { r.startSpin(); });
   }
 });
