@@ -95,7 +95,7 @@
       var r = size / 2;
       var best = null, bestScore = 10;   // minimum gap between any two logos
       for (var tries = 0; tries < 60; tries++) {
-        var x = r + rand() * (w - size);
+        var x = rand() * w;   // centers span the full width, so edge logos run off screen
         var y = r + rand() * (h - size);
         var score = Infinity;
         for (var i = 0; i < logos.length; i++) {
@@ -123,7 +123,7 @@
     // Here and there, let a logo swell into the empty space around it
     logos.forEach(function (l) {
       if (rand() > 0.3) return;
-      var room = Math.min(l.hx, w - l.hx, l.hy, h - l.hy);
+      var room = Math.min(l.hy, h - l.hy);
       logos.forEach(function (o) {
         if (o === l) return;
         var dx = o.hx - l.hx, dy = o.hy - l.hy;
@@ -188,9 +188,10 @@
       l.x += l.vx * dt;
       l.y += l.vy * dt;
 
-      // Stay inside the field: a soft bounce off its edges, never into
-      // the card above or the footer below
-      var minX = l.r - l.hx, maxX = fieldW - l.r - l.hx;
+      // Stay inside the field: a soft bounce off its top and bottom, never
+      // into the card above or the footer below. Side to side, a logo may
+      // hang off the screen edge but its center stays on screen.
+      var minX = -l.hx, maxX = fieldW - l.hx;
       var minY = l.r - l.hy, maxY = fieldH - l.r - l.hy;
       if (l.x < minX) { l.x = minX; l.vx *= -0.3; } else if (l.x > maxX) { l.x = maxX; l.vx *= -0.3; }
       if (l.y < minY) { l.y = minY; l.vy *= -0.3; } else if (l.y > maxY) { l.y = maxY; l.vy *= -0.3; }

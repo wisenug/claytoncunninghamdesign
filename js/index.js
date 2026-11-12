@@ -7,6 +7,7 @@
 (function () {
   var known = {};
   (window.CCD_PROJECTS || []).forEach(function (p) { known[p.href] = true; });
+  var inks = [];
   document.querySelectorAll('.work-card').forEach(function (card) {
     if (!known[card.getAttribute('href')]) return;
     // Ink and label colors come from the card's --card-bg / --card-fg
@@ -15,6 +16,7 @@
     inkEl.className = 'work-card__ink-bg';
     inkEl.setAttribute('aria-hidden', 'true');
     card.insertBefore(inkEl, card.firstChild);
+    inks.push(inkEl);
     card.addEventListener('click', function (e) {
       // New-tab opens: leave the page's static names in place.
       if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
@@ -26,20 +28,38 @@
       inkEl.style.viewTransitionName = 'ink-bg';
     });
   });
+
+  // Coming back with the Back button restores the page as it was left, with
+  // the clicked card's ink still switched on and covering its thumbnail.
+  // Put everything back the way a fresh load has it.
+  window.addEventListener('pageshow', function () {
+    inks.forEach(function (inkEl) {
+      inkEl.style.opacity = '';
+      inkEl.style.viewTransitionName = '';
+    });
+    var vtBg = document.querySelector('.vt-bg');
+    if (vtBg) vtBg.style.viewTransitionName = '';
+  });
 })();
 
 // ── Capability filter for the home work grid ─────────────────────────────
-// Chips filter the cards in place. Filtered cards are redistributed
-// between the two columns (alternating by their narrative order) so the
-// grid stays balanced. ?cap=<slug> deep-links a filter.
+// Chips sort the cards rather than hide them: matching cards fill the main
+// grid and everything else moves to a second grid under "More work", so a
+// narrow filter never leaves a near-empty page. Cards are dealt between the
+// two columns alternately so each grid stays balanced. ?cap=<slug>
+// deep-links a filter.
 (function () {
   var chipRow = document.querySelector('.cap-chips');
   var grid = document.querySelector('.work-grid');
-  if (!chipRow || !grid) return;
+  var rest = document.querySelector('.work-rest');
+  var main = document.querySelector('main');
+  if (!chipRow || !grid || !rest) return;
   var chips = Array.prototype.slice.call(chipRow.querySelectorAll('.chip'));
   var colL = grid.querySelector('.work-col--left');
   var colR = grid.querySelector('.work-col--right');
-  if (!colL || !colR || !chips.length) return;
+  var restL = rest.querySelector('.work-col--left');
+  var restR = rest.querySelector('.work-col--right');
+  if (!colL || !colR || !restL || !restR || !chips.length) return;
 
   var cards = Array.prototype.slice.call(grid.querySelectorAll('.work-card'));
   var home = cards.map(function (el) {
@@ -52,18 +72,31 @@
     return (h.el.getAttribute('data-caps') || '').split(' ').indexOf(cap) !== -1;
   }
 
+  function deal(list, left, right) {
+    list.sort(function (a, b) { return a.order - b.order; });
+    list.forEach(function (h, i) { (i % 2 === 0 ? left : right).appendChild(h.el); });
+  }
+
   function apply(cap) {
-    if (cap === 'all') {
-      home.forEach(function (h) { h.el.hidden = false; h.parent.appendChild(h.el); });
-      return;
+    var vis = cap === 'all' ? [] : home.filter(function (h) { return matches(h, cap); });
+    if (!vis.length) {
+      home.forEach(function (h) { h.parent.appendChild(h.el); });
+      rest.hidden = true;
+      grid.classList.remove('has-rest');
+    } else {
+      var others = home.filter(function (h) { return vis.indexOf(h) === -1; });
+      deal(vis, colL, colR);
+      deal(others, restL, restR);
+      rest.hidden = !others.length;
+      grid.classList.toggle('has-rest', others.length > 0);
     }
-    var vis = home.filter(function (h) { return matches(h, cap); });
-    vis.sort(function (a, b) { return a.order - b.order; });
-    vis.forEach(function (h, i) {
-      h.el.hidden = false;
-      (i % 2 === 0 ? colL : colR).appendChild(h.el);
-    });
-    home.forEach(function (h) { if (vis.indexOf(h) === -1) h.el.hidden = true; });
+    // Moving a playing video in the DOM pauses it
+    if (!reduce && !CCD.motionPaused) {
+      document.querySelectorAll('video[data-motion-thumb]').forEach(function (v) {
+        var p = v.play();
+        if (p && p.catch) p.catch(function () {});
+      });
+    }
   }
 
   function markActive(cap) {
@@ -89,21 +122,39 @@
     }
   }
 
+  // A filter picked from the pinned bar, deep in the page: bring the top of
+  // the results back into view (just below the nav and the chips).
+  function revealResults() {
+    var nav = document.querySelector('nav');
+    var bar = document.querySelector('.cap-chips-bar');
+    var clear = (nav ? nav.offsetHeight : 0) + (bar ? bar.offsetHeight : 0);
+    var top = grid.getBoundingClientRect().top;
+    if (top >= 0) return;
+    try {
+      window.scrollTo({ top: window.scrollY + top - clear, behavior: reduce ? 'auto' : 'smooth' });
+    } catch (err) {
+      window.scrollTo(0, window.scrollY + top - clear);
+    }
+  }
+
   function setFilter(cap) {
     if (busy) return;
     revealChip(markActive(cap));
     var url = cap === 'all' ? location.pathname : location.pathname + '?cap=' + cap;
     history.replaceState(null, '', url);
-    if (reduce) { apply(cap); return; }
+    if (reduce) { apply(cap); revealResults(); return; }
     busy = true;
-    grid.classList.add('is-filtering');
+    main.classList.add('is-filtering');
     setTimeout(function () {
       apply(cap);
-      var shown = cards.filter(function (c) { return !c.hidden; });
+      revealResults();
+      cards.forEach(function (c) { c.style.transitionDelay = ''; });
+      // Stagger the matches in; the rest follow together
+      var shown = Array.prototype.slice.call(grid.querySelectorAll('.work-card'));
       shown.forEach(function (c, i) { c.style.transitionDelay = Math.min(i * 45, 360) + 'ms'; });
       requestAnimationFrame(function () {
         requestAnimationFrame(function () {
-          grid.classList.remove('is-filtering');
+          main.classList.remove('is-filtering');
           setTimeout(function () {
             shown.forEach(function (c) { c.style.transitionDelay = ''; });
             busy = false;
@@ -137,9 +188,11 @@
 })();
 
 // ── Chips bar mirrors the nav: hide on scroll down, return on scroll up ──
-// html/body overflow-x:hidden breaks position:sticky, so past its natural
-// spot the bar swaps to position:fixed (a spacer preserves layout) and
-// slides in/out with scroll direction, like the nav.
+// The bar scrolls away in flow with the headline. It only swaps to
+// position:fixed (a spacer preserves layout) once its in-flow spot is fully
+// off screen, and only swaps back when that spot has returned to exactly
+// where the pinned bar sits, below the nav. Both swaps are invisible, and
+// the gap between the two thresholds means scroll jitter can't flip it.
 (function () {
   var bar = document.querySelector('.cap-chips-bar');
   var nav = document.querySelector('nav');
@@ -147,31 +200,30 @@
   var spacer = null;
   var lastY = window.scrollY;
   function fix() {
-    if (spacer) return;
     spacer = document.createElement('div');
     spacer.style.height = bar.offsetHeight + 'px';
     bar.parentNode.insertBefore(spacer, bar);
     bar.classList.add('cap-chips-bar--fixed');
   }
   function unfix() {
-    if (!spacer) return;
     bar.classList.remove('cap-chips-bar--fixed', 'cap-chips-bar--shown');
     spacer.parentNode.removeChild(spacer);
     spacer = null;
   }
-  window.addEventListener('scroll', function () {
+  function update() {
     var y = window.scrollY;
-    var down = y > lastY;
+    var dy = y - lastY;
     lastY = y;
-    var homeEl = spacer || bar;
-    var homeTop = homeEl.getBoundingClientRect().top + y;
-    if (y > homeTop - nav.offsetHeight + 8) {
-      fix();
-      bar.classList.toggle('cap-chips-bar--shown', !down);
-    } else {
-      unfix();
+    var top = (spacer || bar).getBoundingClientRect().top;   // in-flow spot, relative to the viewport
+    if (!spacer) {
+      if (top + bar.offsetHeight < 0) fix();   // off screen: pin it, still hidden
+      return;
     }
-  }, { passive: true });
+    if (top >= nav.offsetHeight) { unfix(); return; }
+    if (dy) bar.classList.toggle('cap-chips-bar--shown', dy < 0);
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
 })();
 
 // Motion thumbnail: hold on the poster frame when the user prefers reduced motion

@@ -2,12 +2,383 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Redirecting • Clayton Cunningham Design</title>
-  <link rel="canonical" href="https://www.claytoncunninghamdesign.com/about.html">
-  <meta http-equiv="refresh" content="0; url=https://www.claytoncunninghamdesign.com/about.html">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://cloudflareinsights.com https://static.cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+  <link rel="icon" type="image/png" sizes="192x192" href="img/icon-192.png">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#C5DFFB">
+  <link rel="canonical" href="https://www.claytoncunninghamdesign.com/contact.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Clayton Cunningham Design">
+  <meta property="og:url" content="https://www.claytoncunninghamdesign.com/contact.html">
+  <meta property="og:title" content="Contact • Clayton Cunningham Design">
+  <meta property="og:description" content="Get in touch with Clayton Cunningham about product design roles, freelance design and illustration projects, or commissions.">
+  <meta property="og:image" content="https://www.claytoncunninghamdesign.com/img/claytoncunningham-og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="1200">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Contact • Clayton Cunningham Design">
+  <meta name="twitter:description" content="Get in touch with Clayton Cunningham about product design roles, freelance design and illustration projects, or commissions.">
+  <meta name="twitter:image" content="https://www.claytoncunninghamdesign.com/img/claytoncunningham-og.jpg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Get in touch with Clayton Cunningham about product design roles, freelance design and illustration projects, or commissions.">
+  <title>Contact • Clayton Cunningham Design</title>
+  <link rel="preload" href="fonts/dm-sans-04.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/playfair-display-08.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css?v=ffe03614fd">
+  <style>
+
+    /* ── Nav overrides: the About page's colors reversed, navy ink on baby blue ── */
+    .nav-logo-icon,
+    .nav-logo-name {
+      color: #091f3a;
+    }
+
+    .nav-links a {
+      opacity: 1;
+      color: #091f3a;
+    }
+
+    .nav-links a:hover {
+      background: rgba(9, 31, 58, 0.12);
+      color: #091f3a;
+    }
+
+    .nav-links a[aria-current="page"] {
+      background: rgba(9, 31, 58, 0.22);
+    }
+
+    /* ── Page-level color overrides ── */
+    /* Short page: the footer sits at the bottom of the window, not mid-screen */
+    body {
+      background-color: #C5DFFB;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main { flex: 1; }
+
+    nav {
+      background: #C5DFFB;
+    }
+
+    footer { --color-footer-fg: var(--color-fg); }
+
+    /* ── Layout: stacked headline on the left, form on the right ── */
+    .contact {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: var(--space-15) clamp(var(--space-10), 8vw, var(--space-25));
+      align-items: start;
+      padding: var(--space-15) var(--page-margin) var(--space-25);
+      color: #091f3a;
+    }
+
+    .contact-headline {
+      font-size: clamp(5.6rem, 7.4vw, 10rem);
+      font-weight: 800;
+      line-height: 0.98;
+      letter-spacing: -0.035em;
+    }
+
+    .contact-headline span { display: block; white-space: nowrap; }
+
+    .contact-lede {
+      font-size: clamp(2rem, 1.8vw, 2.4rem);
+      line-height: 1.5;
+      margin-top: var(--space-8);
+      max-width: 44rem;
+    }
+
+    .contact-link {
+      overflow-wrap: anywhere;
+      color: inherit;
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: rgba(9, 31, 58, 0.4);
+      transition: text-decoration-color var(--duration-fast) ease;
+    }
+
+    .contact-link:hover {
+      text-decoration-color: #091f3a;
+    }
+
+    .contact-links {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3) var(--space-8);
+      margin-top: var(--space-8);
+      font-size: var(--text-md);
+    }
+
+    /* ── Form ── */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-8);
+      padding-top: var(--space-3);
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+    }
+
+    .field-label {
+      font-size: var(--text-sm);
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      opacity: 0.8;
+    }
+
+    .field-input {
+      font: inherit;
+      font-size: 2rem;
+      line-height: 1.4;
+      color: #091f3a;
+      background: transparent;
+      border: 0;
+      border-bottom: 2px solid rgba(9, 31, 58, 0.45);
+      border-radius: 0;
+      padding: var(--space-2) 0 var(--space-3);
+      width: 100%;
+      transition: border-color var(--duration-fast) ease;
+    }
+
+    .field-input:hover {
+      border-bottom-color: rgba(9, 31, 58, 0.75);
+    }
+
+    .field-input:focus-visible {
+      outline: none;
+      border-bottom-color: #091f3a;
+      box-shadow: 0 2px 0 0 #091f3a;
+    }
+
+    textarea.field-input {
+      min-height: 9rem;
+      resize: vertical;
+    }
+
+    /* Spam trap: real visitors never see or reach this field */
+    .field--trap {
+      position: absolute;
+      left: -999rem;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+
+    .contact-submit-row {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: var(--space-6);
+    }
+
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      font: inherit;
+      font-size: var(--text-md);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: #C5DFFB;
+      background: #091f3a;
+      border: 0;
+      border-radius: var(--radius-pill);
+      padding: var(--space-4) var(--space-8);
+      white-space: nowrap;
+      cursor: pointer;
+      transition: background var(--duration-fast) ease, transform 0.25s var(--ease-out);
+    }
+
+    .contact-btn:hover {
+      background: #0B2D52;
+      transform: translateY(-3px);
+    }
+
+    .contact-btn:active {
+      transform: translateY(0);
+    }
+
+    .contact-btn:focus-visible {
+      outline: 2px solid #091f3a;
+      outline-offset: 3px;
+    }
+
+    .contact-btn[disabled] {
+      opacity: 0.6;
+      cursor: default;
+      transform: none;
+    }
+
+    .contact-btn-icon {
+      width: 2.4rem;
+      height: 2.4rem;
+      flex-shrink: 0;
+    }
+
+    .contact-status {
+      font-size: var(--text-md);
+      line-height: 1.5;
+      margin-right: auto;
+    }
+
+    .contact-status:empty { display: none; }
+
+    /* Shown in place of the form once a message has gone through */
+    .contact-sent {
+      padding-top: var(--space-3);
+    }
+
+    .contact-sent[hidden] { display: none; }
+
+    .contact-sent-title {
+      font-size: clamp(2.8rem, 3.2vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+
+    .contact-sent-text {
+      font-size: clamp(2rem, 1.8vw, 2.4rem);
+      line-height: 1.5;
+      margin-top: var(--space-4);
+    }
+
+    @media (max-width: 800px) {
+      .contact {
+        grid-template-columns: minmax(0, 1fr);
+        padding-top: var(--space-10);
+      }
+
+      .contact-submit-row {
+        flex-direction: column-reverse;
+        align-items: stretch;
+      }
+    }
+
+    /* Small enough that the email address stays on one line */
+    @media (max-width: 640px) {
+      .contact-lede {
+        font-size: min(2rem, 4.6vw);
+      }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ContactPage",
+        "url": "https://www.claytoncunninghamdesign.com/contact.html",
+        "name": "Contact",
+        "description": "Get in touch with Clayton Cunningham about product design roles, freelance design and illustration projects, or commissions.",
+        "about": {
+          "@id": "https://www.claytoncunninghamdesign.com/#clayton"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.claytoncunninghamdesign.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Contact",
+            "item": "https://www.claytoncunninghamdesign.com/contact.html"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
-  <p>This page has moved. <a href="https://www.claytoncunninghamdesign.com/about.html">Click here if you are not redirected.</a></p>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html" class="nav-logo" aria-label="Clayton Cunningham Design, Home">
+      <span class="nav-logo-icon" aria-hidden="true"></span>
+      <span class="nav-logo-name">Clayton Cunningham Design</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Work</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html" aria-current="page">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <section class="contact">
+      <div class="contact-intro">
+        <h1 class="contact-headline"><span>Let's Work</span> <span>Together</span></h1>
+        <p class="contact-lede">Hiring, or have a project in mind? Leave me a message with the form, or just email me at: <a href="mailto:info@claytoncunninghamdesign.com" class="contact-link">info@claytoncunninghamdesign.com</a></p>
+        <ul class="contact-links">
+          <li><a href="https://www.linkedin.com/in/clayton-cunningham-4057aa29" class="contact-link" rel="me">LinkedIn</a></li>
+          <li><a href="clayton-cunningham-resume.pdf" class="contact-link" target="_blank" rel="noopener">Resume</a></li>
+          <li><a href="licensing.html" class="contact-link">Licensing</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <form class="contact-form" id="contact-form" action="/api/contact" method="post">
+          <div class="field">
+            <label class="field-label" for="contact-name">Name</label>
+            <input class="field-input" id="contact-name" name="name" type="text" autocomplete="name" maxlength="120" required>
+          </div>
+          <div class="field">
+            <label class="field-label" for="contact-email">Email</label>
+            <input class="field-input" id="contact-email" name="email" type="email" autocomplete="email" maxlength="200" required>
+          </div>
+          <div class="field">
+            <label class="field-label" for="contact-message">Message</label>
+            <textarea class="field-input" id="contact-message" name="message" rows="3" maxlength="5000" required></textarea>
+          </div>
+          <div class="field field--trap" aria-hidden="true">
+            <label for="contact-website">Leave this field empty</label>
+            <input id="contact-website" name="website" type="text" tabindex="-1" autocomplete="off">
+          </div>
+          <div class="contact-submit-row">
+            <p class="contact-status" id="contact-status" role="status" aria-live="polite"></p>
+            <button type="submit" class="contact-btn" id="contact-submit"><svg class="contact-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"/></svg>Send message</button>
+          </div>
+        </form>
+
+        <div class="contact-sent" id="contact-sent" tabindex="-1" hidden>
+          <h2 class="contact-sent-title">Thanks, message sent.</h2>
+          <p class="contact-sent-text">I'll get back to you soon.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p class="footer-copy">&copy; <span id="footer-year"></span> Clayton Cunningham Design.</p>
+  </footer>
+
+
+  <script src="js/site.js?v=de369b8ff7"></script>
+  <script src="js/contact.js?v=8f793b4cb3"></script>
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "965f2ad8267d4463890153ababb0dd33"}'></script>
+  <!-- End Cloudflare Web Analytics -->
 </body>
 </html>
