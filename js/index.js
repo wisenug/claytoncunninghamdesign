@@ -43,12 +43,14 @@
 })();
 
 // ── Capability filter for the home work grid ─────────────────────────────
-// Chips sort the cards rather than hide them: matching cards fill the main
-// grid and everything else moves to a second grid under "More work", so a
-// narrow filter never leaves a near-empty page. Cards are dealt between the
-// two columns alternately so each grid stays balanced. ?cap=<slug>
-// deep-links a filter.
+// A chip shows only the cards tagged with it (data-caps on each card).
+// Matching cards are dealt between the two columns alternately so the grid
+// stays balanced. With SHOW_REST on, the rest of the work follows under a
+// "More work" heading instead. ?cap=<slug> deep-links a filter.
 (function () {
+  // false: a chip shows only the work that matches it. true: the rest of the
+  // work follows under a "More work" heading.
+  var SHOW_REST = false;
   var chipRow = document.querySelector('.cap-chips');
   var grid = document.querySelector('.work-grid');
   var rest = document.querySelector('.work-rest');
@@ -87,8 +89,11 @@
       var others = home.filter(function (h) { return vis.indexOf(h) === -1; });
       deal(vis, colL, colR);
       deal(others, restL, restR);
-      rest.hidden = !others.length;
-      grid.classList.toggle('has-rest', others.length > 0);
+      // Non-matches are parked in the (hidden) second grid so "All" can
+      // restore them; with SHOW_REST off they never appear.
+      var showRest = SHOW_REST && others.length > 0;
+      rest.hidden = !showRest;
+      grid.classList.toggle('has-rest', showRest);
     }
     // Moving a playing video in the DOM pauses it
     if (!reduce && !CCD.motionPaused) {
@@ -185,6 +190,45 @@
     apply(q);
     revealChip(markActive(q), true);
   }
+})();
+
+// ── Chip row peek ────────────────────────────────────────────────────────
+// A row that scrolls needs a visible hint that it does. Where the row runs
+// out of room, the right clip edge is moved so the chip it lands on is cut
+// between 30% and 70% of the way across: the nearest spot to the page margin
+// that does it. Nothing moves if every chip already fits.
+(function () {
+  var row = document.querySelector('.cap-chips');
+  if (!row) return;
+  var chips = Array.prototype.slice.call(row.querySelectorAll('.chip'));
+  if (chips.length < 2) return;
+  var MIN = 0.3, MAX = 0.7;
+  var raf = 0;
+
+  function tune() {
+    raf = 0;
+    row.style.removeProperty('--chip-inset');
+    var width = row.clientWidth;
+    var margin = parseFloat(getComputedStyle(row).paddingLeft) || 0;
+    var edge = width - margin;                 // where the clip falls by default
+    var last = chips[chips.length - 1];
+    if (last.offsetLeft + last.offsetWidth <= edge) return;   // all chips fit
+
+    var best = edge, bestGap = Infinity;
+    for (var i = 1; i < chips.length; i++) {
+      var left = chips[i].offsetLeft, w = chips[i].offsetWidth;
+      var cut = Math.min(Math.max(edge, left + MIN * w), left + MAX * w);
+      var gap = Math.abs(cut - edge);
+      if (gap < bestGap) { bestGap = gap; best = cut; }
+    }
+    row.style.setProperty('--chip-inset', Math.max(0, width - best).toFixed(1) + 'px');
+  }
+
+  function schedule() { if (!raf) raf = requestAnimationFrame(tune); }
+  window.addEventListener('resize', schedule);
+  window.addEventListener('load', schedule);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(schedule);
+  tune();
 })();
 
 // ── Chips bar mirrors the nav: hide on scroll down, return on scroll up ──

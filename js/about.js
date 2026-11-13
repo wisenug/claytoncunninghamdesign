@@ -24,6 +24,7 @@
   var BLAST_KICK  = 6; 
   var DRIFT       = 2.4;    // idle wobble, px either way
   var DRIFT_ROT   = 2.5;    // idle wobble, degrees either way
+  var EDGE        = 14;     // resting logos stay this far from the top and bottom of the field, so wobble and cursor pushes never run past it
 
 
   var logos = [];
@@ -96,7 +97,7 @@
       var best = null, bestScore = 10;   // minimum gap between any two logos
       for (var tries = 0; tries < 60; tries++) {
         var x = rand() * w;   // centers span the full width, so edge logos run off screen
-        var y = r + rand() * (h - size);
+        var y = r + EDGE + rand() * (h - size - 2 * EDGE);
         var score = Infinity;
         for (var i = 0; i < logos.length; i++) {
           var o = logos[i];
