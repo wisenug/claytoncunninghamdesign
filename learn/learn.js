@@ -727,7 +727,7 @@
       level.decks.forEach(function (deck) {
         var best = (state.stats[deck.id] || {}).best || 0;
         var locked = deck.needsProfile && !readySkills(deck, level).length;
-        var btn = h('button', { class: 'deck', type: 'button', onclick: function () { go(locked ? '#grownups' : '#play/' + deck.id); } },
+        var btn = h('button', { class: 'deck', type: 'button', onclick: function () { go(locked ? '#grownups' : '#play-' + deck.id); } },
           h('span', { class: 'deck-icon', 'aria-hidden': 'true', text: deck.icon }),
           h('span', { class: 'deck-name', text: deck.name }),
           h('span', { class: 'deck-blurb', text: locked ? 'Ask a grown-up to set this one up.' : deck.blurb }),
@@ -1026,7 +1026,7 @@
   function route() {
     var hash = location.hash.replace(/^#/, '');
     if (hash === 'grownups') return grownups();
-    if (hash.indexOf('play/') === 0) {
+    if (hash.indexOf('play-') === 0) {
       var found = findDeck(hash.slice(5));
       if (found) return play(found);
     }
