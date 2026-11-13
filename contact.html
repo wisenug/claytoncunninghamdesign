@@ -91,8 +91,11 @@
       font-size: clamp(2rem, 1.8vw, 2.4rem);
       line-height: 1.5;
       margin-top: var(--space-8);
-      max-width: 44rem;
+      max-width: 50rem;
     }
+
+    /* The email and its closing period stay together */
+    .contact-lede .nobreak { white-space: nowrap; }
 
     .contact-link {
       overflow-wrap: anywhere;
@@ -328,8 +331,8 @@
 
     <section class="contact">
       <div class="contact-intro">
-        <h1 class="contact-headline"><span>Let's Work</span> <span>Together</span></h1>
-        <p class="contact-lede">Hiring, or have a project in mind? Leave me a message with the form, or just email me at: <a href="mailto:info@claytoncunninghamdesign.com" class="contact-link">info@claytoncunninghamdesign.com</a></p>
+        <h1 class="contact-headline"><span>Let’s build</span> <span>something.</span></h1>
+        <p class="contact-lede">Hiring or kicking off a new project? Drop a message or reach out directly at: <span class="nobreak"><a href="mailto:info@claytoncunninghamdesign.com" class="contact-link">info@claytoncunninghamdesign.com</a>.</span></p>
         <ul class="contact-links">
           <li><a href="https://www.linkedin.com/in/clayton-cunningham-4057aa29" class="contact-link" rel="me">LinkedIn</a></li>
           <li><a href="clayton-cunningham-resume.pdf" class="contact-link" target="_blank" rel="noopener">Resume</a></li>

@@ -4,6 +4,9 @@
 (function () {
   var words = ['design systems 🤙', 'illustrations 🌭', 'icon libraries ☮️', 'motion 🏄🏻‍♂️'];
   var idx = 0;
+  // Emoji stay upright: inside the italic serif word they get slanted
+  // (Firefox fakes an oblique on them), so they carry a class that resets it.
+  var EMOJI = /\p{Extended_Pictographic}/u;
   var el = document.querySelector('.cycle-word');
   if (!el || CCD.prefersReducedMotion) return;
 
@@ -18,7 +21,7 @@
       mask.className = 'cw-mask';
       mask.setAttribute('aria-hidden', 'true');
       var inner = document.createElement('span');
-      inner.className = 'cw-word';
+      inner.className = EMOJI.test(word) ? 'cw-word cw-emoji' : 'cw-word';
       inner.style.setProperty('--i', i);
       inner.textContent = word;
       mask.appendChild(inner);
