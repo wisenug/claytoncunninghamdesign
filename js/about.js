@@ -42,12 +42,19 @@
     };
   }
 
+  // The disc is drawn with a little room inside its box (the viewBox is wider
+  // than the 80-unit logo). A disc that touches all four sides of its box
+  // gets a sliver shaved off wherever a browser rounds the box, which showed
+  // as flat bottoms.
+  var PAD = 4;                       // viewBox units of room on each side
+  var BOX = (80 + 2 * PAD) / 80;     // box size relative to the disc
+
   function makeLogo(size) {
     var el = document.createElement('div');
     el.className = 'logo-field-item';
-    el.style.width = el.style.height = size + 'px';
+    el.style.width = el.style.height = (size * BOX).toFixed(2) + 'px';
     var svg = document.createElementNS(NS, 'svg');
-    svg.setAttribute('viewBox', '0 0 80 80');
+    svg.setAttribute('viewBox', (-PAD) + ' ' + (-PAD) + ' ' + (80 + 2 * PAD) + ' ' + (80 + 2 * PAD));
     var disc = document.createElementNS(NS, 'circle');
     disc.setAttribute('cx', 40); disc.setAttribute('cy', 40); disc.setAttribute('r', 40);
     disc.setAttribute('class', 'logo-field-disc');
@@ -65,7 +72,7 @@
 
   function place(l) {
     l.el.style.transform =
-      'translate3d(' + (l.hx + l.x + l.ax - l.r).toFixed(2) + 'px,' + (l.hy + l.y + l.ay - l.r).toFixed(2) + 'px,0)' +
+      'translate3d(' + (l.hx + l.x + l.ax - l.r * BOX).toFixed(2) + 'px,' + (l.hy + l.y + l.ay - l.r * BOX).toFixed(2) + 'px,0)' +
       ' rotate(' + (l.rot + l.ar).toFixed(2) + 'deg)';
   }
 
