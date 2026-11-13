@@ -6,7 +6,8 @@ compatibility_date = "2026-08-04"
 
 # Runs only on the form's endpoint; every other URL still goes to the site.
 routes = [
-  { pattern = "www.claytoncunninghamdesign.com/api/contact", zone_name = "claytoncunninghamdesign.com" }
+  { pattern = "www.claytoncunninghamdesign.com/api/contact", zone_name = "claytoncunninghamdesign.com" },
+  { pattern = "claytoncunninghamdesign.com/api/contact", zone_name = "claytoncunninghamdesign.com" }
 ]
 
 # Cloudflare Email Routing. The inbox it delivers to is the CONTACT_TO

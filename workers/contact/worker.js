@@ -10,6 +10,8 @@ import { EmailMessage } from 'cloudflare:email';
 
 const SITE = 'https://www.claytoncunninghamdesign.com';
 const DOMAIN = 'claytoncunninghamdesign.com';
+// The form may be submitted from the www site or the bare domain
+const ALLOWED_ORIGINS = [SITE, `https://${DOMAIN}`];
 const FROM = `contact-form@${DOMAIN}`;
 const LIMITS = { name: 120, email: 200, message: 5000 };
 const MAX_BODY_BYTES = 20000;
@@ -62,7 +64,7 @@ export default {
 
     // Only the site's own form may post here
     const origin = request.headers.get('Origin');
-    if (origin && origin !== SITE) return reply(false, 403, 'forbidden');
+    if (origin && !ALLOWED_ORIGINS.includes(origin)) return reply(false, 403, 'forbidden');
 
     if (Number(request.headers.get('Content-Length') || 0) > MAX_BODY_BYTES) {
       return reply(false, 413, 'too_large');

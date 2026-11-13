@@ -27,8 +27,8 @@ and Reply should address the visitor. If it doesn't arrive, run
 
 ## Notes
 
-- The Worker only answers `POST /api/contact`. Everything else on the domain
-  is untouched.
+- The Worker only answers `POST /api/contact`, on both `www.` and the bare
+  domain. Everything else on the domain is untouched.
 - Spam protection is a hidden trap field plus length limits. If spam becomes
   a problem, add a rate limit rule for `/api/contact` in the Cloudflare
   dashboard (Security, WAF, Rate limiting rules).
