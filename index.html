@@ -148,15 +148,14 @@
       transform: scale(1.04);
     }
 
-    /* Client name: small tracked micro-copy above the outcome headline */
+    /* Client name: bold sentence-case line above the outcome headline */
     .work-card__label-client {
       display: block;
-      font-size: 1.2rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: 0;
       line-height: 1.3;
-      opacity: 0.7;
+      opacity: 0.85;
       margin: 0 0 var(--space-2);
     }
 
@@ -254,6 +253,11 @@
       font-weight: 400;
     }
 
+    /* Emoji stay upright inside the italic word */
+    .home-headline .cycle-word .cw-emoji {
+      font-style: normal;
+    }
+
     /* Desktop: "Senior Product Designer" / "building [cycling word]".
        Line 2 never wraps at this size, so the grid below stays put. */
     @media (min-width: 641px) {
@@ -300,12 +304,14 @@
     .cap-chips {
       display: flex;
       gap: var(--space-3);
-      padding: var(--space-3) var(--page-margin);
+      /* --chip-inset is set by index.js so a chip is always cut at the right
+         edge (the peek that says "scroll"); it falls back to the page margin */
+      padding: var(--space-3) var(--chip-inset, var(--page-margin)) var(--space-3) var(--page-margin);
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
       /* chips vanish at the page margins instead of running to the screen edge */
-      clip-path: inset(0 var(--page-margin));
+      clip-path: inset(0 var(--chip-inset, var(--page-margin)) 0 var(--page-margin));
     }
 
     .cap-chips::-webkit-scrollbar { display: none; }
@@ -458,7 +464,7 @@
 
     <!-- Home headline -->
     <header class="home-headline-wrap">
-      <h1 class="home-headline"><em>Senior Product<br class="br-m"> Designer<br class="br-d"> building <span class="cycle-word">design systems 🤙</span></em></h1>
+      <h1 class="home-headline"><em>Senior Product<br class="br-m"> Designer<br class="br-d"> building <span class="cycle-word">design systems <span class="cw-emoji">🤙</span></span></em></h1>
     </header>
 
     <!-- Capability chips -->
@@ -502,7 +508,7 @@
         </a>
         <a href="tshq-fanwear-redesign.html" class="work-card" data-caps="uiux-design research case-study">
           <div class="work-card__img-wrap"><picture><source type="image/avif" srcset="img/tshq_fanwear_thumbnail-w800.avif 800w, img/tshq_fanwear_thumbnail-w1600.avif 1600w, img/tshq_fanwear_thumbnail.avif 1920w" sizes="(max-width: 640px) 92vw, 46vw"><img srcset="img/tshq_fanwear_thumbnail-w800.webp 800w, img/tshq_fanwear_thumbnail-w1600.webp 1600w, img/tshq_fanwear_thumbnail.webp 1920w" sizes="(max-width: 640px) 92vw, 46vw" width="1920" height="1920" class="work-img" src="img/tshq_fanwear_thumbnail.webp" alt="DICK'S TSHQ Fan Wear Redesign" loading="lazy"></picture></div>
-          <div class="work-card__label"><p class="work-card__label-client">DICK'S TSHQ</p><h2 class="work-card__label-title">Designing a fan wear store to turn team spirit into club revenue</h2></div>
+          <div class="work-card__label"><p class="work-card__label-client">DICK's TSHQ</p><h2 class="work-card__label-title">Designing a fan wear store to turn team spirit into club revenue</h2></div>
         </a>
         <a href="logos.html" class="work-card" data-caps="visual-identity">
           <div class="work-card__img-wrap"><img srcset="img/lotuslion_thumbnail-w800.webp 800w, img/lotuslion_thumbnail-w1600.webp 1600w, img/lotuslion_thumbnail.webp 1920w" sizes="(max-width: 640px) 92vw, 46vw" width="1920" height="1920" class="work-img" src="img/lotuslion_thumbnail.webp" alt="Logos and brand identity work" loading="lazy"></div>
@@ -522,7 +528,7 @@
         </a>
         <a href="tshq-mobile-app.html" class="work-card" data-caps="uiux-design research illustration case-study">
           <div class="work-card__img-wrap"><picture><source type="image/avif" srcset="img/tshq_app_thumbnail-w800.avif 800w, img/tshq_app_thumbnail-w1600.avif 1600w, img/tshq_app_thumbnail.avif 1920w" sizes="92vw"><img srcset="img/tshq_app_thumbnail-w800.webp 800w, img/tshq_app_thumbnail-w1600.webp 1600w, img/tshq_app_thumbnail.webp 1920w" sizes="92vw" width="1920" height="1920" class="work-img" src="img/tshq_app_thumbnail.webp" alt="DICK'S TSHQ mobile app" loading="lazy"></picture></div>
-          <div class="work-card__label"><p class="work-card__label-client">DICK'S TSHQ</p><h2 class="work-card__label-title">Designing mobile app features that ease the pain of youth sports management</h2></div>
+          <div class="work-card__label"><p class="work-card__label-client">DICK's TSHQ</p><h2 class="work-card__label-title">Designing mobile app features that ease the pain of youth sports management</h2></div>
         </a>
         <a href="kbb-icons-illustrations.html" class="work-card" data-caps="uiux-design iconography illustration">
           <div class="work-card__img-wrap"><img srcset="img/Kbb_thumbnail-w800.webp 800w, img/Kbb_thumbnail-w1600.webp 1600w, img/Kbb_thumbnail.webp 2000w" sizes="(max-width: 640px) 92vw, 46vw" width="2000" height="2000" class="work-img" src="img/Kbb_thumbnail.webp" alt="Kelley Blue Book icon and illustration system overview" loading="eager"></div>
@@ -530,7 +536,7 @@
         </a>
         <a href="tshq-registration.html" class="work-card" data-caps="uiux-design design-system research illustration case-study">
           <div class="work-card__img-wrap"><img width="1500" height="1500" class="work-img" src="img/tshq_reg_thumbnail.webp" alt="DICK'S TSHQ Registration Redesign" loading="lazy"></div>
-          <div class="work-card__label"><p class="work-card__label-client">DICK'S TSHQ</p><h2 class="work-card__label-title">Redesigning youth sports registration for over 3 million players and 10,000 teams</h2></div>
+          <div class="work-card__label"><p class="work-card__label-client">DICK's TSHQ</p><h2 class="work-card__label-title">Redesigning youth sports registration for over 3 million players and 10,000 teams</h2></div>
         </a>
         <a href="coca-cola-campus-messaging.html" class="work-card" data-caps="visual-identity illustration">
           <div class="work-card__img-wrap"><img width="1000" height="1000" class="work-img" src="img/cm_thumbnail.webp" alt="Coca-Cola campus digital display screens and signage system" loading="lazy"></div>
@@ -542,7 +548,7 @@
         </a>
         <a href="tshq-assorted-projects.html" class="work-card" data-caps="illustration iconography">
           <div class="work-card__img-wrap"><picture><source type="image/avif" srcset="img/tshq_assorted_projects_thumbnail-w800.avif 800w, img/tshq_assorted_projects_thumbnail-w1600.avif 1600w, img/tshq_assorted_projects_thumbnail.avif 1918w" sizes="92vw"><img srcset="img/tshq_assorted_projects_thumbnail-w800.webp 800w, img/tshq_assorted_projects_thumbnail-w1600.webp 1600w, img/tshq_assorted_projects_thumbnail.webp 1918w" sizes="92vw" width="1918" height="1920" class="work-img" src="img/tshq_assorted_projects_thumbnail.webp" alt="DICK'S TSHQ assorted project work including sport cutouts and marketing materials" loading="lazy"></picture></div>
-          <div class="work-card__label"><p class="work-card__label-client">DICK'S TSHQ</p><h2 class="work-card__label-title">Selected works from DICK's Team Sports Headquarters</h2></div>
+          <div class="work-card__label"><p class="work-card__label-client">DICK's TSHQ</p><h2 class="work-card__label-title">Selected works from DICK's Team Sports Headquarters</h2></div>
         </a>
       </div>
     </section>
@@ -574,8 +580,8 @@
 
   <script src="js/projects.js?v=31c4347ecd"></script>
   <script src="js/site.js?v=de369b8ff7"></script>
-  <script src="js/index.js?v=52f1849650"></script>
-  <script src="js/cycle-word.js?v=e67bde6139"></script>
+  <script src="js/index.js?v=93ebaf450b"></script>
+  <script src="js/cycle-word.js?v=0936d6dcdd"></script>
   <!-- Cloudflare Web Analytics -->
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "965f2ad8267d4463890153ababb0dd33"}'></script>
   <!-- End Cloudflare Web Analytics -->

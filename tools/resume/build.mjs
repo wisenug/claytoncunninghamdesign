@@ -1,4 +1,9 @@
-/* Renders tools/resume/resume.html to clayton-cunningham-resume.pdf at the
+/* STALE: clayton-cunningham-resume.pdf is now the one-page Poppins version
+   exported from the design file, with newer copy and no Tools row. This
+   script and resume.html still produce the older two-page layout, so running
+   it would overwrite the current resume. Update resume.html first.
+
+   Renders tools/resume/resume.html to clayton-cunningham-resume.pdf at the
    repo root. Run with the dev server up (node serve.mjs):
      node tools/resume/build.mjs
    Needs the Bw Modelica fonts installed on this machine. */
