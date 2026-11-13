@@ -96,7 +96,6 @@ button { cursor: pointer; touch-action: manipulation; border: 0; background: non
   font-family: var(--display); font-weight: 800; font-size: 1.45rem; letter-spacing: -0.01em;
   transition: transform 240ms var(--spring);
 }
-.btn:active { transform: scale(.92); }
 .btn--ghost { background: var(--soft); color: var(--ink); }
 .btn--small { min-height: 52px; padding: 8px 24px; font-size: 1.1rem; }
 .round {
@@ -106,8 +105,27 @@ button { cursor: pointer; touch-action: manipulation; border: 0; background: non
   font-family: var(--display); font-weight: 800; font-size: 1.5rem; line-height: 1;
   transition: transform 240ms var(--spring);
 }
-.round:active { transform: scale(.85); }
 .round svg { width: 26px; height: 26px; display: block; }
+
+/* Hover and press. Hover only where there is a real pointer, so a tap on a
+   touch screen never leaves a tile stuck in its hover pose. Press always wins. */
+.btn .arrow { width: 28px; height: 28px; flex: none; transition: transform 300ms var(--spring); }
+@media (hover: hover) {
+  .btn:hover { transform: scale(1.06); }
+  .btn--go:hover .arrow { transform: translateX(6px); }
+  .round:hover { transform: scale(1.12) rotate(-6deg); }
+  .deck:hover { transform: scale(1.04) rotate(-1.5deg); }
+  .choice:not([disabled]):hover { transform: translateY(-6px) scale(1.04); }
+  .key:not([disabled]):hover { transform: scale(1.1); }
+  .cal-grid button.day:not([disabled]):hover { transform: scale(1.18); background: var(--paper-ink); color: var(--paper); }
+}
+.btn:active { transform: scale(.9); }
+.btn--go:active .arrow { transform: translateX(10px); }
+.round:active { transform: scale(.82); }
+.deck:active { transform: scale(.92) rotate(1.5deg); }
+.choice:not([disabled]):active { transform: scale(.88); }
+.key:not([disabled]):active { transform: scale(.82); }
+.cal-grid button.day:not([disabled]):active { transform: scale(.78); }
 
 /* Home */
 .home-title { margin: 28px 0 0; font-family: var(--display); font-weight: 800; font-size: clamp(3.4rem, 17vw, 6rem); line-height: .92; letter-spacing: -0.04em; }
@@ -122,7 +140,6 @@ button { cursor: pointer; touch-action: manipulation; border: 0; background: non
   background: var(--tile); color: var(--tile-ink);
   transition: transform 260ms var(--spring);
 }
-.deck:active { transform: scale(.93) rotate(-1.5deg); }
 .deck:focus-visible { outline-color: var(--paper); }
 .deck-icon { font-size: 3.2rem; line-height: 1; }
 .deck-name { font-family: var(--display); font-weight: 800; font-size: clamp(1.45rem, 6vw, 1.8rem); line-height: 1; letter-spacing: -0.02em; }
@@ -157,7 +174,6 @@ button { cursor: pointer; touch-action: manipulation; border: 0; background: non
   font-weight: 700;
   transition: transform 240ms var(--spring), opacity 200ms, background-color 160ms;
 }
-.choice:active { transform: scale(.9); }
 .choice .big { font-size: clamp(2.6rem, 12vw, 4rem); line-height: 1.1; }
 .choice .emoji { font-size: clamp(2.6rem, 12vw, 3.6rem); line-height: 1.15; }
 .choice .word { font-size: 1.3rem; line-height: 1.2; }
@@ -215,7 +231,6 @@ button { cursor: pointer; touch-action: manipulation; border: 0; background: non
   transition: transform 220ms var(--spring), opacity 200ms;
 }
 .cal-grid button.day { background: #efedf5; }
-.cal-grid button.day:active { transform: scale(.8); }
 .cal-grid .day.mark { background: var(--paper-ink); color: var(--paper); }
 .cal-grid .day.right { background: var(--good); color: var(--good-ink); animation: cheer 520ms var(--spring); }
 .cal-grid .day.wrong { opacity: .3; }
@@ -233,7 +248,6 @@ button { cursor: pointer; touch-action: manipulation; border: 0; background: non
   font-size: 2.2rem; font-weight: 700;
   transition: transform 220ms var(--spring);
 }
-.key:active { transform: scale(.85); }
 .key.zero { grid-column: 2; }
 .key.hint { background: var(--good); color: var(--good-ink); animation: cheer 520ms var(--spring); }
 .key.shake { animation: wiggle 380ms ease; }

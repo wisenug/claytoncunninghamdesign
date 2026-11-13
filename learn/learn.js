@@ -91,17 +91,30 @@
   }
 
   var canSpeak = 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window;
+  // Reads a question out loud, slowly, with a short beat after every sentence.
+  // A "|" in the text adds a beat too: it sits between a question and its answers.
+  var VOICE_RATE = 0.8;      // 1 is the voice's normal speed
+  var VOICE_PAUSE_MS = 250;
+  var speakRun = 0, speaking = null;
   function speak(text) {
     if (!state.voice || !canSpeak || !text) return;
-    try {
-      speechSynthesis.cancel();
-      var u = new SpeechSynthesisUtterance(text);
-      u.lang = 'en-US';
-      u.rate = 0.9;
-      speechSynthesis.speak(u);
-    } catch (e) {}
+    var run = ++speakRun;
+    // Also take a beat after each sentence.
+    var parts = String(text).replace(/([.?!])\s+/g, '$1|').split('|').map(function (t) { return t.trim(); }).filter(Boolean);
+    try { speechSynthesis.cancel(); } catch (e) { return; }
+    (function next(i) {
+      if (i >= parts.length || run !== speakRun) return;
+      try {
+        var u = new SpeechSynthesisUtterance(parts[i]);
+        u.lang = 'en-US';
+        u.rate = VOICE_RATE;
+        u.onend = function () { setTimeout(function () { next(i + 1); }, VOICE_PAUSE_MS); };
+        speaking = u;          // held so the browser does not drop it mid-sentence
+        speechSynthesis.speak(u);
+      } catch (e) {}
+    })(0);
   }
-  function hush() { try { if (canSpeak) speechSynthesis.cancel(); } catch (e) {} }
+  function hush() { speakRun++; try { if (canSpeak) speechSynthesis.cancel(); } catch (e) {} }
 
   /* ---------- 3. Picture builders ---------- */
   function glyph(text) { return h('div', { class: 'big-glyph', text: String(text) }); }
@@ -219,7 +232,7 @@
         var wrong = otherWords(r.i, 2);
         var ch = shuffle([cPic(r.b, true), cPic(wrong[0]), cPic(wrong[1])]);
         return { type: 'choice', stim: pic(r.a), prompt: 'Which word rhymes with ' + r.a.w + '?',
-          say: 'Which word rhymes with ' + r.a.w + '? ' + ch.map(function (c) { return c.word; }).join(', ') + '?',
+          say: 'Which word rhymes with ' + r.a.w + '? | ' + ch.map(function (c) { return c.word; }).join(', ') + '?',
           choices: ch, why: r.a.w + ' and ' + r.b.w + ' rhyme.' };
       } },
       { id: 'either', label: 'This one or that one', make: function () {
@@ -235,7 +248,7 @@
         var wrong = otherWords(r.i, 1)[0];
         var ch = shuffle([cPic(r.a), cPic(r.b), cPic(wrong, true)]);
         return { type: 'choice', prompt: 'Two of these words rhyme. Which one does not?',
-          say: 'Two of these words rhyme. Which one does not? ' + ch.map(function (c) { return c.word; }).join(', ') + '.',
+          say: 'Two of these words rhyme. Which one does not? | ' + ch.map(function (c) { return c.word; }).join(', ') + '.',
           choices: ch, why: r.a.w + ' and ' + r.b.w + ' rhyme. ' + wrong.w + ' does not.' };
       } },
       { id: 'yesno', label: 'Rhyme or not', make: function () {
@@ -255,7 +268,7 @@
         var wrong = otherWords(line[2], 2);
         var ch = shuffle([cPic(ans, true), cPic(wrong[0]), cPic(wrong[1])]);
         return { type: 'choice', prompt: line[0],
-          say: 'Finish the rhyme. ' + line[0].replace('…', ' blank.') + ' ' + ch.map(function (c) { return c.word; }).join(', ') + '?',
+          say: 'Finish the rhyme. ' + line[0].replace('…', ' blank.') + ' | ' + ch.map(function (c) { return c.word; }).join(', ') + '?',
           choices: ch, why: line[0].replace('…', ' ' + line[1] + '!') };
       } },
       { id: 'make', label: 'Make a rhyme', make: function () {
@@ -311,7 +324,7 @@
         var l = pick(TWO_SHAPES);
         var upper = rand(2) === 0;
         return { type: 'choice', cols: 2, stim: glyph(upper ? l.toUpperCase() : l), prompt: 'Is this letter uppercase or lowercase?',
-          say: 'Is this letter uppercase, a big letter, or lowercase, a small letter?',
+          say: 'Is this letter uppercase or lowercase? | Uppercase, a big letter. Or lowercase, a small letter.',
           choices: [{ big: 'A', word: 'Uppercase', label: 'Uppercase, big', correct: upper }, { big: 'a', word: 'Lowercase', label: 'Lowercase, small', correct: !upper }],
           why: 'It is ' + (upper ? 'an uppercase ' + l.toUpperCase() : 'a lowercase ' + l) + '.', sayWhy: 'Yes! It is ' + (upper ? 'uppercase.' : 'lowercase.') };
       } },
@@ -339,7 +352,7 @@
         var three = sample(STARTS, 3);
         var a = three[0];
         return { type: 'choice', stim: glyph(a.l.toUpperCase() + a.l), prompt: 'Which word starts with this letter?',
-          say: 'Which word starts with the letter ' + a.l.toUpperCase() + '? ' + shuffle(three).map(function (x) { return x.w; }).join(', ') + '?',
+          say: 'Which word starts with the letter ' + a.l.toUpperCase() + '? | ' + shuffle(three).map(function (x) { return x.w; }).join(', ') + '?',
           choices: shuffle(three.map(function (x, i) { return cPic(x, i === 0); })), why: a.w + ' starts with ' + a.l.toUpperCase() + '.' };
       } }
     ]
@@ -397,7 +410,7 @@
         var bigger = rand(2) === 0;
         var ans = bigger ? Math.max(a, b) : Math.min(a, b);
         return { type: 'choice', cols: 2, prompt: bigger ? pick(['Which number is bigger?', 'Which is more?']) : pick(['Which number is smaller?', 'Which is less?']),
-          say: (bigger ? 'Which number is bigger: ' : 'Which number is smaller: ') + numWord(a) + ' or ' + numWord(b) + '?',
+          say: (bigger ? 'Which number is bigger? | ' : 'Which number is smaller? | ') + numWord(a) + ', or ' + numWord(b) + '?',
           key: 'cmp' + a + '-' + b + bigger, choices: [cBig(a, a === ans), cBig(b, b === ans)],
           why: ans + ' is ' + (bigger ? 'bigger' : 'smaller') + ' than ' + (ans === a ? b : a) + '.' };
       } },
@@ -486,7 +499,7 @@
         var ans = (a.cents > b.cents) === more ? a : b;
         var other = ans === a ? b : a;
         return { type: 'choice', cols: 2, prompt: more ? 'Which coin is worth more?' : 'Which coin is worth less?',
-          say: (more ? 'Which coin is worth more: the ' : 'Which coin is worth less: the ') + a.name + ' or the ' + b.name + '?', key: 'more' + two.join('') + more,
+          say: (more ? 'Which coin is worth more? | The ' : 'Which coin is worth less? | The ') + a.name + ', or the ' + b.name + '?', key: 'more' + two.join('') + more,
           choices: [cCoin(a.name, ans === a), cCoin(b.name, ans === b)],
           why: 'A ' + ans.name + ' is ' + ans.cents + '¢. A ' + other.name + ' is ' + other.cents + '¢.' + (ans.name === 'dime' && more ? ' Small coin, bigger value!' : '') };
       } },
@@ -783,6 +796,7 @@
   }
   function go(hash) { if (location.hash === hash) route(); else location.hash = hash; }
   var ICON_X = function () { return s('svg', { viewBox: '0 0 24 24', 'aria-hidden': 'true' }, s('path', { d: 'M6 6l12 12M18 6L6 18', fill: 'none', stroke: 'currentColor', 'stroke-width': 3.4, 'stroke-linecap': 'round' })); };
+  var ICON_ARROW = function () { return s('svg', { class: 'arrow', viewBox: '0 0 24 24', 'aria-hidden': 'true' }, s('path', { d: 'M4 12h15M13 5.5l6.5 6.5-6.5 6.5', fill: 'none', stroke: 'currentColor', 'stroke-width': 3.4, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' })); };
   var ICON_SOUND = function () { return s('svg', { viewBox: '0 0 24 24', 'aria-hidden': 'true' }, s('path', { d: 'M4 9.5h3.5L12 5.5v13l-4.5-4H4z', fill: 'currentColor' }), s('path', { d: 'M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a7.6 7.6 0 0 1 0 11', fill: 'none', stroke: 'currentColor', 'stroke-width': 2.4, 'stroke-linecap': 'round' })); };
 
   function home() {
@@ -897,7 +911,7 @@
         feedback.textContent = praise + (why ? ' ' + why : '');
         speak(sayWhy || (praise + ' ' + (why || '')));
         if (from) burst(from);
-        var next = h('button', { class: 'btn', type: 'button', text: index + 1 >= total ? 'Finish' : 'Next', onclick: nextCard });
+        var next = h('button', { class: 'btn btn--go', type: 'button', onclick: nextCard }, index + 1 >= total ? 'Finish' : 'Next', ICON_ARROW());
         actions.replaceChildren(next);
         next.focus({ preventScroll: true });
         next.scrollIntoView({ block: 'nearest', behavior: reduce ? 'auto' : 'smooth' });
