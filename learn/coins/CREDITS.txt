@@ -1,0 +1,12 @@
+Coin photographs: United States Mint, public domain, via Wikimedia Commons.
+Resized, and converted to WebP. The quarter is a proof strike with its dark
+mirror fields lightened so it reads as silver. The nickel is cut to a circle.
+
+penny-front    File:US One Cent Obv.png
+nickel-front   File:Jefferson-Nickel-Unc-Obv.jpg
+nickel-back    File:US Nickel 2013 Rev.png
+dime-front     File:Dime Obverse 13.png
+dime-back      File:Dime Reverse 13.png
+quarter-front  File:2006 Quarter Proof.png
+
+https://commons.wikimedia.org/wiki/<file name above>

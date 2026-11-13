@@ -120,7 +120,7 @@
     return wrap;
   }
 
-  // Stylized coins: true relative size, color and edge. Not real coin art.
+  // Coins are shown at their true relative sizes (mm).
   var COINS = {
     penny:   { name: 'penny',   cents: 1,  mm: 19.05, fill: '#c57b4a', rim: '#8a4f28', reeded: false, text: 'ONE CENT',  look: 'copper colored, smooth edge' },
     nickel:  { name: 'nickel',  cents: 5,  mm: 21.21, fill: '#c9cdd3', rim: '#7d848e', reeded: false, text: 'FIVE CENTS', look: 'silver colored, smooth edge, thick' },
@@ -128,28 +128,17 @@
     quarter: { name: 'quarter', cents: 25, mm: 24.26, fill: '#cfd3d8', rim: '#7d848e', reeded: true,  text: 'QUARTER',   look: 'silver colored, ridged edge, the biggest' }
   };
   var COIN_IDS = ['penny', 'nickel', 'dime', 'quarter'];
-  var COIN_ART = {
-    penny: 'M36 30h28v18c0 12-7 19-14 23-7-4-14-11-14-23z',                        // shield
-    nickel: 'M30 46l20-14 20 14zM33 49h34v4H33zM36 55h5v12h-5zM47.5 55h5v12h-5zM59 55h5v12h-5zM31 68h38v4H31z', // building
-    dime: 'M46 44h8l-2 26h-4zM50 26c5 5 7 9 4 15h-8c-3-6-1-10 4-15z',              // torch
-    quarter: 'M50 26a11 11 0 1 1 0 22 11 11 0 0 1 0-22zM30 72c0-12 9-20 20-20s20 8 20 20z' // bust
-  };
-  function coin(id, scale) {
-    var c = COINS[id];
-    var px = Math.round(c.mm * (scale || 4));
-    var svg = s('svg', { class: 'coin', viewBox: '0 0 100 100', width: px, height: px, 'aria-hidden': 'true' },
-      s('circle', { cx: 50, cy: 50, r: 48, fill: c.fill, stroke: c.rim, 'stroke-width': 3 }),
-      c.reeded ? s('circle', { cx: 50, cy: 50, r: 46.5, fill: 'none', stroke: c.rim, 'stroke-width': 3, 'stroke-dasharray': '1.6 2.2' }) : null,
-      s('circle', { cx: 50, cy: 50, r: 41, fill: 'none', stroke: c.rim, 'stroke-width': 1.2, opacity: 0.7 }),
-      s('path', { d: COIN_ART[id], fill: c.rim, opacity: 0.8 }));
-    var t = s('text', { x: 50, y: 86, 'text-anchor': 'middle', 'font-size': 8.5, 'font-weight': 700, fill: c.rim, 'font-family': 'Andika, Helvetica, sans-serif' });
-    t.textContent = c.text;
-    svg.appendChild(t);
-    return svg;
+  // Real coin photos (US Mint, public domain, via Wikimedia Commons). Credits: learn/coins/CREDITS.txt
+  var COIN_BACKS = { nickel: true, dime: true };
+  function coinSrc(name) { return (window.WD_ASSETS && window.WD_ASSETS[name]) || 'coins/' + name + '.webp'; }
+  function coin(id, scale, mayFlip) {
+    var px = Math.round(COINS[id].mm * (scale || 4));
+    var side = mayFlip && COIN_BACKS[id] && rand(3) === 0 ? 'back' : 'front';
+    return h('img', { class: 'coin', src: coinSrc(id + '-' + side), width: px, height: px, alt: '', draggable: 'false' });
   }
-  function coinRow(ids, scale) {
+  function coinRow(ids, scale, mayFlip) {
     return h('div', { class: 'coins', role: 'img', 'aria-label': ids.length + (ids.length === 1 ? ' coin' : ' coins') },
-      ids.map(function (id) { return coin(id, scale); }));
+      ids.map(function (id) { return coin(id, scale, mayFlip); }));
   }
 
   function monthInfo(year, month) {
@@ -475,12 +464,12 @@
       } },
       { id: 'name', label: 'Name the coin', make: function () {
         var id = pick(COIN_IDS);
-        return { type: 'open', stim: coinRow([id], 6), prompt: 'What is this coin called?', key: 'name' + id,
+        return { type: 'open', stim: coinRow([id], 6, true), prompt: 'What is this coin called?', key: 'name' + id,
           answer: 'A ' + id, detail: 'It is worth ' + COINS[id].cents + (id === 'penny' ? ' cent.' : ' cents.') };
       } },
       { id: 'worth', label: 'How many cents', make: function () {
         var id = pick(COIN_IDS);
-        return { type: 'choice', cols: 4, stim: coinRow([id], 6), prompt: 'This is a ' + id + '. How many cents is it worth?', key: 'worth' + id,
+        return { type: 'choice', cols: 2, stim: coinRow([id], 6, true), prompt: 'This is a ' + id + '. How many cents is it worth?', key: 'worth' + id,
           choices: [1, 5, 10, 25].map(function (v) { return { big: v + '¢', label: v + ' cents', correct: v === COINS[id].cents }; }),
           why: 'A ' + id + ' is ' + COINS[id].cents + (id === 'penny' ? ' cent.' : ' cents.') };
       } },
@@ -699,47 +688,130 @@
   }
 
   /* ---------- 5. Screens ---------- */
+  var root = document.documentElement;
   var app = document.getElementById('app');
+  var wipe = h('div', { class: 'wipe', 'aria-hidden': 'true' });
+  document.body.insertBefore(wipe, app);
+  var themeMeta = document.querySelector('meta[name="theme-color"]');
+  var reduce = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+  // Screen colors, as [background, text on it].
+  var COLORS = {
+    orange: ['#ff7a2f', '#1c0f05'], yellow: ['#ffd60a', '#1e1800'], pink: ['#ff5ca8', '#2b0616'],
+    blue: ['#2f6bff', '#ffffff'], green: ['#3ddc97', '#04231a'], purple: ['#7b4dff', '#ffffff'],
+    sky: ['#4cc9f0', '#04202b'], red: ['#ff4a3d', '#2a0805'], navy: ['#1b2a6b', '#ffe55c'],
+    lilac: ['#c9a7ff', '#1d0b3d'], cream: ['#fff3d6', '#1b1330']
+  };
+  var DECK_COLOR = { mix: 'lilac', rhyme: 'orange', letters: 'blue', numbers: 'green', tens: 'yellow', coins: 'sky', calendar: 'purple', me: 'pink' };
+  // Green is left out of play so a right answer (green) always stands out.
+  var PLAY_COLORS = ['orange', 'yellow', 'pink', 'blue', 'purple', 'sky', 'red', 'navy', 'lilac'];
   var PRAISE = ['Yes!', 'You got it!', 'Nice thinking!', 'That’s it!', 'Way to go!', 'Great job!'];
+
+  // Remember where the last tap was, so the next color can grow out of it.
+  var tap = null;
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('button');
+    if (!b) return;
+    var r = b.getBoundingClientRect();
+    tap = { x: r.left + r.width / 2, y: r.top + r.height / 2, at: Date.now() };
+  }, true);
+
+  var wipeAnim = null, wipeTarget = null;
+  function paint(name) {
+    var pair = COLORS[name];
+    root.style.setProperty('--bg', pair[0]);
+    root.style.setProperty('--ink', pair[1]);
+    if (themeMeta) themeMeta.setAttribute('content', pair[0]);
+    if (wipeAnim) { root.style.setProperty('--stage', wipeTarget); wipeAnim.cancel(); wipeAnim = null; }
+    if (reduce || !wipe.animate || getComputedStyle(root).getPropertyValue('--stage').trim() === pair[0]) { root.style.setProperty('--stage', pair[0]); return; }
+    var W = window.innerWidth, H = window.innerHeight;
+    var ox = tap && Date.now() - tap.at < 1500 ? tap.x : W / 2;
+    var oy = tap && Date.now() - tap.at < 1500 ? tap.y : H;
+    var r = Math.hypot(Math.max(ox, W - ox), Math.max(oy, H - oy)) + 8;
+    var anim = wipe.animate(
+      [{ clipPath: 'circle(0px at ' + ox + 'px ' + oy + 'px)' }, { clipPath: 'circle(' + r + 'px at ' + ox + 'px ' + oy + 'px)' }],
+      { duration: 480, easing: 'cubic-bezier(.25,.7,.25,1)', fill: 'forwards' });
+    wipeAnim = anim; wipeTarget = pair[0];
+    anim.onfinish = function () {
+      if (wipeAnim !== anim) return;
+      root.style.setProperty('--stage', pair[0]); anim.cancel(); wipeAnim = null;
+    };
+  }
+
+  // Stars flying out of a right answer.
+  function burst(el) {
+    if (reduce || !el.animate) return;
+    var r = el.getBoundingClientRect();
+    var cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+    for (var i = 0; i < 9; i++) {
+      var sp = h('span', { class: 'spark', 'aria-hidden': 'true', text: pick(['⭐', '✨', '⭐', '🌟']) });
+      sp.style.left = cx + 'px'; sp.style.top = cy + 'px';
+      document.body.appendChild(sp);
+      var ang = (i / 9) * Math.PI * 2 + Math.random() * 0.6, dist = 80 + Math.random() * 90;
+      var a = sp.animate([
+        { transform: 'translate(-50%,-50%) scale(.3)', opacity: 1 },
+        { transform: 'translate(calc(-50% + ' + Math.cos(ang) * dist + 'px), calc(-50% + ' + Math.sin(ang) * dist + 'px)) scale(1.2) rotate(' + (Math.random() * 180 - 90) + 'deg)', opacity: 1, offset: 0.7 },
+        { transform: 'translate(calc(-50% + ' + Math.cos(ang) * dist * 1.15 + 'px), calc(-50% + ' + (Math.sin(ang) * dist * 1.15 + 30) + 'px)) scale(.6)', opacity: 0 }
+      ], { duration: 750, easing: 'cubic-bezier(.2,.8,.3,1)' });
+      a.onfinish = (function (n) { return function () { n.remove(); }; })(sp);
+    }
+  }
+
   function stars(n, cls) {
     var el = h('div', { class: cls, role: 'img', 'aria-label': n + ' out of 3 stars' });
-    for (var i = 0; i < 3; i++) el.appendChild(h('span', { class: i < n ? '' : 'off', 'aria-hidden': 'true', text: '⭐' }));
+    for (var i = 0; i < 3; i++) {
+      var st = h('span', { class: i < n ? '' : 'off', 'aria-hidden': 'true', text: '⭐' });
+      st.style.setProperty('--i', i);
+      el.appendChild(st);
+    }
     return el;
   }
-  function show(node, deck) {
+  function stagger(el, cls, i) { el.classList.add(cls); el.style.setProperty('--i', i); return el; }
+  function words(text) {
+    var out = [];
+    text.split(' ').forEach(function (w, i, all) {
+      out.push(stagger(h('span', { class: 'w', text: w }), 'rise', i));
+      if (i < all.length - 1) out.push(document.createTextNode(' '));
+    });
+    return out;
+  }
+  function show(node, color) {
     hush();
-    app.style.setProperty('--deck', deck ? deck.color : '#ff8a5b');
-    app.style.setProperty('--deck-tint', deck ? deck.tint : '#ffe6da');
+    paint(color);
     app.replaceChildren(node);
     window.scrollTo(0, 0);
   }
   function go(hash) { if (location.hash === hash) route(); else location.hash = hash; }
+  var ICON_X = function () { return s('svg', { viewBox: '0 0 24 24', 'aria-hidden': 'true' }, s('path', { d: 'M6 6l12 12M18 6L6 18', fill: 'none', stroke: 'currentColor', 'stroke-width': 3.4, 'stroke-linecap': 'round' })); };
+  var ICON_SOUND = function () { return s('svg', { viewBox: '0 0 24 24', 'aria-hidden': 'true' }, s('path', { d: 'M4 9.5h3.5L12 5.5v13l-4.5-4H4z', fill: 'currentColor' }), s('path', { d: 'M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a7.6 7.6 0 0 1 0 11', fill: 'none', stroke: 'currentColor', 'stroke-width': 2.4, 'stroke-linecap': 'round' })); };
 
   function home() {
     var name = (state.profile.name || '').trim();
-    var view = h('main', {},
-      h('header', { class: 'home-head' },
-        h('h1', { class: 'home-title', text: 'Wonder Deck' }),
-        h('p', { class: 'home-sub', text: name ? 'Hi, ' + name + '! Pick a deck to play.' : 'Pick a deck to play.' })));
+    var view = h('main', { class: 'home' },
+      stagger(h('h1', { class: 'home-title', text: 'Wonder Deck' }), 'rise', 0),
+      stagger(h('p', { class: 'home-sub', text: name ? 'Hi, ' + name + '! Pick one.' : 'Pick one.' }), 'rise', 1));
+    var n = 0;
     LEVELS.forEach(function (level) {
-      view.appendChild(h('h2', { class: 'level', text: level.label }));
+      if (LEVELS.length > 1) view.appendChild(h('h2', { class: 'level', text: level.label }));
       var list = h('ul', { class: 'decks' });
       level.decks.forEach(function (deck) {
         var best = (state.stats[deck.id] || {}).best || 0;
         var locked = deck.needsProfile && !readySkills(deck, level).length;
+        var pair = COLORS[DECK_COLOR[deck.id] || 'orange'];
         var btn = h('button', { class: 'deck', type: 'button', onclick: function () { go(locked ? '#grownups' : '#play-' + deck.id); } },
           h('span', { class: 'deck-icon', 'aria-hidden': 'true', text: deck.icon }),
-          h('span', { class: 'deck-name', text: deck.name }),
-          h('span', { class: 'deck-blurb', text: locked ? 'Ask a grown-up to set this one up.' : deck.blurb }),
-          locked ? null : stars(best, 'deck-stars'));
-        btn.style.setProperty('--deck', deck.color);
-        btn.style.setProperty('--deck-tint', deck.tint);
-        list.appendChild(h('li', {}, btn));
+          h('span', {},
+            h('span', { class: 'deck-name', text: deck.name }),
+            locked ? h('span', { class: 'deck-note', text: ' Ask a grown-up to set this up.' }) : null),
+          !locked && best ? stars(best, 'deck-stars') : null);
+        btn.style.setProperty('--tile', pair[0]);
+        btn.style.setProperty('--tile-ink', pair[1]);
+        list.appendChild(stagger(h('li', {}, btn), 'pop', n++));
       });
       view.appendChild(list);
     });
-    view.appendChild(h('div', { class: 'home-foot' }, h('button', { class: 'btn btn--quiet', type: 'button', text: 'Grown-ups', onclick: function () { go('#grownups'); } })));
-    show(view);
+    view.appendChild(h('div', { class: 'home-foot' }, h('button', { class: 'btn btn--ghost btn--small', type: 'button', text: 'Grown-ups', onclick: function () { go('#grownups'); } })));
+    show(view, 'navy');
   }
 
   function play(found) {
@@ -747,23 +819,32 @@
     var pool = readySkills(deck, found.level);
     if (!pool.length) { go('#grownups'); return; }
     var used = {}, total = CARDS_PER_ROUND, index = 0, firstTryCount = 0, extras = 0, lastSkill = null, current = null;
+    var recentColors = [], color = DECK_COLOR[deck.id] === 'green' ? 'orange' : DECK_COLOR[deck.id];
 
-    var dots = h('ol', { class: 'dots', 'aria-hidden': 'true' });
-    var status = h('span', { class: 'sr', 'aria-live': 'polite' });
-    var replay = h('button', { class: 'btn', type: 'button', 'aria-label': 'Hear the question again', text: '🔊', onclick: function () { if (current) speak(current.say || current.prompt); } });
+    var fill = h('i', {});
+    var replay = h('button', { class: 'round', type: 'button', 'aria-label': 'Hear the question again', onclick: function () { if (current) speak(current.say || current.prompt); } }, ICON_SOUND());
     replay.hidden = !canSpeak || !state.voice;
-    var cardHost = h('div', {});
-    var view = h('main', {},
+    var cardHost = h('div', { class: 'card' });
+    var view = h('main', { class: 'play' },
       h('div', { class: 'bar' },
-        h('button', { class: 'btn', type: 'button', 'aria-label': 'Stop and go back to all decks', text: '✕', onclick: function () { go(''); } }),
-        dots, replay),
-      cardHost, status);
+        h('button', { class: 'round', type: 'button', 'aria-label': 'Stop and go back to all decks', onclick: function () { go(''); } }, ICON_X()),
+        h('div', { class: 'track', role: 'progressbar', 'aria-label': 'Cards done', 'aria-valuemin': '0', 'aria-valuemax': String(total), 'aria-valuenow': '0' }, fill),
+        replay),
+      cardHost);
+    var track = fill.parentNode;
 
-    function paintDots() {
-      dots.replaceChildren();
-      for (var i = 0; i < total; i++) dots.appendChild(h('li', { class: i < index ? 'done' : (i === index ? 'now' : '') }));
+    function nextColor() {
+      var opts = PLAY_COLORS.filter(function (c) { return c !== color && recentColors.indexOf(c) < 0; });
+      color = pick(opts);
+      recentColors.push(color);
+      if (recentColors.length > 3) recentColors.shift();
+      return color;
     }
-
+    function progress() {
+      fill.style.width = Math.round(100 * index / total) + '%';
+      track.setAttribute('aria-valuemax', String(total));
+      track.setAttribute('aria-valuenow', String(index));
+    }
     function record(card, firstTry) {
       var st = skillStat(card.entry.deck.id, card.entry.skill.id);
       st.seen++;
@@ -771,16 +852,15 @@
       else if (extras < 2) { extras++; total++; card.entry.again = true; }
       save();
     }
-
     function nextCard() {
       index++;
+      progress();
       if (index >= total) return finish();
+      paint(nextColor());
       deal();
     }
-
     function deal() {
-      paintDots();
-      // A missed skill gets one more fresh question later in the round.
+      // A missed question style gets one more fresh question later in the round.
       var retry = pool.filter(function (e) { return e.again; })[0];
       var card = null;
       if (retry && index >= total - extras) { retry.again = false; card = drawCard([retry], null, used); }
@@ -788,155 +868,161 @@
       if (!card) return finish();
       current = card;
       lastSkill = card.entry.skill;
-      cardHost.replaceChildren(renderCard(card));
+      cardHost.replaceChildren.apply(cardHost, renderCard(card));
+      window.scrollTo(0, 0);
       speak(card.say || card.prompt);
     }
 
     function renderCard(card) {
       var feedback = h('div', { class: 'feedback', role: 'status' });
       var actions = h('div', { class: 'actions' });
-      var el = h('article', { class: 'card in' },
-        h('p', { class: 'kicker' }, h('span', { 'aria-hidden': 'true', text: card.entry.deck.icon + ' ' }), card.entry.skill.label),
-        h('div', { class: 'stim' }, card.stim || null),
-        h('h1', { class: 'prompt', tabindex: '-1', text: card.prompt }),
-        card.readAloud && !(canSpeak && state.voice) ? h('p', { class: 'note' }, 'Grown-up, say: ', h('b', { text: card.readAloud })) : null);
+      var answers = h('div', { class: 'answers' });
+      var mid = h('div', { class: 'mid' },
+        card.stim ? stagger(h('div', { class: 'stim' }, card.stim), 'pop', 0) : null,
+        h('h1', { class: 'prompt', tabindex: '-1' }, words(card.prompt)),
+        card.readAloud && !(canSpeak && state.voice) ? h('p', { class: 'note' }, 'Grown-up, say: ' + card.readAloud) : null);
+      var kicker = h('p', { class: 'kicker' }, h('span', { 'aria-hidden': 'true', text: card.entry.deck.icon + ' ' }), card.entry.skill.label);
 
-      function done(firstTry, why, sayWhy) {
+      function nudge() {
+        feedback.className = 'feedback';
+        void feedback.offsetWidth;
+        feedback.className = 'feedback nudge';
+        feedback.textContent = pick(['Try again!', 'Look again.', 'Almost!']);
+        speak(feedback.textContent);
+      }
+      function done(firstTry, why, sayWhy, from) {
         record(card, firstTry);
         var praise = pick(PRAISE);
         feedback.className = 'feedback good';
         feedback.textContent = praise + (why ? ' ' + why : '');
         speak(sayWhy || (praise + ' ' + (why || '')));
-        var next = h('button', { class: 'btn btn--primary', type: 'button', text: index + 1 >= total ? 'Finish' : 'Next card', onclick: nextCard });
+        if (from) burst(from);
+        var next = h('button', { class: 'btn', type: 'button', text: index + 1 >= total ? 'Finish' : 'Next', onclick: nextCard });
         actions.replaceChildren(next);
-        next.focus();
+        next.focus({ preventScroll: true });
+        next.scrollIntoView({ block: 'nearest', behavior: reduce ? 'auto' : 'smooth' });
       }
 
       if (card.type === 'open') {
-        var answer = h('div', { class: 'answer', hidden: true }, card.answer, card.detail ? h('small', { text: card.detail }) : null);
-        var flip = h('button', { class: 'btn btn--deck', type: 'button', text: 'Show the answer', onclick: function () {
-          answer.hidden = false;
+        var answer = h('div', { class: 'answer' }, card.answer, card.detail ? h('small', { text: card.detail }) : null);
+        var flip = h('button', { class: 'btn', type: 'button', text: 'Show answer', onclick: function () {
+          mid.appendChild(answer);
           speak(card.answer);
-          var got = h('button', { class: 'btn btn--primary', type: 'button', text: 'Got it!', onclick: function () { record(card, true); nextCard(); } });
-          actions.replaceChildren(got, h('button', { class: 'btn', type: 'button', text: 'Not yet', onclick: function () { record(card, false); nextCard(); } }));
-          got.focus();
+          var got = h('button', { class: 'btn', type: 'button', text: 'Got it!', onclick: function () { burst(got); record(card, true); nextCard(); } });
+          actions.replaceChildren(got, h('button', { class: 'btn btn--ghost', type: 'button', text: 'Not yet', onclick: function () { record(card, false); nextCard(); } }));
+          got.focus({ preventScroll: true });
         } });
         actions.appendChild(flip);
-        el.appendChild(h('p', { class: 'note', text: 'Say your answer out loud, then flip the card.' }));
-        el.appendChild(answer);
       } else if (card.type === 'dial') {
-        el.appendChild(dialPad(card, feedback, done));
+        answers.appendChild(dialPad(card, nudge, done));
       } else {
         var misses = 0;
         var buttons = [];
         var onPick = function (btn, correct) {
           if (correct) {
+            btn.classList.remove('pop');
             btn.classList.add('right');
             buttons.forEach(function (b) { b.disabled = true; });
-            done(misses === 0, card.why, card.sayWhy);
+            done(misses === 0, card.why, card.sayWhy, btn);
           } else {
             misses++;
-            btn.classList.add('wrong', 'shake');
+            btn.classList.remove('pop');
+            btn.classList.add('wrong');
             btn.disabled = true;
-            feedback.className = 'feedback';
-            feedback.textContent = pick(['Not that one. Try again!', 'Good try. Look again.', 'Almost. Try another one.']);
-            speak(feedback.textContent);
+            nudge();
           }
         };
         if (card.layout === 'calendar') {
-          el.appendChild(h('div', { class: 'choices', style: null }));
-          el.lastChild.style.setProperty('--cols', 1);
-          el.lastChild.appendChild(calendar(card.info, function (d) {
+          answers.appendChild(stagger(calendar(card.info, function (d) {
             var b = h('button', { class: 'day', type: 'button', text: String(d) });
             b.addEventListener('click', function () { onPick(b, d === card.answerDay); });
             buttons.push(b);
             return b;
-          }));
+          }), 'pop', 1));
         } else {
           var grid = h('div', { class: 'choices' });
           grid.style.setProperty('--cols', card.cols || card.choices.length);
-          card.choices.forEach(function (c) {
+          card.choices.forEach(function (c, i) {
             var b = h('button', { class: 'choice', type: 'button', 'aria-label': c.label },
-              c.coin ? coin(c.coin, 4.2) : null,
+              c.coin ? coin(c.coin, 5.4) : null,
               c.emoji ? h('span', { class: 'emoji', 'aria-hidden': 'true', text: c.emoji }) : null,
               c.big ? h('span', { class: 'big', text: c.big }) : null,
               c.word ? h('span', { class: 'word', text: c.word }) : null);
             b.addEventListener('click', function () { onPick(b, c.correct); });
             buttons.push(b);
-            grid.appendChild(b);
+            grid.appendChild(stagger(b, 'pop', i + 2));
           });
-          el.appendChild(grid);
+          answers.appendChild(grid);
         }
       }
-      el.appendChild(feedback);
-      el.appendChild(actions);
-      return el;
+      return [kicker, mid, answers, h('div', { class: 'foot' }, feedback, actions)];
     }
 
-    function dialPad(card, feedback, done) {
+    function dialPad(card, nudge, done) {
       var digits = card.digits, pos = 0, missesHere = 0, anyMiss = false, peeked = false;
       var shown = h('div', { class: 'answer', hidden: !card.show, text: phonePretty(digits) });
       var slots = h('div', { class: 'slots', 'aria-hidden': 'true' });
       var live = h('span', { class: 'sr', 'aria-live': 'polite' });
       var keys = {};
-      function paint() {
+      function paintSlots() {
         slots.replaceChildren();
         for (var i = 0; i < digits.length; i++) {
           if (digits.length === 10 && (i === 3 || i === 6) || digits.length === 7 && i === 3) slots.appendChild(h('span', { class: 'gap' }));
-          slots.appendChild(h('span', { class: i === pos ? 'now' : '', text: i < pos ? digits[i] : '' }));
+          slots.appendChild(h('span', { class: i === pos ? 'now' : (i === pos - 1 ? 'in' : (i < pos ? 'in' : '')), text: i < pos ? digits[i] : '' }));
         }
       }
       var pad = h('div', { class: 'keypad' });
-      [1, 2, 3, 4, 5, 6, 7, 8, 9, 0].forEach(function (n) {
+      [1, 2, 3, 4, 5, 6, 7, 8, 9, 0].forEach(function (n, i) {
         var k = h('button', { class: 'key' + (n === 0 ? ' zero' : ''), type: 'button', text: String(n) });
         k.addEventListener('click', function () {
           if (pos >= digits.length) return;
-          Object.keys(keys).forEach(function (x) { keys[x].classList.remove('hint', 'shake'); });
+          Object.keys(keys).forEach(function (x) { keys[x].classList.remove('hint', 'shake', 'pop'); });
           if (String(n) === digits[pos]) {
             pos++; missesHere = 0;
             live.textContent = n + ', ' + (digits.length - pos) + ' to go';
-            paint();
+            paintSlots();
             if (pos >= digits.length) {
               Object.keys(keys).forEach(function (x) { keys[x].disabled = true; });
               shown.hidden = false;
-              done(!anyMiss && !peeked, 'You dialed ' + phonePretty(digits) + '.', 'You did it!');
+              done(!anyMiss && !peeked, '', 'You did it!', slots);
             }
           } else {
             anyMiss = true; missesHere++;
             void k.offsetWidth; k.classList.add('shake');
-            feedback.className = 'feedback';
-            feedback.textContent = 'Not that one. Try again!';
+            nudge();
             if (missesHere >= 2) keys[digits[pos]].classList.add('hint');
           }
         });
         keys[n] = k;
-        pad.appendChild(k);
+        pad.appendChild(stagger(k, 'pop', i));
       });
-      paint();
-      var peek = card.show ? null : h('div', { class: 'actions' }, h('button', { class: 'btn btn--quiet', type: 'button', text: 'Peek', onclick: function () { peeked = true; shown.hidden = false; } }));
+      paintSlots();
+      var peek = card.show ? null : h('div', { class: 'peek' }, h('button', { class: 'btn btn--ghost btn--small', type: 'button', text: 'Peek', onclick: function () { peeked = true; shown.hidden = false; } }));
       return h('div', {}, shown, slots, pad, peek, live);
     }
 
     function finish() {
-      var base = total - extras;
       var ratio = firstTryCount / total;
       var n = ratio >= 0.85 ? 3 : (ratio >= 0.5 ? 2 : 1);
       var d = state.stats[deck.id] || (state.stats[deck.id] = { plays: 0, best: 0, skills: {} });
       d.plays++; d.best = Math.max(d.best || 0, n);
       save();
       var name = (state.profile.name || '').trim();
-      var again = h('button', { class: 'btn btn--primary', type: 'button', text: 'Play again', onclick: function () { play(found); } });
+      var again = h('button', { class: 'btn', type: 'button', text: 'Play again', onclick: function () { play(found); } });
       var msg = pick(['Nice work', 'Way to go', 'You did it']) + (name ? ', ' + name : '') + '!';
+      var starRow = stars(n, 'finish-stars');
       show(h('main', { class: 'finish' },
-        stars(n, 'finish-stars'),
-        h('h1', { tabindex: '-1', text: msg }),
-        h('p', { text: 'You answered ' + firstTryCount + ' of ' + total + ' on the first try' + (base !== total ? ', with ' + extras + ' bonus practice ' + (extras === 1 ? 'card.' : 'cards.') : '.') }),
-        h('div', { class: 'actions' }, again, h('button', { class: 'btn', type: 'button', text: 'All decks', onclick: function () { go(''); } }))), deck);
+        starRow,
+        h('h1', { tabindex: '-1' }, words(msg)),
+        stagger(h('p', { text: firstTryCount + ' of ' + total + ' on the first try.' }), 'rise', 4),
+        stagger(h('div', { class: 'actions' }, again, h('button', { class: 'btn btn--ghost', type: 'button', text: 'All decks', onclick: function () { go(''); } })), 'rise', 5)), 'green');
       speak(msg);
-      again.focus();
+      setTimeout(function () { if (starRow.isConnected) burst(starRow); }, 700);
+      again.focus({ preventScroll: true });
     }
 
-    show(view, deck);
+    show(view, color);
+    progress();
     deal();
   }
 
@@ -971,10 +1057,10 @@
       field('City or town', input('city')),
       h('div', { class: 'row' }, field('Whose phone? (like “Mom’s”)', input('phoneOwner')), field('Phone number', input('phone', { type: 'tel', inputmode: 'tel' }))),
       h('label', { class: 'check' }, voice, h('span', { text: canSpeak ? 'Read questions out loud' : 'Read questions out loud (this browser has no voice, so read them yourself)' })),
-      h('div', { class: 'actions' }, h('button', { class: 'btn btn--primary', type: 'submit', text: 'Save' })),
+      h('div', { class: 'actions' }, h('button', { class: 'btn', type: 'submit', text: 'Save' })),
       savedMsg);
 
-    var table = h('table', { class: 'progress' }, h('caption', { class: 'sr', text: 'First-try answers by skill' }));
+    var table = h('table', { class: 'progress' }, h('caption', { class: 'sr', text: 'First-try answers by question style' }));
     var any = false;
     LEVELS.forEach(function (level) {
       level.decks.forEach(function (deck) {
@@ -992,17 +1078,17 @@
     });
 
     show(h('main', { class: 'grown' },
-      h('div', { class: 'bar' }, h('button', { class: 'btn', type: 'button', text: '← Decks', onclick: function () { go(''); } })),
+      h('div', { class: 'bar' }, h('button', { class: 'btn btn--ghost btn--small', type: 'button', text: '← Decks', onclick: function () { go(''); } })),
       h('h1', { tabindex: '-1', text: 'Grown-ups' }),
-      h('h2', { text: 'All About Me details' }),
-      h('p', { text: 'These fill in the birthday, address and phone cards. They are saved only in this browser on this device. Nothing is uploaded, and nothing here is part of the website.' }),
+      h('h2', { text: 'All About Me' }),
+      h('p', { text: 'These fill in the birthday, address and phone cards. They are saved only in this browser on this device. Nothing is uploaded.' }),
       form,
       h('h2', { text: 'How it’s going' }),
-      h('p', { text: 'Answers right on the first try, by question style. Styles under 60% are highlighted, and the decks already ask those more often.' }),
+      h('p', { text: 'Right on the first try, by question style. Anything under 60% is marked, and the decks already ask those more often.' }),
       any ? h('div', { class: 'panel' }, table) : h('p', { text: 'Nothing yet. Play a deck and check back.' }),
-      h('div', { class: 'actions' }, h('button', { class: 'btn btn--quiet', type: 'button', text: 'Erase progress', onclick: function () {
+      h('div', { class: 'actions' }, h('button', { class: 'btn btn--ghost btn--small', type: 'button', text: 'Erase progress', onclick: function () {
         if (confirm('Erase all stars and progress on this device? The details above are kept.')) { state.stats = {}; save(); grownups(); }
-      } }))));
+      } }))), 'cream');
   }
 
   function gate() {
@@ -1010,7 +1096,7 @@
     var answer = h('input', { type: 'text', inputmode: 'numeric', autocomplete: 'off', 'aria-describedby': 'gate-msg' });
     var msg = h('p', { class: 'saved', id: 'gate-msg', role: 'status' });
     show(h('main', { class: 'grown' },
-      h('div', { class: 'bar' }, h('button', { class: 'btn', type: 'button', text: '← Decks', onclick: function () { go(''); } })),
+      h('div', { class: 'bar' }, h('button', { class: 'btn btn--ghost btn--small', type: 'button', text: '← Decks', onclick: function () { go(''); } })),
       h('h1', { text: 'Grown-ups only' }),
       h('form', { class: 'panel', onsubmit: function (e) {
         e.preventDefault();
@@ -1018,8 +1104,8 @@
         else { msg.textContent = 'Not quite. Try again.'; answer.select(); }
       } },
         h('label', { class: 'field' }, h('span', { text: 'What is ' + a + ' × ' + b + '?' }), answer),
-        h('div', { class: 'actions' }, h('button', { class: 'btn btn--primary', type: 'submit', text: 'Continue' })),
-        msg)));
+        h('div', { class: 'actions' }, h('button', { class: 'btn', type: 'submit', text: 'Continue' })),
+        msg)), 'cream');
     answer.focus();
   }
 
