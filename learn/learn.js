@@ -95,7 +95,17 @@
   // A "|" in the text adds a beat too: it sits between a question and its answers.
   var VOICE_RATE = 0.8;      // 1 is the voice's normal speed
   var VOICE_PAUSE_MS = 250;
+  var VOICE_LANG = 'en-GB';   // British English. The voices themselves come from the device.
   var speakRun = 0, speaking = null;
+  // The device's British voice if it has one. Otherwise null, and the browser picks.
+  function britishVoice() {
+    var all = [];
+    try { all = speechSynthesis.getVoices() || []; } catch (e) {}
+    var gb = all.filter(function (v) { return /^en[-_]GB/i.test(v.lang || ''); });
+    return gb.filter(function (v) { return v.localService; })[0] || gb[0] || null;
+  }
+  // Some browsers load their voice list late. Asking early makes it ready by the first card.
+  try { if (canSpeak) { speechSynthesis.getVoices(); speechSynthesis.addEventListener && speechSynthesis.addEventListener('voiceschanged', function () {}); } } catch (e) {}
   function speak(text) {
     if (!state.voice || !canSpeak || !text) return;
     var run = ++speakRun;
@@ -106,7 +116,9 @@
       if (i >= parts.length || run !== speakRun) return;
       try {
         var u = new SpeechSynthesisUtterance(parts[i]);
-        u.lang = 'en-US';
+        var voice = britishVoice();
+        if (voice) u.voice = voice;
+        u.lang = voice ? voice.lang : VOICE_LANG;
         u.rate = VOICE_RATE;
         u.onend = function () { setTimeout(function () { next(i + 1); }, VOICE_PAUSE_MS); };
         speaking = u;          // held so the browser does not drop it mid-sentence
