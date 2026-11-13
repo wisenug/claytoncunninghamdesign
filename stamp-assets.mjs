@@ -5,7 +5,7 @@
    characters of the file's SHA-256, so a changed file always gets a new URL
    and an unchanged one keeps its cache. Replaces hand-bumped version strings.
 
-   Covers <script src> / <link href> in the root pages, dino/ and reba/, plus
+   Covers <script src> / <link href> in the root pages, dino/, reba/ and learn/, plus
    the on-demand Lottie player URL in js/site.js (stamped first, since that
    edit changes site.js's own hash).
 
@@ -50,7 +50,7 @@ await stamp('js/site.js', /'(?<path>js\/vendor\/[^'?]+\.js)\?v=[^']*'/g, p => p)
 
 // 2. Pages (site.js is hashed only now, after step 1)
 const pages = [];
-for (const dir of ['.', 'dino', 'reba']) {
+for (const dir of ['.', 'dino', 'reba', 'learn']) {
   for (const f of await fs.readdir(dir)) if (f.endsWith('.html')) pages.push(path.join(dir, f));
 }
 const ref = /(?:src|href)="(?<path>[^"?:]+\.(?:css|js))\?v=[^"]*"/g;

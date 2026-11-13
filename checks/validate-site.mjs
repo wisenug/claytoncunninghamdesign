@@ -8,7 +8,7 @@
    6. The lazily loaded Lottie player named in js/site.js exists on disk
    7. Files that only JavaScript loads exist: data-lottie animations,
       rotating-thumbnail frames, the 360 shoe frames, js/projects.js media
-   dino/ and reba/ get the same link check as the root pages.
+   dino/, reba/ and learn/ get the same link check as the root pages.
    Used by CI (.github/workflows/checks.yml) and runnable locally. */
 import fs from 'fs/promises';
 import { existsSync } from 'fs';
@@ -19,7 +19,7 @@ const errors = [];
 
 const files = (await fs.readdir('.')).filter(f => f.endsWith('.html'));
 // Standalone pages in their own folders: refs resolve against that folder
-for (const dir of ['dino', 'reba']) {
+for (const dir of ['dino', 'reba', 'learn']) {
   for (const f of await fs.readdir(dir)) if (f.endsWith('.html')) files.push(path.join(dir, f));
 }
 

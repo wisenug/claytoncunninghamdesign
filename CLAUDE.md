@@ -22,6 +22,7 @@ Clayton Cunningham's portfolio. Hand-written static HTML, one shared stylesheet,
 |---|---|
 | `*.html` (root) | One file per page: home, about, case studies, process write-ups, licensing, 404, redirect stubs |
 | `dino/`, `reba/` | Standalone fun pages, served at `/dino/` and `/reba/` |
+| `learn/` | Wonder Deck, a standalone kids quiz-card app at `/learn/` (`learn.css`, `learn.js`, own strict CSP, `noindex`, not in the sitemap). Kids' personal details are entered in the app and stored in the browser only: never put them in the repo |
 | `styles.css` | Shared styles. Each page sets its own `--color-bg` / `--color-fg` and adds page-specific rules in an inline `<style>` |
 | `js/site.js` | Shared behaviors for every page (`window.CCD`), including the Lottie loader |
 | `js/projects.js` | **Single source of truth for project metadata** (`CCD_PROJECTS`, `CCD_ARTICLES`), including each page's colors. Feeds the home grid, JSON-LD, OG cards, RSS |

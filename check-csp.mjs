@@ -24,7 +24,7 @@ for (const f of (await fs.readdir('.')).filter(f => f.endsWith('.html')).sort())
   const url = `${ORIGIN}/${f === 'index.html' ? '' : f}`;
   (/http-equiv="refresh"/i.test(html) ? stubs : pages).push(url);
 }
-pages.push(`${ORIGIN}/dino/`, `${ORIGIN}/reba/`);
+pages.push(`${ORIGIN}/dino/`, `${ORIGIN}/reba/`, `${ORIGIN}/learn/`);
 
 let failures = 0;
 let cspViolations = 0;
