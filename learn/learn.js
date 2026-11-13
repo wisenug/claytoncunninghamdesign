@@ -142,7 +142,7 @@
       c.reeded ? s('circle', { cx: 50, cy: 50, r: 46.5, fill: 'none', stroke: c.rim, 'stroke-width': 3, 'stroke-dasharray': '1.6 2.2' }) : null,
       s('circle', { cx: 50, cy: 50, r: 41, fill: 'none', stroke: c.rim, 'stroke-width': 1.2, opacity: 0.7 }),
       s('path', { d: COIN_ART[id], fill: c.rim, opacity: 0.8 }));
-    var t = s('text', { x: 50, y: 86, 'text-anchor': 'middle', 'font-size': 8.5, 'font-weight': 700, fill: c.rim, 'font-family': 'DM Sans, sans-serif' });
+    var t = s('text', { x: 50, y: 86, 'text-anchor': 'middle', 'font-size': 8.5, 'font-weight': 700, fill: c.rim, 'font-family': 'Andika, Helvetica, sans-serif' });
     t.textContent = c.text;
     svg.appendChild(t);
     return svg;
@@ -796,7 +796,7 @@
       var feedback = h('div', { class: 'feedback', role: 'status' });
       var actions = h('div', { class: 'actions' });
       var el = h('article', { class: 'card in' },
-        h('p', { class: 'kicker', text: card.entry.skill.label }),
+        h('p', { class: 'kicker' }, h('span', { 'aria-hidden': 'true', text: card.entry.deck.icon + ' ' }), card.entry.skill.label),
         h('div', { class: 'stim' }, card.stim || null),
         h('h1', { class: 'prompt', tabindex: '-1', text: card.prompt }),
         card.readAloud && !(canSpeak && state.voice) ? h('p', { class: 'note' }, 'Grown-up, say: ', h('b', { text: card.readAloud })) : null);

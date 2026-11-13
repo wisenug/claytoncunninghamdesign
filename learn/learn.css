@@ -1,12 +1,21 @@
 /* Wonder Deck: standalone kids quiz cards, served at /learn/.
    Self-contained on purpose: it does not load the portfolio's styles.css. */
 
+/* Andika (SIL, OFL): a literacy font. One-story a and g, and capital I,
+   lowercase l and the digit 1 all look different. License: fonts/andika-OFL.txt */
 @font-face {
-  font-family: 'DM Sans';
+  font-family: 'Andika';
   font-style: normal;
-  font-weight: 300 700;
+  font-weight: 400;
   font-display: swap;
-  src: url(../fonts/dm-sans-04.woff2) format('woff2');
+  src: url(../fonts/andika-400.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Andika';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(../fonts/andika-700.woff2) format('woff2');
 }
 
 :root {
@@ -29,7 +38,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
-  font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-family: 'Andika', Helvetica, Arial, sans-serif;
   font-size: 18px;
   line-height: 1.4;
   -webkit-tap-highlight-color: transparent;

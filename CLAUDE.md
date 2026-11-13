@@ -31,7 +31,7 @@ Clayton Cunningham's portfolio. Hand-written static HTML, one shared stylesheet,
 | `tools/lottie/` | Source for that custom build, plus `check-features.mjs` (run it after adding an animation) |
 | `animations/` | Lottie JSON (images embedded as WebP) plus one MP4 |
 | `img/` | Site images (WebP with AVIF twins, responsive `-w800` / `-w1600` variants), MP4/WebM, `og/` cards, `shoes/` rotation frames |
-| `fonts/` | Self-hosted DM Sans (body) and Playfair Display (display) |
+| `fonts/` | Self-hosted DM Sans (body) and Playfair Display (display). Andika (OFL, license alongside) is for `learn/` only: a literacy font, not for the portfolio |
 | `*.mjs` (root) | Tooling scripts, never deployed |
 | `checks/validate-site.mjs` | Link, JSON-LD, sitemap, llms.txt, RSS validator |
 
